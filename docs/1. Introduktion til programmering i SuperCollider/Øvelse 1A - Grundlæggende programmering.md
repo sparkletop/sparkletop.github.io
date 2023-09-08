@@ -2,7 +2,7 @@
 
 Nedenstående øvelser omhandler brug af variabler og eksekvering af kildekode.
 
-## Øvelse 1A.0
+## Opgave 1: Forklar kildekoden
 
 Eksekvér nedenstående kodeblok på én gang. Forklar i kommentarer hvad hver enkelt kodelinje gør.
 
@@ -19,14 +19,14 @@ TempoClock.tempo.postln;
 )
 ```
 
-## Øvelse 1A.1
+## Opgave 2: Yndlingstal og variabler
 
 - Post dit yndlingstal i SuperColliders post window
 - Gem dit yndlingstal under en global variabel, fx ~mitYndlingstal
 - Post indholdet af din variabel
 - Post indholdet af din variabel ganget med 200
 
-## Øvelse 1A.2
+## Opgave 3: Find (og ret) syv fejl
 
 Find og ret fejlene i de syv eksempler herunder.
 

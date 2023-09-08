@@ -8,9 +8,7 @@ Start først lydserveren:
 s.boot;
 ```
 
-## Lav noget lyd!
-
-Herunder fremgår to kodeblokke - Eksempel 1 og 2. Leg med eksemplerne på følgende måde:
+I opgave 1 og 2 fremgår to kodeblokke. Begge opgaver går ud på, at du skal lege med eksemplerne på følgende måde:
 
 1. Eksekvér kodeblokken og lyt til resultatet.
 
@@ -18,11 +16,11 @@ Herunder fremgår to kodeblokke - Eksempel 1 og 2. Leg med eksemplerne på følg
 
 3. Overvej hvad de enkelte kodelinjer gør ved lyden.
 
-### Generativ komposition
+## Opgave 1: Generativ komposition
 
-Tip: Kør `Scale.directory;` for at få vist de forskellige indbyggede skalaer:
+Tip: Kør `Scale.directory;` for at få vist de forskellige indbyggede skalaer.
 
-``` sc title="Eksempel 1: Pattern-baseret komposition"
+``` sc title="Opgave 1"
 (
 Pdef(\eksempel1,
 	Pbind(
@@ -41,9 +39,9 @@ Pdef(\eksempel1,
 Pdef(\eksempel1).stop;
 ```
 
-### Oscillatorer
+## Opgave 2: Oscillatorer
 
-``` sc title="Eksempel 2: Komposition med oscillatorer"
+``` sc title="Opgave 2"
 (
 {
 	var sig, lfo, lfoFreq;

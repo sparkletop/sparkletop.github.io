@@ -4,16 +4,16 @@ Denne øvelse går ud på at læse, undersøge, forstå og variere nogle simple 
 
 Når du løser opgaverne, kan du med fordel bruge disse tricks til at forstå hvad der foregår:
 
-- Brug .trace til at tjekke outputtet fra forskellige patterns, fx `Pwhite(0, 5).trace`.
+- Brug `.trace` til at tjekke outputtet fra forskellige patterns, fx `Pwhite(0, 5).trace`.
 - Brug SuperColliders dokumentation - sæt cursoren ved et pattern-navn og tast Ctrl/Cmd-D. Scroll herefter ned til bunden af dokumentationsfilen for at se eksempler på hvordan det pågældende pattern fungerer.
 - Eksperimentér med at ændre på nogle af værdierne for at få en fornemmelse af, hvordan teknikkerne fungerer.
 
-## Eksempel 1: Nøgler
+## Opgave 1: Nøgler
 
-- Notér for hver linje i Pbind'en: Hvilken funktion har de enkelte nøgler (`\octave`, `\root` osv.)?
+- Notér for hver linje i `Pbind`'en: Hvilken funktion har de enkelte nøgler (`\octave`, `\root` osv.)?
 - Hvilken effekt opnår man ved at kombinere `Pwhite` og `.stutter`?
 
-```sc title="Eksempel 1"
+```sc title="Opgave 1"
 (
 TempoClock.tempo = 120/60;
 
@@ -35,14 +35,14 @@ Pbind(
 )
 ```
 
-## Eksempel 2: Skala-udforskning med Pbrown
+## Opgave 2: Skala-udforskning med Pbrown
 
 Besvar følgende spørgsmål:
 
 - Hvad er forskellen på `Pbrown` og `Pwhite`?
 - Hvilken funktion har nøglen `\ctranspose`?
 
-```sc title="Eksempel 2"
+```sc title="Opgave 2"
 (
 TempoClock.tempo = 80 / 60;
 
@@ -55,11 +55,11 @@ Pbind(
 )
 ```
 
-## Eksempel 3: Pentatone mønstre
+## Opgave 3: Pentatone mønstre
 
 Beskriv forholdet mellem tilfældighed og kompositorisk struktur i denne korte komposition.
 
-```sc title="Eksempel 3"
+```sc title="Opgave 3"
 (
 TempoClock.tempo = 140 / 60;
 Pbind(
@@ -76,11 +76,11 @@ Pbind(
 )
 ```
 
-## Eksempel 4: Korte, rytmiske sekvenser
+## Opgave 4: Korte, rytmiske sekvenser
 
 I dette eksempel kan man argumentere for, at der arbejdes med en kombination af tilfældighed og genkendelighed. Hvilke teknikker resulterer i skabelsen af balance mellem det tilfældige og det genkendelige? 
 
-```sc title="Eksempel 4"
+```sc title="Opgave 4"
 (
 TempoClock.tempo = 85 / 60;
 
@@ -107,13 +107,14 @@ TempoClock.tempo = 85 / 60;
 ~komp.stop;
 ```
 
-## Eksempel 5: Rytmiserede og dynamiserede akkorder
+## Opgave 5: Rytmiserede og dynamiserede akkorder
 
 Besvar følgende spørgsmål:
+
 - Hvilken effekt har kombinationerne af .stutter og .repeat på outputtet fra de forskellige patterns?
 - Hvad betyder `Array.interpolation(16, -20, -10)`?
 
-```sc title="Eksempel 5"
+```sc title="Opgave 5"
 (
 TempoClock.tempo = 120 / 60;
 
