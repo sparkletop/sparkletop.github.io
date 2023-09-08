@@ -1,4 +1,4 @@
-# Methods
+# Hvad er "methods"?
 
 Start lydserveren for at høre lydeksemplerne herunder
 `s.boot;`
@@ -10,6 +10,8 @@ Alt hvad man kan gøre i SuperCollider, altså SuperColliders funktionalitet, er
 Scale.minorPentatonic; // .minorPentatonic angiver (kombineret med Scale) en mol-pentaton skala
 69.midicps;            // method'en .midicps omregner fra MIDI-tonehøjde til frekvens, målt i Hertz
 ```
+
+Methods kaldes undertiden også for "messages". Det skyldes, at methods anvendes på "noget", og dette noget kalder man så en "receiver". I udtrykket `69.midicps` er `69` receiveren, som modtager vores message `midicps`. 
 
 ## To slags methods
 

@@ -1,4 +1,4 @@
-# Variabler
+# Brug af variabler
 
 Vi kan opbevare forskellige former for data i computerens hukommelse ved hjælp af variabler. Variabler kan forstås som en slags opbevaringsrum, hvor vi kan gemme ting og finde dem frem igen senere. Der er to typer variabler: *Globale* og *lokale* variabler.
 
