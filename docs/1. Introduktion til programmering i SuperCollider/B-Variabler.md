@@ -1,28 +1,29 @@
 # Variabler
 
-Vi kan opbevare forskellige former for data i computerens hukommelse ved hjælp af variabler.
-
-Variabler kan forstås som en slags opbevaringsrum, hvor vi kan gemme ting og finde dem frem igen senere.
-
-Der er to typer variabler: Globale og lokale variabler
+Vi kan opbevare forskellige former for data i computerens hukommelse ved hjælp af variabler. Variabler kan forstås som en slags opbevaringsrum, hvor vi kan gemme ting og finde dem frem igen senere. Der er to typer variabler: *Globale* og *lokale* variabler.
 
 ## Globale variabler
 
-Kan tilgås (næsten) overalt i et SuperCollider-program
-Noteres med "~", direkte efterfulgt af et passende navn    
+Globale variabler kan tilgås (næsten) overalt i et SuperCollider-program. De noteres med "~", direkte efterfulgt af et passende navn, fx sådan her:
+
 ```sc
 ~alder;
 ~kaffekop;
 ```
 
-Alle enkeltbogstaver (a-z) udgør også globale variabler
+Alle enkeltbogstaver (a-z) udgør også globale variabler:
+
 ``` sc
 a;
 q;
 ```
 
 For at kunne bruge variabler skal vi kunne definere, tilgå og ændre deres indhold.
-Indholdet på højre side af lighedstegnet gemmes under variablen ~alder:
+
+- For at tilgå variablen, dvs. finde dens indhold frem og bruge det til noget, bruger vi slet og ret variabelnavnet, fx `~alder`.
+- For at definere variablens indhold, bruger vi et såkaldt assignment statement: `~alder = 10`.
+
+Her er et eksempel:
 
 ``` sc
 ~alder.postln; // tjek først variablens indhold
@@ -30,32 +31,38 @@ Indholdet på højre side af lighedstegnet gemmes under variablen ~alder:
 ~alder.postln; // tjek variablens indhold igen
 ```
 
-Vi kan tilgå og bruge variablens indhold blot ved at bruge dens navn:
+Vi kan efterfølgende tilgå og bruge variablens indhold blot ved at bruge dens navn:
 
 ``` sc
 ~alder * 100;
 ```
 
-Vi kan omdefinere indholdet med endnu en assignment:
+Vi kan også omdefinere indholdet med endnu en assignment:
 
 ``` sc
 ~alder = 50;
 ~alder.postln;
 ```
 
-Variablens nuværende indhold kan anvendes, når man regner en ny værdi ud og gemmer under samme variabelnavn
+Variablens nuværende indhold kan anvendes, når man regner en ny værdi ud og gemmer under samme variabelnavn:
 
+```sc
 ~alder = ~alder * 10 + 7;
 ~alder.postln;
+```
 
-### Store og små beg
+### Små begyndelsesbogstaver
 
-OBS: Variabelnavne SKAL have lille begyndelsesbogstav (fordi klassenavne har stort begyndelsesbogstav)
+OBS: Variabelnavne SKAL have lille begyndelsesbogstav (fordi klassenavne har stort begyndelsesbogstav). Se fx hvad der sker, når vi prøver at bruge variabelnavnet `~Kaffe`:
+
+```sc
 ~Kaffe   // giver fejlmeddelelse
+```
 
 ## Lokale variabler
-Kan tilgås inden for en afgrænset kodeblok bestående af () eller {}.
-Lokale variabler defineres med nøgleordet "var" og anvendes uden tilde (~)   
+
+Kan udelukkende tilgås inden for en afgrænset kodeblok bestående af () eller {}. Lokale variabler defineres med nøgleordet "var" og anvendes uden tilde (~). Det ser fx såan her ud:
+
 ``` sc
 (
 var model = "Fabia";
@@ -64,3 +71,5 @@ model.postln; // inden for kodeblokken: viser variablens indhold
 
 model.postln; // uden for kodeblokken: giver en fejlmeddelelse
 ```
+
+Lokale variabler bruges blandt andet til at definere signalflowet, når man designer lyde i en såkaldt SynthDef - det vender vi tilbage til senere i kurset.
