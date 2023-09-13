@@ -93,6 +93,7 @@ I stedet for et bestemt antal gentagelser kan vi gentage uendeligt med nøgleord
 Vi kan vælge at bruge `Pseq` til at styre flere forskellige parametre. Selvom den nederste `Pseq` herunder gentager sekvensen i det uendelige, slutter vores samlede sekvens af begivenheder, så snart den første Pseq i Pbind'en er fædig.
 
 ``` sc
+(
 Pbind(
 	\degree, Pseq([0, 1, 2, 7, 4, 3, 1, 2]),
 	\dur, Pseq([0.25, 0.5, 0.25, 1], inf),
@@ -102,6 +103,7 @@ Pbind(
 
 Det kan nogle gange være en god idé at bruge variabler til at fordele vores kode over flere linjer. Eksemplet herunder giver samme resultat som ovenfor:
 ``` sc
+(
 ~skalatrin = [0, 1, 2, 7, 4, 3, 1, 2];
 ~varigheder = [0.25, 0.5, 0.25, 1];
 Pbind(
@@ -122,6 +124,7 @@ Pbind(\degree, Prand([0, 2, 4, 7], 8)).play; // tilfældigt valgte elementer for
 Elementerne i vores `Pseq`-sekvens kan være andre patterns, fx `Pwhite`, som vi så ovenfor - på den måde kan man blande variation og dynamik ind i sin komposition
 
 ``` sc
+(
 Pbind(
 	\degree, Pseq([
 		-7, 7,             // først et par faste toner
@@ -148,6 +151,7 @@ Pbind(
 Modsat `Pseq` kører `Pwhite` som udgangspunkt uendeligt, men vi kan begrænse antallet af tilfældige tal med et yderligere argument:
 
 ``` sc
+(
 Pbind(
 	\degree, Pwhite(0, 4, 3),
 ).play;
@@ -203,10 +207,12 @@ Pbind(\degree, Pseq([0, 1, 2]) * Pwhite(1, 3)).play; // Vi kan også lave matema
 Afrunding er også muligt - fx kan vi afrunde tilfældigt genererede tal mellem -12 og +12 til nærmeste tal i 3-tabellen og derved få en skala, der er bygget op af små tertser:
 
 ```sc
+(
 Pbind(
     \scale, Scale.chromatic,
     \degree, Pwhite(-12, 12).round(3),
 ).play;
+)
 ```
 
 Vi kan også bruge nogle specifikke pattern-methods til at gentage outputtet fra patterns på forskellig vis. Kør nedenstående kode og gæt selv hvad `.repeat`, `.stutter` og `.clump` gør:
