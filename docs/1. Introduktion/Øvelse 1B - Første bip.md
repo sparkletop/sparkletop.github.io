@@ -31,7 +31,7 @@ Pdef(\eksempel1,
 		\degree, Pseq([0, 1, 2, 3, 4], inf),
 		\root, 1,
 		\octave, 4,
-		\dur, Pwhite(0.25, 1.0).round(0.5),
+		\dur, 0.25,    // <-- denne værdi skal være større end 0
 		\legato, 1.2,
 	)
 ).play;

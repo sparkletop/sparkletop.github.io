@@ -15,7 +15,8 @@ TempoClock.tempo.postln;
 ~akkord = [0, 3, 4];
 ~akkord.postln;
 
-(3+4).postln;
+(3 + 4).postln;
+3 + 4.postln;
 )
 ```
 
