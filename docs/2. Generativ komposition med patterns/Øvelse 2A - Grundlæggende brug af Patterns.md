@@ -49,7 +49,7 @@ Pbind(
 )
 ```
 
-## Opgave 2: Tonehøjde i Pbind
+## Opgave 2: Tonehøjde i `Pbind`
 
 Denne opgave fokuserer på brug af nøgler til angivelse af tonehøjde i Pbind. Der skal ikke anvendes patterns (ud over Pbind).
 
