@@ -1,6 +1,6 @@
 # Oversigt: Patterns
 
-## 10 primære patterns
+## 11 primære patterns
 
 Start med at lære disse patterns at kende!
 
@@ -35,6 +35,8 @@ Pbind(\pan, Pgauss(0, 0.5)).play; // brug evt. hovedtelefoner for at høre panor
 // Pbrown - en "fordrukken" stifinder
 Pbind(\degree, Pbrown(-7, 7, 2), \dur, 0.2).play;
 
+// Pseries - en trinvis udvikling med startværdi, interval og antal
+Pbind(\degree, Pseries(7, -2, 8)).play;
 ```
 
 ## 3 vigtige Pattern-methods
