@@ -1,6 +1,6 @@
-# Forståelse af og leg med Pattern-eksempler
+# Pattern-baserede kompositionsideer
 
-Denne øvelse går ud på at læse, undersøge, forstå og variere nogle simple eksempler på patternbaseret komposition. Dele af øvelserne er repetition i forhold til sektion 2 - men som tidligere nævnt er det vigtigt at have styr på det grundlæggende, før man kan gå videre til det mere avancerede.
+Denne øvelse går ud på at læse, undersøge, forstå og variere/eksperimentere med eksempler på patternbaseret komposition. Dele af øvelserne er repetition i forhold til sektion 2 - men som tidligere nævnt er det vigtigt at have styr på det grundlæggende, før man kan gå videre til det mere avancerede.
 
 Når du løser opgaverne, kan du med fordel bruge disse tricks til at forstå hvad der foregår:
 
