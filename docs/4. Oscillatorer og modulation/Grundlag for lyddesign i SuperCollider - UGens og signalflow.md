@@ -1,4 +1,4 @@
-# Grundlag for lyddesign i SuperCollider: UGens
+# UGens og signalflow
 
 Husk at boote lydserveren med `s.boot;` inden du kører nedenstående eksempler.
 
@@ -23,11 +23,11 @@ UGens kører på SuperColliders **lydserver**. Det betyder, at de fungerer en sm
 
 Man kan ikke bruge patterns inde i UGen-funktioner. Men lidt senere i kurset kommer vi til at kombinere patterns og UGens ved at registrere vores UGen-funktioner som såkaldte `SynthDef`s. 
 
-Forholdet mellem patterns og UGens (i form af SynthDefs) er lidt ligesom forholdet mellem en musiker (patterns) og et instrument (UGens). Man kan godt komponere med patterns uden at bruge UGens (fx ved at spille på et andet instrument via MIDI). Man kan også godt komponere udelukkende ved hjælp af UGens (ligesom en selvkørende, modulær synthesizer). Men den særlige fordel ved platforme som SuperCollider er kompinationen af de to niveauer, når vi bruger det righoldige pattern-bibliotek sammen med vores egne UGen-lyddesign får vi mange kompositionsmuligheder.
+Forholdet mellem patterns og UGens er lidt ligesom forholdet mellem en musiker (patterns) og et instrument (UGens). Man kan godt komponere med patterns uden at bruge UGens (fx ved at spille på et andet instrument via MIDI). Man kan også godt komponere udelukkende ved hjælp af UGens (ligesom en selvkørende, modulær synthesizer). Men den særlige fordel ved platforme som SuperCollider er kombinationen af de to niveauer, når vi bruger det righoldige pattern-bibliotek sammen med vores egne UGen-lyddesign får vi mange kompositionsmuligheder.
 
-## Første trin med SinOsc 
+## Første trin med `SinOsc`
 
-Den mest enkle UGen er SinOsc - en ydmyg sinustone-oscillator. Vi afspiller den her ved audio rate (.ar):
+Den mest enkle UGen er `SinOsc` - en ydmyg sinustone-oscillator. Vi afspiller den her ved audio rate (.ar):
 
 ```sc title="Sinusbølger - amplitude og frekvens"
 {SinOsc.ar}.play;
@@ -49,11 +49,13 @@ Den mest enkle UGen er SinOsc - en ydmyg sinustone-oscillator. Vi afspiller den 
 
 ![Sinusbølger ved 220Hz, 440Hz og 2kHz](media/tre_frekvenser.png)
 
-UGens bruges inde i såkaldte funktioner, som noteres med {}. Kodelinjerne mellem disse tuborg-parenteser kører på SuperColliders lydserver.
+UGens bruges inde i såkaldte funktioner, som noteres med `{}`. Kodelinjerne mellem disse tuborg-parenteser kører på SuperColliders lydserver, når de efterfølges af `.play`, dvs. `{}.play`.
 
 ## Modulation
 
-Dette bliver hurtigt lidt monotont, så lad os skabe lidt udvikling ved at modulere sinustonen. Der findes grundlæggende to parametre, man kan manipulere: Tonehøjde (frekvens) og lydstyrke (amplitude).
+Sinostonen ovenfor bliver hurtigt lidt monoton, så lad os skabe lidt udvikling ved hjælp af modulation. Der findes grundlæggende to parametre, man kan manipulere ved en oscillator: *Tonehøjde* (frekvens) og *lydstyrke* (amplitude).
+
+Der findes også en tredje parameter, nemlig fase, men den udelader vi her for enkelhedens skyld.
 
 ### Modulation af amplitude
 
