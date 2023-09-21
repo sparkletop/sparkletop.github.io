@@ -1,4 +1,8 @@
-# Oversigt: Pbind-nøgler
+---
+tags:
+    - Cheat sheets
+---
+# Cheat sheet: Pbind-nøgler
 
 I SuperCollider kan man sammensætte længere forløb af musikalske "begivenheder" ved hjælp af `Pbind`:
 ```sc

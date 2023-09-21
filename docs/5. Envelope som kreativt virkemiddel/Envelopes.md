@@ -1,3 +1,7 @@
+---
+tags:
+    - Artikler
+---
 # Envelopes
 
 Et meget væsentligt aspekt af enhver form for lyddesign angår hvordan lyd udvikler sig og forandres over tid. Herunder tager vi hul på dette emne ved at introducere til såkaldte envelopes. Envelopes anvendes i elektronisk klangdannelse typisk til at styre en tone eller en lyds volumen over tid, men envelopes kan med fordel bruges på mange andre måder. 

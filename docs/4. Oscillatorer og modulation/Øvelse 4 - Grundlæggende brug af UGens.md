@@ -1,3 +1,7 @@
+---
+tags:
+    - Øvelser
+---
 # Øvelse 4: Grundlæggende brug af UGens
 
 Denne øvelse går ud på at bruge UGens på grundlæggende niveau.

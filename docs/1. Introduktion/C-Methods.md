@@ -1,3 +1,7 @@
+---
+tags:
+    - Artikler
+---
 # Hvad er "methods"?
 
 Start lydserveren for at høre lydeksemplerne herunder

@@ -1,3 +1,8 @@
+---
+tags:
+    - Artikler
+---
+
 # Eksekvering af kode
 
 Når man første gang åbner SuperCollider, mødes man af en umiddelbart noget minimalistisk brugerflade. Med mindre man har arbejdet med programmering i anden sammenhæng, vil det i begyndelsen være lidt uvant, at brugerfladen først og fremmest består i et tekstdokument, hvor man noterer og eksekverer kildekode.

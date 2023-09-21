@@ -1,3 +1,7 @@
+---
+tags:
+    - Artikler
+---
 # Synth og SynthDef
 
 Hidtil har vores lyddesign været enkle og midlertidige - med `{}.play` kan vi hurtigt teste UGens og idéer. Men vi kan gøre vores lyddesign meget mere fleksibelt og anvendeligt til længere kompositionsforløb ved at samle vores UGens i en såkaldt `SynthDef`.

@@ -1,3 +1,7 @@
+---
+tags:
+    - Øvelser
+---
 # Øvelse 2B: Generativ komposition
 
 Denne øvelse handler om at bruge patterns til generativ komposition.

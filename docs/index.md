@@ -1,26 +1,32 @@
 # Musik- og lydprogrammering
 
-Denne side indeholder supplerende materialer til et kursus i musik- og lydprogrammering med [SuperCollider](https://supercollider.github.io). Siden er ikke tænkt som en enkeltstående introduktion og bør suppleres med anden litteratur, fx Bruno Ruviaros udmærkede *[A Gentle Introduction to SuperCollider](https://ccrma.stanford.edu/~ruviaro/texts/A_Gentle_Introduction_To_SuperCollider.pdf)* og Eli Fieldsteels udmærkede videoserie *[SuperCollider Tutorials](https://www.youtube.com/playlist?list=PLPYzvS8A_rTaNDweXe6PX4CXSGq4iEWYC)*.
+Dette website indeholder supplerende materialer til et grundlæggende kursus i musik- og lydprogrammering. Redskabet i kurset, [SuperCollider](https://supercollider.github.io), er gratis og open source. Websitet her er ikke en enkeltstående introduktion og bør suppleres med anden litteratur, fx Bruno Ruviaros udmærkede *[A Gentle Introduction to SuperCollider](https://ccrma.stanford.edu/~ruviaro/texts/A_Gentle_Introduction_To_SuperCollider.pdf)* og Eli Fieldsteels udmærkede videoserie *[SuperCollider Tutorials](https://www.youtube.com/playlist?list=PLPYzvS8A_rTaNDweXe6PX4CXSGq4iEWYC)*.
 
-Niveauet på denne side er grundlæggende.
+## Brug af dette site
 
-## Om denne side
+Denne side er opbygget i 11 moduler, som tilgås via menuen. Det anbefales, at begyndere starter fra modul 1 og arbejder sig fremad. Det anbefales kraftigt, at man undervejs i læsningen selv indtaster og afprøver eksemplerne med kildekode, da dette giver den bedst mulige erfaring og indlæring. Blokke af kildekode her på siden kan let kopieres og indsættes i SuperColliders tekst-editor - prøv selv med nedenstående kildekode.
 
-Denne side indeholder tre typer af dokumenter:
+```sc
+(
+{
+    SinOsc.ar(
+        LFNoise0.kr(10.dup).exprange(220, 880)
+    )
+}.play;
+)
+```
 
-*Artikler*
+## Oversigt over artikler, cheat sheets og øvelser
 
-:   Korte tekster, som introducerer til forskellige emner
+Modulerne indeholder tre typer af dokumenter:
 
-*Oversigter*
+- *Artikler*: Korte tekster, som introducerer til forskellige emner som generativ komposition, digital klangdannelse og brug af SuperCollider
+- *Cheat sheets*: Overskuelige oversigter over centrale redskaber og teknikker 
+- *Øvelser*: Øvelser, som giver mulighed for at arbejde praktisk med emnerne
 
-:   Overskuelige oversigter over centrale redskaber og teknikker (aka. "cheat sheets")
+Her finder du en samlet oversigt over sitets indhold, fordelt i artikler, cheat sheets og øvelser:
 
-*Øvelser*
-
-:   Øvelser, som giver mulighed for at arbejde praktisk med emnerne
-
-Eksempler med kildekode kan kopieres og indsættes i SuperColliders editor.
+[TAGS]
 
 ## Licens
 

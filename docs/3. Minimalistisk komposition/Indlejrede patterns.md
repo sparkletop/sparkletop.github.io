@@ -1,3 +1,8 @@
+---
+tags:
+    - Artikler
+---
+
 # Indlejrede patterns
 
 Det er relativt let at lave en simpel, algoritmisk komposition ved hjælp af patterns. Men det kan være mere vanskeligt at bevæge sig videre fra det meget simple eller meget tilfældighedsprægede udtryk. Her kan en teknik, som kaldes indlejring af patterns, være med til at give et mere nuanceret og subtilt udtryk.

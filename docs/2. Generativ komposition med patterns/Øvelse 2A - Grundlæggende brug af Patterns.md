@@ -1,3 +1,7 @@
+---
+tags:
+    - Øvelser
+---
 # Øvelse 2A: Grundlæggende brug af Patterns
 
 Med denne øvelse får du grundlæggende erfaring med brug af patterns. Opgaverne er simple i forhold til potentialet i patterns, men en god forståelse af de grundlæggende forhold er afgørende for at man kan arbejde med de mere komplicerede teknikker senere hen.

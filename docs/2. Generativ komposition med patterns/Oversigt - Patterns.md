@@ -1,4 +1,8 @@
-# Oversigt: Patterns
+---
+tags:
+    - Cheat sheets
+---
+# Cheat sheet: Patterns
 
 ## 11 primære patterns
 

@@ -1,3 +1,7 @@
+---
+tags:
+    - Øvelser
+---
 # Øvelse 1A: Grundlæggende programmering
 
 Nedenstående øvelser omhandler brug af variabler og eksekvering af kildekode.

@@ -1,14 +1,18 @@
+---
+tags:
+    - Artikler
+---
 # Pattern-baserede kompositionsideer
 
-Denne øvelse går ud på at læse, undersøge, forstå og variere/eksperimentere med eksempler på patternbaseret komposition. Dele af øvelserne er repetition i forhold til sektion 2 - men som tidligere nævnt er det vigtigt at have styr på det grundlæggende, før man kan gå videre til det mere avancerede.
+Denne artikel handler om at læse, undersøge, forstå og variere/eksperimentere med eksempler på patternbaseret komposition. Der er nogen redundans i forhold til sektion 2 - men som tidligere nævnt er det vigtigt at have styr på det grundlæggende, før man kan gå videre til det mere avancerede.
 
-Når du løser opgaverne, kan du med fordel bruge disse tricks til at forstå hvad der foregår:
+Artiklen er udformet som instrukser til praktisk selvstudium. Når du besvarer spørgsmålene, kan disse tricks være en god hjælp til at forstå hvad der foregår:
 
 - Brug `.trace` til at tjekke outputtet fra forskellige patterns, fx `Pwhite(0, 5).trace`.
 - Brug SuperColliders dokumentation - sæt cursoren ved et pattern-navn og tast Ctrl/Cmd-D. Scroll herefter ned til bunden af dokumentationsfilen for at se eksempler på hvordan det pågældende pattern fungerer.
 - Eksperimentér med at ændre på nogle af værdierne for at få en fornemmelse af, hvordan teknikkerne fungerer.
 
-## Opgave 1: Nøgler
+## Eksempel 1: Nøgler
 
 1. Notér for hver linje i `Pbind`'en: Hvilken funktion har de enkelte nøgler (`\octave`, `\root` osv.)?
 1. Hvilken effekt opnår man ved at kombinere `Pwhite` og `.stutter`?
@@ -17,7 +21,7 @@ Når du løser opgaverne, kan du med fordel bruge disse tricks til at forstå hv
     1. Den valgte skala
     1. De valgte patterns (`Pseq`, `Pwhite` osv.)
 
-```sc title="Opgave 1"
+```sc title="Eksempel 1"
 (
 TempoClock.tempo = 120/60;
 
@@ -39,7 +43,7 @@ Pbind(
 )
 ```
 
-## Opgave 2: Skala-udforskning med `Pbrown`
+## Eksempel 2: Skala-udforskning med `Pbrown`
 
 1. Besvar: Hvad er forskellen på `Pbrown` og `Pwhite`?
 1. Besvar: Hvilken funktion har nøglen `\ctranspose`?
@@ -48,7 +52,7 @@ Pbind(
     1. Den valgte skala
     1. De valgte patterns (`Pseq`, `Pwhite` osv.)
 
-```sc title="Opgave 2"
+```sc title="Eksempel 2"
 (
 TempoClock.tempo = 80 / 60;
 
@@ -61,14 +65,14 @@ Pbind(
 )
 ```
 
-## Opgave 3: Pentatone mønstre
+## Eksempel 3: Pentatone mønstre
 
 1. Beskriv forholdet mellem tilfældighed og kompositorisk struktur i denne korte komposition.
 1. Skriv to variationer af kompositionen:
     1. Én version, som har en højere grad af tilfældighed
     1. Én version, som har en højere grad af struktur og gentagelse
 
-```sc title="Opgave 3"
+```sc title="Eksempel 3"
 (
 TempoClock.tempo = 140 / 60;
 Pbind(
@@ -85,7 +89,7 @@ Pbind(
 )
 ```
 
-## Opgave 4: Rytmiserede og dynamiserede akkorder
+## Eksempel 4: Rytmiserede og dynamiserede akkorder
 
 1. Besvar: Hvilken effekt har kombinationerne af `.stutter` og `.repeat` på outputtet fra de forskellige patterns?
 1. Besvar: Hvad betyder `Array.interpolation(16, -20, -10)`?
@@ -93,7 +97,7 @@ Pbind(
     1. Tilføj mindst én akkord til `Pwrand` (husk, at sandsynlighederne `[0.9, 0.1]` skal svare til antallet af valgmuligheder og tilsammen skal give 1)
     1. Erstat `Pxrand` med et pattern efter eget valg, og notér hvilken forskel dette gør
 
-```sc title="Opgave 4"
+```sc title="Eksempel 4"
 (
 TempoClock.tempo = 120 / 60;
 
@@ -113,12 +117,12 @@ Pbind(
 )
 ```
 
-## Opgave 5: Korte, rytmiske sekvenser
+## Eksempel 5: Korte, rytmiske sekvenser
 
 1. Besvar: I dette eksempel kan man argumentere for, at der arbejdes med en kombination af tilfældighed og genkendelighed. Hvilke teknikker resulterer i skabelsen af balance mellem det tilfældige og det genkendelige? 
 1. Skriv en ny komposition, som er inspireret af kildekoden her samt din besvarelse af spørgsmålet ovenfor.
 
-```sc title="Opgave 5"
+```sc title="Eksempel 5"
 (
 TempoClock.tempo = 85 / 60;
 

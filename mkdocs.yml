@@ -3,6 +3,9 @@ theme:
   name: material
   features:
     - content.code.copy
+    - navigation.instant
+    - navigation.indexes
+    - toc.follow
   palette:
     - scheme: default
       toggle:
@@ -12,6 +15,10 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+
+plugins:
+  - tags:
+      tags_file: index.md
 
 markdown_extensions:
   - pymdownx.highlight:

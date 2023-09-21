@@ -1,3 +1,7 @@
+---
+tags:
+    - Øvelser
+---
 # Øvelse 1B: Første bip
 
 Nedenstående øvelse går ud på at producere lyde på SuperColliders lydserver og eksperimentere med at ændre på lyden ved at variere på parametrene.

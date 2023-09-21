@@ -1,3 +1,7 @@
+---
+tags:
+    - Artikler
+---
 # UGens og signalflow
 
 Husk at boote lydserveren med `s.boot;` inden du kører nedenstående eksempler.
