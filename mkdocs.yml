@@ -1,24 +1,35 @@
 site_name: Musik- og lydprogrammering 
 theme:
   name: material
+  language: da
   features:
     - content.code.copy
-    # - navigation.instant
-    # - navigation.indexes
-    # - toc.follow
+    - header.autohide
+    - navigation.instant
+    #- navigation.indexes
+    - toc.follow
+    - search.suggest
+    - navigation.footer
+  icon:
+    logo: material/waveform
   palette:
     - scheme: default
       toggle:
-        icon: material/brightness-7
+        icon: material/weather-night
         name: Switch to dark mode
+      primary: blue
+      accent: indigo
     - scheme: slate
       toggle:
-        icon: material/brightness-4
+        icon: material/weather-sunny
         name: Switch to light mode
+      primary: green
+      accent: lime
 
 plugins:
   - tags:
       tags_file: index.md
+  - search
 
 markdown_extensions:
   - pymdownx.highlight:
