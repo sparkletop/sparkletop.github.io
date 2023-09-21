@@ -4,9 +4,11 @@ Dette website indeholder supplerende materialer til et grundlæggende kursus i m
 
 ## Brug af dette site
 
-Denne side er opbygget i 11 moduler, som tilgås via menuen. Det anbefales, at begyndere starter fra modul 1 og arbejder sig fremad. Det anbefales kraftigt, at man undervejs i læsningen selv indtaster og afprøver eksemplerne med kildekode, da dette giver den bedst mulige erfaring og indlæring. Blokke af kildekode her på siden kan let kopieres og indsættes i SuperColliders tekst-editor - prøv selv med nedenstående kildekode.
+Denne side er opbygget i 11 moduler, som tilgås via menuen. Det anbefales, at begyndere starter fra modul 1 og arbejder sig fremad. Det anbefales kraftigt, at man undervejs i læsningen selv indtaster og afprøver eksemplerne med kildekode, da dette giver den bedst mulige erfaring og indlæring.
 
-```sc
+Blokke af kildekode her på siden kan let kopieres og indsættes i SuperColliders tekst-editor - prøv selv med nedenstående kildekode. Placer cursoren på én af de midterste linjer og tast Ctrl-Enter eller Cmd-Enter for at høre lyden. Stop lyden igen med Ctrl-Punktum eller Cmd-Punktum.
+
+```sc title="En tilfældig LFO styrer en sinustone-oscillator"
 (
 {
     SinOsc.ar(
@@ -15,8 +17,6 @@ Denne side er opbygget i 11 moduler, som tilgås via menuen. Det anbefales, at b
 }.play;
 )
 ```
-
-## Oversigt over artikler, cheat sheets og øvelser
 
 Modulerne indeholder tre typer af dokumenter:
 
