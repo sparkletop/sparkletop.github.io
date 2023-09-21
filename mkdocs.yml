@@ -3,9 +3,9 @@ theme:
   name: material
   features:
     - content.code.copy
-    - navigation.instant
-    - navigation.indexes
-    - toc.follow
+    # - navigation.instant
+    # - navigation.indexes
+    # - toc.follow
   palette:
     - scheme: default
       toggle:
