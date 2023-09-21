@@ -65,7 +65,7 @@ Justér kun på de markerede linjer i kodeblokken herunder.
 ## Opgave 3: SynthDef med vedvarende envelope
 
 1. Justér nedenstående SynthDef, så den anvender en vedvarende envelope i stedet for en selv-afsluttende envelope. OBS: Dette kræver tilføjelse af gate-argument - se hvordan i [artiklen om envelopes](Envelopes.md).
-2. Skriv en `Pmono`-baseret komposition, hvor du varierer `\degree`, `\lfoFreq` og `\lfoDepth` ved hjælp af patterns, fx [tilfældighedsgeneratorer](../2. Generativ komposition med patterns/Tilfældighedsgeneratorer.md).
+2. Skriv en `Pmono`-baseret komposition, hvor du varierer `\degree`, `\lfoFreq` og `\lfoDepth` ved hjælp af patterns, fx [tilfældighedsgeneratorer](../2. Generativ komposition med patterns/2.2-tilfældighedsgeneratorer.md).
 
 Justér kun på de markerede linjer i kodeblokken herunder.
 
