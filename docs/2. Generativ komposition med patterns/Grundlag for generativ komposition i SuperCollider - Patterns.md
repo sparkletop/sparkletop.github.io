@@ -2,7 +2,7 @@
 tags:
     - Artikler
 ---
-# Grundlag for generativ komposition i SuperCollider: Patterns
+# Grundlag for generativ komposition: Patterns
 
 Husk at boote lydserveren inden du kører nedenstående eksempler: `s.boot;`
 
