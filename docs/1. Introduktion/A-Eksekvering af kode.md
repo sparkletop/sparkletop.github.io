@@ -37,7 +37,7 @@ rrand(50, 100).postln;
 Vi eksekverer ofte kode, som genererer lyd. I de tilfælde skal vi først starte SuperColliders lydserver. Dette kan gøres på flere måder, men det mest enkle er at køre denne linje:
 
 ``` sc
-c.boot;
+s.boot;
 ```
 
 Bemærk, at tallene nederst i højre hjørne bliver grønne, når lydserveren er bootet. Derefter kan vi afspille lyde:
