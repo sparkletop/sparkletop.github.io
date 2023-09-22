@@ -10,9 +10,9 @@ Denne øvelse går ud på at bruge UGens på grundlæggende niveau.
 
 Afspil følgende lyde med peak-amplitude på 0.1:
 
-- Sinustone med frekvens på 220Hz
-- Savtakket bølgeform med frekvens på 100Hz
-- En firkantet bølgeform med frekvens på 350Hz   
+1. Sinustone med frekvens på 220Hz
+1. Savtakket bølgeform med frekvens på 100Hz
+1. En firkantet bølgeform med frekvens på 350Hz   
 
 ```sc
 {SinOsc.ar(   ) * 0.1}.play;
@@ -26,8 +26,8 @@ SuperCollider kan plotte lyd-outputtet i en graf. Dette viser eksempelvis output
                                         
 Brug {}.plot-teknikken til at besvare følgende spørgsmål:
 
-- Hvad er forskellen på Pulse.ar(width: 0.5) og Pulse.ar(width: 0.1)?
-- Hvad er forskellen på LFNoise0.kr(2), LFNoise1.kr(2) og LFNoise2.kr(2)? (Vi har med LFO at gøre, plot derfor over fx 3 sekunder)                               
+1. Hvad er forskellen på Pulse.ar(width: 0.5) og Pulse.ar(width: 0.1)?
+1. Hvad er forskellen på LFNoise0.kr(2), LFNoise1.kr(2) og LFNoise2.kr(2)? (Vi har med LFO at gøre, plot derfor over fx 3 sekunder)                               
 
 ```sc
 {}.plot();
@@ -45,8 +45,8 @@ Vi kan vise SuperColliders output i frekvensdomænet sådan her: `s.freqscope;`
                                         
 Brug `s.freqscope` til at besvare følgende spørgsmål:
 
-- Hvad kendetegner overtonespektrene for de forskellige bølgeformer fra øvelse 4.1 og 4.2?
-- Hvad styrer musen i nedenstående eksempel?   
+1. Hvad kendetegner overtonespektrene for de forskellige bølgeformer fra opgave 1 og 2?
+1. Hvad styrer musen i nedenstående eksempel?   
 
 ```sc
 { Blip.ar(220, MouseX.kr(1,50)) * 0.1 }.play
@@ -62,10 +62,10 @@ Når vi arbejder med volumen, skalerer vi typisk amplituden med en faktor mellem
                                          
 Anvend følgende UGens til at modulere amplituden i intervallet 0-1 for en savtakket bølgeform. Modulatorens frekvens vælges frit i intervallet 0-20Hz:
 
-- `LFTri` (trekantet bølgeform)
-- `LFPulse` (firkantet bølgeform)
-- `LFNoise1` (tilfældig bølgeform, lineær interpolation)
-- `SinOsc` (sinusbølge)         
+1. `LFTri` (trekantet bølgeform)
+1. `LFPulse` (firkantet bølgeform)
+1. `LFNoise1` (tilfældig bølgeform, lineær interpolation)
+1. `SinOsc` (sinusbølge)         
 
 ```sc
 {Saw.ar * }.play;
@@ -89,10 +89,10 @@ Når vi modulerer frekvens, er det typisk nødvendigt at justere modulatorens eg
                     
 Brug følgende UGens til at modulere frekvensen for en savtakket bølge mellem 200Hz og 1600Hz.
 
-- `LFTri` (trekantet bølgeform)
-- `LFPulse` (firkantet bølgeform)
-- `LFNoise0` (tilfældig bølgeform, ingen interpolation)
-- `SinOsc` (sinusbølge)
+1. `LFTri` (trekantet bølgeform)
+1. `LFPulse` (firkantet bølgeform)
+1. `LFNoise0` (tilfældig bølgeform, ingen interpolation)
+1. `SinOsc` (sinusbølge)
 
 Vælg selv en passende frekvens mellem 0Hz og 20Hz til modulatoren.
 
@@ -130,9 +130,9 @@ Udfyld koden herunder:
 
 ## Opgave 6: Bonus-øvelse - modulation af pulsbredde
 
-- Modulér pulsbredden for en firkantet bølgeform (`Pulse` ved hjælp af en savtakket bølgeform (`LFSaw`).
-- Modulatorens frekvens skal være 0.2Hz.
-- Modulatorens output skal skaleres med `.range`, således at det ligger i intervallet 0.1-0.5. 
+1. Modulér pulsbredden for en firkantet bølgeform (`Pulse` ved hjælp af en savtakket bølgeform (`LFSaw`).
+1. Modulatorens frekvens skal være 0.2Hz.
+1. Modulatorens output skal skaleres med `.range`, således at det ligger i intervallet 0.1-0.5. 
 
 ```sc
 (
