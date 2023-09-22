@@ -24,10 +24,10 @@ Afspil følgende lyde med peak-amplitude på 0.1:
 
 SuperCollider kan plotte lyd-outputtet i en graf. Dette viser eksempelvis outputtet fra SinOsc, målt over et tidsrum på 10 millisekunder: `{ SinOsc.ar }.plot(0.010);`
                                         
-Brug {}.plot-teknikken til at besvare følgende spørgsmål:
+Brug `{}.plot`-teknikken til at besvare følgende spørgsmål:
 
-1. Hvad er forskellen på Pulse.ar(width: 0.5) og Pulse.ar(width: 0.1)?
-1. Hvad er forskellen på LFNoise0.kr(2), LFNoise1.kr(2) og LFNoise2.kr(2)? (Vi har med LFO at gøre, plot derfor over fx 3 sekunder)                               
+1. Hvad er forskellen på `Pulse.ar(width: 0.5)` og `Pulse.ar(width: 0.1)`?
+1. Hvad er forskellen på `LFNoise0.kr(2)`, `LFNoise1.kr(2)` og `LFNoise2.kr(2)`? (Husk at vi har med LFO at gøre, plot derfor over fx 3 sekunder)                               
 
 ```sc
 {}.plot();

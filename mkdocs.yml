@@ -40,6 +40,7 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.superfences
   - pymdownx.keys
+  - pymdownx.critic
   - attr_list
   - def_list
   - markdown_captions
