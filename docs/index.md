@@ -30,4 +30,4 @@ Her finder du en samlet oversigt over sitets indhold, fordelt i artikler, cheat 
 
 ## Licens
 
-Indholdet på disse sider er fremstillet af Anders Eskildsen og gjort tilgængelig for offentligheden under Creative Commons-licensen [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Indholdet på disse sider er fremstillet af [Anders Eskildsen](https://vbn.aau.dk/en/persons/146493) og gjort tilgængelig for offentligheden under Creative Commons-licensen [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
