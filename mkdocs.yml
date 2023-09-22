@@ -13,18 +13,18 @@ theme:
   icon:
     logo: material/waveform
   palette:
-    - scheme: default
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-      primary: blue
-      accent: indigo
     - scheme: slate
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
       primary: green
       accent: lime
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+      primary: blue
+      accent: indigo
 
 plugins:
   - tags:
