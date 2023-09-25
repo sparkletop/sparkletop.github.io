@@ -41,6 +41,10 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.keys
   - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
   - attr_list
   - def_list
   - markdown_captions
