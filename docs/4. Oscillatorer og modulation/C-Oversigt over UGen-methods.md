@@ -2,7 +2,7 @@
 tags:
     - Cheat sheets
 ---
-# Cheat sheet: Vigtige UGen-methods
+# Cheat sheet: UGen-methods
 
 Inden du prøver eksemplerne herunder, er det en god idé at køre disse to linjer, så du kan se en visualisering af SuperColliders lydlige output. Flyt evt. vinduerne, så du kan se både bølgeform og frekvensspektrum.
 

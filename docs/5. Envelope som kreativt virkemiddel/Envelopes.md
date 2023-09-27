@@ -2,6 +2,7 @@
 tags:
     - Artikler
 ---
+
 # Envelopes
 
 Et meget væsentligt aspekt af enhver form for lyddesign angår hvordan lyd udvikler sig og forandres over tid. Herunder tager vi hul på dette emne ved at introducere til såkaldte envelopes. Envelopes anvendes i elektronisk klangdannelse typisk til at styre en tone eller en lyds volumen over tid, men envelopes kan med fordel bruges på mange andre måder. 
@@ -225,6 +226,7 @@ Envelopes er forbundet med noget, der hedder `doneAction`, som angår hvad Super
 Hvis du kan se, at du har en række gamle Synths liggende på lydserveren fra eksemplerne ovenfor (kør `s.queryAllNodes` og tjek post window), kan du fjerne dem med Ctrl-Punktum/Cmd-Punktum.
 
 Vi beder ofte SuperCollider om at rydde op, når en envelope er færdiggjort. Det kan vi bl.a. gøre ved hjælp af envelope-generatorens `doneAction`-argument. Sammenlign disse to eksempler (hold øje med Node Tree-vinduet og bemærk hvilken forskel `doneAction: Done.freeSelf` gør):
+
 ```sc
 s.nodeTree;  // vis en liste med alle Synths på lydserveren
 {PinkNoise.ar * EnvGen.kr(Env.perc) * 0.1}.play;
@@ -233,9 +235,14 @@ s.nodeTree;  // vis en liste med alle Synths på lydserveren
 
 Hvornår skal man så bruge `doneAction: Done.freeSelf`? Jo, hvis man har gang i flere envelopes på én gang (hvilket man sagtens kan have i SuperCollider), så er det som tommelfingerregel en god idé at bruge `doneAction: Done.freeSelf` til den envelope, som styrer tonens lydstyrke over tid. Så undgår vi at få ophobet gamle Synths på lydserveren.
 
-Bemærk også, at "doneAction: 2" og "doneAction: Done.freeSelf" betyder det samme - at Synth'en skal fjernes fra lydserveren, når envelopen er slut:
+### Hvad er `doneAction: 2`?
+
+`doneAction: 2` og `doneAction: Done.freeSelf` betyder det samme - at Synth'en skal fjernes fra lydserveren, når envelopen er slut:
+
+```sc
 {PinkNoise.ar * EnvGen.kr(Env.perc, doneAction: Done.freeSelf) * 0.1}.play;
 {PinkNoise.ar * EnvGen.kr(Env.perc, doneAction: 2) * 0.1}.play;
+```
 
-Om man bruger "doneAction: 2" eller "doneAction: Done.freeSelf" er således helt valgfrit. Førstnævnte er kortest at skrive, men sidstnævnte er umiddelbart lettest at forstå, når man man læser koden.
+Om man bruger `doneAction: 2` eller `doneAction: Done.freeSelf` er således helt valgfrit. Førstnævnte er kortest at skrive, men sidstnævnte er umiddelbart lettest at forstå, når man man læser koden.
 
