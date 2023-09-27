@@ -2,13 +2,18 @@
 tags:
     - Artikler
 ---
+
 # Modulation af UGens
 
-Ofte ønsker vi, at forskellige parametre ved UGens forandrer sig over tid. Dette kan vi gøre ved hjælp af modulation. Vi kan altid modulere outputtet fra UGens, i mange tilfælde kan input/argumenter til UGens også moduleres på forskellig vis. Her demonstreres et par centrale teknikker.
+Ofte ønsker vi, at forskellige parametre ved UGens forandrer sig over tid. Dette kan vi gøre ved hjælp af modulation. Vi kan altid modulere outputtet fra UGens, og i mange tilfælde kan input/argumenter til UGens også moduleres på forskellig vis. Her demonstreres et par centrale teknikker og nyttige methods.
 
-## Modulation af output/amplitude
+## Modulation af output fra UGens
 
-Hvis vi ønsker at modulere outputtet fra en UGen, kan vi ganske enkelt gange outputtet med modulatoren. Hvis vi ganger outputtet fra en `SinOsc` med 0.1, nedskalerer vi amplituden:
+Vi kan behandle outputtet fra en UGen på forskellige måder, blandt andet med filtre, delay-effekter, distortion med mere.
+
+Her i første omgang fokuserer vi på at modulere amplituden for outputtet fra en UGen. Hvis vi hører UGen'en som et lydligt output, svarer amplitude-modulation til dynamisk justering af lydstyrken.
+
+Når vi ønsker at modulere outputtet fra en UGen på denne måde, kan vi ganske enkelt gange outputtet med modulatoren. Hvis vi fx ganger outputtet fra en `SinOsc` med 0.1, nedskalerer vi amplituden:
 
 ```sc
 (
@@ -21,9 +26,7 @@ Hvis vi ønsker at modulere outputtet fra en UGen, kan vi ganske enkelt gange ou
 
 ![En umodificeret sinusbølge og en sinusbølge med nedskaleret amplitude](media/to_amplituder.png)
 
-### Skalering fra 0 til maksimum med `.unipolar`
-
-Når vi modulerer amplitude, skalerer vi typisk ved at gange med en faktor mellem 0 og 1:
+Det er værd at bemærke, at outputtet maksimalt kan være -1 til 1. Værdier derover risikerer at overstyre. Når vi modulerer amplitude for hørbare UGens, skalerer vi derfor oftest amplituden **ned** ved at gange med en faktor mellem 0 og 1:
 
 {==
 
@@ -31,7 +34,9 @@ Når vi modulerer amplitude, skalerer vi typisk ved at gange med en faktor melle
 
 ==}
 
-Det kan gøres let med method'en `.unipolar`. Sammenlign fx disse bølger, og bemærk hvor outputtet befinder sig på Y-aksen:
+### Skalering fra 0 til maksimum med `.unipolar`
+
+Skalering af output fra en UGen til et interval fra 0 til et maksimum kan gøres enkelt ved hjælp af method'en `.unipolar`. Sammenlign fx disse bølger, og bemærk hvor outputtet befinder sig på Y-aksen:
 
 ```sc
 (
@@ -61,7 +66,7 @@ Ved en UGen, der generer en tone, som vi skal kunne høre, vil det typisk være 
 
 {==
 
-**Tommelfingerregel**: En hørbar oscillator svinger typisk med en frekvens mellem 20 og 20000. Det samme interval gælder typisk for filtre og cutoff-frekvenser.
+**Tommelfingerregel**: Et signal, der modulerer en hørbar oscillator, bør typisk bevæge sig inden for intervallet fra 20 til 20000. Det samme gælder typisk for modulation af cutoff-frekvenser ved filter-UGens.
 
 ==}
 
@@ -128,3 +133,5 @@ Her er et eksempel, hvor vi anvender `.midiratio` sammen med `.unipolar` til at 
 }.play;
 )
 ```
+
+

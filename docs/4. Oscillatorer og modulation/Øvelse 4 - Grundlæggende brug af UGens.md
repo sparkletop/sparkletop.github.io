@@ -2,9 +2,9 @@
 tags:
     - Øvelser
 ---
-# Øvelse 4: Grundlæggende brug af UGens
+# Øvelse 4: Brug af UGens
 
-Denne øvelse går ud på at bruge UGens på grundlæggende niveau.
+Denne øvelse går ud på at bruge UGens og modulere UGens på grundlæggende niveau.
 
 ## Opgave 1: Blip båt
 
@@ -62,8 +62,6 @@ Anvend følgende UGens, [skaleret med methoden'en '.unipolar'](A2-skalering.md),
 1. `SinOsc` (sinusbølge)         
 
 ```sc
-{Saw.ar *   }.play;
-{Saw.ar *   }.play;
 {Saw.ar *   }.play;
 ```
 
