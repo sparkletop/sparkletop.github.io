@@ -53,15 +53,10 @@ Skriv en SynthDef, som gør brug af subtraktiv syntese. SynthDef'en skal overhol
 1. Lydkilden er en oscillator med en periodisk bølgeform og et righoldigt spektrum (fx en savtakket eller firkantet bølge)
 1. Oscillatorens frekvens styres af et argument (`freq`) med default-værdi 440hz
 1. Lydkildens lydstyrke styres af en envelope-generator - vælg selv en passende envelope med `doneAction: Done.freeSelf`
+1. Envelopens parametre kan styres via argumenter, som har passende default-værdier
 1. Lydkildens klang modificeres af et resonant low pass filter (`RLPF`)
 1. Filterets cutoff-frekvens er automatisk 2 oktaver højere end oscillatorfrekvensen
-1. Filterets rq-værdi er 0.5
-
-### Ekstra forslag til de særligt nysgerrige
-
-1. Justér koden, således at filterets cutoff-frekvens bevæger sig i takt med envelope-generatoren, fra 2 til 3 oktaver over oscillatorfrekvensen (og tilbage igen)
-1. Justér koden, så du kan styre envelopens parametre (segment-tider) vha. SynthDef-argumenter
-1. Justér koden, således at filterets rq-værdi gøres fleksibel vha. et SynthDef-argument
+1. Filterets rq-værdi styres af et argument med default-værdi 0.5
 
 ```sc
 (
@@ -70,8 +65,11 @@ SynthDef(\subtraktor, { // udfyld herunder ⬇
 	Out.ar(0, sig);
 }).add;
 )
+```
 
-Skriv en Pbind-komposition, hvor ovenstående variationsmuligheder demonstreres
+Skriv en Pbind-komposition, som demonstrerer SynthDef'ens forskellige klangmuligheder.
+
+```sc
 (
 Pbind(
 	\instrument, \subtraktor, // udfyld herunder ⬇
@@ -79,3 +77,6 @@ Pbind(
 ).play;
 )
 ```
+
+
+Særlig udfordring for de nysgerrige: Justér koden fra opgave 3, således at filterets cutoff-frekvens bevæger sig i takt med envelope-generatoren, fra 2 til 3 oktaver over oscillatorfrekvensen (og tilbage igen).
