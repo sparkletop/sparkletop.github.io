@@ -55,7 +55,7 @@ Har du mange ekstra vinduer åbne (fx fra ovenstående øvelse med plots), kan d
 
 ## Opgave 4: Modulation af lydstyrke (amplitude)
 
-Anvend følgende UGens, [skaleret med methoden'en '.unipolar'](A2-skalering.md), til at modulere amplituden i intervallet 0-1 for en savtakket bølgeform. Modulatorens frekvens vælges frit i intervallet 0-20Hz:
+Anvend følgende UGens, [skaleret med methoden `.unipolar`](A2-skalering.md), til at modulere amplituden i intervallet 0-1 for en savtakket bølgeform. Modulatorens frekvens vælges frit i intervallet 0-20Hz:
 
 1. `LFSaw` (savtakket bølgeform)
 1. `LFPulse` (firkantet bølgeform)

@@ -64,7 +64,8 @@ Justér kun på de markerede linjer i kodeblokken herunder.
 
 ## Opgave 3: SynthDef med vedvarende envelope
 
-1. Justér nedenstående SynthDef, så den anvender en vedvarende envelope i stedet for en selv-afsluttende envelope. OBS: Dette kræver tilføjelse af gate-argument - se hvordan i [artiklen om envelopes](Envelopes.md).
+1. Justér nedenstående SynthDef, så den anvender en vedvarende envelope i stedet for en selv-afsluttende envelope.
+    - OBS: Dette kræver tilføjelse af gate-argument - se hvordan i [artiklen om envelopes](Envelopes.md).
 2. Skriv en `Pmono`-baseret komposition, hvor du varierer `\degree`, `\lfoFreq` og `\lfoDepth` ved hjælp af patterns, fx [tilfældighedsgeneratorer](../2. Generativ komposition med patterns/2.2-tilfældighedsgeneratorer.md).
 
 Justér kun på de markerede linjer i kodeblokken herunder.
@@ -99,9 +100,9 @@ Pmono(\opgave3,
 ```
 
 
-## Bonusopgave til de ekstra nysgerrige: Hjemmelavede LFO'er med Env.circle
+## Opgave 4: Hjemmelavede LFO'er med Env.circle
 
-1. Design din egen LFO ved hjælp af `Env.circle`. Se et eksempel i SuperColliders dokumentation eller [artiklen vedr. envelopes](Envelopes.md).
+1. Design din egen LFO ved hjælp af `Env.circle`. Du kan finde et eksempel herpå i [artiklen vedr. envelopes](Envelopes.md).
 1. Brug LFO'en til at modulere mindst to forskellige parametre (fx tonehøjde, panorering, lydstyrke, cutoff-frekvens etc.).
 1. Skriv en komposition baseret på `Pbind` eller `Pmono`, hvor du demonstrerer mulighederne i SynthDef'en.
 
