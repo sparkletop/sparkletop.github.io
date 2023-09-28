@@ -44,11 +44,11 @@ Vi kan vise SuperColliders lydlige output i frekvensdomænet med `s.freqscope;`
                                         
 Brug `s.freqscope` til at besvare følgende spørgsmål:
 
-1. Hvad kendetegner overtonespektrene for de forskellige bølgeformer fra opgave 1 og 2?
+1. Hvad kendetegner overtonespektrene for de forskellige bølgeformer fra opgave 1?
 1. Hvad styrer bevægelse af musen fra venstre til højre i nedenstående eksempel?
 
 ```sc
-{ Blip.ar(220, MouseX.kr(1,50)) * 0.1 }.play
+{ Blip.ar(220, MouseX.kr(1,50)) * 0.1 }.play;
 ```
 
 Har du mange ekstra vinduer åbne (fx fra ovenstående øvelse med plots), kan de lukkes på én gang med `Window.closeAll`.
