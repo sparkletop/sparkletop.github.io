@@ -62,7 +62,7 @@ Udforsk selv, hvad den tilsvarende method `.bipolar` gør.
 
 Ofte kan det være interessant at modulere inputs til en UGen, dvs. de parametre vi angiver mellem paranteserne efter `.ar`. Her er det selvfølgelig relevant at overveje, hvilke intervaller af input, der giver mening for den UGen, man modulerer.
 
-Ved en UGen, der generer en tone, som vi skal kunne høre, vil det typisk være relevant med frekvens-input, som ligger inden for den menneskelige hørelse, dvs. mellem 20Hz og 20kHz. Noget lignende gælder fx for filtre og cutoff-frekvenser..Her skal det signal, der modulerer inputtet, bevæge sig i et interval, der ligger inden for dette spænd.
+Ved en UGen, der generer en tone, som vi skal kunne høre, vil det typisk være relevant med frekvens-input, som ligger inden for den menneskelige hørelse, dvs. mellem 20Hz og 20kHz. Noget lignende gælder fx for filtre og cutoff-frekvenser. Her skal det signal, der modulerer inputtet, bevæge sig i et interval, der ligger inden for dette spænd.
 
 {==
 
