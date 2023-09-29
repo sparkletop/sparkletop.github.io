@@ -1,8 +1,8 @@
 ---
 tags:
-    - Artikler
+    - Eksempler
 ---
-# Pattern-baserede kompositionsideer
+# Fem simple pattern-baserede kompositioner
 
 Denne artikel handler om at læse, undersøge, forstå og variere/eksperimentere med eksempler på patternbaseret komposition. Der er nogen redundans i forhold til sektion 2 - men som tidligere nævnt er det vigtigt at have styr på det grundlæggende, før man kan gå videre til det mere avancerede.
 

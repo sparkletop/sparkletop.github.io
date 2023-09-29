@@ -5,6 +5,8 @@ tags:
 
 # Øvelse 5. Envelopes og SynthDefs
 
+I denne øvelse arbejder du med envelopes. Som et element i nogle af opgaverne, indgår disse envelopes i SynthDefs.
+
 ## Opgave 1: Brug af envelopes til modulation af amplitude
 
 1. Tag udgangspunkt i nedenstående kildekode, og brug følgende envelopes til at modulere amplituden for en firkantet bølgeform:
@@ -33,13 +35,13 @@ Justér kun på de markerede linjer i kodeblokken herunder.
 )
 ```
 
-## Opgave 2: Hjemmelavede envelopes
+## Opgave 2: Unikke envelopes
 
 Definér din egen envelope, som overholder følgende krav:
 
-- Envelopen skal bestå af mindst to segmenter
-- Trinene i envelopen skal ligge mellem 220 og 880
-- Tidsintervallerne vælges frit (husk, at der skal være ét tidsinterval færre end antallet af trin)
+1. Envelopen skal bestå af mindst to segmenter
+1. Trinhøjderneene i envelopen skal ligge mellem 220 og 880
+1. Tidsintervallerne vælges frit (husk, at der skal være ét tidsinterval færre end antallet af trin)
 
 Justér kun på de markerede linjer i kodeblokken herunder.
 
@@ -50,19 +52,66 @@ Justér kun på de markerede linjer i kodeblokken herunder.
 	[   ],
 	\exp
 );
+)
+// Plot envelopen;
+~frekvensEnvelope.plot;
 
+// Test envelopen med lyd
+(
 {
 	var freq = EnvGen.kr(~frekvensEnvelope);
-	var env = EnvGen.kr(
+	var vol = EnvGen.kr(
 		Env.sine(~frekvensEnvelope.duration),
 		doneAction: Done.freeSelf
 	);
-	SinOsc.ar(freq) * env * 0.1;
+	SinOsc.ar(freq) * vol * 0.1;
 }.play;
 )
 ```
 
-## Opgave 3: SynthDef med vedvarende envelope
+## Opgave 3: Simpel lilletrommelyd
+
+Vi skal her fremstille en simpel lilletrommelyd. De centrale lydlige egenskaber ved trommelyde varierer meget hurtigt over tid, og det kan vi simulere ved hjælp af envelopes.
+
+Skriv tre envelopes:
+
+1. *body:* En `XLine`, som bevæger sig fra 220 til 110 over 275ms
+1. *sweep:* En `XLine`, som bevæger sig fra 8000 til 2500 over 10ms
+1. *vol:* En `Env.perc`, hvor attack-segmentet varer 0.5ms(!) og release-segmentet varer 150ms
+
+Prøv efterfølgende at justere på parametrene i de forskellige envelopes og bemærk hvordan selv mindre ændringer påvirker det lydlige resultat.
+
+```sc hl_lines="3-5" title="Opgave 3"
+(
+{
+    var body =     ;
+    var sweep =     ;
+    var vol =     ;
+
+    // justér ikke herunder
+    var resonance = VarSaw.ar(body);
+
+    var seiding = WhiteNoise.ar;
+
+    var sig = resonance + seiding;
+
+    sig = LPF.ar(sig, sweep);
+
+    sig = sig * EnvGen.ar(vol, doneAction: Done.freeSelf);
+    Out.ar(0, sig.dup);
+}.play;
+)
+```
+
+Forklaring:
+
+- Resonansen i trommens krop, dvs. dens "tone", simuleres med en trekantformet lydbølge. Vi kan således "stemme" trommen ved at justere start- og slutværdier for envelopen.
+- Trommens seiding (metaltråde monteret på undersiden) simuleres med hvid støj.
+- Med et dynamisk low pass filter simulerer vi trommens klanglige forandring over tid (mere højfrekvent støj i starten).
+
+Denne klangdannelsesopskrift stammer fra s. 121-122 i [*Creating Sounds from Scratch*](https://global.oup.com/academic/product/creating-sounds-from-scratch-9780199921898) af Andrea Pejrolo & Scott B. Metcalfe.
+
+## Opgave 4: SynthDef med vedvarende envelope
 
 1. Justér nedenstående SynthDef, så den anvender en vedvarende envelope i stedet for en selv-afsluttende envelope.
     - OBS: Dette kræver tilføjelse af gate-argument - se hvordan i [artiklen om envelopes](Envelopes.md).
@@ -70,9 +119,9 @@ Justér kun på de markerede linjer i kodeblokken herunder.
 
 Justér kun på de markerede linjer i kodeblokken herunder.
 
-```sc title="Opgave 3" hl_lines="3 6 21-23"
+```sc title="Opgave 4" hl_lines="3 6 21-23"
 (
-SynthDef(\opgave3, {
+SynthDef(\opgave4, {
     arg freq = 440, pan = 0, amp = 0.1, out = 0,
     lfoFreq = 1, lfoDepth = 0.025;
 
@@ -90,7 +139,7 @@ SynthDef(\opgave3, {
 )
 
 (
-Pmono(\opgave3,
+Pmono(\opgave4,
     \degree,    ,
     \lfoFreq,    ,
     \lfoDepth,    ,
@@ -100,21 +149,21 @@ Pmono(\opgave3,
 ```
 
 
-## Opgave 4: Hjemmelavede LFO'er med Env.circle
+## Bonusopgave: Hjemmelavede LFO'er med `Env.circle`
 
-1. Design din egen LFO ved hjælp af `Env.circle`. Du kan finde et eksempel herpå i [artiklen vedr. envelopes](Envelopes.md).
-1. Brug LFO'en til at modulere mindst to forskellige parametre (fx tonehøjde, panorering, lydstyrke, cutoff-frekvens etc.).
+1. Design din egen LFO ved hjælp af `Env.circle`. Du kan finde et eksempel herpå i [artiklen vedr. envelopes](Envelopes.md#envelope-som-lfo).
+1. Modificér SynthDef'en, således at LFO'en modulerer mindst to forskellige, lydlige parametre (fx tonehøjde, panorering, lydstyrke, cutoff-frekvens etc.). Husk at [skalere outputtet fra LFO'en](../4. Oscillatorer og modulation/A2-skalering.md), så det passer til modulationens formål.
 1. Skriv en komposition baseret på `Pbind` eller `Pmono`, hvor du demonstrerer mulighederne i SynthDef'en.
 
-```sc
+```sc title="Hjemmelavet LFO" hl_lines="7-8"
 (
-SynthDef(\opgave4, {
+SynthDef(\opgave5, {
     arg freq = 440, pan = 0, amp = 0.1, out = 0, gate = 1;
 
     var lfo = EnvGen.kr(
 		Env.circle(
-			[   ],  // <-- udfyld trin/værdier her
-			[   ],  // <-- udfyld varigheder af tidsintervaller her
+			[   ],
+			[   ],
 			\exp
 		)
 	);
