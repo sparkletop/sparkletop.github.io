@@ -72,7 +72,7 @@ Hvis man i denne analogi synes, at der mangler en musiker til at udføre komposi
 
 Lad os se på hvordan samspillet mellem `Synth`, `SynthDef` og `Pbind` fungerer i praksis.
 
-SynthDef'en `\eksempel1` ovenfor fungerer, men er ikke særligt fleksibel. Vi kan fx kun spille én tone med den, og vi er nødt til at stoppe den manuelt med Ctrl-/Cmd-punktum. For at kunne spille forskellige toner kan vi indføre det, der hedder et argument. Her vælger jeg at indføre argumentet `freg` ved hjælp af nøgleordet `arg`, og jeg angiver også en standardværdi på 440:
+SynthDef'en `\eksempel1` ovenfor fungerer, men er ikke særligt fleksibel. Vi kan fx kun spille én tone med den, og vi er nødt til at stoppe den manuelt med Ctrl-/Cmd-punktum. For at kunne spille forskellige toner kan vi indføre det, der hedder et argument. Her vælger jeg at indføre argumentet `freq` ved hjælp af nøgleordet `arg`, og jeg angiver også en standardværdi på 440:
 
 ```sc
 (
@@ -131,7 +131,7 @@ SynthDef(\eksempel3, {
 )
 ```
 
-Med et par ekstra argumenter og en `Pan2`-Ugen kan vi styre volumen og stereo-panorering:
+Med et par ekstra argumenter og en `Pan2`-Ugen kan vi styre volumen og stereo-panorering. De argumenter, vi angiver i begyndelsen af en SynthDef, kan vi nemlig anvende som nøgler i `Pbind`. Dette interface mellem `SynthDef`/`Synth` og `Pbind`, danner grundlag for de utroligt righoldige, generative muligheder i SuperCollider.
 
 ```sc title="Komposition og lyddesign med variabel tonehøjde, panorering og volumen" hl_lines="3 7"
 (
@@ -245,9 +245,9 @@ PmonoArtic(\eksempel6,
 
 ## Argumentnavne i SynthDef
 
-Argumenterne i vores SynthDefs kan i princippet have de navne vi gerne vil give dem, dog skal de starte med små bogstaver, ligesom variabler. Argumentnavne kunne fx være `kaffe`, `the`, `mario`, `luke` eller `leia`. Det er dog en god idé at give argumenterne nogle deskriptive navne som fx `cutoffFreq`, `release`, `drive`, `delayTime` eller lignende.
+Argumenterne i vores SynthDefs kan i princippet have de navne vi gerne vil give dem (dog skal de starte med små bogstaver, ligesom variabler). Argumentnavne kunne fx være `kaffe`, `the`, `mario`, `luke` eller `leia`. Men sædvanligvis kan det være en god idé at give argumenterne nogle deskriptive navne som fx `cutoffFreq`, `release`, `drive`, `delayTime` eller lignende, så man kan regne ud hvad de betyder, når man vender tilbage til koden efter noget tid.
 
-Men der findes nogle få undtagelser som er værd at kende - der er tale om konventioner, der gør vores SynthDefs fleksible i sammenspil med andre dele af SuperCollider. Herunder gives et par anbefalinger for argument-navngivning:
+Men vedrørende SynthDef-argumentnavne findes der nogle få undtagelser som er værd at kende, og de gennemgås herunder. Der er tale om konventioner, som gør vores SynthDefs fleksible i sammenspil med andre dele af SuperCollider. Herunder gives et par anbefalinger for argument-navngivning:
 
 ### Vigtige argumentnavne
 
