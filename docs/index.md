@@ -22,6 +22,7 @@ Modulerne indeholder tre typer af dokumenter:
 
 - *Artikler*: Korte tekster, som introducerer til forskellige emner som generativ komposition, digital klangdannelse og brug af SuperCollider
 - *Cheat sheets*: Overskuelige oversigter over centrale redskaber og teknikker 
+- *Eksempler*: Kildekode, som eksemplificerer de lydlige og kompositoriske muligheder vedrørende de enkelte emner
 - *Øvelser*: Øvelser, som giver mulighed for at arbejde praktisk med emnerne
 
 Her finder du en samlet oversigt over sitets indhold, fordelt i artikler, cheat sheets og øvelser:
