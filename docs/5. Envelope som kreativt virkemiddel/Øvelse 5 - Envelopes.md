@@ -111,6 +111,8 @@ Forklaring:
 
 Denne klangdannelsesopskrift stammer fra s. 121-122 i [*Creating Sounds from Scratch*](https://global.oup.com/academic/product/creating-sounds-from-scratch-9780199921898) af Andrea Pejrolo & Scott B. Metcalfe.
 
+Se i øvrigt [et andet bud på syntetisk dannelse af lilletrommelyd](../6. Filterbaseret klangdannelse/snare.md).
+
 ## Opgave 4: SynthDef med vedvarende envelope
 
 1. Justér nedenstående SynthDef, så den anvender en vedvarende envelope i stedet for en selv-afsluttende envelope.
