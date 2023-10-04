@@ -7,7 +7,7 @@ tags:
 
 {==
 
-OBS: Pas på din hørelse!
+**OBS: Pas på din hørelse!**
 
 - Undgå cutoff-frekvenser tæt på 0 - brug værdier mellem 20Hz og 20kHz.
 - Sæt ikke `rq` til 0 (ved filter med resonans).
