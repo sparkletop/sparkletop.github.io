@@ -16,7 +16,7 @@ Brug følgende filtre til at modificere klangen af hvid støj:
 1. Et band pass-filter med centerfrekvens på 500hz
 1. Et resonerende low pass-filter med cutoff-frekvens på 800hz og rq-værdi på 0.1
 
-```sc
+```sc hl_lines="4"
 (
 {
 	var source = WhiteNoise.ar;
