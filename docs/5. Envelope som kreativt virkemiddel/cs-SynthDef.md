@@ -1,3 +1,9 @@
+---
+tags:
+    - Cheat sheets
+---
+
+
 # Cheat sheet: SynthDef-skabeloner
 
 SynthDefs kan indrettes på ganske mange forskellige måder, men hvis man skal fremstille lydkilder med tonalt indhold og en mono- eller stereofon lydkilde kan skabeloner herunder være et udmærket udgangspunkt.
