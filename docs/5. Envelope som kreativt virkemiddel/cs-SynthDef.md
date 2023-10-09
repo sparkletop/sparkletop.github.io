@@ -37,7 +37,7 @@ SynthDef(\navn, {
 
 
 	// sig er et stereofont signal
-	Out.ar(out, Balance2.ar(sig[0], sig[1] pan, amp));
+	Out.ar(out, Balance2.ar(sig[0], sig[1], pan, amp));
 }).add;
 )
 ```
