@@ -157,6 +157,7 @@ Pdef(\collage,
         // Panorering og lydstyrke
         \pan, 0,
         \db, -20,
+        \atk, 0.1, \rel, 1,
     )
 ).play;
 )
