@@ -37,7 +37,7 @@ OBS: Til denne øvelse skal der anvendes et mono-sample.
 1. Afspil den sidste halvdel af dit sample
 1. Afspil dit sample baglæns (bemærk, kræver justering af enten `startPos` eller `loop` og `doneAction`)   
 
-```sc
+```sc hl_lines="6 8 9"
 (
 {
 	PlayBuf.ar(
@@ -58,7 +58,7 @@ OBS: Til denne øvelse skal der anvendes et mono-sample.
 1. Modulér afspilningshastigheden ved at fjerne `//`'erne for en række forskellige LFO'er herunder.
 1. Notér i kommentarer, hvilken effekt de forskellige modulatorer har på den æstetiske oplevelse.
 
-```sc
+```sc 
 (
 {
 	var rate = 1; // afkommentér linjerne herunder for eksempler
@@ -91,44 +91,44 @@ Fremstil en abstrakt lydcollage med minimalistiske træk. Kompositionen skal bas
     - indeholder én monokanal (brug evt. `Buffer.readChannel` som ved opgave 1, hvis din ønskede fil er stereo-format)
 1. Modificér `Pbind`'en herunder ved at erstatte faste værdier med patterns, således at vi hører en klangligt varieret lydcollage baseret på det valgte sample.
 
-```sc
+```sc hl_lines="42 47-65"
 // Erstat stien med en sti til din egen lydfil
 ~vedvarendeLyd = Buffer.readChannel(s, "C:/lydfiler/minSejeLydfil.wav", [0]);
 
 (
-SynthDef(\sample, {
-	arg amp = 0.1, out = 0, pan = 0,
-	transpose = 0, startPos = 0,
-	buffer, loop = 0, t_reset = 1,
-	drive = 0, cutoff = 20000, rq = 0.1,
-	atk = 0.005, sus = 1, rel = 0.2, gate = 1;
+SynthDef(\sampleM, {
+    arg amp = 0.1, out = 0, pan = 0,
+    transpose = 0, startPos = 0, direction = 0,
+    buffer, loop = 0, t_reset = 1,
+    drive = 0, cutoff = 20000, rq = 0.1,
+    atk = 0.005, sus = 1, rel = 0.2, gate = 1;
 
-	var sig, env;
+    var sig, env;
 
-	env = EnvGen.kr(
+    env = EnvGen.kr(
         Env.asr(atk, sus, rel),
         gate,
         doneAction: Done.freeSelf
     );
 
-	sig = PlayBuf.ar(
-		numChannels: 1,
-		bufnum: buffer,
-		rate: transpose.midiratio * BufRateScale.kr(buffer),
-		trigger: t_reset,
-		startPos: startPos.linlin(0, 1, 0, BufFrames.kr(buffer) - 2),
-		loop: loop
-	);
+    sig = PlayBuf.ar(
+        numChannels: 1,
+        bufnum: buffer,
+        rate: transpose.midiratio * BufRateScale.kr(buffer) * direction.sign,
+        trigger: t_reset,
+        startPos: startPos.linlin(0, 1, 0, BufFrames.kr(buffer) - 2),
+        loop: loop
+    );
 
-	sig = (sig * drive.linexp(0, 1, 1, 100)).tanh; // drive/distortion
+    sig = (sig * drive.linexp(0, 1, 1, 100)).tanh; // drive/distortion
 
-	sig = RLPF.ar(sig, cutoff), rq);
+    sig = RLPF.ar(sig, cutoff, rq);
 
-	sig = sig * env;
+    sig = sig * env;
 
-	sig = Pan2.ar(sig, pan, amp);
+    sig = Pan2.ar(sig, pan, amp);
 
-	Out.ar(out, sig);
+    Out.ar(out, sig);
 }).add;
 )
 
@@ -136,22 +136,23 @@ SynthDef(\sample, {
 TempoClock.tempo = 60/60;
 Pdef(\collage,
     Pbind(
-        \instrument, \sample,   // justér koden herunder ⬇
+        \instrument, \sampleM,
 
         // PlayBuf-indstillinger
         \buffer, ~vedvarendeLyd,
-        \startPos, 1,
+        \startPos, 0,
         \transpose, 0,
         \loop, 1,
+        \direction, 1,
 
         // Timing og overlap
         \dur, 1,
-        \legato, 0.5,
+        \legato, 1,
 
         // Klang
-        \drive, 0,
-        \cutoff, 20000,
-        \rq, 0.1,
+        \drive, 0.1,
+        \cutoff, 1000,
+        \rq, 0.5,
 
         // Panorering og lydstyrke
         \pan, 0,
