@@ -91,7 +91,7 @@ Fremstil en abstrakt lydcollage med minimalistiske træk. Kompositionen skal bas
     - indeholder én monokanal (brug evt. `Buffer.readChannel` som ved opgave 1, hvis din ønskede fil er stereo-format)
 1. Modificér `Pbind`'en herunder ved at erstatte faste værdier med patterns, således at vi hører en klangligt varieret lydcollage baseret på det valgte sample.
 
-```sc hl_lines="42 47-65"
+```sc hl_lines="42 47-66"
 // Erstat stien med en sti til din egen lydfil
 ~vedvarendeLyd = Buffer.readChannel(s, "C:/lydfiler/minSejeLydfil.wav", [0]);
 
