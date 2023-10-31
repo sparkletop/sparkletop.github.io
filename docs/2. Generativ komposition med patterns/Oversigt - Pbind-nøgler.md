@@ -13,9 +13,9 @@ Pbind().play;
 ```sc
 (
 ~eksempel = Pbind(
-	\degree, 4, // 5. skalatrin, et e (fordi udgangspunktet er C-dur)
+	\degree, 4, // 5. skalatrin, et g (fordi udgangspunktet er C-dur)
 	\dur, 0.5,  // varighed på et halvt taktslag (dvs. en ottendedel i almindelig musiknotationsterminologi)
-	\db, -25,   // -25 db lydstyrke
+	\db, -25,   // -25 decibel lydstyrke
 ).play;
 )
 ~eksempel.stop;
