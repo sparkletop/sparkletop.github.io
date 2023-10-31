@@ -59,7 +59,7 @@ Hvorfor bruge den mere uregelmæssige og kaotiske `Dust` fremfor `Impulse`? Jo, 
 
 ### Overlap, triggerfrekvens og grainvarighed
 
-En central parameter granular syntese er mængden af overlap mellem grains, som afhænger af forholdet mellem grainvarigheder og triggerfrekvens, givet følgende formel: `triggerfrekvens * grainvarighed = overlap`.
+En central parameter i granular syntese er mængden af overlap mellem grains, som afhænger af forholdet mellem grainvarigheder og triggerfrekvens, givet følgende formel: `triggerfrekvens * grainvarighed = overlap`.
 
 Ved en triggerfrekvens på 100Hz og en grainvarighed på 1/100 sekund (0.010s) vil der hverken være overlap eller "luft" mellem de enkelte grains: `100 * 0.010 = 1`.
 
