@@ -10,7 +10,7 @@ Denne øvelse
 
 ## Opgave 0: Klargøring
 
-1. Indlæs først et eller flere trommeloops til brug i nedenstående øvelse. Det er (for denne øvelse) vigtigt, at trommeloopet er metrisk underdelt i sekstendedele og varer præcis én takt.
+1. Indlæs først et eller flere trommeloops under variablen `~sample`til brug i nedenstående øvelse. Det er (for denne øvelse) vigtigt, at trommeloopet er metrisk underdelt i sekstendedele og varer præcis én takt.
 1. Indlæs `SynthDef`'en `\slice` fra [artiklen om beatslicing](10-beatslicing.md).
 
 ## Opgave 1: Algoritmisk beatslicing
@@ -28,7 +28,7 @@ TempoClock.tempo = 115 / 60;
 Pdef(\test,
     Pbind(
         \instrument, \slice,
-        \buf, ~loop,
+        \buf, ~sample,
 
         \numSlices, 16,
         \slice, Pseries(0, 1, 16).repeat,
