@@ -1,9 +1,17 @@
 # Kilder til gratis samples
 
 Der findes mange udmærkede samlinger af lyd- og musikoptagelser/samples
-på internettet. Her er en liste med nogle af de websites, der tilbyder
+på internettet. Her er en liste med udvalgte websites, der tilbyder
 gratis download af samples med forskelligt musikalsk og ikke-musikalsk
 indhold.
+
+Links herunder er generelt udvalgt efter sidernes indholdsmæssige kvalitet og tilgængelighed. Dette betyder:
+
+- Indholdet skal overordnet set have en rimelig lydkvalitet
+- Indholdet skal være overskueligt at tilgå og anvende
+- Indholdet skal være udgivet under tilladelige licenstyper som public domain- eller creative commons-licenser
+
+Store arkiver med samples kan naturligvis have svingende kvalitet og være vanskelige at navigere i. I nogle tilfælde kræver download af ressourcerne endvidere, at man registrerer sig med emailadresse. Dette er en af de priser man betaler for "gratis" materialerne.
 
 {==
 
@@ -18,18 +26,21 @@ Materiale fra internettet kan være ophavsretligt beskyttet. Når du downloader 
 
 ## Instrumentlyde og loops
 
-Samplepakker indeholder typisk en række lydfiler, ofte i .wav-format, samt en licenstekst og evt. information om pakkens ophav. Men nogle af samplepakkerne er beregnet til anvendelse sammen med bestemte samplerpluginsog indeholder derfor også andre filer, der anvendes af disse samplere. Hertilf kan først og fremmest [Sforzando](https://www.plogue.com/products/sforzando.html) eller [sfizz](https://sfz.tools/sfizz/) (som begge bruger samplebanker i [sfz-formatet](https://sfzformat.com/)) anbefales. Alternativt findes der også mange samplepakker til den gratis udgave af sampleren [Kontakt Player](https://www.native-instruments.com/en/products/komplete/samplers/kontakt-7-player/free-download/) fra Native Instruments.
+Samplepakker indeholder typisk en række lydfiler, ofte i .wav-format, samt en licenstekst og evt. information om pakkens ophav.
+
+Samplepakker som er designet til at udgøre et spilbart, virtuelt musikinstrument, er ofte beregnet til bestemte samplerplugins. Disse pakker indeholder derfor også andre filer, alt afhængig af hvilken sampler den enkelte pakke er fremstillet til. Hertil kan først og fremmest [Sforzando](https://www.plogue.com/products/sforzando.html) eller [sfizz](https://sfz.tools/sfizz/) (som begge bruger samplebanker i [sfz-formatet](https://sfzformat.com/)) anbefales. Alternativt findes der også mange samplepakker til den gratis udgave af sampleren [Kontakt Player](https://www.native-instruments.com/en/products/komplete/samplers/kontakt-7-player/free-download/) fra Native Instruments.
 
 | Link | Beskrivelse |
 | --- | --- |
 | [SampleRadar](https://www.musicradar.com/news/tech/free-music-samples-royalty-free-loops-hits-and-multis-to-download) | Yderst omfattende arkiv med royalty-fri instrumentsamples og loops fra magasinerne *Computer Music *og *Future Music*, hostet af [musicradar.com](https://www.musicradar.com/) |
 | [Versilian Studios Chamber Orchestra Community Edition (VSCO-2-CE)](https://vis.versilstudios.com/vsco-community.html#versions) | Public domain-samples af klassiske orkesterinstrumenter  i høj kvalitet |
-| [Legowelt](http://legowelt.org/samples/) | Stor samling af vel-samplede lyde fra forskellige, mere eller mindre obskure hardwaresynthesizere (websitet ligner noget fra 1990'erne, men de forskellige sample packs er af udmærket kvalitet) |
-| [99 Sounds](https://99sounds.org/) | Pay-what-you-want sample packs<br /><br />Download kræver registrering med mail-adresse på platformen Gumroad |
+| [Legowelt](http://legowelt.org/samples/) | Stor samling af vel-samplede lyde fra forskellige, mere eller mindre obskure hardwaresynthesizere (websitets design er som taget ud af 1990'erne, men de forskellige sample packs er af udmærket kvalitet) |
+| [99 Sounds](https://99sounds.org/) | Pay-what-you-want sample packs, bl.a. mange velsamplede trommelyde<br /><br />Download kræver registrering med mail-adresse på platformen Gumroad |
 | [Reverb Drum Machines \| The Complete Collection](https://reverb.com/software/samples-and-loops/reverb/3514-reverb-drum-machines-the-complete-collection) | Omfattende samling af samples fra forskellige kendte trommemaskiner<br /><br />Download kræver registrering med mail-adresse |
 | [BPB: Free Drum Kits - The Ultimate Collection](https://bedroomproducersblog.com/2021/07/02/free-drum-kits/) | En liste med trommesample-pakker, kurateret af Bedroom Producer's Blog og årligt opdateret opdateret |
 | [BPB: Free Piano Samples! (Acoustic, Electric & Toy Pianos](https://bedroomproducersblog.com/2010/07/01/free-sample-shootout-3-acoustic-electric-and-toy-pianos/) | En liste med klaversample-pakker, kurateret af Bedroom Producer's Blog |
 | [BPB: Free Guitar Samples](https://bedroomproducersblog.com/2020/02/19/free-guitar-samples/) | En liste med guitarsample-pakker, kurateret af Bedroom Producer's Blog |
+| [sfz instruments](https://sfzinstruments.github.io/) | En oversigt over mange forskellige virtuelle instrumenter i sfz-format, de fleste gratis |
 
 ## Komplette musikindspilninger
 
@@ -54,6 +65,8 @@ Samplepakker indeholder typisk en række lydfiler, ofte i .wav-format, samt en l
 | [NASA Audio and Ringtones](https://www.nasa.gov/audio-and-ringtones/) | Lydoptagelser fra det ydre rum 🙂 |
 
 ## Andre oversigter
+
+Disse sites er metaoversigter, der minder om denne liste.
 
 | Link | Beskrivelse |
 | --- | --- |
