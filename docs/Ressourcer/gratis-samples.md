@@ -18,6 +18,8 @@ Materiale fra internettet kan være ophavsretligt beskyttet. Når du downloader 
 
 ## Instrumentlyde og loops
 
+Samplepakker indeholder typisk en række lydfiler, ofte i .wav-format, samt en licenstekst og evt. information om pakkens ophav. Men nogle af samplepakkerne er beregnet til anvendelse sammen med bestemte samplerpluginsog indeholder derfor også andre filer, der anvendes af disse samplere. Hertilf kan først og fremmest [Sforzando](https://www.plogue.com/products/sforzando.html) eller [sfizz](https://sfz.tools/sfizz/) (som begge bruger samplebanker i [sfz-formatet](https://sfzformat.com/)) anbefales. Alternativt findes der også mange samplepakker til den gratis udgave af sampleren [Kontakt Player](https://www.native-instruments.com/en/products/komplete/samplers/kontakt-7-player/free-download/) fra Native Instruments.
+
 | Link | Beskrivelse |
 | --- | --- |
 | [SampleRadar](https://www.musicradar.com/news/tech/free-music-samples-royalty-free-loops-hits-and-multis-to-download) | Yderst omfattende arkiv med royalty-fri instrumentsamples og loops fra magasinerne *Computer Music *og *Future Music*, hostet af [musicradar.com](https://www.musicradar.com/) |
@@ -25,6 +27,9 @@ Materiale fra internettet kan være ophavsretligt beskyttet. Når du downloader 
 | [Legowelt](http://legowelt.org/samples/) | Stor samling af vel-samplede lyde fra forskellige, mere eller mindre obskure hardwaresynthesizere (websitet ligner noget fra 1990'erne, men de forskellige sample packs er af udmærket kvalitet) |
 | [99 Sounds](https://99sounds.org/) | Pay-what-you-want sample packs<br /><br />Download kræver registrering med mail-adresse på platformen Gumroad |
 | [Reverb Drum Machines \| The Complete Collection](https://reverb.com/software/samples-and-loops/reverb/3514-reverb-drum-machines-the-complete-collection) | Omfattende samling af samples fra forskellige kendte trommemaskiner<br /><br />Download kræver registrering med mail-adresse |
+| [BPB: Free Drum Kits - The Ultimate Collection](https://bedroomproducersblog.com/2021/07/02/free-drum-kits/) | En liste med trommesample-pakker, kurateret af Bedroom Producer's Blog og årligt opdateret opdateret |
+| [BPB: Free Piano Samples! (Acoustic, Electric & Toy Pianos](https://bedroomproducersblog.com/2010/07/01/free-sample-shootout-3-acoustic-electric-and-toy-pianos/) | En liste med klaversample-pakker, kurateret af Bedroom Producer's Blog |
+| [BPB: Free Guitar Samples](https://bedroomproducersblog.com/2020/02/19/free-guitar-samples/) | En liste med guitarsample-pakker, kurateret af Bedroom Producer's Blog |
 
 ## Komplette musikindspilninger
 
@@ -52,7 +57,7 @@ Materiale fra internettet kan være ophavsretligt beskyttet. Når du downloader 
 
 | Link | Beskrivelse |
 | --- | --- |
-| [Wikipedia:Free sound resources](https://en.wikipedia.org/wiki/Wikipedia:Free_sound_resources) | Wikipedias overigt over sites, der tilbyder lydoptagelser med åbne licenser |
-| [Soundpacks.com](https://soundpacks.com/) | Kuratered samling af links til gratis sample packs med instrumentoptagelser, loops mm. |
-| [whyreaper.com](https://whyreaper.com/plugins-resources/#samplers) | Oversigt over kilder til samplebanker fra Jeff Kaisers glimrende liste med gratis ressourcer og redskaber til musikproduktion |
 | [Bedroom Producers Blog](https://bedroomproducersblog.com/free-samples/) | Oversigt over en lang række kilder til gratis instrument- og loopsamples |
+| [Wikipedia:Free sound resources](https://en.wikipedia.org/wiki/Wikipedia:Free_sound_resources) | Wikipedias overigt over sites, der tilbyder lydoptagelser med åbne licenser |
+| [whyreaper.com](https://whyreaper.com/plugins-resources/#samplers) | Oversigt over kilder til samplebanker fra Jeff Kaisers glimrende liste med gratis ressourcer og redskaber til musikproduktion |
+| [Soundpacks.com](https://soundpacks.com/) | Kuratered samling af links til gratis sample packs med instrumentoptagelser, loops mm. |
