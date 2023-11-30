@@ -1,4 +1,5 @@
 site_name: Musik- og lydprogrammering 
+
 theme:
   name: material
   language: da
@@ -6,6 +7,7 @@ theme:
     - content.code.copy
     - header.autohide
     - navigation.instant
+    #- navigation.expand
     #- navigation.indexes
     - toc.follow
     - search.suggest
@@ -48,3 +50,4 @@ markdown_extensions:
   - attr_list
   - def_list
   - markdown_captions
+  - tables
