@@ -11,7 +11,7 @@ Links herunder er generelt udvalgt efter sidernes indholdsmæssige kvalitet og t
 - Indholdet skal være overskueligt at tilgå og anvende
 - Indholdet skal være udgivet under tilladelige licenstyper som public domain- eller creative commons-licenser
 
-Store arkiver med samples kan naturligvis have svingende kvalitet og være vanskelige at navigere i. I nogle tilfælde kræver download af ressourcerne endvidere, at man registrerer sig med emailadresse. Dette er en af de priser man betaler for "gratis" materialerne.
+Store arkiver med samples kan naturligvis have svingende kvalitet og være vanskelige at navigere i. I nogle tilfælde kræver download af ressourcerne endvidere, at man registrerer sig med emailadresse. Dette er en af de priser man betaler for "gratis" materialer.
 
 {==
 
@@ -38,7 +38,7 @@ Samplepakker som er designet til at udgøre et spilbart, virtuelt musikinstrumen
 | [99 Sounds](https://99sounds.org/) | Pay-what-you-want sample packs, bl.a. mange velsamplede trommelyde<br /><br />Download kræver registrering med mail-adresse på platformen Gumroad |
 | [Reverb Drum Machines \| The Complete Collection](https://reverb.com/software/samples-and-loops/reverb/3514-reverb-drum-machines-the-complete-collection) | Omfattende samling af samples fra forskellige kendte trommemaskiner<br /><br />Download kræver registrering med mail-adresse |
 | [BPB: Free Drum Kits - The Ultimate Collection](https://bedroomproducersblog.com/2021/07/02/free-drum-kits/) | En liste med trommesample-pakker, kurateret af Bedroom Producer's Blog og årligt opdateret opdateret |
-| [BPB: Free Piano Samples! (Acoustic, Electric & Toy Pianos](https://bedroomproducersblog.com/2010/07/01/free-sample-shootout-3-acoustic-electric-and-toy-pianos/) | En liste med klaversample-pakker, kurateret af Bedroom Producer's Blog |
+| [BPB: Free Piano Samples! (Acoustic, Electric & Toy Pianos)](https://bedroomproducersblog.com/2010/07/01/free-sample-shootout-3-acoustic-electric-and-toy-pianos/) | En liste med klaversample-pakker, kurateret af Bedroom Producer's Blog |
 | [BPB: Free Guitar Samples](https://bedroomproducersblog.com/2020/02/19/free-guitar-samples/) | En liste med guitarsample-pakker, kurateret af Bedroom Producer's Blog |
 | [sfz instruments](https://sfzinstruments.github.io/) | En oversigt over mange forskellige virtuelle instrumenter i sfz-format, de fleste gratis |
 
