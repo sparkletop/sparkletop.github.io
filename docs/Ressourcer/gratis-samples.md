@@ -60,7 +60,6 @@ Samplepakker som er designet til at udgøre et spilbart, virtuelt musikinstrumen
 | [Project Gutenberg](http://www.gutenberg.org/browse/categories/3) | Diverse lydoptagelser af litteraturoplæsning og musik |
 | [BBC Sound Effects](http://bbcsfx.acropolis.org.uk/) | Omfattende samling af lydoptagelser fra BBC |
 | [Quick Sounds](https://quicksounds.com/) | Arkiv med royalty-fri "lydeffekter" |
-| [We Sound Effects Bundle](https://wesoundeffects.com/we-sound-effects-bundle-2020/) | Royalty-fri sample pack med "lydeffekter" |
 | [LibriVox](https://librivox.org/) | Public domain lydbøger, digtoplæsninger mm. |
 | [NASA Audio and Ringtones](https://www.nasa.gov/audio-and-ringtones/) | Lydoptagelser fra det ydre rum 🙂 |
 
