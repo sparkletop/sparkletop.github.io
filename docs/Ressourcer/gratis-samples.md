@@ -1,3 +1,8 @@
+---
+tags:
+    - Artikler
+---
+
 # Kilder til gratis samples
 
 Der findes mange udmærkede samlinger af lyd- og musikoptagelser/samples
