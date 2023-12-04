@@ -1,3 +1,8 @@
+---
+tags:
+    - Øvelser
+---
+
 # Øvelse 8: Samples
 
 I denne øvelse arbejder du med sample-afspilning ved hjælp af `PlayBuf`.
