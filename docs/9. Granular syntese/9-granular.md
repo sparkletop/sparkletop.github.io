@@ -5,7 +5,7 @@ tags:
 
 # Granular syntese
 
-Granular syntese er kortfalt at danne komplekse klange og teksturer ved at sammensætte korte lydklip ("grains") til unikke strømme af lyd. Granular er en af de klangdannelsesteknikker, som hører til den digitale tidsalder, og SuperCollider indeholder glimrende redskaber til at arbejde med granular syntese. På den ene side er granular én blandt flere metoder til at adskille frekvens- og tidsdomænet (og derved fx undgå, at et vokalsample bliver til en musestemme, selvom tempoet sættes op), men på den anden side kan granular syntese skabe unikke teksturer og klangflader, som ikke kan fremstilles på anden vis.
+Granular syntese er kort fortalt en teknik, der går ud på at danne komplekse klange og teksturer ved at sammensætte korte lydklip ("grains") til unikke strømme af lyd. Granular er en af de klangdannelsesteknikker, som hører til den digitale tidsalder, og SuperCollider indeholder glimrende redskaber til at arbejde med granular syntese. På den ene side er granular én blandt flere metoder til at adskille frekvens- og tidsdomænet (og derved fx undgå, at et vokalsample bliver til en musestemme, selvom tempoet sættes op), men på den anden side kan granular syntese skabe unikke teksturer og klangflader, som ikke kan fremstilles på anden vis.
 
 Granular er et komplekst emne med mange muligheder og parametre. Her introduceres blot et par grundlæggende idéer og teknikker - for videregående teknikker henvises nysgerrige læsere til Eli Fieldsteels video nr. [25](https://youtu.be/WBqAM_94TW4) og [26](https://youtu.be/MnD8stNB5tE).
 
