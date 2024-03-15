@@ -2,22 +2,24 @@
 tags:
     - Artikler
 ---
+
 # Hvad er "methods"?
 
-Start lydserveren for at høre lydeksemplerne herunder
-`s.boot;`
+Start lydserveren for at høre lydeksemplerne herunder: `s.boot;`
+
+## Methods er funktionalitet
 
 Alt hvad man kan gøre i SuperCollider, altså SuperColliders funktionalitet, er knyttet til "methods". I kode kan man typisk se disse methods lige efter punktummer. Fx sådan her:
 
 ``` sc
 "Hello world".postln;  // method'en .postln viser objekter i post window, i dette tilfælde et stykke tekst
-Scale.minorPentatonic; // .minorPentatonic angiver (kombineret med Scale) en mol-pentaton skala
-69.midicps;            // method'en .midicps omregner fra MIDI-tonehøjde til frekvens, målt i Hertz
+Scale.minorPentatonic; // method'en .minorPentatonic angiver (kombineret med Scale) en mol-pentaton skala
+69.midicps;            // method'en .midicps omregner et tal fra MIDI-tonehøjde til frekvens, målt i Hertz
 ```
 
 Methods kaldes undertiden også for "messages". Det skyldes, at methods anvendes på "noget", og dette noget kalder man så en "receiver". I udtrykket `69.midicps` er `69` receiveren, som modtager vores message `midicps`. 
 
-## To slags methods
+## Class methods og instance methods
 
 ### Class methods 
 
@@ -38,6 +40,12 @@ Scale.directory;       // viser alle indbyggede skalaer
 Der findes i SuperCollider en særlig class method, som vi bruger hele tiden: `.new`. Den har en slags særstatus, fordi den er så udbredt.
 
 `.new` skaber et nyt objekt (en "instance" eller forekomst) af den klasse, man angiver før punktummet.
+
+``` sc
+Pbind.new()
+SynthDef.new()
+Scale.new()
+```
 
 `.new` er så almindeligt, at der for rigtig mange klasser findes en genvej til at bruge method'en - nemlig helt at udelade `.new`. Derfor giver disse to udtryk samme resultat:
 
@@ -88,13 +96,18 @@ I SuperColliders dokumentation kan man se hvilke methods, der passer til forskel
 - Slår man en klasse op (fx `Array`, `Pwhite`, `SinOsc` etc.), vil man kunne se de forskellige class methods og instance methods samt hvordan de bruges.
 - Slår man en method op (fx `.new`, `.play`, `.reverse` etc.), vil man kunne se de forskellige klasser, som har denne method tilknyttet (klik på klassen for at se hvordan fx .new anvendes inden for den specifikke klasse).
 
-Placér cursoren sammen med et af kodeudtrykkene herunder og tast Ctrl/Cmd-D for at åbne den dokumentationen.
+Placér cursoren sammen med et af kodeudtrykkene herunder og tast Ctrl/Cmd-D for at åbne dokumentationen. Læs selv nærmere om de forskellige methods, og bemærk
 
 ``` sc
+// Hvilke class og instance methods knytter sig til henholdsvis Array, Pwhite og SinOsc?
 Array
 Pwhite
 SinOsc
+
+// På hvilke objekter kan vi bruge disse methods?
 .new
 .play
+.trace
+.ar
 .reverse
 ```
