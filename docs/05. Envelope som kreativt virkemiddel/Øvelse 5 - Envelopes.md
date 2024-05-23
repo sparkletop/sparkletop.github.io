@@ -153,8 +153,8 @@ Pmono(\opgave4,
 
 ## Bonusopgave: Hjemmelavede LFO'er med `Env.circle`
 
-1. Design din egen LFO ved hjælp af `Env.circle`. Du kan finde et eksempel herpå i [artiklen vedr. envelopes](Envelopes.md#envelope-som-lfo).
 1. Modificér SynthDef'en, således at LFO'en modulerer mindst to forskellige, lydlige parametre (fx tonehøjde, panorering, lydstyrke, cutoff-frekvens etc.). Husk at [skalere outputtet fra LFO'en](../04. Oscillatorer og modulation/A2-skalering.md), så det passer til modulationens formål.
+1. Design din egen LFO ved hjælp af `Env.circle`. Du kan finde et eksempel herpå i [artiklen vedr. nye envelopes og LFO'er](ZNye envelopes og LFO.md#envelope-som-lfo).
 1. Skriv en komposition baseret på `Pbind` eller `Pmono`, hvor du demonstrerer mulighederne i SynthDef'en.
 
 ```sc title="Hjemmelavet LFO" hl_lines="7-8"
