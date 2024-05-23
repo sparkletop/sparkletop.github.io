@@ -1,5 +1,5 @@
----
 tags:
+---
     - Artikler
 ---
 
@@ -9,13 +9,13 @@ Det er relativt let at lave en simpel, algoritmisk komposition ved hjælp af pat
 
 ## Indlejring af patterns
 
-Generativ eller algoritmisk komposition indebærer, at man i et vist omfang overlader dele af det kompositoriske arbejde til et system eller en algoritme. Her spiller [tilfældighedsgeneratorer](../2. Generativ komposition med patterns/2.2-tilfældighedsgeneratorer.md) ofte (men ikke altid) en central rolle.
+Generativ eller algoritmisk komposition indebærer, at man i et vist omfang overlader dele af det kompositoriske arbejde til et system eller en algoritme. Her spiller [tilfældighedsgeneratorer](../02. Generativ komposition med patterns/2.2-tilfældighedsgeneratorer.md) ofte (men ikke altid) en central rolle.
 
 Total tilfældighed er imidlertid sjældent specielt interessant. Derfor kan man med fordel indlejre tilfældighed som et begrænset element i en ellers fastlagt struktur.
 
 ### En sekvens af patterns
 
-Vi har tidligere set, [hvordan `Pseq` kan generere sekvenser af værdier](../2. Generativ komposition med patterns/2.1-Patterns.md). Men `Pseq` er fleksibel og kan lige så vel bruges til sekvenser af patterns. Her eksempelvis en sekvens med en blanding af faste og tilfældigt genererede skalatrin:
+Vi har tidligere set, [hvordan `Pseq` kan generere sekvenser af værdier](../02. Generativ komposition med patterns/2.1-Patterns.md). Men `Pseq` er fleksibel og kan lige så vel bruges til sekvenser af patterns. Her eksempelvis en sekvens med en blanding af faste og tilfældigt genererede skalatrin:
 
 ```sc
 (
