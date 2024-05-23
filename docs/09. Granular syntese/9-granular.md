@@ -11,7 +11,7 @@ Granular er et komplekst emne med mange muligheder og parametre. Her introducere
 
 ## Triggering og grainvarighed med `GrainBuf`
 
-Man kan i princippet danne grains af hvilken som helst lydkilde, men samples eller live-lydsignaler anvendes ganske ofte. Her tager vi udgangspunkt i et sample, som [er indlæst i en buffer](../8. Samples/8.1-samples.md), og i den sammenhæng er det oplagt at anvende UGen'en `GrainBuf`. Man skal dog være opmærksom på, at `GrainBuf` kun fungerer med mono-samples (hertil kan der indlæses blot én kanal, hvis man har en stereo-lydfil).
+Man kan i princippet danne grains af hvilken som helst lydkilde, men samples eller live-lydsignaler anvendes ganske ofte. Her tager vi udgangspunkt i et sample, som [er indlæst i en buffer](../08. Samples/8.1-samples.md), og i den sammenhæng er det oplagt at anvende UGen'en `GrainBuf`. Man skal dog være opmærksom på, at `GrainBuf` kun fungerer med mono-samples (hertil kan der indlæses blot én kanal, hvis man har en stereo-lydfil).
 
 Her hører vi 5 grains pr. sekund, placeret i midten af et stereofelt, hver med en varighed på 25ms, læst fra midten af den buffer, hvor vores sample er indlæst:
 

@@ -5,7 +5,7 @@ tags:
 
 # Lilletromme
 
-Denne lilletrommelyd er inspireret af [*Sound on Sound*-artikler af Gordon Reid om syntetisk skabelse af percussion-lyde](https://www.soundonsound.com/techniques/practical-snare-drum-synthesis). Lyddesignet forsøger at simulere forskellige klangelementer i en "realistisk" lilletrommelyd. Der anvendes forskellige [filtre](cs-filtre.md) samt [envelopes](../5. Envelope som kreativt virkemiddel/Envelopes.md) til at modulere klangens forandring over tid.
+Denne lilletrommelyd er inspireret af [*Sound on Sound*-artikler af Gordon Reid om syntetisk skabelse af percussion-lyde](https://www.soundonsound.com/techniques/practical-snare-drum-synthesis). Lyddesignet forsøger at simulere forskellige klangelementer i en "realistisk" lilletrommelyd. Der anvendes forskellige [filtre](cs-filtre.md) samt [envelopes](../05. Envelope som kreativt virkemiddel/Envelopes.md) til at modulere klangens forandring over tid.
 
 ```sc
 (
