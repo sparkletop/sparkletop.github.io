@@ -49,5 +49,4 @@ markdown_extensions:
   - admonition
   - attr_list
   - def_list
-  - markdown_captions
   - tables
