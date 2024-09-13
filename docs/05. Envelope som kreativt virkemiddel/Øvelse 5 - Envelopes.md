@@ -3,7 +3,7 @@ tags:
     - Øvelser
 ---
 
-# Øvelse 5. Envelopes og SynthDefs
+# Øvelse 5: Envelopes og SynthDefs
 
 I denne øvelse arbejder du med envelopes. Som et element i nogle af opgaverne, indgår disse envelopes i SynthDefs.
 
