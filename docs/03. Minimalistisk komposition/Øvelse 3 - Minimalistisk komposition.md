@@ -75,12 +75,13 @@ Der kan eksempelvis gøres brug af følgende virkemidler:
         
         \dur,   ,
         \legato,   ,
+    ).play;
     )
     ```
 
 === "Uden MIDI"
     
-    ```sc
+    ```sc title="En minimalistisk kompositionsopgave"
     (
      // Vælg nogle få toner og nodeværdier
     ~toner = [   ];
@@ -96,6 +97,7 @@ Der kan eksempelvis gøres brug af følgende virkemidler:
         
         \dur,   ,
         \legato,   ,
+    ).play;
     )
     ```
 
