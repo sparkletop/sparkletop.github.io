@@ -18,33 +18,33 @@ Hvorfor mon der er flere forskellige tilfældighedsgeneratorer at vælge imellem
 `Pwhite`
 
 :   Alle tal mellem et givet minimum og maksimum er lige sandsynlige. Relateret til den måde hvorpå man genererer [hvid støj](https://en.wikipedia.org/wiki/White_noise#Statistical_properties). Anvendes typisk når man ønsker "helt" tilfældige værdier med mulighed for store og små spring. Fx ved atonal eller arytmisk komposition.
-    ![10.000 værdier genereret med Pwhite(0, 100, 10000)](pwhite.png)
+    ![10.000 værdier genereret med Pwhite(0, 100, 10000)](media/pwhite.png)
 
 `Pbrown`
 
 :   Genererer tilfældige værdier, men med begrænsede trin. Algoritmen kendes også som en [random walk/drunkard's walk](https://en.wikipedia.org/wiki/Random_walk). Pbrown bruges, når man ønsker en gradvis udvikling i en strøm af tilfældigt valgte værdier, dvs. hvor springene mellem de enkelte skridt er begrænsede. Det kunne fx være ved trinbevægelser i melodier eller en cutoff-frekvens, som skal bevæge sig mere organisk mellem forskellige værdier.
-    ![10.000 værdier genereret med Pbrown(0, 100, 2, 10000)](pbrown.png)
+    ![10.000 værdier genereret med Pbrown(0, 100, 2, 10000)](media/pbrown.png)
 
 `Pgauss`
 
 :   Tal tæt på en middelværdi er mere sandsynlige end tal, der ligger længere væk. Baseret på [normalfordelingen/Gaussfordelingen](https://da.wikipedia.org/wiki/Normalfordeling). Anvendes fx hvis man ønsker, at de fleste værdier skal ligge i omegnen af et centrum, fx midt i stereobilledet eller en skala, men hvor der kan være nogle fåvildskud.
-    ![10.000 værdier genereret med Pgauss(50, 17, 10000)](pgauss.png)
+    ![10.000 værdier genereret med Pgauss(50, 17, 10000)](media/pgauss.png)
 
 `Pexprand`
 
 :   Tal tættest på minimumværdien er mest sandsynlige. Baseret på [eksponentialfordeling](https://en.wikipedia.org/wiki/Exponential_distribution). Anvendes typisk hvor man ønsker en Pwhite-lignende fordeling inden for fx frekvens eller lydstyrke (teknisk set fordi menneskelig perception på disse parametre bedst kan beskrives med eksponentiel/logaritmisk funktion).
-    ![10.000 værdier genereret med `Pexprand(0.01, 100, 10000)`](pexprand.png)
+    ![10.000 værdier genereret med `Pexprand(0.01, 100, 10000)`](media/pexprand.png)
 
 `Phprand`
 
 :   Tal tættest på en øvre grænse er mest sandsynlige.
-    ![10.000 værdier genereret med Phprand(0, 100, 10000)](phprand.png)
+    ![10.000 værdier genereret med Phprand(0, 100, 10000)](media/phprand.png)
 
 
 `Plprand`
 
 :   Tal tættest på en nedre grænse er mest sandsynlige. Anvendes, hvor man kun ønsker få værdier tæt på en øvre grænse.
-    ![10.000 værdier genereret med Plprand(0, 100, 10000)](plprand.png)
+    ![10.000 værdier genereret med Plprand(0, 100, 10000)](media/plprand.png)
 
 ## Listebaserede generatorer
 

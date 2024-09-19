@@ -21,8 +21,8 @@ s.scope.window.alwaysOnTop_(true);
 
 Alle overtoner (her blot de første 25)
 
-``` sc
 (
+``` sc
 {
 	var sig = 25.collect({
 		arg num;
@@ -129,5 +129,5 @@ Kør blokken flere gange for at høre variationsmulighederne. Justér evt. på p
 )
 ```
 
-Se i øvrigt også artiklen om [Rissets klokke](7.3-risset.md).
+Se i øvrigt også artiklen om [Rissets klokke](Art3-Rissets klokke.md).
 

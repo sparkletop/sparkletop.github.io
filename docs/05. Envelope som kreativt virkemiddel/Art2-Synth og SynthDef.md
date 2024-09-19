@@ -92,7 +92,7 @@ Synth(\eksempel2, [\freq, 1000]);
 ~tone.set(\freq, rrand(100, 800));
 ```
 
-I mange SynthDefs er det nyttigt at bruge en envelope til at styre volumen over tid. Med `doneAction` angiver vi, at Synth'en skal fjernes, når tonen er klinget ud (læs evt. nærmere om [automatisk oprydning med doneAction](Envelopes.md#automatisk-oprydning-med-doneaction)).
+I mange SynthDefs er det nyttigt at bruge en envelope til at styre volumen over tid. Med `doneAction` angiver vi, at Synth'en skal fjernes, når tonen er klinget ud (læs evt. nærmere om [automatisk oprydning med doneAction](Art1-Envelopes.md#automatisk-oprydning-med-doneaction)).
 
 Når vores SynthDef er sat op på denne måde gjort, kan vi bruge `Pbind` til at generere sekvenser af Synths, helt automatisk!
 

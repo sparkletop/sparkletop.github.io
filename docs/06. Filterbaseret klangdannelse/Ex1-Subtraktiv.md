@@ -16,7 +16,7 @@ Brug følgende filtre til at modificere klangen af hvid støj:
 1. Et band pass-filter med centerfrekvens på 500hz
 1. Et resonerende low pass-filter med cutoff-frekvens på 800hz og rq-værdi på 0.1
 
-Du kan finde hjælp og eksempler i [filter-cheat sheetet](cs-filtre.md).
+Du kan finde hjælp og eksempler i [filter-cheat sheetet](Cheat1-Filter-UGens.md).
 
 ```sc hl_lines="4"
 (
@@ -30,7 +30,7 @@ Du kan finde hjælp og eksempler i [filter-cheat sheetet](cs-filtre.md).
 
 ## Opgave 2: Modulation af filtre
 
-Brug følgende kilder til at modulere cutoff-frekvensen for et low pass-filter, så cutoff-frekvensen bevæger sig mellem 500Hz og 1000Hz (se evt. [artiklen om modulation af UGens](../04. Oscillatorer og modulation/A2-skalering.md) for relevante teknikker).
+Brug følgende kilder til at modulere cutoff-frekvensen for et low pass-filter, så cutoff-frekvensen bevæger sig mellem 500Hz og 1000Hz (se evt. [artiklen om modulation af UGens](../04. Oscillatorer og modulation/Art2-Skalering.md) for relevante teknikker).
 
 1. Den allerede noterede envelope
 1. En `XLine`-envelope, vælg selv tidsinterval
@@ -50,7 +50,7 @@ Brug følgende kilder til at modulere cutoff-frekvensen for et low pass-filter, 
 
 ## Opgave 3: Subtraktiv SynthDef
 
-Omskriv kildekoden fra Opgave 2 til en SynthDef, som gør brug af subtraktiv syntese. Du kan evt. gøre brug af en [SynthDef-skabelon](../05. Envelope som kreativt virkemiddel/cs-SynthDef.md) som ramme for dit arbejde.
+Omskriv kildekoden fra Opgave 2 til en SynthDef, som gør brug af subtraktiv syntese. Du kan evt. gøre brug af en [SynthDef-skabelon](../05. Envelope som kreativt virkemiddel/Cheat1-SynthDef.md) som ramme for dit arbejde.
 
 SynthDef'en skal overholde følgende krav:
 
