@@ -9,8 +9,8 @@ I denne øvelse arbejdes der med multikanalslyd og additiv syntese. Start først
 
 ```sc
 (
-s.meter.window.alwaysOnTop = true;
-s.freqscope.window.alwaysOnTop = true;
+s.meter.window.alwaysOnTop_(true);
+s.freqscope.window.alwaysOnTop_(true);
 )
 ```
 
