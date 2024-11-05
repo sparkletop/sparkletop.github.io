@@ -5,11 +5,13 @@ tags:
 
 # Additiv syntese
 
-Klassisk additiv syntese baseres på ideen om, at komplekse klange kan skabes ved simpel addition af sinusbølger, som svinger ved forskellige frekvenser og amplituder.
+Klassisk additiv syntese baseres på ideen om, at komplekse bølgeformer og dermed interessante klange kan fremstilles (approximeres) ved ganske enkelt at sammenlægge en række sinusbølger, som svinger ved forskellige frekvenser og amplituder. Den matematiske idé bag dette findes i teorien om [Fourierrækker](https://lex.dk/Fourieranalyse).
 
 ## Standardbølgeformer
 
 Som eksempel på additiv syntese kan vi starte med at generere tre standardbølgeformer. Kilden til algoritmerne er [kapitel 5 i Thor Magnussons glimrende bog *Scoring Sound*](https://thormagnusson.gitbooks.io/scoring/content/PartII/chapter_5.html).
+
+Disse bølgeformer udnytter den såkaldt naturlige [overtonerække](https://www.musikipedia.dk/overtoner), som består af en række overtoner med frekvenser, der ligger et helt antal gange over en grundtones frekvens.
 
 Vis frekvensspektrum og bølgeform og hold dem i forgrunden:
 ``` sc 
@@ -19,12 +21,12 @@ s.scope.window.alwaysOnTop_(true);
 
 ### Savtakket bølgeform
 
-Alle overtoner (her blot de første 25)
+Den savtakkede bølgeform indeholder alle overtoner i overtonerækken. Her blot de første 30 overtoner.
 
+```sc
 (
-``` sc
 {
-	var sig = 25.collect({
+	var sig = 30.collect({
 		arg num;
 		var overtone = num + 1;
 		SinOsc.ar(220 * overtone) * 0.5 / overtone;
@@ -36,7 +38,7 @@ Alle overtoner (her blot de første 25)
 
 ### Firkantet bølgeform
 
-Den firkantede bølgeform kan skabes med overtonerne med ulige numre, dvs. nr. 1 grundtonen, nr. 3, nr. 5, nr. 7 osv. Overtonerne falder i amplitude, jo højere vi kommer op. Her indgår blot de første 30 overtoner.
+Den firkantede bølgeform kan skabes med overtonerne med ulige numre, dvs. nr. 1 (grundtonen), nr. 3, nr. 5, nr. 7 osv. Overtonerne falder i amplitude, jo højere vi kommer op. Her blot de første 30 overtoner.
 
 ``` sc
 (
@@ -53,7 +55,7 @@ Den firkantede bølgeform kan skabes med overtonerne med ulige numre, dvs. nr. 1
 
 ### Trekantet bølgeform
 
-Den trekantede bølgeform kan ligesom den firkantede skabes med overtonerne med ulige numre, dvs. nr. 1 grundtonen, nr. 3, nr. 5, nr. 7 osv. Overtonerne falder i amplitude, jo højere vi kommer op, men med en lidt anden formel end ved den firkantede. Her indgår blot de første 30 overtoner.
+Den trekantede bølgeform kan ligesom den firkantede skabes med overtonerne med ulige numre, dvs. nr. 1 grundtonen, nr. 3, nr. 5, nr. 7 osv. Overtonerne falder i amplitude, jo højere vi kommer op, men med en lidt anden formel end ved den firkantede. Her blot de første 30 overtoner.
 
 ``` sc
 (
@@ -108,7 +110,7 @@ Dette eksempel på en klokkelyd er løseligt baseret på et eksempel fra [Curtis
 
 ### En mere kaotisk klokkelyd
 
-Klokkelyde er generelt kendetegnet ved et højt indhold af partialtoner. For at skabe unikke lyde kan vi give hver partialtone en tilfældig frekvens, amplitude og envelope. Dertil udnytter vi de to UGens `Rand` og `ExpRand`, som genererer en tilfældig værdi mellem et minimum og et maksimum, når Synth'en startes.
+Klokkelyde er generelt kendetegnet ved et højt indhold af partialtoner. For at skabe unikke lyde kan vi give hver partialtone en tilfældig frekvens, amplitude og envelope. Dertil udnytter vi de to generatorer `Rand` og `ExpRand`, som genererer en tilfældig værdi mellem et minimum og et maksimum, når Synth'en startes.
 
 Kør blokken flere gange for at høre variationsmulighederne. Justér evt. på parametrene for at skabe andre klangmuligheder.
 
