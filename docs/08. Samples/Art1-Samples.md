@@ -38,7 +38,7 @@ Når samplet er indlæst i en `Buffer` under variabelnavnet `~sample`, kan vi br
 
 Den mest enkle metode til afspilning af samples er at bruge UGen'en `PlayBuf`. Her vises hvordan vi kan styre afspilningen med argumenter til `PlayBuf.ar`:
 
-```sc title = 
+```sc title = "PlayBuf-argumenter"
 (
 {
 	PlayBuf.ar(
