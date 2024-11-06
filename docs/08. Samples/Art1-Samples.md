@@ -13,7 +13,7 @@ For at arbejde med et sample/en lydfil, skal samplet indlæses i en såkaldt `Bu
 
 Her bruges et sample, der følger med SuperCollider, men man kan nemt arbejde med egne samples - erstat blot `Platform.resourceDir +/+ "sounds/a11wlk01.wav"` med stien til din egen lydfil. Stien kan genereres automatisk ved at trække filen ind i SuperCollider med musen, eller ved at copy-paste filen fra en mappe.
 
-``` sc title="Indlæsning af lydfil i Buffer"
+```sc title="Indlæsning af lydfil i Buffer"
 (
 // ~lydFilSti = "C:/lydfiler/minlydfil.wav";
 
@@ -38,7 +38,7 @@ Når samplet er indlæst i en `Buffer` under variabelnavnet `~sample`, kan vi br
 
 Den mest enkle metode til afspilning af samples er at bruge UGen'en `PlayBuf`. Her vises hvordan vi kan styre afspilningen med argumenter til `PlayBuf.ar`:
 
-```sc title = "PlayBuf-argumenter"
+```sc title="PlayBuf-argumenter"
 (
 {
 	PlayBuf.ar(
