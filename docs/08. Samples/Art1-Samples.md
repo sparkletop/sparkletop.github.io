@@ -13,7 +13,7 @@ For at arbejde med et sample/en lydfil, skal samplet indlæses i en såkaldt `Bu
 
 Her bruges et sample, der følger med SuperCollider, men man kan nemt arbejde med egne samples - erstat blot `Platform.resourceDir +/+ "sounds/a11wlk01.wav"` med stien til din egen lydfil. Stien kan genereres automatisk ved at trække filen ind i SuperCollider med musen, eller ved at copy-paste filen fra en mappe.
 
-``` sc
+``` sc title="Indlæsning af lydfil i Buffer"
 (
 // ~lydFilSti = "C:/lydfiler/minlydfil.wav";
 
@@ -38,7 +38,7 @@ Når samplet er indlæst i en `Buffer` under variabelnavnet `~sample`, kan vi br
 
 Den mest enkle metode til afspilning af samples er at bruge UGen'en `PlayBuf`. Her vises hvordan vi kan styre afspilningen med argumenter til `PlayBuf.ar`:
 
-```sc
+```sc title = 
 (
 {
 	PlayBuf.ar(
@@ -48,14 +48,14 @@ Den mest enkle metode til afspilning af samples er at bruge UGen'en `PlayBuf`. H
 		// buffer nummer / Buffer objekt
 		bufnum: ~sample,
 
-		// afspilningshastighed - BufRateScale.kr tager højde for mismatch mellem serverens og lydfilens respektive samplerates
+		// afspilningshastighed - BufRateScale tager højde for mismatch mellem serverens og lydfilens respektive samplerates
 		rate: 1 * BufRateScale.kr(~sample),
 
 		// reset-trigger, kan bruges til at angive spring til startposition
 		trigger: 1,
 
-		// startposition, målt i sample frames
-		startPos: 0,
+		// startposition, målt i sample frames - BufFrames er det samplede antal sample frames i bufferen/lydfilen 
+		startPos: 0 * BufFrames.kr(~sample),
 
 		// loop - start forfra, når vi rammer slutningen af bufferen (0 = nej, 1 = ja)
 		loop: 0,
@@ -111,17 +111,17 @@ Med et triggersignal, her skabt af UGen'en `Impulse`, kan vi springe hen til den
 
 ## Ekstra fleksibilitet med `BufRd`
 
-`BufRd` er mere fleksibel end `PlayBuf`, idet den tillader, at vi styrer læsningen af data fra bufferen direkte med en anden UGen. Det svarer lidt til når en pickupnål afspiller lyd fra en vinylplade, bortset fra at vi med et bredt udvalg af UGens kan flytte nålen rundt på meget forskellig vis. Til at styre afspilningspositionen angiver vi en UGen under `BufRead.ar`'s argument `phase`.
+`BufRd` er mere fleksibel end `PlayBuf`, fordi den tillader, at vi styrer læsningen af data fra bufferen direkte med en anden UGen. Det svarer lidt til, at en pickupnål aflæser den lyd, som er indpræget i en vinylplade - bortset fra at vi med et bredt udvalg af UGens kan flytte nålen rundt på meget forskellig vis. Til at styre afspilningspositionen angiver vi en UGen under `BufRead.ar`'s argument `phase`.
 
 Ofte anvendes UGen'en `Phasor`, som skaber en lineær rampe fra start- til slutværdi (det er generelt sådan samples afspilles i digitale lydsystemer).
 
-```sc
+```sc title="Sample-afspilning med BufRd og Phasor"
 (
 {
 	BufRd.ar(
 		numChannels: 2,
 		bufnum: ~sample,
-		// afspilningsposition i sample frames - en UGen, som angiver hvor i bufferen, vi læser data fra
+		// phase-argumentet er afspilningspositionen, målt i sample frames
 		phase: Phasor.ar(0, BufRateScale.kr(~sample), 0, BufFrames.kr(~sample)),
 		loop: 1
 	)
@@ -131,7 +131,7 @@ Ofte anvendes UGen'en `Phasor`, som skaber en lineær rampe fra start- til slutv
 
 Man kan anvende mange forskellige UGens som alternativ til `Phasor`. Her moduleres afspilningsposition i `BufRd` af henholdsvis en perkussiv envelope og lavfrekvent støj:
 
-```sc
+```sc title="Envelope og tilfældighedsgenerator som pickupnål"
 (
 {
 	// envelopes kan bruges til at gennemløbe en buffer
