@@ -42,11 +42,11 @@ De sidste argumenter til s.record (bus og node) kan læseren selv undersøge næ
 
 ### Optagelse med "præcist" begyndelsestidspunkt
 
-`s.record` starter optagelsen et kort stykke tid efter, at kodelinjen er kørt. Det er lidt upraktisk, hvis man gerne vil starte optagelsen, præcist når man sætter en lyd i gang. Derfor kan man forberede optagelsen, så den kan startes på et præcist tidspunkt:
+Fordi der skal allokeres midlertidig buffer-hukommelse starter `s.record` optagelsen et kort stykke tid efter, at kodelinjen er kørt. Det er lidt upraktisk, hvis man gerne vil starte optagelsen, præcist når man sætter en lyd i gang. Derfor kan man forberede optagelsen, så den kan startes på et præcist tidspunkt:
 
 ```sc title="Forberedt optagelse"
 // Forbered optagelsen
-s.prepareForRecord; // her kan path og numChannels evt. specificeres
+s.prepareForRecord(); // her kan path og numChannels evt. specificeres
 
 // Start optagelse og lydproduktion
 (
@@ -73,7 +73,7 @@ Virtuel audio routing kan udføres uden særlig hardware (eksternt lydkort) og e
 
 Virtuel audio routing fra SuperCollider til en DAW oprettes typisk på følgende måde (efter al software er installeret):
 
-- Start den virtuelle lyddriver (fx [Blackhole](https://github.com/ExistentialAudio/BlackHole) på Mac eller [VoiceMeeter](https://vb-audio.com/Voicemeeter/index.htm) på Windows.
+- Start den virtuelle lyddriver (fx [Blackhole](https://github.com/ExistentialAudio/BlackHole) på Mac eller [VoiceMeeter](https://vb-audio.com/Voicemeeter/index.htm) på Windows).
 - Start DAW og vælg den virtuelle lyddriver som audio device input.
 - Start SuperCollider, indstil lydserveren til at bruge den virtuelle lyddriver som audio device, og (gen)start lydserveren.
 
