@@ -69,7 +69,7 @@ I mange tilfælde er det nyttigt at route lyden fra SuperCollider over til et an
 
 Analog og digital loopback beror på, at der sendes lyd ud af et lydkorts udgange og direkte tilbage via lydkortets indgange. Nogle lydkort-drivere understøtter, at dette kan gøres uden fysiske kabler. Disse tilgange kræver typisk et eksternt lydkort.
 
-Virtuel audio routing kan udføres uden særlig hardware (eksternt lydkort) og er derfor en meget anvendt tilgang. Det udføres som regel med tredjepartssoftware, der figurerer i styresystemet som en ekstra lydkortdriver. Denne kan så både bruges som in- og output. I den ovennævnte oversigt fra Ableton fremgår en række sådanne redskaber til Mac og Windows. På Linux findes der ganske glimrende redskaber som [jack]() og [pipewire].
+Virtuel audio routing kan udføres uden særlig hardware (eksternt lydkort) og er derfor en meget anvendt tilgang. Det udføres som regel med tredjepartssoftware, der figurerer i styresystemet som en ekstra lydkortdriver. Denne kan så både bruges som in- og output. I den ovennævnte oversigt fra Ableton fremgår en række sådanne redskaber til Mac og Windows. På Linux findes der ganske glimrende redskaber som [jack](https://jackaudio.org/) og [pipewire](https://www.pipewire.org/).
 
 ### SuperCollider til Reaper via ReaRoute
 
