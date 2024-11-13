@@ -73,13 +73,13 @@ Virtuel audio routing kan udføres uden særlig hardware (eksternt lydkort) og e
 
 Virtuel audio routing fra SuperCollider til en DAW oprettes typisk på følgende måde (efter al software er installeret):
 
-- Start den virtuelle lyddriver (fx [Blackhole](https://github.com/ExistentialAudio/BlackHole) på Mac eller [VoiceMeeter](https://vb-audio.com/Voicemeeter/index.htm).
+- Start den virtuelle lyddriver (fx [Blackhole](https://github.com/ExistentialAudio/BlackHole) på Mac eller [VoiceMeeter](https://vb-audio.com/Voicemeeter/index.htm) på Windows.
 - Start DAW og vælg den virtuelle lyddriver som audio device input.
 - Start SuperCollider, indstil lydserveren til at bruge den virtuelle lyddriver som audio device, og (gen)start lydserveren.
 
 ### Eksempel: SuperCollider til Reaper via ReaRoute
 
-Som eksempel på virtuel audio routing kan vi tage det scenarie, at en windows-bruger vil sende lyd fra SuperColliders lydserver til DAW'en Reaper. Dette kan gøres ved hjælp af systemet [ReaRoute](https://www.youtube.com/watch?v=OnfTq8EtluU), der følger med Reaper, hvis man vinger det af under installationen. Fremgangsmåden er som følger:
+Som eksempel på virtuel audio routing kan vi tage det scenarie, at en Windows-bruger vil sende lyd fra SuperColliders lydserver til DAW'en Reaper. Dette kan gøres ved hjælp af systemet [ReaRoute](https://www.youtube.com/watch?v=OnfTq8EtluU), der følger med Reaper, hvis man vinger det af under installationen. Fremgangsmåden er som følger:
 
 **Først forberedes routingen i Reaper**
 
