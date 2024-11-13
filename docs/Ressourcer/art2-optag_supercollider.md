@@ -1,18 +1,16 @@
 # Optag lyd fra SuperCollider
 
-På et tidspunkt i din rejse med musik- og lydprogrammering ved hjælp af SuperCollider bliver det relevant at kunne bruge lyd fra SuperCollider i andre programmer. Det kan fx være vi vil eksportere en atmosfærisk lydtekstur skabt med granular syntese eller en melodi, vi har genereret ved hjælp af subtraktiv syntese og patterns.
+På et tidspunkt i din rejse med musik- og lydprogrammering ved hjælp af SuperCollider bliver det relevant at kunne bruge lyd fra SuperCollider i andre programmer. Det kan fx være vi vil eksportere en atmosfærisk lydtekstur skabt med granular syntese eller en melodi, vi har genereret ved hjælp af subtraktiv syntese og patterns. Hertil findes der i SuperCollider flere metoder, som passer til forskellige scenarier. Den interne optagelse er mest enkel og anbefales til begyndere, men at route signalet fra SuperCollider til en DAW er en fleksibel og nyttig metode.
 
-Hertil findes der flere metoder, som passer til forskellige scenarier. Den interne optagelse er mest enkel og anbefales til begyndere.
+## Intern optagelse af SuperColliders lydserver
 
-## Intern optagelse med s.record
+SuperCollider har ganske udmærkede metoder til at optage outputtet fra lydserveren og lagre det i en lydfil.
 
-SuperCollider har ganske udmærkede metoder til at optage outputtet fra lydserveren og gemme optagelsen i en lydfil.
-
-### Simpel optagelse
+### Enkel optagelse
 
 At optage outputtet fra SuperColliders lydserver er ganske enkelt:
 
-```sc title="Simpel optagelse med s.record"
+```sc title="Enkel optagelse med s.record"
 
 // Start optagelsen
 s.record;
@@ -27,10 +25,9 @@ s.stopRecording;
 Platform.recordingsDir.openOS;
 ```
 
-Efter ovenstående tre linjer er kørt, vil SuperColliders post window vise, hvor på din harddisk, lydfilen med optagelsen er gemt. Som udgangspunkt gemmes optagelser i en mappe, der kan findes med `Platform.recordingsDir`, og lydfilen får tildelt et navn med et unikt timestamp (således at flere optagelser foretaget efter hinanden ikke overskriver eksisterende filer).
+Efter ovenstående tre linjer er kørt, vil SuperColliders post window vise hvor på din harddisk, lydfilen med optagelsen er gemt. Som udgangspunkt gemmes optagelser i en mappe, der kan findes med `Platform.recordingsDir`, og lydfilen får tildelt et navn med et unikt timestamp (således at flere optagelser foretaget efter hinanden ikke overskriver eksisterende filer).
 
 Vi kan selv angive filsti og -navn, antal kanaler, samt evt. en varighed. Her eksempelvis en fil, der hedder optagelse.wav og gemmes under C:/samples, har to lydkanaler (dvs. stereo) og varer tre sekunder:
-
 
 ```sc title="Argumenter til s.record"
 s.record(
@@ -41,7 +38,7 @@ s.record(
 // s.stopRecording er ikke nødvendigt her
 ```
 
-De sidste argumenter til s.record (bus og node) kan læseren selv undersøge nærmere i SuperColliders dokumentation.
+De sidste argumenter til s.record (bus og node) kan læseren selv undersøge nærmere i [SuperColliders dokumentation](https://docs.supercollider.online/Classes/Server.html#-record).
 
 ### Optagelse med "præcist" begyndelsestidspunkt
 
