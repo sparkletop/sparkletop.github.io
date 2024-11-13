@@ -71,17 +71,23 @@ Analog og digital loopback beror på, at der sendes lyd ud af et lydkorts udgang
 
 Virtuel audio routing kan udføres uden særlig hardware (eksternt lydkort) og er derfor en meget anvendt tilgang. Det udføres som regel med tredjepartssoftware, der figurerer i styresystemet som en ekstra lydkortdriver. Denne kan så både bruges som in- og output. I den ovennævnte oversigt fra Ableton fremgår en række sådanne redskaber til Mac og Windows. På Linux findes der ganske glimrende redskaber som [jack](https://jackaudio.org/) og [pipewire](https://www.pipewire.org/).
 
-### SuperCollider til Reaper via ReaRoute
+Virtuel audio routing fra SuperCollider til en DAW oprettes typisk på følgende måde (efter al software er installeret):
+
+- Start den virtuelle lyddriver (fx [Blackhole](https://github.com/ExistentialAudio/BlackHole) på Mac eller [VoiceMeeter](https://vb-audio.com/Voicemeeter/index.htm).
+- Start DAW og vælg den virtuelle lyddriver som audio device input.
+- Start SuperCollider, indstil lydserveren til at bruge den virtuelle lyddriver som audio device, og (gen)start lydserveren.
+
+### Eksempel: SuperCollider til Reaper via ReaRoute
 
 Som eksempel på virtuel audio routing kan vi tage det scenarie, at en windows-bruger vil sende lyd fra SuperColliders lydserver til DAW'en Reaper. Dette kan gøres ved hjælp af systemet [ReaRoute](https://www.youtube.com/watch?v=OnfTq8EtluU), der følger med Reaper, hvis man vinger det af under installationen. Fremgangsmåden er som følger:
 
-**Reaper**
+**Først forberedes routingen i Reaper**
 
 :   - Start Reaper.
     - Armér et spor til optagelse og vælg ReaRoute som audio-input.
     ![Vælg ReaRoute som input i Reaper](media/rearoute.png)
 
-**SuperCollider**
+**Dernæst konfigureres SuperColliders lydserver**
 
 :   - Indstil SuperColliders lydserver til at bruge ReaRoute som output.
     - Start eller genstart SuperColliders lydserver.    
