@@ -56,39 +56,48 @@ Ovenstående kan omskrives til en SynthDef, hvor de første variabler laves om t
 ```sc title="SynthDef til beatslicing"
 (
 SynthDef(\slice, {
-    arg buf, slice = 0, numSlices = 16,
-    attack = 0.002, release = 0.010,
-    transpose = 0, direction = 1,
-    drive = 0, cutoff = 20000, rq = 1,
-    amp = 0.1, out = 0, pan = 0;
-    
-    var startPos = (slice % numSlices) / numSlices;
-    
-    var duration = BufDur.kr(buf) / numSlices;
-    var sustainTime = duration - attack - (release * 0.5);
-    
-    var env = EnvGen.kr(
-        Env.linen(attack, sustainTime, release),
-        doneAction: Done.freeSelf
-    );
-    
-    var sig = PlayBuf.ar(
-        numChannels: 2,
-        bufnum: buf,
-        rate: BufRateScale.kr(buf) * transpose.midiratio * direction.sign,
-        startPos: BufFrames.kr(buf) * startPos
-    );
-    
-    sig = (sig * drive.linexp(0, 1, 1, 100)).tanh;
-    sig = sig * drive.lincurve(0, 1, 1, 0.1, -2);
-    
-    sig = RLPF.ar(sig, cutoff.clip(20, 20000), rq);
-    
-    sig = sig * env;
+	arg buf, slice = 0, numSlices = 16,
+	attack = 0.002, release = 0.010,
+	transpose = 0, direction = 1,
+	drive = 0, cutoff = 20000, rq = 1,
+	amp = 0.1, out = 0, pan = 0;
 
-    sig = Balance2.ar(sig[0], sig[1], pan, amp);
+	// Udregn startposition ud fra det specificerede slice og samlede antal slices
+	var startPos = (slice % numSlices) / numSlices;
 
-    Out.ar(out, sig);
+	// Udregn varighed baseret på varighed af hele samplet og antallet af slices
+	var duration = BufDur.kr(buf) / numSlices;
+	var sustainTime = duration - attack - (release * 0.5);
+
+	// Simpel envelope med tre segmenter - attack, sustain og release
+	var env = EnvGen.kr(
+		Env.linen(attack, sustainTime, release),
+		doneAction: Done.freeSelf
+	);
+
+	// Afspil slice med transponering og retning (1 = forlæns, -1 = baglæns)
+	var sig = PlayBuf.ar(
+		numChannels: 2,
+		bufnum: buf,
+		rate: BufRateScale.kr(buf) * transpose.midiratio * direction.sign,
+		startPos: BufFrames.kr(buf) * startPos
+	);
+
+	// Distortion/waveshaping
+	sig = (sig * drive.linexp(0, 1, 1, 100)).tanh;
+	sig = sig * drive.lincurve(0, 1, 1, 0.1, -2);
+
+	// Filter
+	sig = RLPF.ar(sig, cutoff.clip(20, 20000), rq.clip(0.0001, 1));
+
+	// Kompressor
+	sig = Compander.ar(sig, sig, 0.1, 1.0, 0.25, 0.01, 0.01) * 10.dbamp;
+
+	sig = sig * env;
+
+	sig = Balance2.ar(sig[0], sig[1], pan, amp);
+
+	Out.ar(out, sig);
 }).add;
 )
 
