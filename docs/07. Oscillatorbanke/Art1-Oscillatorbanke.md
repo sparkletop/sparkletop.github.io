@@ -7,7 +7,7 @@ tags:
 
 En af de store styrker ved SuperColliders UGen-system er evnen til fleksibelt at arbejde med store banke af oscillatorer og lydkanaler. Men netop dette område kan samtidig være et lidt subtilt system at forstå og navigere, så det er værd at dvæle ved, blandt andet fordi det er et oplagt redskab til at arbejde med additiv syntese, detuning mm.
 
-## Multikanalslyd med "Multichannel Expansion"
+## Multikanalslyd med Multichannel Expansion
 
 Vi har hidtil typisk arbejdet med monofone signaler, som så ved hjælp af UGen'en `Pan2` placeres i et stereofelt. Der findes `Pan4` og `PanAz`, som panorerer på tilsvarende vis med henholdsvis 4 eller et vilkårligt antal højttalere. 
 

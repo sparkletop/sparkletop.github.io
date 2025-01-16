@@ -10,9 +10,9 @@ Bogen er opbygget i 10 kapitler. Det anbefales, at begyndere starter fra kapitel
 
 Det anbefales kraftigt, at man undervejs i læsningen selv indtaster og afprøver eksemplerne med kildekode. Årsagerne hertil er mange:
 
+- Det er sjovere at lege med eksemplerne på egen hånd
 - Man forstår og husker bedre hvordan koden fungerer, når man selv har indtastet den
 - Man lærer et nyt sprog bedst ved at bruge det
-- Det er sjovere og dermed mere motiverende at lege med eksemplerne på egen hånd
 
 Prøv selv at indtaste nedenstående kildekode i SuperColliders tekst-editor. Placer cursoren på én af de midterste linjer og tast Ctrl-Enter eller Cmd-Enter for at høre lyden. Stop lyden igen med Ctrl-Punktum eller Cmd-Punktum.
 

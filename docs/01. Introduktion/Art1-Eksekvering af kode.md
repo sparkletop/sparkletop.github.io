@@ -7,10 +7,10 @@ tags:
 
 Når man første gang åbner SuperCollider, mødes man af en umiddelbart noget minimalistisk brugerflade. Med mindre man har arbejdet med programmering i anden sammenhæng, vil det i begyndelsen være lidt uvant, at brugerfladen først og fremmest består i et tekstdokument, hvor man noterer og eksekverer kildekode.
 
-Man eksekverer kode ved at taste Ctrl+Enter på Windows eller Cmd+Enter på Mac. Prøv det selv:
+Man eksekverer kode ved at taste Ctrl+Enter på Windows/Linux eller Cmd+Enter på Mac. Prøv det selv:
 
 - Kopiér eller indtast linjerne herunder i et SuperCollider-dokument.
-- Sæt cursoren på en af linjerne herunder og tast ++ctrl+enter++ på PC eller ++cmd+enter++ på Mac.
+- Sæt cursoren på en af linjerne herunder og tast Ctrl+Enter (PC) eller Cmd+Enter (Mac).
 - Iagttag derefter outputtet i SuperCollider's "Post window" (som ved et nyinstalleret setup vil befinde sig til højre i skærmbilledet).
 
 ```sc
@@ -22,7 +22,7 @@ rrand(0, 100)
 
 ## Mere end én handling ad gangen
 
-Hvis vi gerne vil gøre mere end én ting ad gangen, kan vi adskille vores instrukser (statements) til SuperCollider ved hjælp af `;` (semikolon):
+Hvis vi gerne vil gøre mere end én ting ad gangen, kan vi adskille vores instrukser (statements) til SuperCollider ved hjælp af semikolon:
 
 ``` sc
 "Et fantastisk tal:".postln; rrand(0, 100).postln
