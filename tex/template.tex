@@ -19,7 +19,8 @@
 \setulmarginsandblock{3cm}{*}{1}
 \checkandfixthelayout 
 
-\usepackage{minted, textcomp, fontspec}
+\usepackage[chapter]{minted}
+\usepackage{textcomp, fontspec}
 \setmonofont[Path=fonts/Source_Code_Pro/static/]{SourceCodePro-Regular.ttf}
 \setmainfont[Path=fonts/Funnel_Sans/static/]{FunnelSans-Regular.ttf}
 
@@ -43,7 +44,7 @@
 
 % Code listings
 \definecolor{bg}{rgb}{0.9, 0.905, 0.9} % code block background color
-\definecolor{hl}{rgb}{0.9, 0.92, 0.9} % code block highlight color
+\definecolor{hl}{rgb}{0.85, 0.92, 0.85} % code block highlight color
 \setminted{
     style=emacs,
     frame=none,
@@ -57,6 +58,7 @@
     highlightcolor=hl,
     %ignorelexererrors=true,
 }
+\renewcommand{\listingscaption}{Kildekode-eksempel}
 
 \title{Musik- og lydprogrammering med SuperCollider}
 \author{Anders Eskildsen}
