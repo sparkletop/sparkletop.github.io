@@ -123,9 +123,7 @@ Hvad nu hvis vi gerne vil bruge almindelige rytmeangivelser i SuperCollider? Jo,
 
 ## Lydstyrke 
 
-Til at notere volumen bruger vi nøglerne
-- `\db` - decibel, 0 er max volumen) eller
-- `\amp` - amplitude, mellem 0 og 1
+Til at notere volumen kan man vælge mellem nøglerne `\db` eller `\amp`. Med `\db` omregner SuperCollider automatisk fra decibel, hvor `0` er den maksimale værdi, `-20` svarer til, at lyden bliver opfattet halvt så kraftigt som ved maksimal lydstyrke, og så fremdeles. Med nøglen `\amp` angiver vi i stedet amplituden direkte, typisk som en værdi mellem 0 og 1.
 ```sc
 ~eksempel = Pbind(\db, -30).play
 ~eksempel = Pbind(\amp, 0.2).play

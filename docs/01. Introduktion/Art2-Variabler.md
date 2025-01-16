@@ -65,9 +65,9 @@ OBS: Variabelnavne SKAL have lille begyndelsesbogstav (fordi klassenavne har sto
 
 ## Lokale variabler
 
-Kan udelukkende tilgås inden for en afgrænset kodeblok bestående af () eller {}. Lokale variabler defineres med nøgleordet "var" og anvendes uden tilde (~). Det ser fx såan her ud:
+Kan udelukkende tilgås inden for en afgrænset kodeblok bestående af `()` eller `{}`. Lokale variabler defineres med nøgleordet `var` og anvendes uden `~`.
 
-``` sc
+``` sc title="Lokale variabler
 (
 var model = "Fabia";
 model.postln; // inden for kodeblokken: viser variablens indhold
@@ -76,4 +76,4 @@ model.postln; // inden for kodeblokken: viser variablens indhold
 model.postln; // uden for kodeblokken: giver en fejlmeddelelse
 ```
 
-Lokale variabler bruges blandt andet til at definere signalflowet, når man designer lyde i en såkaldt SynthDef - det vender vi tilbage til senere i kurset.
+Lokale variabler bruges blandt andet til at gemme data som akkorder, rytmer, men også til at definere signalflowet, når man designer lyde i en såkaldt SynthDef. Det vender vi tilbage til senere.
