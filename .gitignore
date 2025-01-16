@@ -1,7 +1,7 @@
 *.scd
 site
 .venv
-.vscode
+
 
 tex/media
 tex/fonts
