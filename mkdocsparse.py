@@ -15,16 +15,22 @@ def make_chapter(chapter_title, chapter_dir):
     # loop over .md files, convert to tex, and return the string
     # remove "01. " etc. from the chapter title
     chapter_title = re.sub(r'^\d+\.\s+', '', chapter_title)
-    chapter_tex = f"\chapter{{{chapter_title}}}\n"
+    chapter_tex = f"\chapter{{{chapter_title}}}\n\label{{chap:{chapter_title}}}\n"
 
     md_files = [f for f in os.listdir(chapter_dir) if f.endswith('.md')]
     md_files.sort()
     
-    for f in md_files:
-        path = join(chapter_dir, f)
-        print(f"processing {path}")
+    for filename in md_files:
+        path = join(chapter_dir, filename)
+        print(f"Processing document: {path}")
         with open(path, mode="r") as file:
-            chapter_tex = chapter_tex + "\n" + convert(file.read(), document_class="article", minted_language="sc")
+            new_section = convert(file.read(), document_class="article", minted_language="sc")
+            
+            # add a label to each section, corresponding to file name
+            # for use in cross references
+            new_section = re.sub(r"(\\section{.+?}\n)", r"\1\\label{" + filename + r"}\n", new_section)
+            
+            chapter_tex = chapter_tex + "\n" + new_section
 
             # remove tabs and replace with spaces
             chapter_tex = chapter_tex.replace("\t", "    ")
@@ -62,7 +68,22 @@ if __name__ == "__main__":
     chapters.sort()
     for chap in chapters:
         tex = tex + '\n\n' + make_chapter(chap, join(docs_folder, chap))
-        
+
+    # deal with internal links
+    links = re.finditer(r"(?<!!)\[(.*?)\]\((.*?)\)", tex)
+    for link in links:
+        # Clean up link to only have filename
+        filename = re.sub(r"\\#.+$", "", link[2]) # remove anchor, subsection labelling not implemented yet...
+        filename = re.sub(r"^\.\./.+/", "", filename)
+
+        if filename.endswith(".md"):
+            # Internal link to other markdown document
+            # assume that there is a \label in the section corresponding to file name
+            tex = tex.replace(link[0], link[1] + r" (se afsnit \ref{" + filename + r"})")
+        else:
+            print(f"Unsupported link: {link}, leaving as is...")
+
+
     with open(tex_file, 'w') as file:
         file.write(tex)
         print(f"File {tex_file} written successfully.")
