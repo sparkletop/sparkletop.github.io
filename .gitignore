@@ -1,3 +1,4 @@
 *.scd
 site
 .venv
+tex
