@@ -1,12 +1,12 @@
-# Om denne bog
+# Forord
 
-Denne bog indeholder læringsmaterialer inden for grundlæggende musik- og lydprogrammering med redskabet [SuperCollider](https://supercollider.github.io), som er gratis og open source. Man kan lære at arbejde med programmering som et værktøj til musikalsk kreativitet, uanset om man har tidligere erfaring med at programmere.
+Denne bog introducerer til grundlæggende musik- og lydprogrammering med redskabet [SuperCollider](https://supercollider.github.io), som er gratis og open source. Man kan lære at arbejde med programmering som et værktøj til musikalsk kreativitet, uanset om man har tidligere erfaring med at programmere.
 
-Bogen udgør ikke en enkeltstående introduktion og bør suppleres med anden litteratur. Her kan særligt Bruno Ruviaros *[A Gentle Introduction to SuperCollider](https://ccrma.stanford.edu/~ruviaro/texts/A_Gentle_Introduction_To_SuperCollider.pdf)* og Eli Fieldsteels videoserie *[SuperCollider Tutorials](https://www.youtube.com/playlist?list=PLPYzvS8A_rTaNDweXe6PX4CXSGq4iEWYC)* anbefales.
+Bogen er udviklet som supplerende kursusmateriale til undervisning på Aalborg Universitet. Den er ikke tænkt som en enkeltstående introduktion og kan med fordel suppleres med anden litteratur. Her kan særligt Bruno Ruviaros *[A Gentle Introduction to SuperCollider](https://ccrma.stanford.edu/~ruviaro/texts/A_Gentle_Introduction_To_SuperCollider.pdf)* og Eli Fieldsteels videoserie *[SuperCollider Tutorials](https://www.youtube.com/playlist?list=PLPYzvS8A_rTaNDweXe6PX4CXSGq4iEWYC)* anbefales.
 
 ## Sådan bruger du denne bog
 
-Bogen er opbygget i 10 kapitler. Det anbefales, at begyndere starter fra kapitel 1 og arbejder sig fremad, da det er vigtigt at tilegne sig grundlæggende færdigheder, før man tager hul på mere avancerede emner.
+Alle kan lære at programmere på grundlæggende niveau - og med musik som vores legeplads er det en fornøjelse at skrive kildekode. Hvis man er begynder, er det en god idé at starte fra kapitel 1 og arbejde sig fremad. Man skal kravle, før man kan gå, og det er vigtigt at tilegne sig grundlæggende færdigheder, før man tager hul på mere avancerede emner.
 
 Det anbefales kraftigt, at man undervejs i læsningen selv indtaster og afprøver eksemplerne med kildekode. Årsagerne hertil er mange:
 
@@ -30,7 +30,7 @@ s.waitForBoot({
 
 ## Tre indholdstyper
 
-Bogen har tre forskellige typer indhold:
+Bogens kapitler indeholder forskellige afsnit, der kan bruges alt efter behov og erfaring.
 
 - *Artikler*: Korte tekster, som introducerer til generativ komposition og digital klangdannelse med SuperCollider
 - *Cheat sheets*: Overskuelige, korte oversigter over centrale redskaber og teknikker
@@ -38,4 +38,4 @@ Bogen har tre forskellige typer indhold:
 
 ## Licens
 
-Bogen er skrevet af [Anders Eskildsen](https://vbn.aau.dk/en/persons/146493) og gjort tilgængelig for offentligheden under Creative Commons-licensen [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Bogen er skrevet og gjort tilgængelig for offentligheden af [Anders Eskildsen](https://vbn.aau.dk/en/persons/146493) under Creative Commons-licensen [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Det betyder, at bogen må deles og bearbejdes, så længe licensbetingelserne overholdes - læs nærmere herom hos Creative Commons.
