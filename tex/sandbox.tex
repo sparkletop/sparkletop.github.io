@@ -1,0 +1,32 @@
+
+\section{Tests}
+
+Some text.
+
+\subsection{Subsection test}
+
+More text\dots
+
+\begin{listing}
+\begin{minted}[label="Some awesome code"]{sc}
+(
+{
+    var freq = 440;
+    var dur = 0.5;
+    var amp = 0.5;
+    var env = EnvGen.kr(Env.perc(0.01, 0.1), doneAction: 2);
+    var sig = SinOsc.ar(freq) * env * amp;
+    Out.ar(0, sig);
+}.play
+)
+\end{minted}
+\caption{Some awesome code}
+\end{listing}
+
+\textbf{This text should be bold!}
+
+This is ordinary text.
+
+\subsubsection{This is a subsubsection heading}
+
+Text in a subsubsection. Here is code: \mintinline{sc}{SinOsc.ar(440).play; \\ a comment} - which contains a syntax error.
