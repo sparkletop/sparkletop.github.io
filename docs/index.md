@@ -1,5 +1,3 @@
-# Forord
-
 Denne bog introducerer til grundlæggende musik- og lydprogrammering med redskabet [SuperCollider](https://supercollider.github.io), som er gratis og open source. Man kan lære at arbejde med programmering som et værktøj til musikalsk kreativitet, uanset om man har tidligere erfaring med at programmere.
 
 Bogen er udviklet som supplerende kursusmateriale til undervisning på Aalborg Universitet. Den er ikke tænkt som en enkeltstående introduktion og kan med fordel suppleres med anden litteratur. Her kan særligt Bruno Ruviaros *[A Gentle Introduction to SuperCollider](https://ccrma.stanford.edu/~ruviaro/texts/A_Gentle_Introduction_To_SuperCollider.pdf)* og Eli Fieldsteels videoserie *[SuperCollider Tutorials](https://www.youtube.com/playlist?list=PLPYzvS8A_rTaNDweXe6PX4CXSGq4iEWYC)* anbefales.
