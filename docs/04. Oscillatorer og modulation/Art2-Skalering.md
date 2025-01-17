@@ -38,7 +38,7 @@ Det er værd at bemærke, at outputtet maksimalt kan være -1 til 1. Værdier de
 
 Skalering af output fra en UGen til et interval fra 0 til et maksimum kan gøres enkelt ved hjælp af method'en `.unipolar`. Sammenlign fx disse bølger, og bemærk hvor outputtet befinder sig på Y-aksen:
 
-```sc
+```sc title="En trekantet bølgeform udsat for .unipolar"
 (
 {[
     LFTri.ar,
@@ -52,7 +52,7 @@ Skalering af output fra en UGen til et interval fra 0 til et maksimum kan gøres
 
 Hvis vi eksempelvis gerne vil modulere amplituden for et signal med pink støj, kan det gøres på følgende vis:
 
-```sc
+```sc title="Pulserende, pink støj"
 { PinkNoise.ar * LFTri.ar.unipolar(0.5) }.play;
 ```
 
@@ -62,7 +62,7 @@ Udforsk selv, hvad den tilsvarende method `.bipolar` gør.
 
 Ofte kan det være interessant at modulere inputs til en UGen, dvs. de parametre vi angiver mellem paranteserne efter `.ar`. Her er det selvfølgelig relevant at overveje, hvilke intervaller af input, der giver mening for den UGen, man modulerer.
 
-Ved en UGen, der generer en tone, som vi skal kunne høre, vil det typisk være relevant med frekvens-input, som ligger inden for den menneskelige hørelse, dvs. mellem 20Hz og 20kHz. Noget lignende gælder fx for filtre og cutoff-frekvenser. Her skal det signal, der modulerer inputtet, bevæge sig i et interval, der ligger inden for dette spænd.
+Ved en UGen, der generer en tone, som vi skal kunne høre, vil det typisk være relevant med frekvens-input, som ligger inden for den menneskelige hørelse, dvs. mellem 20Hz og 20kHz. Noget lignende gælder cutoff-frekvenser til filtre. Her skal det signal, der modulerer inputtet, bevæge sig i et interval, der ligger inden for dette spænd.
 
 {==
 
@@ -70,11 +70,11 @@ Ved en UGen, der generer en tone, som vi skal kunne høre, vil det typisk være 
 
 ==}
 
-### Skalering fra minimum til maksimum med `.range og .exprange`
+### Skalering fra minimum til maksimum med `.range` og `.exprange`
 
 Her kan vi med fordel bruge to UGen-methods, som hedder `.range` og `.exprange`. I begge tilfælde angiver man et minimum og et maksimum, og oscillatorens output skaleres så henholdsvis lineært og eksponentielt til at bevæge sig mellem disse to værdier. Bemærk her Y-aksen:
 
-```sc
+```sc title="Skalering af output med .range"
 { SinOsc.ar(3).range(100, 200) }.plot(1);
 ```
 
@@ -82,7 +82,7 @@ Her kan vi med fordel bruge to UGen-methods, som hedder `.range` og `.exprange`.
 
 Det er vigtigt, at vi bruger dette på modulatoren - ikke på lydkilden:
 
-```sc
+```sc title="Skalering af output med .exprange"
 (
 {
     var freq = SinOsc.ar(3).exprange(100, 200);
@@ -124,7 +124,7 @@ Her kommer omregnings-method'en `.midiratio` os til undsætning. Her kan vi omre
 
 Her er et eksempel, hvor vi anvender `.midiratio` sammen med `.unipolar` til at modulere en lille terts op:
 
-```sc
+```sc title".midiratio kombineret med .unipolar"
 (
 {
     var freq = 440;

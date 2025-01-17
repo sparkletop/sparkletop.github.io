@@ -2,9 +2,9 @@
 tags:
     - Øvelser
 ---
-# Øvelse 4: Brug af UGens
+# Øvelse: Brug af UGens
 
-Denne øvelse går ud på at bruge UGens og modulere UGens på grundlæggende niveau.
+I denne øvelse øver man sig i at anvende, visualisere og modulere UGens.
 
 ## Opgave 1: Blip båt
 

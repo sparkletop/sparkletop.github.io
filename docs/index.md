@@ -18,11 +18,13 @@ Prøv selv at indtaste nedenstående kildekode i SuperColliders tekst-editor. Pl
 
 ```sc title="En tilfældig LFO styrer en sinustone-oscillator"
 (
+s.waitForBoot({
 {
     SinOsc.ar(
         LFNoise0.kr(10.dup).exprange(220, 880)
     )
 }.play;
+})
 )
 ```
 
@@ -30,9 +32,9 @@ Prøv selv at indtaste nedenstående kildekode i SuperColliders tekst-editor. Pl
 
 Bogen har tre forskellige typer indhold:
 
-- *Artikler*: Korte tekster, som introducerer til forskellige emner inden for generativ komposition og digital klangdannelse
-- *Cheat sheets*: Overskuelige oversigter over centrale redskaber og teknikker 
-- *Øvelser*: Øvelser, som giver mulighed for at arbejde praktisk med emnerne
+- *Artikler*: Korte tekster, som introducerer til generativ komposition og digital klangdannelse med SuperCollider
+- *Cheat sheets*: Overskuelige, korte oversigter over centrale redskaber og teknikker
+- *Øvelser*: Praktiske udfordringer, som giver mulighed for at arbejde hands on med emnerne
 
 ## Licens
 
