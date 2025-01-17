@@ -7,16 +7,11 @@ if [ "$current_branch" != "* book" ]; then
     exit 1
 fi
 
-# Clean symlinks from previous builds
+# Remove symlinks from previous builds
 rm tex/media/*
 
-# Clean auxillary tex files from previous builds
-./clean-tex-aux.fish
-
 # Parse the docs and generate the main tex
-python mkdocsparse.py . ./tex/chapters.tex
+./m2t.sh
 
 # Compile the pdf
-cd tex
-latexmk -xelatex -latexoption="-shell-escape" -f template.tex
-cd ..
+./t2p.sh
