@@ -9,7 +9,33 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'md2tex'))
 
 from md2tex import convert
 
-# Walk a 'docs' directory in an mkdocs site and convert markdown files to a Tex file containing everything
+def preprocess_mkdocs_markdown(md_content: str):
+    # preprocess mkdocs-material content tabs (remove indentation)
+    # matches and processes sections that begin with '=== xyz' followed by indented content or empty lines
+    content_tabs_blocks = re.finditer(r"^(===.*$)(?:\n(^\s*$|^ {4}.*$))+", md_content, re.M)
+    for block in content_tabs_blocks:
+        code = block.group(0)
+        code = re.sub(r"^=== \"(.+)\"$", r"*\1*", code, flags=re.M)
+        code = re.sub(r"^    ", "", code, flags=re.M)
+        md_content = md_content.replace(block.group(0), code)
+    
+    return md_content
+
+def postprocess_tex(tex: str):
+    # deal with internal links
+    links = re.finditer(r"(?<!!)\[(.*?)\]\((.*?)\)", tex)
+    for link in links:
+        # Clean up link to only have filename
+        filename = re.sub(r"\\#.+$", "", link[2]) # remove anchor, subsection labelling not implemented yet...
+        filename = re.sub(r"^\.\./.+/", "", filename)
+
+        if filename.endswith(".md"):
+            # This is a link to other markdown document, so we assume there
+            # is a \label in the corresponding LaTeX section corresponding to file name
+            tex = tex.replace(link[0], link[1] + r" (se afsnit \ref{" + filename + r"})")
+        else:
+            print(f"Unsupported link: {link}, leaving as is...")
+    return tex
 
 def make_chapter(chapter_title, chapter_dir):
     # loop over .md files, convert to tex, and return the string
@@ -24,7 +50,12 @@ def make_chapter(chapter_title, chapter_dir):
         path = join(chapter_dir, filename)
         print(f"Processing document: {path}")
         with open(path, mode="r") as file:
-            new_section = convert(file.read(), document_class="article", minted_language="sc")
+
+            md_content = file.read()
+
+            md_content = preprocess_mkdocs_markdown(md_content)           
+            
+            new_section = convert(md_content, document_class="article", minted_language="sc")
             
             # add a label to each section, corresponding to file name
             # for use in cross references
@@ -46,6 +77,7 @@ def make_chapter(chapter_title, chapter_dir):
 
     return chapter_tex
 
+# Walk a 'docs' directory in an mkdocs site and convert markdown files to a Tex file containing everything
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Convert mkdocs site into a LaTeX document using the md2tex engine.")
     parser.add_argument("inpath", type=str, help="Path to the mkdocs directory")
@@ -75,19 +107,7 @@ if __name__ == "__main__":
     for chap in chapters:
         tex = tex + '\n' + make_chapter(chap, join(docs_folder, chap))
 
-    # deal with internal links
-    links = re.finditer(r"(?<!!)\[(.*?)\]\((.*?)\)", tex)
-    for link in links:
-        # Clean up link to only have filename
-        filename = re.sub(r"\\#.+$", "", link[2]) # remove anchor, subsection labelling not implemented yet...
-        filename = re.sub(r"^\.\./.+/", "", filename)
-
-        if filename.endswith(".md"):
-            # Internal link to other markdown document
-            # assume that there is a \label in the section corresponding to file name
-            tex = tex.replace(link[0], link[1] + r" (se afsnit \ref{" + filename + r"})")
-        else:
-            print(f"Unsupported link: {link}, leaving as is...")
+    tex = postprocess_tex(tex)
 
     with open(tex_file, 'w') as file:
         file.write(tex)
