@@ -3,7 +3,7 @@
         "version": "2.0.0",
         "tasks": [ 
             { // Full build from Markdown to pdf
-                "label": "Full build",
+                "label": "build",
                 "type": "shell",
                 "command": "${workspaceFolder}/build.sh",
                 "group": {
@@ -32,24 +32,24 @@
                 },
                 "problemMatcher": []
             },
+            { // Clean build from Markdown to pdf
+                "label": "clean build",
+                "type": "shell",
+                "command": "${workspaceFolder}/clean-build.sh",
+                "group": {
+                    "kind": "build",
+                    "isDefault": false
+                },
+                "problemMatcher": []
+            },
         ]
     },
     "keybindings": [
         {
             "key": "ctrl+shift+b",
             "command": "workbench.action.runTask",
-            "args": "Full build"
-        },
-        {
-            "key": "ctrl+shift+m",
-            "command": "workbench.action.runTask",
-            "args": "m2t build"
-        },
-        {
-            "key": "ctrl+shift+t",
-            "command": "workbench.action.runTask",
-            "args": "t2p build"
-        },
+            "args": "build"
+        }
     ],
     "latex-workshop.latex.autoBuild.run": "never"
 }
