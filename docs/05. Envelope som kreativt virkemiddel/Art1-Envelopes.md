@@ -3,9 +3,9 @@ tags:
     - Artikler
 ---
 
-# Envelopes
+Lydens forandring over tid er en vigtig del af lyddesign. Et af de vigtigste redskaber til at arbejde med lydlig forandring over tid er envelopes. Envelopes anvendes i elektronisk klangdannelse typisk til at styre en tone eller en lyds volumen over tid, men envelopes kan med fordel bruges på mange andre måder. 
 
-Et meget væsentligt aspekt af enhver form for lyddesign angår hvordan lyd udvikler sig og forandres over tid. Herunder tager vi hul på dette emne ved at introducere til såkaldte envelopes. Envelopes anvendes i elektronisk klangdannelse typisk til at styre en tone eller en lyds volumen over tid, men envelopes kan med fordel bruges på mange andre måder. 
+# Envelopes
 
 Hvor mange synthesizere kun har en ADSR-envelope, har SuperCollider en række forskellige, indbyggede envelopes. Man kan også definere sine egne envelopes. Det er endda muligt at loope envelopes, så de kommer til at udgøre LFO'er. Dermed kan envelopes potentielt være et særdeles kreativt virkemiddel.
 
@@ -13,7 +13,7 @@ Hvor mange synthesizere kun har en ADSR-envelope, har SuperCollider en række fo
 
 De mest enkle envelope-generatorer er `Line` og `XLine` - UGens, som genererer en henholdsvis lineær og eksponentiel udvikling fra ét punkt til et andet over et specificeret tidsrum. Her er et eksempel, hvor envelopen bevæger sig fra 100 til 800 i løbet af 1 sekund: 
 
-```sc
+```sc title="Line og XLine"
 Line.kr(100, 800, 1)
 XLine.kr(100, 800, 1)
 ```
@@ -21,9 +21,9 @@ XLine.kr(100, 800, 1)
 ![Line og XLine](media/line-og-xline.png)
 
 
-Vi bruger `Line` og `XLine` som andre UGens, fx til at styre frekvensen for en oscillator:
+Vi bruger `Line` og `XLine` ligesom andre UGens, fx til at styre frekvensen for en oscillator:
 
-```sc
+```sc title="
 {SinOsc.ar(Line.kr(100, 800, 1)) * 0.1}.play;      // lineær udvikling over 1 sekund
 {SinOsc.ar(XLine.kr(100, 800, 5)) * 0.1}.play;     // eksponentiel udvikling over 5 sekunder
 {SinOsc.ar(XLine.kr(100, 800, 0.050)) * 0.1}.play; // eksponentiel udvikling over 50 milisekunder
@@ -35,7 +35,7 @@ Vi bruger `Line` og `XLine` som andre UGens, fx til at styre frekvensen for en o
 
 Vi bruger `Env`-klassen til at definere disse mere sammensatte envelopes. Her er fx nogle forskellige indbyggede envelopes:
 
-```sc
+```sc title="Indbyggede envelopes"
 Env.perc
 Env.triangle
 Env.adsr
@@ -46,11 +46,11 @@ Env.sine
 
 Vi kan vise en grafisk repræsentation med `.plot` - fx `Env.perc.plot`. Her er de ovennævnte envelopes plottet på denne måde:
 
-![[Env.perc, Env.triangle, Env.adsr, Env.asr, Env.linen, Env.sine].plot;](media/standardenvelopes.png)
+![Forskellige standardenvelopes](media/standardenvelopes.png)
 
 ### Et eksempel: `Env.perc`
 
-Hvordan bruger vi disse envelopes? Lad os kigge på et eksempel - `Env.perc`.
+Hvordan bruger vi envelopes? Lad os kigge på et eksempel - `Env.perc`.
 
 De to segmenter i `Env.perc` hedder attack og release, og vi kan specificere deres varighed med argumenter - her en attack-tid på 1 sekund og en release-tid på 4 sekunder:
 

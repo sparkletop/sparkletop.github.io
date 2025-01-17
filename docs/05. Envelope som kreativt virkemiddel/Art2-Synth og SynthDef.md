@@ -111,7 +111,7 @@ Synth(\eksempel3);
 // Nu kan vi bruge Pbind til at "spille på" vores SynthDef, som om den er et instrument:
 (
 Pbind(
-	// ⬇ SynthDef-navnet angives under nøglen \instrument
+	// SynthDef-navnet angives under nøglen \instrument
 	\instrument, \eksempel3,
 	\degree, Pwhite(-7, 7),
 ).play;

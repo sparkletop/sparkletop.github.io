@@ -4,14 +4,9 @@ tags:
 ---
 # Cheat sheet: UGen-methods
 
-Inden du prøver eksemplerne herunder, er det en god idé at køre disse to linjer, så du kan se en visualisering af SuperColliders lydlige output. Flyt evt. vinduerne, så du kan se både bølgeform og frekvensspektrum.
+Når vi arbejder med UGens og eksempelvis bruger signalet fra én UGen til at modulere en anden, er det nyttigt at kende til 
 
-```sc
-s.scope;
-s.freqscope;
-```
-
-## 4 vigtige UGen-methods
+## 5 vigtige UGen-methods
 
 Disse vigtige methods tillader os at justere output fra UGens på forskellige måder.
 
@@ -27,11 +22,11 @@ Disse vigtige methods tillader os at justere output fra UGens på forskellige m�
 {SinOsc.ar.exprange(50, 1000)}.plot;  // bemærk Y-aksen og bølgeform
 
 // .unipolar og .bipolar - genveje til at skrive .range(0, x) og .range(-x, x)
-{SinOsc.ar.unipolar(100)}.plot;  // bemærk Y-aksen, signalet går fra 0 til 100
-{SinOsc.ar.bipolar(100)}.plot;   // bemærk Y-aksen, signalet går fra -100 til 100
+{SinOsc.ar.unipolar(100)}.plot;       // bemærk Y-aksen, signalet går fra 0 til 100
+{SinOsc.ar.bipolar(100)}.plot;        // bemærk Y-aksen, signalet går fra -100 til 100
 
 // .dup - kopierer et signal, så det bliver til et multikanals-signal
-{SinOsc.ar(440).dup * 0.1}.play;
-{SinOsc.ar(440).dup(10) * 0.1}.play;
+{SinOsc.ar(440).dup * 0.1}.play;      // to kanaler
+{SinOsc.ar(440).dup(10) * 0.1}.play;  // 10 kanaler
 ```
 

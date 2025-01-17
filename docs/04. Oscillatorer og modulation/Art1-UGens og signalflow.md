@@ -2,36 +2,41 @@
 tags:
     - Artikler
 ---
-# UGens og signalflow
 
-Husk at boote lydserveren med `s.boot;` inden du kører nedenstående eksempler.
+Dannelse og transformation af lyd er en central del af musik- og lydprogrammering. Redskaber som SuperCollider tillader os at arbejde meget fleksibelt med lyd på et detaljeret niveau. Dette kan give os unikke lyddesign til brug i musikalsk komposition, interaktive systemer, musikinstrumenter, lydkunst mm. Samtidig giver arbejdet med lyddesign på dette niveau en glimrende forståelse af principperne bag digital musik- og lydteknologi.
 
-Det er også en god idé at køre disse to linjer, så du kan se en grafisk repræsentation af SuperColliders lydlige output. Flyt evt. vinduerne, så du kan se både bølgeform og frekvensspektrum.
+Når vi i det følgende tager hul på dannelse og transformation af lyd ved hjælp af oscillatorer, filtre, envelopes og så videre, arbejder vi med SuperColliders lydserver. Husk derfor at boote lydserveren med `s.boot;` inden du kører nedenstående eksempler. Det er også en god idé at starte et oscilloskop og en spektrumanalyse, så du kan se en grafisk repræsentation af SuperColliders lydlige output. Flyt evt. vinduerne på din skærm, så du kan se både bølgeform og frekvensspektrum på én gang.
 
-```sc
+```sc title="Start lydserver og visuelle redskaber"
+s.boot;
+// Når serveren er bootet
+(
 s.scope;
 s.freqscope;
+)
 ```
 
-Dannelse og transformation af lyd er en central del af musik- og lydprogrammering. Redskaber som SuperCollider tillader os at arbejde meget fleksibelt med lyd på et meget detaljeret niveau. Dette kan give os interessante lyddesign til brug i musikalsk komposition, interaktive systemer, musikinstrumenter, lydkunst mm. Samtidig giver arbejdet med lyddesign på dette niveau en glimrende forståelse af principperne bag digital musik- og lydteknologi. Det grundlæggende redskab for musikalsk lyddesign i SuperCollider og lignende platforme er såkaldte [UGens (Unit Generators)](https://en.wikipedia.org/wiki/Unit_generator).
+# UGens og signalflow
 
-## UGens vs. Patterns
+Det grundlæggende redskab for musikalsk lyddesign i SuperCollider og lignende platforme som puredata, Max/MSP, Csound m.fl. er såkaldte [UGens](https://en.wikipedia.org/wiki/Unit_generator), Unit Generators. UGens dækker over oscillatorer, filtre, analyseenheder, envelope-generatorer og ganske mange andre lydtekniske moduler. De kan sammenlignes med komponenterne i et elektronisk kredsløb eller modulerne i en modulær synthesizer. I kildekode kan vi kombinere UGens på mange forskellige måder med et fleksibelt signalflow og på den måde skabe unikke lyddesign.
 
-Vi har hidtil primært arbejdet med SuperColliders patterns. Patterns kører i SuperColliders **fortolker** (det program, som fortolker den kildekode, vi eksekverer). Pbind har været den primære ramme om kompositionsarbejdet med patterns.
+### Fra patterns til UGens
 
-UGens kører på SuperColliders **lydserver**. Det betyder, at de fungerer en smule anderledes, rent syntaktisk. Rammen for vores arbejde med UGens er UGen-funktioner, der noteres `{}.play`, fx en sinus-oscillator:
+Vi har hidtil primært arbejdet med SuperColliders patterns. Patterns kører i SuperColliders **fortolker** (det program, som fortolker den kildekode, vi eksekverer). `Pbind` har været den primære ramme om kompositionsarbejdet med patterns.
 
-```sc
+UGens kører i modsætning til patterns på SuperColliders **lydserver**, som er et andet program end fortolkeren. Det betyder, at syntaksen og logikken i UGens er en smule anderledes end den kode, vi hidtil har set. Rammen for vores arbejde med UGens er UGen-funktioner, der noteres med `{}.play`:
+
+```sc title="En ydmyg sinustone"
 { SinOsc.ar }.play;
 ```
 
-Man kan ikke bruge patterns inde i UGen-funktioner. Men lidt senere i kurset kommer vi til at kombinere patterns og UGens ved at registrere vores UGen-funktioner som såkaldte `SynthDef`s. 
+Man kan ikke bruge patterns inde i UGen-funktioner. Men lidt senere i kurset kommer vi til at kombinere patterns og UGens ved at registrere vores UGen-funktioner som såkaldte `SynthDef`s. Så kan vi spille på dem ved hjælp af patterns.
 
-Forholdet mellem patterns og UGens er lidt ligesom forholdet mellem en musiker (patterns) og et instrument (UGens). Man kan godt komponere med patterns uden at bruge UGens (fx ved at spille på et andet instrument via MIDI). Man kan også godt komponere udelukkende ved hjælp af UGens (ligesom en selvkørende, modulær synthesizer). Men den særlige fordel ved platforme som SuperCollider er kombinationen af de to niveauer, når vi bruger det righoldige pattern-bibliotek sammen med vores egne UGen-lyddesign får vi mange kompositionsmuligheder.
+Forholdet mellem patterns og UGens er nemlig lidt ligesom forholdet mellem en musiker (patterns) og et instrument (UGens); Man kan godt komponere med patterns uden at bruge UGens (fx ved at spille på et andet instrument via MIDI). Man kan også godt komponere udelukkende ved hjælp af UGens (ligesom en selvkørende, modulær synthesizer). Men den særlige fordel ved platforme som SuperCollider er kombinationen af de to niveauer, når vi bruger det righoldige pattern-bibliotek sammen med vores egne UGen-lyddesign får vi mange kompositionsmuligheder.
 
 ## Første trin med `SinOsc`
 
-Den mest enkle UGen er `SinOsc` - en ydmyg sinustone-oscillator. Vi afspiller den her ved audio rate (.ar):
+Den mest enkle UGen er `SinOsc` - en ydmyg sinustone-oscillator. Vi afspiller den her ved audio rate (`.ar`):
 
 ```sc title="Sinusbølger - amplitude og frekvens"
 {SinOsc.ar}.play;
@@ -65,7 +70,7 @@ Der findes også en tredje parameter, nemlig fase, men den udelader vi her for e
 
 Lad os først modulere sinustonens amplitude (lydstyrke). Det gør vi ganske enkelt ved *at gange med en anden UGen*. I dette eksempel bruger vi UGen'en `LFPulse`, som blot bevæger sig mellem 0 og 1 og dermed regelmæssigt tænder og slukker for lyden.
 
-```sc
+```sc title="Amplitudemodulation"
 {SinOsc.ar(440) * LFPulse.kr(2) * 0.1}.play;
 ```
 
@@ -75,7 +80,7 @@ Dette ligger til grund for de klangdannelsesteknikker, som kaldes amplitude modu
 
 Vi kan også modulere frekvensen. Her erstatter vi den fast angivne frekvens på 440hz med en anden SinOsc. Det er her nødvendigt at skalere outputtet fra den anden SinOsc, så vi får hørbare frekvenser (over 20hz) - det gør vi med .range, her fra 200hz til 400hz.
 
-```sc
+```sc title="Frekvensmodulation"
 {SinOsc.ar(SinOsc.kr(5).range(200, 400)) * 0.1}.play;
 ```
 
@@ -85,7 +90,7 @@ Dette ligger til grund for den klangdannelsesteknik som kaldes frequency modulat
 
 Koden begynder nu at blive for kompliceret til at stå på én linje. For at gøre signalflowet mellem de forskellige UGens mere overskueligt og fleksibelt, kan vi derfor dele koden op, så den står på flere forskellige linjer. Dette indebærer, at vi indfører lokale variabler, så vi kan henvise til de forskellige signaler i vores UGen-funktion.
 
-```sc
+```sc title="Mere logisk og læsbar kildekode med lokale variabler"
 (
 { // Samme lyd som ovenfor, men kildekoden er lettere at læse og justere
 	var modulator = SinOsc.kr(5).range(200, 400);
@@ -97,7 +102,7 @@ Koden begynder nu at blive for kompliceret til at stå på én linje. For at gø
 
 Vi kan oprette lige så mange lokale variabler, som vi har lyst til, de skal blot erklæres i begyndelsen af funktionen. Her er et eksempel med LFO-modulation, hvor der er en del forskellige UGens på spil. Men koden bliver overskuelig, når vi bruger lokale variabler (gæt i øvrigt selv hvordan lyddesignet fungerer):
 
-```sc
+```sc title="Eksempel på signalflow med lokale variabler"
 (
 {
     var source = PinkNoise.ar;

@@ -40,7 +40,7 @@ Udvalget af UGens i dette dokument er kraftigt inspireret af [Eli Fieldsteels li
 
 Disse UGens (samt SinOsc) er velegnede som LFO'er. Men de kan sagtens benyttes over 20Hz.
 
-```sc title="LFO"
+```sc title="LFO-egnede UGens"
 // Savtakket, trekantet/pyramideformet og firkantede bølgeformer. 
 {LFSaw.kr(10)}.plot(0.2);
 {LFTri.kr(10)}.plot(0.2);
