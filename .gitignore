@@ -6,6 +6,7 @@ site
 tex/media
 tex/fonts
 tex/chapters.tex
+tex/frontmatter.tex
 
 ## aux TeX files
 _minted-*

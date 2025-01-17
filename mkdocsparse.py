@@ -50,24 +50,30 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Convert mkdocs site into a LaTeX document using the md2tex engine.")
     parser.add_argument("inpath", type=str, help="Path to the mkdocs directory")
     parser.add_argument("outpath", type=str, help="Path to the output tex file")
+    parser.add_argument("frontmatter_outpath", type=str, help="Path to the front matter output tex file")
     
     args = parser.parse_args()
     docs_folder = os.path.join(args.inpath, 'docs')
-    tex_file = args.outpath if args.outpath else "output/output.tex"
+    tex_file = args.outpath if args.outpath else "chapters.tex"
+    frontmatter_file = args.frontmatter_outpath if args.frontmatter_outpath else "frontmatter.tex"
 
     if not os.path.exists(docs_folder):
         raise FileNotFoundError(f"{docs_folder} does not exist.")
     if not os.path.isdir(docs_folder):
         raise IsADirectoryError(f"{docs_folder} is not a directory.")
     
-    # Assume docs_folder contains the front matter (foreword and so on)
-    tex = make_chapter("Front matter", docs_folder)
-
+    # Assume the root of the docs_folder contains the frontmatter (foreword and so on)
+    frontmatter = make_chapter("Forord", docs_folder)
+    with open(frontmatter_file, 'w') as file:
+        file.write(frontmatter)
+        print(f"File {frontmatter_file} written successfully.")
+    
     # walk the subdirectories of the docs directory and create chapters for each one
+    tex = ""
     chapters = [d for d in os.listdir(docs_folder) if isdir(join(docs_folder, d))]
     chapters.sort()
     for chap in chapters:
-        tex = tex + '\n\n' + make_chapter(chap, join(docs_folder, chap))
+        tex = tex + '\n' + make_chapter(chap, join(docs_folder, chap))
 
     # deal with internal links
     links = re.finditer(r"(?<!!)\[(.*?)\]\((.*?)\)", tex)
@@ -82,7 +88,6 @@ if __name__ == "__main__":
             tex = tex.replace(link[0], link[1] + r" (se afsnit \ref{" + filename + r"})")
         else:
             print(f"Unsupported link: {link}, leaving as is...")
-
 
     with open(tex_file, 'w') as file:
         file.write(tex)
