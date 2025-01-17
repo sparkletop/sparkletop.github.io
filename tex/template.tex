@@ -22,11 +22,22 @@
 \usepackage[chapter]{minted}
 \usepackage{textcomp, fontspec}
 \setmonofont[Path=fonts/Source_Code_Pro/static/]{SourceCodePro-Regular.ttf}
-\setmainfont[Path=fonts/Funnel_Sans/static/]{FunnelSans-Regular.ttf}
+\setmainfont{FunnelSans}[
+  Path = fonts/Funnel_Sans/static/,
+  Extension = .ttf,
+  BoldFont = *-Bold,
+  UprightFont = *-Regular,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-BoldItalic
+  ]
+
+\setsecheadstyle{\Large}
+\setsubsecheadstyle{\large}
+\setsubsubsecheadstyle{\small\bfseries}
 
 \chapterstyle{dash}
 \parindent=0pt
-\parskip=12pt
+\parskip=0.25em
 
 \setsecnumdepth{subsection}
 
@@ -58,7 +69,7 @@
     highlightcolor=hl,
     %ignorelexererrors=true,
 }
-\renewcommand{\listingscaption}{Kildekode-eksempel}
+\renewcommand{\listingscaption}{Kildekodeboks}
 
 \title{Musik- og lydprogrammering med SuperCollider}
 \author{Anders Eskildsen}
