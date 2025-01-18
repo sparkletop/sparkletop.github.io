@@ -1,7 +1,7 @@
 
 \section{Tests}
 
-Some text.
+This document is just for testing - it compiles much faster than the full document. Can be compiled with the sandbox-build.sh.
 
 \subsection{Subsection test}
 
@@ -20,7 +20,7 @@ More text\dots
 }.play
 )
 \end{minted}
-\caption{Some awesome code}
+\caption{Some awesome code, using the standard lexer}
 \end{listing}
 
 \textbf{This text should be bold!}
@@ -30,3 +30,56 @@ This is ordinary text.
 \subsubsection{This is a subsubsection heading}
 
 Text in a subsubsection. Here is code: \mintinline{sc}{SinOsc.ar(440).play; \\ a comment} - which contains a syntax error.
+
+\section{Play around with source code listings}
+
+Lorem ipsum odor amet, consectetuer adipiscing elit. Inceptos himenaeos libero nostra amet aenean platea. Laoreet id quis litora, nostra platea eu interdum. Purus justo nibh magnis parturient leo quam. In ornare aliquet interdum mauris sollicitudin eu, felis pharetra. Justo commodo magna proin eleifend quis ex. Dapibus rhoncus pulvinar sagittis sodales vulputate. Efficitur pretium ut conubia nibh eget. Donec laoreet maecenas cursus metus tincidunt vivamus.
+
+\begin{listing}
+\begin{minted}{'sc_lexer.py:SuperColliderLexer -x'}
+(
+SynthDef(\sinus, {
+	arg atk = 0.01, rel = 1, dec = 0.2,
+	sus = 0.8, gate = 1,
+	freq = 440, pan = 0, amp = 0.1;
+	var sig, env;<a
+	sig = SinOsc.ar(freq);
+	//env = Env.perc(atk, rel).kr(2);
+	env = Env.adsr(atk, dec, sus, rel).kr(2, gate);
+	sig = sig * env;
+	sig = Pan2.ar(sig, pan, amp);
+	Out.ar(0, sig);
+}).add;
+)
+/* Let's test the SynthDef
+Using some different settings */
+
+~tone = Synth(\sinus, [\freq, 220, \rel, 3, \pan, 0.8, \amp, 0.5]);
+~tone.set(\pan, 0)
+~tone.set(\gate, 0)
+
+~synthName = 'sinus'
+
+(
+~komp = Pbind(
+	\instrument, \sinus,
+	\degree, Pwhite(0, 7),
+	\rel, 2,
+	\atk, 1,
+	\dur, 0.5,
+	\pan, Pwhite(-1.0, 1.0),
+	\db, Pwhite(-30, -20),
+	\legato, 3,
+).play
+)
+~komp.stop
+\end{minted}
+\caption{Some more awesome code, using the custom lexer}
+\end{listing}
+
+
+Lorem ipsum odor amet, consectetuer adipiscing elit. Hendrerit rutrum vulputate vivamus proin sodales fringilla neque purus. Quisque dapibus lobortis ultricies sociosqu etiam sociosqu facilisis. Dapibus pretium condimentum nostra aptent mollis ipsum. Eros ridiculus fames consectetur malesuada commodo nullam. Commodo facilisi efficitur ac dui vel pulvinar phasellus porttitor morbi. Tristique conubia varius nulla sociosqu quam dapibus mus a. Leo gravida imperdiet suscipit dapibus bibendum.
+
+Facilisi nam libero conubia eu quisque amet. Feugiat quam dui pretium metus feugiat lacinia elit. Suscipit porta ante dictum duis dictum faucibus. Urna tincidunt nulla volutpat aliquet convallis mus. Aullamcorper ut pellentesque habitasse, habitant urna. Netus auctor semper tempus metus facilisis habitant, sem elementum vel. Faucibus volutpat praesent curae porttitor platea justo porttitor ridiculus. Nec ornare felis torquent molestie vestibulum vestibulum nisi odio. Nisi tristique himenaeos egestas ultrices amet sollicitudin montes. Accumsan tortor imperdiet arcu fermentum velit rutrum potenti vehicula?
+
+Posuere ullamcorper tempor dictumst; torquent lobortis facilisis lorem himenaeos. Eget egestas porta iaculis nostra dignissim. Primis pulvinar velit suspendisse magna magnis. Congue euismod eu justo et hac placerat est ultrices sollicitudin. Tellus eu eleifend nam, maecenas fermentum sit sapien. Blandit quis euismod erat felis purus quisque.
