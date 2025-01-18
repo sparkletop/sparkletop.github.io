@@ -18,10 +18,10 @@ Som udgangspunkt for generativ komposition bruger vi noget, der hedder `Pbind`:
 ~eksempel.stop;           // og denne linje for at stoppe igen
 ```
 
-`Pbind` knytter ("binder") musikalske parametre sammen til konkrete begivenheder. I Pbind bruger vi "nøgler", angivet med `\degree`, `\dur`, `\scale` og andre betegnelser til at angive kompositionsmæssige parametre, og vi bruger patterns eller faste værdier til at styre disse parametre.
+`Pbind` "binder" musikalske parametre sammen til en strøm af begivenheder. I Pbind bruger vi på den ene side *nøgler*, angivet med `\degree`, `\dur`, `\scale` og andre betegnelser til at angive kompositionsmæssige parametre, og vi bruger *patterns* eller *faste værdier* til at styre disse parametre.
 
 Her er et enkelt eksempel, hvor vi med nøglen `\degree` vælger at knytte den musikalske parameter skalatrin sammen med en fast værdi, nemlig værdien 0 (første skalatrin).
-``` sc
+``` sc title="Enkel Pbind"
 (
 ~eksempel = Pbind(
 	\degree, 0,
@@ -32,7 +32,7 @@ Her er et enkelt eksempel, hvor vi med nøglen `\degree` vælger at knytte den m
 
 Men ovenstående bliver hurtigt lidt ensformigt at lytte til. I stedet for faste værdier kan vi bruge et pattern til at generere forskellige værdier. Vi starter med `Pseq`, som vi kan bruge til at generere en sekvens af værdier - stadig skalatrin, fordi vi bruger `\degree`-nøglen.
 
-``` sc
+``` sc title="Enkel sekvens med Pseq"
 (
 Pbind(
 	\degree, Pseq([0, 1, 3, 4, 7]),
@@ -42,7 +42,7 @@ Pbind(
 
 Alternativt kan vi lade computeren vælge skalatrin for os. Vi kan fx bruge `Pwhite` til at generere 5 tilfældige skalatrin inden for en oktav (trin 0-7).
 
-``` sc
+``` sc title="Tilfældighed med Pwhite"
 (
 Pbind(
 	\degree, Pwhite(0, 7, 5),
@@ -52,7 +52,7 @@ Pbind(
 
 Vi kan også kombinere Pseq og Pwhite, så vi får en komposition med en blanding af faste og tilfældige parametre.
 
-``` sc
+``` sc title="Kombination af Pwhite og Pseq"
 (
 Pbind(
 	\degree, Pwhite(0, 7),

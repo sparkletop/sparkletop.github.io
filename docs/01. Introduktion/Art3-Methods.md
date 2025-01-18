@@ -3,14 +3,15 @@ tags:
     - Artikler
 ---
 
-# Hvad er "methods"?
+# Hvordan får vi SuperCollider til at gøre noget?
 
+Alt hvad man kan gøre i SuperCollider er knyttet til konkrete *methods*. Hvis vi forstår og kan anvende de forskellige methods, der findes, kan vi groft sagt bruge alle de redskaber, der findes i SuperCollider!
 
-## Methods er funktionalitet
+## Methods indeholder funktionalitet
 
-Alt hvad man kan gøre i SuperCollider, altså SuperColliders funktionalitet, er knyttet til "methods". I kode kan man typisk se disse methods lige efter punktummer. Fx sådan her:
+Teknisk set er en method en *funktion*. Methods udfører bestemte handlinger, når de bliver aktiveret. I SuperCollider-kildekode ser man ofte methods noteret lige efter punktummer. Fx sådan her:
 
-```sc
+```sc title="Tre methods"
 "Hello world".postln;  // method'en .postln viser objekter i post window, i dette tilfælde et stykke tekst
 Scale.minorPentatonic; // method'en .minorPentatonic angiver (kombineret med Scale) en mol-pentaton skala
 69.midicps;            // method'en .midicps omregner et tal fra MIDI-tonehøjde til frekvens, målt i Hertz
@@ -36,7 +37,7 @@ Scale.directory;       // viser alle indbyggede skalaer
 
 #### Den (lidt) hemmelige method `.new`
 
-Der findes i SuperCollider en særlig class method, som vi bruger hele tiden: `.new`. Den har en slags særstatus, fordi den er så udbredt.
+Der findes i SuperCollider en særlig class method, som vi bruger hele tiden: `.new`. Den har en særstatus, fordi den er så udbredt.
 
 `.new` skaber et nyt objekt (en "instance" eller forekomst) af den klasse, man angiver før punktummet.
 
@@ -79,11 +80,8 @@ Mange methods kan bruges med forskellige slags objekter, fx .play (start lydserv
 Pbind().play;
 {SinOsc.ar * 0.1}.play;
 Routine({"hej ".post; 1.wait; "med dig".postln;}).play;
-```
 
-... men ikke alle objekter!
-
-``` sc
+// ... men `.play` kan ikke anvendes på alle objekter!
 10.play       // giver en fejlmeddelelse (.play findes ikke som instance method for SimpleNumber)
 Pbind.play    // giver en fejlmeddelelse (.play findes kun som instance method, ikke som class method for Pbind)
 ```
@@ -95,7 +93,7 @@ I SuperColliders dokumentation kan man se hvilke methods, der passer til forskel
 - Slår man en klasse op (fx `Array`, `Pwhite`, `SinOsc` etc.), vil man kunne se hvordan de forskellige class og instance methods fungerer og anvendes.
 - Slår man en method op (fx `.new`, `.play`, `.reverse` etc.), vil man kunne se de forskellige klasser, som har denne method tilknyttet (klik på klassenavnet for at se hvordan dokumentationen for den pågældende method inden for den specifikke klasse).
 
-Placér cursoren sammen med et af kodeudtrykkene herunder og tast Ctrl/Cmd-D for at åbne dokumentationen. Læs selv nærmere om de forskellige methods, og bemærk hvilke 
+Placér cursoren sammen med et af kodeudtrykkene herunder og tast Ctrl/Cmd-D for at åbne dokumentationen. Læs selv nærmere om de forskellige methods, og bemærk hvilke resultater, der dukker op.
 
 ``` sc title="Undersøg selv dokumentation for methods"
 // Hvilke class og instance methods knytter sig til henholdsvis Array, Pwhite og SinOsc?

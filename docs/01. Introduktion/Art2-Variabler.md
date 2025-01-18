@@ -25,32 +25,25 @@ q;
 For at kunne bruge variabler skal vi kunne definere, tilgå og ændre deres indhold.
 
 - For at tilgå variablen, dvs. finde dens indhold frem og bruge det til noget, bruger vi slet og ret variabelnavnet, fx `~alder`.
-- For at definere variablens indhold, bruger vi et såkaldt assignment statement: `~alder = 10`.
+- For at definere eller ændre variablens indhold, bruger vi variabelnavnet på venstre side af et lighedstegn, og det nye indhold på højre side: `~alder = 10`. Dette kaldes også *assignment*.
 
-Her er et eksempel:
-
-``` sc
+``` sc title="Grundlæggende brug af variabler"
 ~alder.postln; // tjek først variablens indhold
 ~alder = 23;   // gem et tal (også kendt som "assignment")
 ~alder.postln; // tjek variablens indhold igen
-```
 
-Vi kan efterfølgende tilgå og bruge variablens indhold blot ved at bruge dens navn:
-
-``` sc
+//Vi kan efterfølgende tilgå og bruge variablens indhold blot ved at bruge dens navn:
 ~alder * 100;
 ```
 
-Vi kan også omdefinere indholdet med endnu en assignment:
+En variabel kan efterfølgende let omdefineres:
 
-``` sc
+``` sc title="At omdefinere indholdet af en variabel"
+// Vi kan også omdefinere indholdet med endnu en assignment:
 ~alder = 50;
 ~alder.postln;
-```
 
-Variablens nuværende indhold kan anvendes, når man regner en ny værdi ud og gemmer under samme variabelnavn:
-
-```sc
+// Variablens nuværende indhold kan anvendes, når man regner en ny værdi ud og gemmer under samme variabelnavn:
 ~alder = ~alder * 10 + 7;
 ~alder.postln;
 ```

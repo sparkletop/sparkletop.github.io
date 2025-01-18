@@ -2,50 +2,43 @@
 tags:
     - Øvelser
 ---
-# Øvelse 1B: Første bip
+# Øvelse: Første bip
 
 Nedenstående øvelse går ud på at producere lyde på SuperColliders lydserver og eksperimentere med at ændre på lyden ved at variere på parametrene.
 
-Start først lydserveren:
+Start først lydserveren med: `s.boot;`
 
-``` sc
-s.boot;
+## En uendelig sekvens
+
+1. Overvej hvad de enkelte kodelinjer gør ved lyden.
+1. Eksekvér kodeblokken og lyt til resultatet. Tryk Ctrl/Cmd-Punktum for at stoppe igen.
+1. Prøv at ændre på tallene eller vælge en anden skala, og kør blokken igen for at lytte til resultatet.
+
+``` sc title="Øvelse: Skalaudforskning"
+(
+Pbind(
+	// prøv at vælge en anden skala, fx Scale.egyptian
+	\scale, Scale.minor,
+
+	// prøv at ændre på de forskellige tal herunder
+	\degree, Pseq([0, 3, 2, 1, 4, 5, 6], inf),
+	\root, 1,
+	\octave, 4,
+	\dur, 0.25,    // <-- denne værdi skal være større end 0
+	\legato, 1.2,
+).play;
+)
 ```
-
-I opgave 1 og 2 fremgår to kodeblokke. Begge opgaver går ud på, at du skal lege med eksemplerne på følgende måde:
-
-1. Eksekvér kodeblokken og lyt til resultatet.
-
-2. Prøv løbende at ændre på kompositionen og eksekvér kodeblokken igen. Dette kaldes live coding!
-
-3. Overvej hvad de enkelte kodelinjer gør ved lyden.
-
-## Opgave 1: Generativ komposition
 
 Tip: Kør `Scale.directory;` for at få vist de forskellige indbyggede skalaer.
 
-``` sc title="Opgave 1"
-(
-Pdef(\eksempel1,
-	Pbind(
-		// prøv at vælge en anden skala, fx Scale.egyptian
-		\scale, Scale.minor,
+## Skøre oscillatorer
 
-		// prøv at ændre på de forskellige tal herunder
-		\degree, Pseq([0, 1, 2, 3, 4], inf),
-		\root, 1,
-		\octave, 4,
-		\dur, 0.25,    // <-- denne værdi skal være større end 0
-		\legato, 1.2,
-	)
-).play;
-)
-Pdef(\eksempel1).stop;
-```
+1. Overvej hvad de enkelte kodelinjer gør ved lyden.
+1. Eksekvér kodeblokken og lyt til resultatet. Tryk Ctrl/Cmd-Punktum for at stoppe igen.
+1. Prøv at ændre på tallene eller vælge andre oscillatorer, og kør blokken igen for at lytte til resultatet.
 
-## Opgave 2: Oscillatorer
-
-``` sc title="Opgave 2"
+``` sc title="Øvelse: Oscillator-eksperiment"
 (
 {
 	var sig, lfo, lfoFreq;
