@@ -55,8 +55,13 @@ def make_chapter(chapter_title, chapter_dir):
 
             md_content = preprocess_mkdocs_markdown(md_content)           
             
-            new_section = convert(md_content, document_class="article", minted_language="sc")
-            
+            new_section = convert(
+                md_content,
+                document_class="article",
+                minted_language="'sc_lexer.py:SuperColliderLexer -x'",
+                override_language=True
+            )
+
             # add a label to each section, corresponding to file name
             # for use in cross references
             new_section = re.sub(r"(\\section{.+?}\n)", r"\1\\label{" + filename + r"}\n", new_section)
