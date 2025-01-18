@@ -2,3 +2,4 @@
 site
 .venv
 tex
+md2tex
