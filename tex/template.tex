@@ -1,17 +1,24 @@
 \documentclass[a4paper, 12pt]{memoir}
-%\input{macros}
 
 \usepackage[danish]{babel}
-
 \usepackage{graphicx}
+\usepackage[chapter]{minted}
+\usepackage{caption}
+\usepackage{textcomp, fontspec}
 
-\usepackage{xcolor, color} % necessary when using xcolor?
+% Title spacing and sectional page breaks
+\usepackage{titlesec}
+%\titlespacing{\section}{0pt}{*6}{*2}
+%\titlespacing{\subsection}{0pt}{*3.5}{*2}
+
+\usepackage{xcolor, color} % are both necessary?
 \usepackage[hidelinks]{hyperref}
+
 \hypersetup{
-    colorlinks,
-    linkcolor={red!50!black},
-    citecolor={blue!50!black},
-    urlcolor={blue!80!black}
+  colorlinks,
+  linkcolor={red!20!black},
+  citecolor={blue!20!black},
+  urlcolor={blue!32!black}
 }
 
 % Margins
@@ -19,9 +26,16 @@
 \setulmarginsandblock{3cm}{*}{1}
 \checkandfixthelayout 
 
-\usepackage[chapter]{minted}
-\usepackage{textcomp, fontspec}
-\setmonofont[Path=fonts/Source_Code_Pro/static/]{SourceCodePro-Regular.ttf}
+% Font settings
+\setmonofont{SourceCodePro}[
+  Path = fonts/Source_Code_Pro/static/,
+  Extension = .ttf,
+  BoldFont = *-Bold,
+  UprightFont = *-Regular,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-BoldItalic
+  ]
+
 \setmainfont{FunnelSans}[
   Path = fonts/Funnel_Sans/static/,
   Extension = .ttf,
@@ -31,20 +45,14 @@
   BoldItalicFont = *-BoldItalic
   ]
 
-\setsecheadstyle{\Large}
-\setsubsecheadstyle{\large}
-\setsubsubsecheadstyle{\small\bfseries}
+\setsecheadstyle{\Large\bfseries}
+\setsubsecheadstyle{\large\bfseries}
+\setsubsubsecheadstyle{\normalsize\bfseries}
+\setsecnumdepth{subsection}
 
 \chapterstyle{dash}
 \parindent=0pt
-\parskip=0.25em
-
-\setsecnumdepth{subsection}
-
-% Title spacing and sectional page breaks
-\usepackage{titlesec}
-\titlespacing{\section}{0pt}{*6}{*2}
-\titlespacing{\subsection}{0pt}{*3.5}{*2}
+\parskip=0.3em
 
 % Begin section on new page if more than 70% of the page is filled
 \newcommand{\sectionbreak}{\ifdim\pagetotal<.7\textheight\else\clearpage\fi}
@@ -57,19 +65,22 @@
 \definecolor{bg}{rgb}{0.9, 0.905, 0.9} % code block background color
 \definecolor{hl}{rgb}{0.85, 0.92, 0.85} % code block highlight color
 \setminted{
-    style=emacs,
-    frame=none,
-    framesep=2mm,
-    xleftmargin=0.5em,
-    xrightmargin=0.5em,
-    numbersep=1em,
-    linenos=true,
-    bgcolor=bg,
-    breaklines=true,
-    highlightcolor=hl,
-    %ignorelexererrors=true,
+  style=friendly,
+  frame=none,
+  framesep=2mm,
+  xleftmargin=0.5em,
+  xrightmargin=0.5em,
+  numbersep=1em,
+  linenos=true,
+  bgcolor=bg,
+  breaklines=true,
+  highlightcolor=hl,
+  ignorelexererrors=true,
+  fontsize=\small
 }
 \renewcommand{\listingscaption}{Kildekodeboks}
+\captionsetup{skip=0.2em, font=small}
+
 
 \title{Musik- og lydprogrammering med SuperCollider}
 \author{Anders Eskildsen}
