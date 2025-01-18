@@ -41,7 +41,7 @@ def make_chapter(chapter_title, chapter_dir):
     # loop over .md files, convert to tex, and return the string
     # remove "01. " etc. from the chapter title
     chapter_title = re.sub(r'^\d+\.\s+', '', chapter_title)
-    chapter_tex = f"\chapter{{{chapter_title}}}\n\label{{chap:{chapter_title}}}\n"
+    chapter_tex = f"\\chapter{{{chapter_title}}}\n\\label{{chap:{chapter_title}}}\n"
 
     md_files = [f for f in os.listdir(chapter_dir) if f.endswith('.md')]
     md_files.sort()
