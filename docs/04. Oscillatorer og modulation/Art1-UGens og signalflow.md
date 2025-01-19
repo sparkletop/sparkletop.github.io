@@ -56,7 +56,7 @@ Den mest enkle UGen er `SinOsc` - en ydmyg sinustone-oscillator. Vi afspiller de
 {[SinOsc.ar(440), SinOsc.ar(440, pi/2)]}.plot; // sinusbølge og faseforskudt sinusbølge (cosinus)
 ```
 
-![Sinusbølger ved 220Hz, 440Hz og 2kHz](media/tre_frekvenser.png)
+![Sinusbølger ved 220Hz, 440Hz og 2kHz](../media/figures/tre_frekvenser.png)
 
 UGens bruges inde i såkaldte funktioner, som noteres med `{}`. Kodelinjerne mellem disse tuborg-parenteser kører på SuperColliders lydserver, når de efterfølges af `.play`, dvs. `{}.play`.
 

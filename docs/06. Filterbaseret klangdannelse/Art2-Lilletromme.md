@@ -91,4 +91,4 @@ Synth(\snare, [
 ```
 
 Lydeksempel: Standardindstillinger vs. lilletromme med seidingen slået fra
-![type:audio](media/snare.ogg)
+![type:audio](../media/audio/snare.ogg)

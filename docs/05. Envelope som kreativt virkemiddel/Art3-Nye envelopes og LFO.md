@@ -21,7 +21,7 @@ Env.new([0, 1, 0.2, 0.5, 0], [0.1, 1, 0.3, 3], \exp)
 Env.new([500, 800, 400, 150], [1, 2, 3], [2, 5, -3])
 ```
 
-![Tre hjemmestrikkede envelopes](media/nyeenvelopes.png)
+![Tre hjemmestrikkede envelopes](../media/figures/nyeenvelopes.png)
 
 Lad os definere en ny envelope med tre segmenter, som vi vil bruge til at styre frekvensen for en oscillator:
 

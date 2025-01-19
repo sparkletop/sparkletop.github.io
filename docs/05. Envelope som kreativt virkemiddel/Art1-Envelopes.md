@@ -18,7 +18,7 @@ Line.kr(100, 800, 1)
 XLine.kr(100, 800, 1)
 ```
 
-![Line og XLine](media/line-og-xline.png)
+![Line og XLine](../media/figures/line-og-xline.png)
 
 
 Vi bruger `Line` og `XLine` ligesom andre UGens, fx til at styre frekvensen for en oscillator:
@@ -46,7 +46,7 @@ Env.sine
 
 Vi kan vise en grafisk repræsentation med `.plot` - fx `Env.perc.plot`. Her er de ovennævnte envelopes plottet på denne måde:
 
-![Forskellige standardenvelopes](media/standardenvelopes.png)
+![Forskellige standardenvelopes](../media/figures/standardenvelopes.png)
 
 ### Et eksempel: `Env.perc`
 
