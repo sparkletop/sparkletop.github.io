@@ -5,9 +5,11 @@ tags:
 
 # Lilletromme
 
-Denne lilletrommelyd er inspireret af [*Sound on Sound*-artikler af Gordon Reid om syntetisk skabelse af percussion-lyde](https://www.soundonsound.com/techniques/practical-snare-drum-synthesis). Lyddesignet forsøger at simulere forskellige klangelementer i en "realistisk" lilletrommelyd. Der anvendes forskellige [filtre](Cheat1-Filter-UGens.md) samt [envelopes](../05. Envelope som kreativt virkemiddel/Art1-Envelopes.md) til at modulere klangens forandring over tid.
+Denne lilletrommelyd er inspireret af [*Sound on Sound*-artikler af Gordon Reid om syntetisk skabelse af percussion-lyde](https://www.soundonsound.com/techniques/practical-snare-drum-synthesis). Lyddesignet forsøger at simulere forskellige klangelementer i en "realistisk" lilletrommelyd.
 
-```sc
+SynthDef'en illustrerer hvordan man bruger forskellige [filtre](Cheat1-Filter-UGens.md) sammen med [envelopes](../05. Envelope som kreativt virkemiddel/Art1-Envelopes.md) til at modulere klangens forandring over tid.
+
+```sc title="En SynthDef til syntetisk emuleret lilletrommelyd"
 (
 SynthDef(\snare,{
   arg pan = 0, amp = 0.1, out = 0,
@@ -68,7 +70,11 @@ SynthDef(\snare,{
   Out.ar(out, Pan2.ar(sig, pan, amp));
 }).add;
 )
+```
 
+Vi kan med denne SynthDef fremhæve eller nedtone forskellige elementer i lyden. Vi kan fx slå kraftigt ned for støjen for at simulere, at vi har slået den såkaldte "seiding" (metalbånd på undersiden af trommen) fra.
+
+```sc title="To forskellige lilletrommelyde"
 // Standardindstillinger
 Synth(\snare);
 
