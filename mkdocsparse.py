@@ -1,4 +1,25 @@
 import os
+"""
+This script converts an MkDocs site into a LaTeX document using the md2tex engine with custom pre- and post-processing to handle MkDocs-specific content.
+Functions:
+    preprocess_mkdocs_markdown(md_content: str) -> str:
+        Preprocesses MkDocs-material content tabs by removing indentation and formatting headers.
+    postprocess_tex(tex: str) -> str:
+        Post-processes the LaTeX content by replacing tabs with spaces and handling internal links.
+    convert_section(md_file_path: str, filename: str) -> str:
+        Converts a markdown file to a LaTeX section, adding labels for cross-references.
+    make_chapter(chapter_title: str, chapter_dir: str) -> str:
+        Converts all markdown files in a directory to a LaTeX chapter, handling media files.
+Usage:
+    Run the script with the following command:
+    python mkdocsparse.py <mkdocs_folder> <tex_outpath> <frontmatter_outpath>
+    Arguments:
+        mkdocs_folder: Path to the MkDocs directory.
+        tex_outpath: Path to the main output LaTeX file.
+        frontmatter_outpath: Path to the front matter output LaTeX file.
+Example:
+    python mkdocsparse.py /path/to/mkdocs /path/to/output/mainmatter.tex /path/to/output/frontmatter.tex
+"""
 import sys
 import re
 from os.path import join, isdir
@@ -7,7 +28,7 @@ import argparse
 # Add the md2tex submodule folder to the path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'md2tex'))
 
-from md2tex import convert
+from md2tex import convert as convert_md2tex
 
 def preprocess_mkdocs_markdown(md_content: str):
     # preprocess mkdocs-material content tabs (remove indentation)
@@ -22,12 +43,16 @@ def preprocess_mkdocs_markdown(md_content: str):
     return md_content
 
 def postprocess_tex(tex: str):
+    # replace tabs with spaces
+    tex = tex.replace("\t", "    ")
+
     # deal with internal links
     links = re.finditer(r"(?<!!)\[(.*?)\]\((.*?)\)", tex)
     for link in links:
         # Clean up link to only have filename
         filename = re.sub(r"\\#.+$", "", link[2]) # remove anchor, subsection labelling not implemented yet...
         filename = re.sub(r"^\.\./.+/", "", filename)
+
 
         if filename.endswith(".md"):
             # This is a link to other markdown document, so we assume there
@@ -37,6 +62,26 @@ def postprocess_tex(tex: str):
             print(f"Unsupported link: {link}, leaving as is...")
     return tex
 
+def convert_section(md_file_path: str, section_label: str):
+    # assume that each section is a markdown file
+    print(f"Processing document: {md_file_path}")
+    md_content = ""
+    with open(md_file_path, mode="r") as file:
+        md_content = file.read()
+        md_content = preprocess_mkdocs_markdown(md_content)
+    
+    new_section = convert_md2tex(
+        md_content,
+        document_class="article",
+        minted_language="'sc_lexer.py:SuperColliderLexer -x'",
+        override_language=True
+    )
+
+    # add a label to each section for use in cross references
+    new_section = re.sub(r"(\\section{.+?}\n)", r"\1\\label{" + section_label + r"}\n", new_section)
+
+    return new_section
+
 def make_chapter(chapter_title, chapter_dir):
     # loop over .md files, convert to tex, and return the string
     # remove "01. " etc. from the chapter title
@@ -45,31 +90,9 @@ def make_chapter(chapter_title, chapter_dir):
 
     md_files = [f for f in os.listdir(chapter_dir) if f.endswith('.md')]
     md_files.sort()
-    
     for filename in md_files:
         path = join(chapter_dir, filename)
-        print(f"Processing document: {path}")
-        with open(path, mode="r") as file:
-
-            md_content = file.read()
-
-            md_content = preprocess_mkdocs_markdown(md_content)           
-            
-            new_section = convert(
-                md_content,
-                document_class="article",
-                minted_language="'sc_lexer.py:SuperColliderLexer -x'",
-                override_language=True
-            )
-
-            # add a label to each section, corresponding to file name
-            # for use in cross references
-            new_section = re.sub(r"(\\section{.+?}\n)", r"\1\\label{" + filename + r"}\n", new_section)
-            
-            chapter_tex = chapter_tex + "\n" + new_section
-
-            # remove tabs and replace with spaces
-            chapter_tex = chapter_tex.replace("\t", "    ")
+        chapter_tex = chapter_tex + "\n" + convert_section(path, filename)
     
     # make symlinks to the figures in the tex/media folder (there must be a better way, but this works for now)
     media_dir = os.path.abspath(join(chapter_dir, 'media'))
@@ -78,44 +101,56 @@ def make_chapter(chapter_title, chapter_dir):
         for f in media_files:
             src = join(media_dir, f)
             dst = join('tex', 'media', f)
-            os.symlink(src, dst)
+            
+            if os.path.exists(dst):
+                if os.path.islink(dst):
+                    if os.readlink(dst) == src:
+                        continue
+                    else:
+                        os.unlink(dst)
+                else:
+                    os.remove(dst)
+                os.symlink(src, dst)
 
     return chapter_tex
 
 # Walk a 'docs' directory in an mkdocs site and convert markdown files to a Tex file containing everything
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Convert mkdocs site into a LaTeX document using the md2tex engine.")
-    parser.add_argument("inpath", type=str, help="Path to the mkdocs directory")
-    parser.add_argument("outpath", type=str, help="Path to the output tex file")
-    parser.add_argument("frontmatter_outpath", type=str, help="Path to the front matter output tex file")
-    
-    args = parser.parse_args()
-    docs_folder = os.path.join(args.inpath, 'docs')
-    tex_file = args.outpath if args.outpath else "chapters.tex"
-    frontmatter_file = args.frontmatter_outpath if args.frontmatter_outpath else "frontmatter.tex"
 
-    if not os.path.exists(docs_folder):
-        raise FileNotFoundError(f"{docs_folder} does not exist.")
-    if not os.path.isdir(docs_folder):
-        raise IsADirectoryError(f"{docs_folder} is not a directory.")
+    parser = argparse.ArgumentParser(description="Convert mkdocs site into a LaTeX document using the md2tex engine + some custom pre- and postprocessing to deal specifically with mkdocs content.")
+    parser.add_argument("--mkdocs_folder", type=str, default="./", help="Path to the mkdocs root directory (where 'docs/' is a subdirectory)")
+    parser.add_argument("--tex_outpath", type=str, default="./tex/content.tex", help="Path to the main output TeX file")
+    parser.add_argument("--frontmatter_inpath", type=str, default="./tex/preface.md", help="Path to the front matter input markdown file")
+    parser.add_argument("--convert-to-pdf", action="store_true", help="Convert the processed site into PDF form after converting to TeX")
     
-    # Assume the root of the docs_folder contains the frontmatter (foreword and so on)
-    frontmatter = make_chapter("Forord", docs_folder)
-    with open(frontmatter_file, 'w') as file:
-        file.write(frontmatter)
-        print(f"File {frontmatter_file} written successfully.")
+    # Parse the arguments
+    args = parser.parse_args()
+    mkdocs_folder = os.path.join(args.mkdocs_folder, 'docs')
+    tex_outpath = args.tex_outpath
+    
+    # First we process the preface
+    if args.frontmatter_inpath:
+        preface = "\\chapter{Forord}\n"
+        preface += convert_section(args.frontmatter_inpath, "Forord")
+        tex = preface + '\n\n' + "\\mainmatter\n\n"
+    else:
+        tex = "\\mainmatter\n\n"
     
     # walk the subdirectories of the docs directory and create chapters for each one
-    tex = ""
-    chapters = [d for d in os.listdir(docs_folder) if isdir(join(docs_folder, d))]
+    chapters = [d for d in os.listdir(mkdocs_folder) if isdir(join(mkdocs_folder, d))]
     chapters.sort()
     for chap in chapters:
-        tex = tex + '\n' + make_chapter(chap, join(docs_folder, chap))
+        tex = tex + '\n' + make_chapter(chap, join(mkdocs_folder, chap))
 
     tex = postprocess_tex(tex)
 
-    with open(tex_file, 'w') as file:
+    with open(tex_outpath, 'w') as file:
         file.write(tex)
-        print(f"File {tex_file} written successfully.")
+        print(f"File {tex_outpath} written successfully.")
+
+    if args.convert_to_pdf:
+        #os.chdir("tex")
+        #os.system(f"latexmk -xelatex -latexoption='-shell-escape' -f template.tex")´
+        os.system("./t2p.sh")
 
 

@@ -5,12 +5,7 @@
 \usepackage[chapter]{minted}
 \usepackage{caption}
 \usepackage{textcomp, fontspec}
-
-% Title spacing and sectional page breaks
 \usepackage{titlesec}
-%\titlespacing{\section}{0pt}{*6}{*2}
-%\titlespacing{\subsection}{0pt}{*3.5}{*2}
-
 \usepackage{xcolor, color} % are both necessary?
 \usepackage[hidelinks]{hyperref}
 
@@ -91,12 +86,8 @@
 \frontmatter
 \maketitle
 \tableofcontents
-\include{frontmatter}
 
-\mainmatter
-\include{chapters}
-
-\backmatter
+\include{content.tex}
 
 \listoffigures
 %\listoflistings % doesn't look great - needs section-relative numbering like figures
