@@ -3,7 +3,7 @@ import os
 This script converts an MkDocs site into a LaTeX document using the md2tex engine with custom pre- and post-processing to handle MkDocs-specific content.
 Functions:
     preprocess_mkdocs_markdown(md_content: str) -> str:
-        Preprocesses MkDocs-material content tabs by removing indentation and formatting headers.
+        Preprocesses MkDocs-material content tabs by removing indentation from admonitions-style mkdocs-material blocks and formatting headers.
     postprocess_tex(tex: str) -> str:
         Post-processes the LaTeX content by replacing tabs with spaces and handling internal links.
     convert_section(md_file_path: str, filename: str) -> str:
@@ -16,7 +16,9 @@ Usage:
     Arguments:
         mkdocs_folder: Path to the MkDocs directory.
         tex_outpath: Path to the main output LaTeX file.
-        frontmatter_outpath: Path to the front matter output LaTeX file.
+        frontmatter_inpath: Path to the preface markdown file.
+    Flags:
+        --convert-to-pdf: Convert the processed site into PDF form after converting to TeX.
 Example:
     python mkdocsparse.py /path/to/mkdocs /path/to/output/mainmatter.tex /path/to/output/frontmatter.tex
 """
