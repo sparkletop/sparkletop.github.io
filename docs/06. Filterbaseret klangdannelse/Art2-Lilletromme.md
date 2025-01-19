@@ -72,7 +72,7 @@ SynthDef(\snare,{
 )
 ```
 
-Vi kan med denne SynthDef fremhæve eller nedtone forskellige elementer i lyden. Vi kan fx slå kraftigt ned for støjen for at simulere, at vi har slået den såkaldte "seiding" (metalbånd på undersiden af trommen) fra.
+Vi kan med denne SynthDef fremhæve eller nedtone forskellige elementer i lyden. Vi kan fx skrue kraftigt ned for støjen for at simulere, at vi har slået den såkaldte "seiding" (metalbånd på undersiden af trommen) fra.
 
 ```sc title="To forskellige lilletrommelyde"
 // Standardindstillinger
