@@ -84,9 +84,5 @@ Synth(\snare, [
 )
 ```
 
-<audio controls>
-  <source src="../media/snare.flac" type="audio/flac" />
-  <source src="../media/snare.ogg" type="audio/ogg" />
-  <source src="../media/snare.mp3" type="audio/mpeg" />
-</audio>
-
+Lydeksempel: Standardindstillinger vs. lilletromme med seidingen slået fra
+![type:audio](media/snare.ogg)
