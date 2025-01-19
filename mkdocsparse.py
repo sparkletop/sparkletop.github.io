@@ -1,4 +1,3 @@
-import os
 """
 This script converts an MkDocs site into a LaTeX document using the md2tex engine with custom pre- and post-processing to handle MkDocs-specific content.
 Functions:
@@ -22,6 +21,7 @@ Usage:
 Example:
     python mkdocsparse.py /path/to/mkdocs /path/to/output/mainmatter.tex /path/to/output/frontmatter.tex
 """
+import os
 import sys
 import re
 from os.path import join, isdir
@@ -103,7 +103,11 @@ def convert_section(md_file_path: str, section_label: str):
     )
 
     # add a label to each section for use in cross references
-    new_section = re.sub(r"(\\section{.+?}\n)", r"\1\\label{" + section_label + r"}\n", new_section)
+    new_section = re.sub(
+        r"(\\section{.+?}\n)",
+        r"\1\\label{" + section_label + r"}\n",
+        new_section
+    )
 
     return new_section
 
@@ -153,21 +157,23 @@ def make_chapter(chapter_title, chapter_dir, ignore_files):
             src = join(media_dir, f)
             dst = join('tex', 'media', f)
             
-            if os.path.exists(dst):
-                if os.path.islink(dst):
-                    if os.readlink(dst) == src:
-                        continue
-                    else:
-                        os.unlink(dst)
-                else:
-                    os.remove(dst)
+            if not os.path.exists(dst):
                 os.symlink(src, dst)
+            else:
+                if not os.path.islink(dst):
+                    os.remove(dst)
+                    os.symlink(src, dst)
+                else:
+                    if not os.readlink(dst) == src:
+                        os.unlink(dst)
+                        os.symlink(src, dst)
 
     return chapter_tex
 
-# Walk a 'docs' directory in an mkdocs site and convert markdown files to a Tex file containing everything
 if __name__ == "__main__":
-
+    """
+    Walk a 'docs' directory in an mkdocs site and convert the markdown files to a TeX file containing everything
+    """
     parser = argparse.ArgumentParser(description="Convert mkdocs site into a LaTeX document using the md2tex engine + some custom pre- and postprocessing to deal specifically with mkdocs content.")
     parser.add_argument("--mkdocs_folder", type=str, default="./", help="Path to the mkdocs root directory (where 'docs/' is a subdirectory)")
     parser.add_argument("--tex_outpath", type=str, default="./tex/content.tex", help="Path to the main output TeX file")
