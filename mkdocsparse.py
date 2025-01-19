@@ -32,6 +32,13 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'md2tex'))
 
 from md2tex import convert as convert_md2tex
 
+audio_examples_info = []
+chapter_titles = []
+
+AUDIO_EXAMPLE_BASE_URL = 'https://sparkletop.github.io/Ressourcer/lydeksempler'
+AUDIO_EXAMPLE_FILE_PATH = './docs/Ressourcer/lydeksempler.md'
+IGNORED_MD_FILES_LIST = 'ignored_MD_files.txt'
+
 def preprocess_mkdocs_markdown(md_content: str):
     # preprocess mkdocs-material content tabs (remove indentation)
     # matches and processes sections that begin with '=== xyz' followed by indented content or empty lines
@@ -48,13 +55,29 @@ def postprocess_tex(tex: str):
     # replace tabs with spaces
     tex = tex.replace("\t", "    ")
 
+    # find audio files + caption text
+    audio_examples = re.finditer(r"\\caption{(.+?)}(?:.*\n){,5}(%AUDIO_FILE:(.+?.ogg))", tex, re.M)
+    for example in audio_examples:
+        path = example.group(3)
+        comment_substring = example.group(2)
+        caption = example.group(1)
+        slugified_caption = re.sub(r"[^a-zA-Z0-9_]+", '-', caption).lower()
+        
+        # insert LaTeX link to sound example
+        url = AUDIO_EXAMPLE_BASE_URL + r'\#' + slugified_caption
+        # here we need to find the minted code block's number from the .aux file
+        example_link = r" - \href{" + url + r"}{Lydeksempel}"
+        tex = tex.replace(caption, caption + example_link) # add a link to the caption
+        tex = tex.replace(comment_substring, "") # delete the comment now that it's been processed
+
+        audio_examples_info.append(dict(path=path, caption=caption))
+
     # deal with internal links
     links = re.finditer(r"(?<!!)\[(.*?)\]\((.*?)\)", tex)
     for link in links:
         # Clean up link to only have filename
         filename = re.sub(r"\\#.+$", "", link[2]) # remove anchor, subsection labelling not implemented yet...
         filename = re.sub(r"^\.\./.+/", "", filename)
-
 
         if filename.endswith(".md"):
             # This is a link to other markdown document, so we assume there
@@ -84,18 +107,44 @@ def convert_section(md_file_path: str, section_label: str):
 
     return new_section
 
-def make_chapter(chapter_title, chapter_dir):
+def generate_audio_examples_page():
+    md = "# Lydeksempler\n\nHerunder finder du alle lydeksempler til bogen *Musik- og lydprogrammering med SuperCollider*. Lydeksemplerne er organiseret efter kapitel.\n\n"
+
+    with open('tex/content.aux', 'r') as aux_file:
+        aux_data = aux_file.read()
+    
+    current_chapter = -42
+
+    for example in audio_examples_info:
+        data = re.search(r'{\\numberline {(.*?)}.*' + example['caption'], aux_data, re.M)
+        if data:
+            caption_number = data.group(1)
+            
+            chapter_number = int(re.sub(r"\.\d+", '', caption_number))
+            if chapter_number is not current_chapter:
+                md += f"## Kapitel {chapter_number}: {chapter_titles[chapter_number]}\n\n"
+                current_chapter = chapter_number
+
+            md += f"### Lydeksempel {caption_number}: {example['caption']}\n\n"
+            md += f"![type:audio]({example['path']})\n\n"
+    
+    return md
+
+def make_chapter(chapter_title, chapter_dir, ignore_files):
     # loop over .md files, convert to tex, and return the string
     # remove "01. " etc. from the chapter title
     chapter_title = re.sub(r'^\d+\.\s+', '', chapter_title)
     chapter_tex = f"\\chapter{{{chapter_title}}}\n\\label{{chap:{chapter_title}}}\n"
 
+    chapter_titles.append(chapter_title)
+
     md_files = [f for f in os.listdir(chapter_dir) if f.endswith('.md')]
     md_files.sort()
     for filename in md_files:
-        path = join(chapter_dir, filename)
-        chapter_tex = chapter_tex + "\n" + convert_section(path, filename)
-    
+        if filename not in ignore_files:
+            path = join(chapter_dir, filename)
+            chapter_tex = chapter_tex + "\n" + convert_section(path, filename)
+            
     # make symlinks to the figures in the tex/media folder (there must be a better way, but this works for now)
     media_dir = os.path.abspath(join(chapter_dir, 'media'))
     if os.path.exists(media_dir) and os.path.isdir(media_dir):
@@ -129,7 +178,11 @@ if __name__ == "__main__":
     args = parser.parse_args()
     mkdocs_folder = os.path.join(args.mkdocs_folder, 'docs')
     tex_outpath = args.tex_outpath
-    
+
+    # Read the list of ignored markdown files
+    with open(IGNORED_MD_FILES_LIST, 'r') as ignore_file:
+        ignore_files = ignore_file.read().split('\n')
+
     # First we process the preface
     if args.frontmatter_inpath:
         preface = "\\chapter{Forord}\n"
@@ -142,7 +195,7 @@ if __name__ == "__main__":
     chapters = [d for d in os.listdir(mkdocs_folder) if isdir(join(mkdocs_folder, d))]
     chapters.sort()
     for chap in chapters:
-        tex = tex + '\n' + make_chapter(chap, join(mkdocs_folder, chap))
+        tex = tex + '\n' + make_chapter(chap, join(mkdocs_folder, chap), ignore_files)
 
     tex = postprocess_tex(tex)
 
@@ -154,5 +207,16 @@ if __name__ == "__main__":
         #os.chdir("tex")
         #os.system(f"latexmk -xelatex -latexoption='-shell-escape' -f template.tex")´
         os.system("./t2p.sh")
-
-
+    
+    # If audio examples page has changed, overwrite the old one with the newly generated data
+    new_examples_md = generate_audio_examples_page()
+    
+    with open(AUDIO_EXAMPLE_FILE_PATH, 'r+') as file_contents:
+        old_examples_md = file_contents.read()
+        if new_examples_md != old_examples_md:
+            file_contents.seek(0)
+            file_contents.write(new_examples_md)
+            file_contents.truncate()
+            print(f"New version of {AUDIO_EXAMPLE_FILE_PATH} generated.")
+            
+    exit(0)
