@@ -1,13 +1,19 @@
 \documentclass[a4paper, 12pt]{memoir}
 
-\usepackage[danish]{babel}
-\usepackage{graphicx}
-\usepackage[chapter]{minted}
-\usepackage{caption}
-\usepackage{textcomp, fontspec}
-\usepackage{titlesec}
-\usepackage{xcolor, color} % are both necessary?
-\usepackage[hidelinks]{hyperref}
+\usepackage[danish]{babel}        % for Danish metatext
+\usepackage{graphicx}             % for includegraphics
+\usepackage[chapter]{minted}      % for code highlighting
+\usepackage{caption}              % to better control captions
+\usepackage{fontspec}             % for using fonts
+\usepackage{textcomp}             % for special symbols - necessary?
+\usepackage{titlesec}             % to better control section heading placement
+\usepackage{xcolor}               % for coloring links
+\usepackage[hidelinks]{hyperref}  % to make links between sections etc.
+\usepackage[
+  protrusion=true,
+  expansion=true,
+  tracking=true
+  ]{microtype}                    % to address overflowing margins
 
 \hypersetup{
   colorlinks,
