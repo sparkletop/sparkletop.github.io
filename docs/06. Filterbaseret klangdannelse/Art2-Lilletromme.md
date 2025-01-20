@@ -70,9 +70,6 @@ SynthDef(\snare,{
   Out.ar(out, Pan2.ar(sig, pan, amp));
 }).add;
 )
-```
-
-Vi kan med denne SynthDef fremhæve eller nedtone forskellige elementer i lyden. Vi kan fx skrue kraftigt ned for støjen for at simulere, at vi har slået den såkaldte "seiding" (metalbånd på undersiden af trommen) fra.
 
 ```sc title="To forskellige lilletrommelyde"
 // Standardindstillinger
@@ -90,5 +87,9 @@ Synth(\snare, [
 )
 ```
 
-Lydeksempel: Standardindstillinger vs. lilletromme med seidingen slået fra
-![type:audio](../media/audio/snare.ogg)
+<audio controls>
+  <source src="../media/snare.flac" type="audio/flac" />
+  <source src="../media/snare.ogg" type="audio/ogg" />
+  <source src="../media/snare.mp3" type="audio/mpeg" />
+</audio>
+

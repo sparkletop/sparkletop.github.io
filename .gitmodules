@@ -1,0 +1,3 @@
+[submodule "md2tex"]
+	path = md2tex
+	url = https://github.com/sparkletop/md2tex

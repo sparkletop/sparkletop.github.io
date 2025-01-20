@@ -23,7 +23,7 @@ XLine.kr(100, 800, 1)
 
 Vi bruger `Line` og `XLine` ligesom andre UGens, fx til at styre frekvensen for en oscillator:
 
-```sc title="
+```sc title="Line og XLine over forskellige tidsintervaller"
 {SinOsc.ar(Line.kr(100, 800, 1)) * 0.1}.play;      // lineær udvikling over 1 sekund
 {SinOsc.ar(XLine.kr(100, 800, 5)) * 0.1}.play;     // eksponentiel udvikling over 5 sekunder
 {SinOsc.ar(XLine.kr(100, 800, 0.050)) * 0.1}.play; // eksponentiel udvikling over 50 milisekunder
@@ -46,7 +46,7 @@ Env.sine
 
 Vi kan vise en grafisk repræsentation med `.plot` - fx `Env.perc.plot`. Her er de ovennævnte envelopes plottet på denne måde:
 
-![Forskellige standardenvelopes](../media/figures/standardenvelopes.png)
+![Forskellige standardenvelopes](media/standardenvelopes.png)
 
 ### Et eksempel: `Env.perc`
 

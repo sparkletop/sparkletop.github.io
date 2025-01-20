@@ -1,0 +1,55 @@
+{
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [ 
+            { // Full build from Markdown to pdf
+                "label": "build",
+                "type": "shell",
+                "command": "${workspaceFolder}/build.sh",
+                "group": {
+                    "kind": "build",
+                    "isDefault": true
+                },
+                "problemMatcher": []
+            },
+            { // Partial build from Markdown to TeX
+                "label": "m2t build",
+                "type": "shell",
+                "command": "${workspaceFolder}/m2t.sh",
+                "group": {
+                    "kind": "build",
+                    "isDefault": false
+                },
+                "problemMatcher": []
+            },
+            { // Partial build from TeX to pdf
+                "label": "t2p build",
+                "type": "shell",
+                "command": "${workspaceFolder}/t2p.sh",
+                "group": {
+                    "kind": "build",
+                    "isDefault": false
+                },
+                "problemMatcher": []
+            },
+            { // Clean build from Markdown to pdf
+                "label": "clean build",
+                "type": "shell",
+                "command": "${workspaceFolder}/clean-build.sh",
+                "group": {
+                    "kind": "build",
+                    "isDefault": false
+                },
+                "problemMatcher": []
+            },
+        ]
+    },
+    "keybindings": [
+        {
+            "key": "ctrl+shift+b",
+            "command": "workbench.action.runTask",
+            "args": "build"
+        }
+    ],
+    "latex-workshop.latex.autoBuild.run": "never"
+}

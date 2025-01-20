@@ -1,0 +1,103 @@
+\documentclass[a4paper, 12pt]{memoir}
+
+\usepackage[danish]{babel}        % for Danish metatext
+\usepackage{graphicx}             % for includegraphics
+\usepackage[chapter]{minted}      % for code highlighting
+\usepackage{caption}              % to better control captions
+\usepackage{fontspec}             % for using fonts
+\usepackage{textcomp}             % for special symbols - necessary?
+\usepackage{titlesec}             % to better control section heading placement
+\usepackage{xcolor}               % for coloring links
+\usepackage[hidelinks]{hyperref}  % to make links between sections etc.
+\usepackage[
+  protrusion=true,
+  expansion=true,
+  tracking=true
+  ]{microtype}                    % to address overflowing margins
+
+\hypersetup{
+  colorlinks,
+  linkcolor={red!20!black},
+  citecolor={blue!20!black},
+  urlcolor={blue!32!black}
+}
+
+% Margins
+\setlrmarginsandblock{3cm}{3cm}{*}
+\setulmarginsandblock{3cm}{*}{1}
+\checkandfixthelayout 
+
+% Font settings
+\setmonofont{SourceCodePro}[
+  Path = fonts/Source_Code_Pro/static/,
+  Extension = .ttf,
+  BoldFont = *-Bold,
+  UprightFont = *-Regular,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-BoldItalic
+  ]
+
+\setmainfont{FunnelSans}[
+  Path = fonts/Funnel_Sans/static/,
+  Extension = .ttf,
+  BoldFont = *-Bold,
+  UprightFont = *-Regular,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-BoldItalic
+  ]
+
+\setsecheadstyle{\Large\bfseries}
+\setsubsecheadstyle{\large\bfseries}
+\setsubsubsecheadstyle{\normalsize\bfseries}
+\setsecnumdepth{subsection}
+
+\chapterstyle{dash}
+\parindent=0pt
+\parskip=0.3em
+
+% Begin section on new page if more than 70% of the page is filled
+\newcommand{\sectionbreak}{\ifdim\pagetotal<.7\textheight\else\clearpage\fi}
+\titleformat{\section}[block]
+  {\sectionbreak\normalfont\Large\bfseries}
+  {\thesection}{1em}{}
+  {}
+
+% Code listings
+\definecolor{bg}{rgb}{0.9, 0.905, 0.9} % code block background color
+\definecolor{hl}{rgb}{0.85, 0.92, 0.85} % code block highlight color
+\setminted{
+  style=friendly,
+  frame=none,
+  framesep=2mm,
+  xleftmargin=0.5em,
+  xrightmargin=0.5em,
+  numbersep=1em,
+  linenos=true,
+  bgcolor=bg,
+  breaklines=true,
+  highlightcolor=hl,
+  ignorelexererrors=true,
+  fontsize=\small
+}
+\renewcommand{\listingscaption}{Kildekodeboks}
+\captionsetup{skip=0.2em, font=small}
+
+
+\title{Musik- og lydprogrammering med SuperCollider}
+\author{Anders Eskildsen}
+\date{\today}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\include{content.tex}
+
+\listoffigures
+%\listoflistings % doesn't look great - needs section-relative numbering like figures
+%\appendix
+%\include{tex/appendix-0}
+
+\end{document}
