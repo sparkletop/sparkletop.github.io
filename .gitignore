@@ -3,7 +3,6 @@ site
 .venv
 
 
-tex/media
 tex/fonts
 tex/content.tex
 

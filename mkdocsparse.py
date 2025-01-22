@@ -72,6 +72,9 @@ def postprocess_tex(tex: str):
 
         audio_examples_info.append(dict(path=path, caption=caption))
 
+    # update figure paths
+    tex = tex.replace("../media/", "../docs/media/")
+
     # deal with internal links
     links = re.finditer(r"(?<!!)\[(.*?)\]\((.*?)\)", tex)
     for link in links:
@@ -137,36 +140,20 @@ def generate_audio_examples_page():
 def make_chapter(chapter_title, chapter_dir, ignore_files):
     # loop over .md files, convert to tex, and return the string
     # remove "01. " etc. from the chapter title
+    md_files = [f for f in os.listdir(chapter_dir) if f.endswith('.md')]
+    if not md_files:
+        return ""
+
     chapter_title = re.sub(r'^\d+\.\s+', '', chapter_title)
     chapter_tex = f"\\chapter{{{chapter_title}}}\n\\label{{chap:{chapter_title}}}\n"
 
     chapter_titles.append(chapter_title)
 
-    md_files = [f for f in os.listdir(chapter_dir) if f.endswith('.md')]
     md_files.sort()
     for filename in md_files:
         if filename not in ignore_files:
             path = join(chapter_dir, filename)
             chapter_tex = chapter_tex + "\n" + convert_section(path, filename)
-            
-    # make symlinks to the figures in the tex/media folder (there must be a better way, but this works for now)
-    media_dir = os.path.abspath(join(chapter_dir, 'media'))
-    if os.path.exists(media_dir) and os.path.isdir(media_dir):
-        media_files = [f for f in os.listdir(media_dir)]
-        for f in media_files:
-            src = join(media_dir, f)
-            dst = join('tex', 'media', f)
-            
-            if not os.path.exists(dst):
-                os.symlink(src, dst)
-            else:
-                if not os.path.islink(dst):
-                    os.remove(dst)
-                    os.symlink(src, dst)
-                else:
-                    if not os.readlink(dst) == src:
-                        os.unlink(dst)
-                        os.symlink(src, dst)
 
     return chapter_tex
 
@@ -217,7 +204,7 @@ if __name__ == "__main__":
     # If audio examples page has changed, overwrite the old one with the newly generated data
     new_examples_md = generate_audio_examples_page()
     
-    with open(AUDIO_EXAMPLE_FILE_PATH, 'r+') as file_contents:
+    with open(AUDIO_EXAMPLE_FILE_PATH, 'a+') as file_contents:
         old_examples_md = file_contents.read()
         if new_examples_md != old_examples_md:
             file_contents.seek(0)

@@ -7,9 +7,6 @@ if [ "$current_branch" != "* book" ]; then
     exit 1
 fi
 
-# Remove symlinks from previous builds
-rm tex/media/*
-
 # Parse the docs and generate the main tex
 ./m2t.sh
 

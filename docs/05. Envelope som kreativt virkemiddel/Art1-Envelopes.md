@@ -46,7 +46,7 @@ Env.sine
 
 Vi kan vise en grafisk repræsentation med `.plot` - fx `Env.perc.plot`. Her er de ovennævnte envelopes plottet på denne måde:
 
-![Forskellige standardenvelopes](media/standardenvelopes.png)
+![Forskellige standardenvelopes](../media/figures/standardenvelopes.png)
 
 ### Et eksempel: `Env.perc`
 
