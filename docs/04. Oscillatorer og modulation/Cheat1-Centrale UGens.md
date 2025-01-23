@@ -4,7 +4,7 @@ tags:
 ---
 # Cheat sheet: Centrale UGens
 
-Inden du prøver eksemplerne herunder, er det en god idé at køre disse to linjer, så du kan se en visualisering af SuperColliders lydlige output. Flyt evt. vinduerne, så du kan se både bølgeform og frekvensspektrum.
+Inden du prøver eksemplerne herunder, er det en god idé at at aktivere oscilloskop og spektrumanalyse, så du kan se en visualisering af SuperColliders lydlige output. Flyt evt. vinduerne, så du kan se både bølgeform og frekvensspektrum.
 
 ```sc
 s.scope;
@@ -13,7 +13,7 @@ s.freqscope;
 
 Start med at lære disse UGens at kende!
 
-Udvalget af UGens i dette dokument er kraftigt inspireret af [Eli Fieldsteels liste over "essential UGens"](https://uofi.app.box.com/s/1bfva2kan3ntmgey2345goc73snjzpwt).
+Udvalget af UGens herunder er kraftigt inspireret af [Eli Fieldsteels liste over "essential UGens"](https://uofi.app.box.com/s/1bfva2kan3ntmgey2345goc73snjzpwt).
 
 ## Almindelige bølgeformer
 

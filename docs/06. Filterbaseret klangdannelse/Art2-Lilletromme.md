@@ -70,6 +70,9 @@ SynthDef(\snare,{
   Out.ar(out, Pan2.ar(sig, pan, amp));
 }).add;
 )
+```
+
+Med denne SynthDef kan vi producere forskelligt klingende lyde, bl.a. en version, hvor seidingen er slået fra.
 
 ```sc title="To forskellige lilletrommelyde"
 // Standardindstillinger
@@ -87,9 +90,4 @@ Synth(\snare, [
 )
 ```
 
-<audio controls>
-  <source src="../media/snare.flac" type="audio/flac" />
-  <source src="../media/snare.ogg" type="audio/ogg" />
-  <source src="../media/snare.mp3" type="audio/mpeg" />
-</audio>
-
+![type:audio](../media/audio/snare.ogg)

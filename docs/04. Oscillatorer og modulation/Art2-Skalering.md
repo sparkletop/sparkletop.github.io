@@ -34,7 +34,7 @@ Det er værd at bemærke, at outputtet maksimalt kan være -1 til 1. Værdier de
 
 ==}
 
-### Skalering fra 0 til maksimum med `.unipolar`
+### Skalering fra 0 til maksimum med .unipolar
 
 Skalering af output fra en UGen til et interval fra 0 til et maksimum kan gøres enkelt ved hjælp af method'en `.unipolar`. Sammenlign fx disse bølger, og bemærk hvor outputtet befinder sig på Y-aksen:
 
