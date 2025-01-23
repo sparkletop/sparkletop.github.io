@@ -1,3 +1,3 @@
 #!/bin/bash 
 
-python mkdocsparse.py
+python mkdocsparse.py --generate_examples_page

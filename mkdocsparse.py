@@ -32,7 +32,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'md2tex'))
 
 from md2tex import convert as convert_md2tex
 
-audio_examples_info = []
 chapter_titles = []
 
 AUDIO_EXAMPLE_BASE_URL = 'https://sparkletop.github.io/Ressourcer/lydeksempler'
@@ -55,22 +54,6 @@ def postprocess_tex(tex: str):
     # replace tabs with spaces
     tex = tex.replace("\t", "    ")
 
-    # find audio files + caption text
-    audio_examples = re.finditer(r"\\caption{(.+?)}(?:.*\n){,5}(%AUDIO_FILE:(.+?.ogg))", tex, re.M)
-    for example in audio_examples:
-        path = example.group(3)
-        comment_substring = example.group(2)
-        caption = example.group(1)
-        slugified_caption = re.sub(r"[^a-zA-Z0-9_]+", '-', caption).lower()
-        
-        # insert LaTeX link to sound example
-        url = AUDIO_EXAMPLE_BASE_URL + r'\#' + slugified_caption
-        # here we need to find the minted code block's number from the .aux file
-        example_link = r" - \href{" + url + r"}{Lydeksempel}"
-        tex = tex.replace(caption, caption + example_link) # add a link to the caption
-        tex = tex.replace(comment_substring, "") # delete the comment now that it's been processed
-
-        audio_examples_info.append(dict(path=path, caption=caption))
 
     # update figure paths
     tex = tex.replace("../media/", "../docs/media/")
@@ -114,14 +97,38 @@ def convert_section(md_file_path: str, section_label: str):
 
     return new_section
 
-def generate_audio_examples_page():
+def generate_audio_examples_page(tex: str):
+    # generate aux file to get code block numbers
+    print("Generating .aux files to find code block numbering. See draftrun.log for compile process output.")
+    os.chdir('./tex/')
+    os.system('lualatex -draftmode template.tex > draftrun.log 2>&1')
+    os.chdir('..')
+
+    # find audio files + caption text
+    audio_examples_info = []
+    audio_examples = re.finditer(r"\\caption{(.+?)}(?:.*\n){,5}(%AUDIO_FILE:(.+?.ogg))", tex, re.M)
+    for example in audio_examples:
+        path = example.group(3)
+        comment_substring = example.group(2)
+        caption = example.group(1)
+        slugified_caption = re.sub(r"[^a-zA-Z0-9_]+", '-', caption).lower()
+        
+        # insert LaTeX link to sound example
+        url = AUDIO_EXAMPLE_BASE_URL + r'\#' + slugified_caption
+        # here we need to find the minted code block's number from the .aux file
+        example_link = r" - \href{" + url + r"}{Lydeksempel}"
+        tex = tex.replace(caption, caption + example_link) # add a link to the caption
+        tex = tex.replace(comment_substring, "") # delete the comment now that it's been processed
+
+        audio_examples_info.append(dict(path=path, caption=caption))
+
+    # Build examples page
     md = "# Lydeksempler\n\nHerunder finder du alle lydeksempler til bogen *Musik- og lydprogrammering med SuperCollider*. Lydeksemplerne er organiseret efter kapitel.\n\n"
 
     with open('tex/content.aux', 'r') as aux_file:
         aux_data = aux_file.read()
     
     current_chapter = -42
-
     for example in audio_examples_info:
         data = re.search(r'{\\numberline {(.*?)}.*' + example['caption'], aux_data, re.M)
         if data:
@@ -132,10 +139,17 @@ def generate_audio_examples_page():
                 md += f"## Kapitel {chapter_number}: {chapter_titles[chapter_number]}\n\n"
                 current_chapter = chapter_number
 
-            md += f"### Lydeksempel {caption_number}: {example['caption']}\n\n"
-            md += f"![type:audio]({example['path']})\n\n"
+            md = md + f"### Lydeksempel {caption_number}: {example['caption']}\n\n"
+            md = md + f"![type:audio]({example['path']})\n\n"
     
-    return md
+    # If audio examples page has changed, overwrite the old one with the newly generated data
+    with open(AUDIO_EXAMPLE_FILE_PATH, 'r+') as file_contents:
+        old_examples_md = file_contents.read()
+        if md != old_examples_md:
+            file_contents.seek(0)
+            file_contents.write(md)
+            file_contents.truncate()
+            print(f"New version of {AUDIO_EXAMPLE_FILE_PATH} generated.")
 
 def make_chapter(chapter_title, chapter_dir, ignore_files):
     # loop over .md files, convert to tex, and return the string
@@ -165,7 +179,7 @@ if __name__ == "__main__":
     parser.add_argument("--mkdocs_folder", type=str, default="./", help="Path to the mkdocs root directory (where 'docs/' is a subdirectory)")
     parser.add_argument("--tex_outpath", type=str, default="./tex/content.tex", help="Path to the main output TeX file")
     parser.add_argument("--frontmatter_inpath", type=str, default="./tex/preface.md", help="Path to the front matter input markdown file")
-    parser.add_argument("--convert-to-pdf", action="store_true", help="Convert the processed site into PDF form after converting to TeX")
+    parser.add_argument("--generate_examples_page", action="store_true", default=False, help="Generate new sound examples page for mkdocs")
     
     # Parse the arguments
     args = parser.parse_args()
@@ -196,20 +210,7 @@ if __name__ == "__main__":
         file.write(tex)
         print(f"File {tex_outpath} written successfully.")
 
-    if args.convert_to_pdf:
-        #os.chdir("tex")
-        #os.system(f"latexmk -xelatex -latexoption='-shell-escape' -f template.tex")´
-        os.system("./t2p.sh")
-    
-    # If audio examples page has changed, overwrite the old one with the newly generated data
-    new_examples_md = generate_audio_examples_page()
-    
-    with open(AUDIO_EXAMPLE_FILE_PATH, 'a+') as file_contents:
-        old_examples_md = file_contents.read()
-        if new_examples_md != old_examples_md:
-            file_contents.seek(0)
-            file_contents.write(new_examples_md)
-            file_contents.truncate()
-            print(f"New version of {AUDIO_EXAMPLE_FILE_PATH} generated.")
-            
+    if args.generate_examples_page:
+        generate_audio_examples_page(tex)
+
     exit(0)
