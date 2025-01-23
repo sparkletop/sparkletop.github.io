@@ -9,6 +9,7 @@
 \usepackage{titlesec}             % to better control section heading placement
 \usepackage{xcolor}               % for coloring links
 \usepackage[hidelinks]{hyperref}  % to make links between sections etc.
+\usepackage{enumitem}             % to style lists
 \usepackage[
   protrusion=true,
   expansion=true,
@@ -82,6 +83,8 @@
 \renewcommand{\listingscaption}{Kildekodeboks}
 \captionsetup{skip=0.2em, font=small}
 \setmintedinline{bgcolor=none}  % requires a more recent version of minted than 2.9
+
+\setlist[description]{style=nextline}
 
 \title{Musik- og lydprogrammering med SuperCollider}
 \author{Anders Eskildsen}

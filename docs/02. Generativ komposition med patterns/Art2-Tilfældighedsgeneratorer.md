@@ -18,17 +18,17 @@ Hvorfor mon der er flere forskellige tilfældighedsgeneratorer at vælge imellem
 `Pwhite`
 
 :   Alle tal mellem et givet minimum og maksimum er lige sandsynlige. Relateret til den måde hvorpå man genererer [hvid støj](https://en.wikipedia.org/wiki/White_noise#Statistical_properties). Anvendes typisk når man ønsker "helt" tilfældige værdier med mulighed for store og små spring. Fx ved atonal eller arytmisk komposition.
-    ![10.000 værdier genereret med Pwhite(0, 100, 10000)](../media/figures/pwhite.png)
+    ![10.000 værdier genereret med `Pwhite(0, 100, 10000)`](../media/figures/pwhite.png)
 
 `Pbrown`
 
 :   Genererer tilfældige værdier, men med begrænsede trin. Algoritmen kendes også som en [random walk/drunkard's walk](https://en.wikipedia.org/wiki/Random_walk). Pbrown bruges, når man ønsker en gradvis udvikling i en strøm af tilfældigt valgte værdier, dvs. hvor springene mellem de enkelte skridt er begrænsede. Det kunne fx være ved trinbevægelser i melodier eller en cutoff-frekvens, som skal bevæge sig mere organisk mellem forskellige værdier.
-    ![10.000 værdier genereret med Pbrown(0, 100, 2, 10000)](../media/figures/pbrown.png)
+    ![10.000 værdier genereret med `Pbrown(0, 100, 2, 10000)`](../media/figures/pbrown.png)
 
 `Pgauss`
 
 :   Tal tæt på en middelværdi er mere sandsynlige end tal, der ligger længere væk. Baseret på [normalfordelingen/Gaussfordelingen](https://da.wikipedia.org/wiki/Normalfordeling). Anvendes fx hvis man ønsker, at de fleste værdier skal ligge i omegnen af et centrum, fx midt i stereobilledet eller en skala, men hvor der kan være nogle fåvildskud.
-    ![10.000 værdier genereret med Pgauss(50, 17, 10000)](../media/figures/pgauss.png)
+    ![10.000 værdier genereret med `Pgauss(50, 17, 10000)`](../media/figures/pgauss.png)
 
 `Pexprand`
 
@@ -38,13 +38,12 @@ Hvorfor mon der er flere forskellige tilfældighedsgeneratorer at vælge imellem
 `Phprand`
 
 :   Tal tættest på en øvre grænse er mest sandsynlige.
-    ![10.000 værdier genereret med Phprand(0, 100, 10000)](../media/figures/phprand.png)
-
+    ![10.000 værdier genereret med `Phprand(0, 100, 10000)`](../media/figures/phprand.png)
 
 `Plprand`
 
 :   Tal tættest på en nedre grænse er mest sandsynlige. Anvendes, hvor man kun ønsker få værdier tæt på en øvre grænse.
-    ![10.000 værdier genereret med Plprand(0, 100, 10000)](../media/figures/plprand.png)
+    ![10.000 værdier genereret med `Plprand(0, 100, 10000)`](../media/figures/plprand.png)
 
 ## Listebaserede generatorer
 
@@ -64,8 +63,7 @@ Der findes tre patterns, som minder meget om hinanden og alle tre vælger tilfæ
 
 :   Vælger også tilfældige tal fra en given liste, men med forskellige sansyndligheder for valg af de enkelte elementer. Anvendes, hvis nogle valgmuligheder skal forekomme oftere end andre. Det kunne fx være rytmiske variationer, som er mindre hyppige end mere almindelige grooves.
 
-Derudover bør vi også nævne `Pshuf`, som fungerer næsten ligesom `Pseq`. 
-
 `Pshuf`
 
-:   Afspiller en given liste i tilfældig rækkefølge. Kan være nyttigt, hvor man ønsker at gentage en sekvens, selvom selve sekvensen er sat i tilfældig rækkefølge - det kan give en fornemmelse af regelmæssighed, selvom rækkefølgen er ny.
+:   Fungerer ligesom den almindelige `Pseq`, bortset fra, at den givne liste afspilles i en tilfældig rækkefølge. Kan være nyttigt, hvor man ønsker at gentage en sekvens, selvom selve sekvensen er sat i tilfældig rækkefølge - det kan give en fornemmelse af regelmæssighed, selvom rækkefølgen er ny.
+
