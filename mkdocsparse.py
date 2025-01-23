@@ -99,9 +99,9 @@ def convert_section(md_file_path: str, section_label: str):
 
 def generate_audio_examples_page(tex: str):
     # generate aux file to get code block numbers
-    print("Generating .aux files to find code block numbering. See draftrun.log for compile process output.")
+    print("Generating .aux files to find code block numbering")
     os.chdir('./tex/')
-    os.system('lualatex -draftmode template.tex > draftrun.log 2>&1')
+    os.system('lualatex -draftmode template.tex')
     os.chdir('..')
 
     # find audio files + caption text
