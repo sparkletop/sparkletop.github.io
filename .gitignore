@@ -8,7 +8,8 @@ tex/content.tex
 
 
 ## aux TeX files
-_minted-*
+_minted*
+*.data.minted
 *.acn
 *.acr
 *.alg

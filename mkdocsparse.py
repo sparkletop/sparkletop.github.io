@@ -101,7 +101,7 @@ def convert_section(md_file_path: str, section_label: str):
     new_section = convert_md2tex(
         md_content,
         document_class="article",
-        minted_language="'sc_lexer.py:SuperColliderLexer -x'",
+        minted_language="./sc_lexer.py:SuperColliderLexer",
         override_language=True
     )
 
