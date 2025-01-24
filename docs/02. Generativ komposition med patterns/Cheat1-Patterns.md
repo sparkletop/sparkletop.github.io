@@ -6,9 +6,7 @@ tags:
 
 ## 11 primære patterns
 
-Start med at lære disse patterns at kende!
-
-```sc
+```sc title="11 primære patterns"
 // Pseq - en fleksibel sequencer
 Pbind(\degree, Pseq([0, -3, 1], 2)).play;
 
@@ -45,9 +43,7 @@ Pbind(\degree, Pseries(7, -2, 8)).play;
 
 ## 3 vigtige Pattern-methods
 
-Disse tre methods tillader os at arbejde mere fleksibelt med outputtet fra patterns.
-
-```sc
+```sc title="3 vigtige Pattern-methods"
 // .repeat - gentager hele sekvenser
 Pbind(\degree, Pshuf([0, 1, 3, 4], 2).repeat(2), \dur, 0.5).play; // bemærk ændring efter 1. gentagelse
 
@@ -60,13 +56,11 @@ Pbind(\degree, Pshuf([0, 1, 2, 4, 6, 8, 9], inf).clump(2)).play;
 
 ## 4 nyttige meta-Patterns
 
-Disse patterns bruges ikke til at generere værdier, men til at sætte rammen om kompositioner.
-
-```sc
+```sc title="4 nyttige meta-Patterns"
 // Pbind - knytter nøgler og patterns sammen i strømme af begivenheder (Events)
-Pbind().play;
+Pbind(\degree, Pseq([4, 2, 0])).play;
 
-// Pmono og PmonoArtic - afspiller en enkelt tone, skifter løbende mellem værdier
+// Pmono og PmonoArtic - afspiller en kontinuerlig tone, skifter løbende mellem værdier
 Pmono(\default, \degree, Pwhite(-10, 10), \dur, Pexprand(0.1, 0.5)).play;
 
 // Pdef - yderst handy til synkronisering og dynamisk udskiftning af patterns
