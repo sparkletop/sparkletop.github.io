@@ -3,9 +3,15 @@ tags:
     - Artikler
 ---
 
-Når man første gang åbner SuperCollider, mødes man af en umiddelbart noget minimalistisk brugerflade. Med mindre man har arbejdet med programmering i anden sammenhæng, vil det i begyndelsen være lidt uvant, at brugerfladen først og fremmest består i et tekstdokument, hvor man noterer og eksekverer kildekode. Men det ændrer sig hurtigt, når man kommer i gang, og inden længe kommer man til at sætte pris på den enkelhed, brugerfladen også repræsenterer.
+??? abstract "Introduktion til kapitlet"
+
+    Dette kapitel introducerer til grundlæggende programmering i SuperCollider. Som det første lærer vi den grundlæggende syntaks, så vi kan skrive kildekode, der fungerer. Samtidig introduceres nogle grundbegreber, som det er vigtigt at have styr på, inden vi går videre: *Eksekvering af kildekode*, brug af såkaldte *variabler* og *methods*, samt noget vi bruger konstant til at angive musikalske og lydlige parametre, som hedder *argumenter*.
+
+    I slutningen af kapitlet til laver vi nogle [grundlæggende programmeringsøvelser](e1-basics.md) og [øvelser med lyde](e2-lyd.md), men hovedfokus er altså i første omgang på at skrive og eksekvere kildekode i SuperColliders brugerflade. I [næste kapitel](../02/a1-patterns-intro.md), der handler om generativ komposition med patterns, kommer vi til at spille en masse toner.
 
 # Eksekvering af kode
+
+Når man første gang åbner SuperCollider, mødes man af en umiddelbart noget minimalistisk brugerflade. Med mindre man har arbejdet med programmering i anden sammenhæng, vil det i begyndelsen være lidt uvant, at brugerfladen først og fremmest består i et tekstdokument, hvor man noterer og eksekverer kildekode. Men det ændrer sig hurtigt, når man kommer i gang, og inden længe kommer man til at sætte pris på den enkelhed, brugerfladen også repræsenterer.
 
 Man eksekverer kode ved at taste Ctrl+Enter på Windows/Linux eller Cmd+Enter på Mac. Prøv det selv:
 

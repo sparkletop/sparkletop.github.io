@@ -131,5 +131,5 @@ Kør blokken flere gange for at høre variationsmulighederne. Justér evt. på p
 )
 ```
 
-Se i øvrigt også artiklen om [Rissets klokke](Art3-Rissets klokke.md).
+Se i øvrigt også artiklen om [Rissets klokke](a3-risset.md).
 

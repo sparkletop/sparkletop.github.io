@@ -55,7 +55,7 @@ Har du mange ekstra vinduer åbne (fx fra ovenstående øvelse med plots), kan d
 
 ## Opgave 4: Modulation af lydstyrke (amplitude)
 
-Anvend følgende UGens, [skaleret med methoden `.unipolar`](Art2-Skalering.md), til at modulere amplituden i intervallet 0-1 for en savtakket bølgeform. Modulatorens frekvens vælges frit i intervallet 0-20Hz:
+Anvend følgende UGens, [skaleret med methoden `.unipolar`](a2-skalering.md), til at modulere amplituden i intervallet 0-1 for en savtakket bølgeform. Modulatorens frekvens vælges frit i intervallet 0-20Hz:
 
 1. `LFSaw` (savtakket bølgeform)
 1. `LFPulse` (firkantet bølgeform)
@@ -67,7 +67,7 @@ Anvend følgende UGens, [skaleret med methoden `.unipolar`](Art2-Skalering.md), 
 
 ## Opgave 5: Modulation af tonehøjde (frekvens)
 
-Når vi modulerer frekvens, er det typisk nødvendigt at justere modulatorens frekvens og outputrækkevidde. `.range` og `.exprange` er oplagte redskaber at styre en absolut modulation, og .midiratio (evt. kombineret med .unipolar eller .bipolar) er oplagt til at styre en relativ modulation af tonehøjde. Læs evt. nærmere herom i artiklen om [modulation af UGens](Art2-Skalering.md).
+Når vi modulerer frekvens, er det typisk nødvendigt at justere modulatorens frekvens og outputrækkevidde. `.range` og `.exprange` er oplagte redskaber at styre en absolut modulation, og .midiratio (evt. kombineret med .unipolar eller .bipolar) er oplagt til at styre en relativ modulation af tonehøjde. Læs evt. nærmere herom i artiklen om [modulation af UGens](a2-skalering.md).
 
 Modulér frekvensen for en savtakket oscillator med følgende UGens og på følgende måder:
 

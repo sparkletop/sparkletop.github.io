@@ -52,3 +52,63 @@ markdown_extensions:
   - def_list
   - tables
   - footnotes
+
+nav:
+  - Forside: index.md
+  - Grundlæggende programmering:
+    - 01/a1-eksekvering.md
+    - 01/a2-variabler.md
+    - 01/a3-methods.md
+    - 01/e1-basics.md
+    - 01/e2-lyd.md
+  - At generere en strøm af værdier:
+    - 02/a1-patterns-intro.md
+    - 02/a2-random-patterns.md
+    - 02/c1-patterns.md
+    - 02/c2-pbind.md
+    - 02/e1-patterns.md
+    - 02/e2-generativ-komposition.md
+  - Komposition med Patterns:
+    - 03/a1-indlejring.md
+    - 03/a2-eksempler.md
+    - 03/e1-minimalisme.md
+  - Oscillatorer og modulation:
+    - 04/a1-ugens.md
+    - 04/a2-skalering.md
+    - 04/c1-ugens.md
+    - 04/c2-ugen-methods.md
+    - 04/e1-ugens.md
+  - Envelopes:
+    - 05/a1-envelopes.md
+    - 05/a2-synthdef.md
+    - 05/a3-nye-envelopes.md
+    - 05/c1-synthdef.md
+    - 05/e1-envelopes.md
+  - Klangdannelse med filtre:
+    - 06/a2-subtraktiv.md
+    - 06/a3-lilletromme.md
+    - 06/c1-filtre.md
+    - 06/e1-subtraktiv.md
+  - Klangdannelse med oscillatorbanke:
+    - 07/a1-oscillatorbanke.md
+    - 07/a2-additiv.md
+    - 07/a3-risset.md
+    - 07/a4-orgel.md
+    - 07/e1-oscillatorbanke.md
+  - Samplemanipulation:
+    - 08/a1-samples.md
+    - 08/e1-samples.md
+  - Klangdannelse med granular syntese:
+    - 09/a1-granular.md
+    - 09/a2-tempo-pitch.md
+    - 09/a3-tekstur-klangflade.md
+    - 09/a4-groove.md
+    - 09/e1-granular.md
+  - Algoritmisk beatslicing:
+    - 10/a1-beatslicing.md
+    - 10/e1-beatslicing.md
+  - Diverse ressourcer:
+    - Ressourcer/art1-MIDI-output.md
+    - Ressourcer/art2-optag_supercollider.md
+    - Ressourcer/gratis-samples.md
+    - Ressourcer/lydeksempler.md

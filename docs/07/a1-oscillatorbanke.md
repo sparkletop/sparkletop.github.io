@@ -114,4 +114,4 @@ Med lyd - tonerne fremstilles af sinusbølge-oscillatorer og fordeles jævnt i e
 )
 ```
 
-Denne teknik ligger sammen med den beslægtede multichannel expansion-effekt til grund for [additiv syntese](Art2-Additive-bølger.md).
+Denne teknik ligger sammen med den beslægtede multichannel expansion-effekt til grund for [additiv syntese](a2-additiv.md).

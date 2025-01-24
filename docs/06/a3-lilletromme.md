@@ -7,7 +7,7 @@ tags:
 
 Denne lilletrommelyd er inspireret af [*Sound on Sound*-artikler af Gordon Reid om syntetisk skabelse af percussion-lyde](https://www.soundonsound.com/techniques/practical-snare-drum-synthesis). Lyddesignet forsøger at simulere forskellige klangelementer i en "realistisk" lilletrommelyd.
 
-SynthDef'en illustrerer hvordan man bruger forskellige [filtre](Cheat1-Filter-UGens.md) sammen med [envelopes](../05. Envelope som kreativt virkemiddel/Art1-Envelopes.md) til at modulere klangens forandring over tid.
+SynthDef'en illustrerer hvordan man bruger forskellige [filtre](c1-filtre.md) sammen med [envelopes](../05/a1-envelopes.md) til at modulere klangens forandring over tid.
 
 ```sc title="En SynthDef til syntetisk emuleret lilletrommelyd"
 (

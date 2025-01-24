@@ -111,13 +111,13 @@ Forklaring:
 
 Denne klangdannelsesopskrift stammer fra s. 121-122 i [*Creating Sounds from Scratch*](https://global.oup.com/academic/product/creating-sounds-from-scratch-9780199921898) af Andrea Pejrolo & Scott B. Metcalfe.
 
-Se i øvrigt [et andet bud på syntetisk dannelse af lilletrommelyd](../06. Filterbaseret klangdannelse/Art2-Lilletromme.md).
+Se i øvrigt [et mere elaboreret bud på syntetisk dannelse af lilletrommelyd](../06/a3-lilletromme.md).
 
 ## SynthDef med vedvarende envelope
 
 1. Justér nedenstående SynthDef, så den anvender en vedvarende envelope i stedet for en selv-afsluttende envelope.
-    - OBS: Dette kræver tilføjelse af gate-argument - se hvordan i [artiklen om envelopes](Art1-Envelopes.md).
-2. Skriv en `Pmono`-baseret komposition, hvor du varierer `\degree`, `\lfoFreq` og `\lfoDepth` ved hjælp af patterns, fx [tilfældighedsgeneratorer](../02. Generativ komposition med patterns/Art2-Tilfældighedsgeneratorer.md).
+    - OBS: Dette kræver tilføjelse af gate-argument - se hvordan i [artiklen om envelopes](a1-envelopes.md).
+2. Skriv en `Pmono`-baseret komposition, hvor du varierer `\degree`, `\lfoFreq` og `\lfoDepth` ved hjælp af patterns, fx [tilfældighedsgeneratorer](../02/a2-random-patterns.md).
 
 Justér kun på de markerede linjer i kodeblokken herunder.
 
@@ -153,8 +153,8 @@ Pmono(\opgave4,
 
 ## Hjemmelavede LFO'er med `Env.circle`
 
-1. Modificér SynthDef'en, således at LFO'en modulerer mindst to forskellige, lydlige parametre (fx tonehøjde, panorering, lydstyrke, cutoff-frekvens etc.). Husk at [skalere outputtet fra LFO'en](../04. Oscillatorer og modulation/Art2-Skalering.md), så det passer til modulationens formål.
-1. Design din egen LFO ved hjælp af `Env.circle`. Du kan finde et eksempel herpå i [artiklen vedr. nye envelopes og LFO'er](Art3-Nye envelopes og LFO.md#envelope-som-lfo).
+1. Modificér SynthDef'en, således at LFO'en modulerer mindst to forskellige, lydlige parametre (fx tonehøjde, panorering, lydstyrke, cutoff-frekvens etc.). Husk at [skalere outputtet fra LFO'en](../04/a2-skalering.md), så det passer til modulationens formål.
+1. Design din egen LFO ved hjælp af `Env.circle`. Du kan finde et eksempel herpå i [artiklen vedr. nye envelopes og LFO'er](a3-nye-envelopes.md#envelope-som-lfo).
 1. Skriv en komposition baseret på `Pbind` eller `Pmono`, hvor du demonstrerer mulighederne i SynthDef'en.
 
 ```sc title="Hjemmelavet LFO" hl_lines="7-8"

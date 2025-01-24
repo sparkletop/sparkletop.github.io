@@ -9,7 +9,7 @@ Denne øvelse går ud på at anvende patterns til at skabe en enkel, minimalisti
 
 På dette trin i kurset kan øvelsen oplagt udføres som en komposition, der bliver realiseret over MIDI. På den måde kan man fx lade en standalone-synthesizer eller en DAW udføre klangdannelsen og koncentrere sig om de kompositionsmæssige aspekter som tonehøjde, rytmik og dynamik i SuperCollider. Se evt. [guiden til MIDI-output fra SuperCollider](../Ressourcer/art1-MIDI-output.md).
 
-Alternativt kan øvelsen sagtens udføres med standardlyden i SuperCollider. Senere i kurset designer vi egne lyde med [SynthDefs](../05. Envelope som kreativt virkemiddel/Art2-Synth og SynthDef.md), som kan erstatte den lidt kedelige standardlyd.
+Alternativt kan øvelsen sagtens udføres med standardlyden i SuperCollider. Senere i kurset designer vi egne lyde med [SynthDefs](../05/a2-synthdef.md), som kan erstatte den lidt kedelige standardlyd.
 
 ## Opgave 1: En minimalistisk komposition
 
