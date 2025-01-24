@@ -3,7 +3,7 @@
         "version": "2.0.0",
         "tasks": [ 
             { // Full build from Markdown to pdf
-                "label": "build",
+                "label": "Build PDF from markdown sources",
                 "type": "shell",
                 "command": "${workspaceFolder}/build.sh",
                 "group": {
@@ -46,6 +46,16 @@
                 "label": "clean build",
                 "type": "shell",
                 "command": "${workspaceFolder}/clean-build.sh",
+                "group": {
+                    "kind": "build",
+                    "isDefault": false
+                },
+                "problemMatcher": []
+            },
+            { // Build and serve MKdocs site locally
+                "label": "MKdocs serve",
+                "type": "shell",
+                "command": "mkdocs serve",
                 "group": {
                     "kind": "build",
                     "isDefault": false
