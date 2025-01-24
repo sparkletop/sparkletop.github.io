@@ -7,7 +7,7 @@
 \usepackage{fontspec}             % for using fonts
 \usepackage{textcomp}             % for special symbols - necessary?
 \usepackage{titlesec}             % to better control section heading placement
-\usepackage{xcolor}               % for coloring links
+\usepackage{xcolor,pagecolor}     % for coloring links and page backgrounds
 \usepackage[hidelinks]{hyperref}  % to make links between sections etc.
 \usepackage{enumitem}             % to style lists
 \usepackage[
@@ -27,6 +27,10 @@
 \setlrmarginsandblock{3cm}{3cm}{*}
 \setulmarginsandblock{3cm}{*}{1}
 \checkandfixthelayout 
+
+% Page background colors
+\definecolor{exercise}{HTML}{BCFFCD}%{95FFAF}
+\definecolor{cheatsheet}{HTML}{C1EEFF}
 
 % Font settings
 \setmonofont{SourceCodePro}[

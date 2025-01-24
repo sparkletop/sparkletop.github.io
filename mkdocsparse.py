@@ -26,6 +26,7 @@ import sys
 import re
 from os.path import join, isdir
 import argparse
+import yaml
 
 # Add the md2tex submodule folder to the path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'md2tex'))
@@ -49,12 +50,26 @@ def preprocess_mkdocs_markdown(md_content: str):
         code = re.sub(r"^    ", "", code, flags=re.M)
         md_content = md_content.replace(block.group(0), code)
     
+    # process markdown frontmatter
+    frontmatter = re.match(r"^--- *\n(.+?)(?:^(?:\.{3}|-{3}))", md_content, re.MULTILINE | re.DOTALL)
+    if frontmatter:
+        yml = yaml.load(frontmatter.group(1), yaml.FullLoader)
+        doctype = yml['tags'][0]   # assuming the first tag is the document type
+        prefix = '' if doctype not in ['Øvelser', 'Cheat sheets'] else '!!!!!NEWPAGE!!!!!' + '\n' + '!!!!!' + doctype + '!!!!!'
+        md_content = md_content.replace(frontmatter.group(0), prefix)
+        print(doctype)
+    
     return md_content
 
 def postprocess_tex(tex: str):
     # replace tabs with spaces
     tex = tex.replace("\t", "    ")
 
+    tex = re.sub("!!!!!NEWPAGE!!!!!", r'\\newpage', tex)
+    tex = re.sub("!!!!!RESETPAGECOLOR!!!!!", r'\\nopagecolor', tex)
+    tex = re.sub("!!!!!Øvelser!!!!!", r'\\pagecolor{exercise}', tex)
+    tex = re.sub("!!!!!Cheat sheets!!!!!", r'\\pagecolor{cheatsheet}', tex)
+    
 
     # update figure paths
     tex = tex.replace("../media/", "../docs/media/")
@@ -160,7 +175,7 @@ def make_chapter(chapter_title, chapter_dir, ignore_files, solo_files):
         return ""
 
     chapter_title = re.sub(r'^\d+\.\s+', '', chapter_title)
-    chapter_tex = f"\\chapter{{{chapter_title}}}\n\\label{{chap:{chapter_title}}}\n"
+    chapter_tex = f"\\chapter{{{chapter_title}}}\n\\label{{chap:{chapter_title}}}\n!!!!!RESETPAGECOLOR!!!!!\n"
 
     chapter_titles.append(chapter_title)
 
