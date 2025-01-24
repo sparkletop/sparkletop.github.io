@@ -51,3 +51,4 @@ markdown_extensions:
   - attr_list
   - def_list
   - tables
+  - footnotes
