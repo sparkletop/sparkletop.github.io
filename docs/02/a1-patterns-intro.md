@@ -2,23 +2,27 @@
 tags:
     - Artikler
 ---
-# Grundlag for generativ komposition: Patterns
 
-Husk at boote lydserveren inden du kører nedenstående eksempler: `s.boot;`
+??? abstract "Introduktion til kapitlet"
 
-Generativ komposition kan være kernen i den kreative proces, hvilket ofte er tilfældet inden for computermusikken. Men i bredere forstand er generativ komposition også en tilgang hvormed vi kan generere samples, sekvenser, variationer mm. til brug i mere traditionel komposition.
+	Generativ komposition kan være kernen i den kreative proces, når man komponerer, hvilket ofte er tilfældet inden for computermusikken. Men i bredere forstand er generativ komposition også en tilgang hvormed vi kan generere samples, sekvenser, variationer mm. til brug i mere traditionel komposition.
 
-I SuperCollider udgør de såkaldte patterns et centralt redskab til generativ komposition, og som udgangspunkt er det derfor vigtigt at lære, hvordan man arbejder med patterns. Alle navne på SuperColliders patterns starter belejligt nok med stort P - fx `Pbind`, `Pseq`, `Pwhite` og `Prand`.
+	I SuperCollider udgør de såkaldte patterns et centralt redskab til generativ komposition, og som udgangspunkt er det derfor vigtigt at lære, hvordan man arbejder med patterns. Dette kapitel introducerer først til patterns ved at gennemgå tre centrale 
+
+# Introduktion til patterns
+
+SuperCollider indeholder et yderst righoldigt bibliotek af patterns, som vi kan kombinere på utallige, kreative måder. Men hvad er patterns egentlig? Patterns er *opskrifter på strømme af værdier*. Det lyder måske abstrakt, men det er egentlig ikke så galt: `Pseq` definerer en sekvens af værdier (ligesom en sequencer), `Pwhite` definerer en strøm af tilfældigt genererede værdier, `Pseries` definerer en lineær række af værdier (fx 1, 2, 3), osv. Og ja, du har nok allerede gættet hvordan man kan spotte et pattern - navnene på SuperColliders pattern-klasser starter belejligt nok altid med `P`. Det første pattern vi skal forstå er det såkaldte `Pbind`, som udgør rammen for de øvrige patterns, vi anvender.
 
 ## Rammen for generativ komposition: Pbind
 
-Som udgangspunkt for generativ komposition bruger vi noget, der hedder `Pbind`:
-``` sc
+Som udgangspunkt for generativ komposition laver vi en instans af klassen `Pbind`, som vi så kan afspiller med method'en `.play` (husk at boote lydserveren med `s.boot;`, hvis du ikke har gjort det allerede):
+
+```sc title="Den simplest mulige Pbind-komposition"
 ~eksempel = Pbind().play; // kør denne linje for at starte kompositionen
 ~eksempel.stop;           // og denne linje for at stoppe igen
 ```
 
-`Pbind` "binder" musikalske parametre sammen til en strøm af begivenheder. I Pbind bruger vi på den ene side *nøgler*, angivet med `\degree`, `\dur`, `\scale` og andre betegnelser til at angive kompositionsmæssige parametre, og vi bruger *patterns* eller *faste værdier* til at styre disse parametre.
+`Pbind` har den funktion, at den "binder" musikalske parametre sammen til en strøm af begivenheder. I Pbind bruger vi på den ene side *nøgler*, angivet med `\degree`, `\dur`, `\scale` og andre betegnelser til at angive kompositionsmæssige parametre, og vi bruger *patterns* eller *faste værdier* til at styre disse parametre.
 
 Her er et enkelt eksempel, hvor vi med nøglen `\degree` vælger at knytte den musikalske parameter skalatrin sammen med en fast værdi, nemlig værdien 0 (første skalatrin).
 ``` sc title="Enkel Pbind"
@@ -61,12 +65,11 @@ Pbind(
 )
 ```
 
-
 ## Introduktion til Pseq, en meget fleksibel sequencer
 
 I `Pseq` noterer vi først en liste med de elementer, som skal indgå i vores sekvens. Det gør vi med kantede parenteser, adskilt af kommaer, fx sådan her: `[a, b, c]`
 
-``` sc
+``` sc title="En sekvens med Pseq"
 (
 Pbind(
 	\degree, Pseq([0, 1, 2, 7]),
@@ -76,7 +79,7 @@ Pbind(
 
 Vi kan som det næste argument (det, som står inde i Pbind-parenteserne) angive hvor mange gange sekvensen skal afspilles
 
-``` sc
+``` sc title="Repetition med Pseq"
 (
 Pbind(
 	\degree, Pseq([0, 1, 2, 7], 2),
@@ -85,7 +88,8 @@ Pbind(
 ```
 
 I stedet for et bestemt antal gentagelser kan vi gentage uendeligt med nøgleordet `inf`:
-``` sc
+
+``` sc title="Uendelig gentagelse med Pseq"
 (
 ~eksempel = Pbind(
 	\degree, Pseq([0, 1, 2, 7], inf),
@@ -96,7 +100,7 @@ I stedet for et bestemt antal gentagelser kan vi gentage uendeligt med nøgleord
 
 Vi kan vælge at bruge `Pseq` til at styre flere forskellige parametre. Selvom den nederste `Pseq` herunder gentager sekvensen i det uendelige, slutter vores samlede sekvens af begivenheder, så snart den første Pseq i Pbind'en er fædig.
 
-``` sc
+``` sc title="Flere Pseqs på én gang"
 (
 Pbind(
 	\degree, Pseq([0, 1, 2, 7, 4, 3, 1, 2]),
@@ -106,7 +110,8 @@ Pbind(
 ```
 
 Det kan nogle gange være en god idé at bruge variabler til at fordele vores kode over flere linjer. Eksemplet herunder giver samme resultat som ovenfor:
-``` sc
+
+``` sc title="Organisér koden med variabler"
 (
 ~skalatrin = [0, 1, 2, 7, 4, 3, 1, 2];
 ~varigheder = [0.25, 0.5, 0.25, 1];
@@ -117,17 +122,16 @@ Pbind(
 )
 ```
 
-`Pseq` er beslægtet med en række andre listebaserede patterns, fx `Pshuf`, som sætter elementerne i tilfældig rækkefølge, eller `Prand`, som vælger tilfældige elementer fra listen.
-``` sc
+`Pseq` er i øvrigt beslægtet med andre listebaserede patterns, fx `Pshuf`, som sætter elementerne i tilfældig rækkefølge, eller `Prand`, som vælger tilfældige elementer fra listen.
+
+``` sc title="Pseq's uforudsigelige søskende: Pshuf og Prand"
 Pbind(\degree, Pshuf([0, 2, 4, 7], 2)).play; // samme tilfældige sekvens, afspillet to gange
 Pbind(\degree, Prand([0, 2, 4, 7], 8)).play; // tilfældigt valgte elementer for hver tone
 ```
 
-### Indlejrede patterns
+Elementerne i vores `Pseq`-sekvens kan være andre patterns, fx `Pwhite`, som vi så ovenfor. På den måde kan man blande variation og dynamik ind i sin komposition. Vi ser nærmere på forskellige teknikker til indlejring af patterns [i næste kapitel](../03/a1-indlejring.md).
 
-Elementerne i vores `Pseq`-sekvens kan være andre patterns, fx `Pwhite`, som vi så ovenfor - på den måde kan man blande variation og dynamik ind i sin komposition
-
-``` sc
+``` sc title="Indlejring af Pwhite i Pseq"
 (
 Pbind(
 	\degree, Pseq([
@@ -143,6 +147,7 @@ Pbind(
 ## Introduktion til Pwhite, en tilfældighedsgenerator
 
 `Pwhite` genererer tilfældige tal inden for et minimum og et maksimum.
+
 ``` sc
 (
 ~eksempel = Pbind(
