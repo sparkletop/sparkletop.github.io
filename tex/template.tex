@@ -78,14 +78,20 @@
   breaklines=true,
   highlightcolor=hl,
   ignorelexererrors=true,
-  fontsize=\small
+  fontsize=\footnotesize
 }
 \renewcommand{\listingscaption}{Kildekodeboks}
-\captionsetup{skip=0.2em, font=small}
+\captionsetup{skip=0.2em, font=scriptsize}
 \setmintedinline{bgcolor=none}  % requires a more recent version of minted than 2.9
 
+% List settings
+\setlist{noitemsep}
 \setlist[description]{style=nextline}
+\setlist[itemize]{leftmargin=1.7em, labelindent=0pt, label=\textbf{\char`~}, font=\fontfamily{SourceCodePro}}
+\setlist[enumerate]{leftmargin=1.7em, labelindent=0pt}
 
+
+% Metadata
 \title{Musik- og lydprogrammering med SuperCollider}
 \author{Anders Eskildsen}
 \date{\today}
