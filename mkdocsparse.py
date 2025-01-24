@@ -37,6 +37,7 @@ chapter_titles = []
 AUDIO_EXAMPLE_BASE_URL = 'https://sparkletop.github.io/Ressourcer/lydeksempler'
 AUDIO_EXAMPLE_FILE_PATH = './docs/Ressourcer/lydeksempler.md'
 IGNORED_MD_FILES_LIST = 'ignored_MD_files.txt'
+SOLOED_MD_FILES_LIST = 'soloed_MD_files.txt'
 
 def preprocess_mkdocs_markdown(md_content: str):
     # preprocess mkdocs-material content tabs (remove indentation)
@@ -151,7 +152,7 @@ def generate_audio_examples_page(tex: str):
             file_contents.truncate()
             print(f"New version of {AUDIO_EXAMPLE_FILE_PATH} generated.")
 
-def make_chapter(chapter_title, chapter_dir, ignore_files):
+def make_chapter(chapter_title, chapter_dir, ignore_files, solo_files):
     # loop over .md files, convert to tex, and return the string
     # remove "01. " etc. from the chapter title
     md_files = [f for f in os.listdir(chapter_dir) if f.endswith('.md')]
@@ -165,7 +166,7 @@ def make_chapter(chapter_title, chapter_dir, ignore_files):
 
     md_files.sort()
     for filename in md_files:
-        if filename not in ignore_files:
+        if (solo_files and filename in solo_files) or (filename not in ignore_files):
             path = join(chapter_dir, filename)
             chapter_tex = chapter_tex + "\n" + convert_section(path, filename)
 
@@ -189,6 +190,9 @@ if __name__ == "__main__":
     # Read the list of ignored markdown files
     with open(IGNORED_MD_FILES_LIST, 'r') as ignore_file:
         ignore_files = ignore_file.read().split('\n')
+    with open(SOLOED_MD_FILES_LIST, 'r') as solo_file:
+        solo_files = solo_file.read().split('\n')
+    
 
     # First we process the preface
     if args.frontmatter_inpath:
@@ -202,7 +206,7 @@ if __name__ == "__main__":
     chapters = [d for d in os.listdir(mkdocs_folder) if isdir(join(mkdocs_folder, d))]
     chapters.sort()
     for chap in chapters:
-        tex = tex + '\n' + make_chapter(chap, join(mkdocs_folder, chap), ignore_files)
+        tex = tex + '\n' + make_chapter(chap, join(mkdocs_folder, chap), ignore_files, solo_files)
 
     tex = postprocess_tex(tex)
 
