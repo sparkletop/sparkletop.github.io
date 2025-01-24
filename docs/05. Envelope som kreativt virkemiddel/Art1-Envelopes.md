@@ -54,7 +54,7 @@ Hvordan bruger vi envelopes? Lad os kigge på et eksempel - `Env.perc`.
 
 De to segmenter i `Env.perc` hedder attack og release, og vi kan specificere deres varighed med argumenter - her en attack-tid på 1 sekund og en release-tid på 4 sekunder:
 
-```sc
+```sc title="Env.perc"
 Env.perc(1, 4)
 
 // Vi kan også vælge blot at justere release-segmentet:
@@ -64,26 +64,24 @@ Env.perc(releaseTime: 10)
 [Env.perc(curve: 5), Env.perc(curve: 0), Env.perc(curve: -5)].plot;
 ```
 
- Når vi skal bruge en envelope som `Env.perc` i vores lyddesign, skal vi tage højde for, at `Env` blot specificerer en envelope-form - en `Env` er ikke en UGen!
-
-For at bruge `Env`-baserede envelopes skal vi anvende `EnvGen`, som er en envelope-generator-UGen. Vi fortæller `EnvGen`, at vi ønsker en `Env.perc` ved at angive den som første argument: `EnvGen.kr(Env.perc)`.
+Når vi skal bruge en envelope som `Env.perc` i vores lyddesign, skal vi tage højde for, at `Env` blot specificerer en envelope-form - en `Env` er ikke en UGen. For at bruge `Env`-baserede envelopes skal vi  anvende `EnvGen`, som er en envelope-generator-UGen. Vi fortæller `EnvGen`, at vi ønsker en `Env.perc` ved at angive den som første argument: `EnvGen.kr(Env.perc)`.
 
 Vi kan nu bruge `EnvGen` ligesom `Line` og `XLine` ovenfor - fx til at modulere lydstyrken for en oscillator. Som nævnt i kursusgang 3 gør vi dette ved ganske enkelt at gange outputtet fra oscillatoren med outputtet fra envelope-generatoren:
 
-```sc
+```sc title="EnvGen og Env.perc"
 {PinkNoise.ar * EnvGen.kr(Env.perc) * 0.1}.play;
 ```
 
 Inden vi går videre, er det vigtigt at skrive sig bag øret, at `EnvGen` ofte noteres implicit (skjult). Følgende to linjer har præcis samme resultat, og man kan selv vælge hvilken form man foretrækker:
 
-```sc
+```sc title="Implicit EnvGen"
 {PinkNoise.ar * EnvGen.kr(Env.perc) * 0.1}.play;
 {PinkNoise.ar * Env.perc.kr * 0.1}.play;
 ```
 
 Det er ofte nyttigt at skille disse elementer ad på forskellige linjer og bruge lokale variabler:
 
-```sc
+```sc title="Envelope som lokal variabel"
 (
 {
 	var env = EnvGen.kr(Env.perc);
@@ -97,7 +95,7 @@ Når vi gemmer envelope-generatoren under en lokal variabel, kan vi efterfølgen
 
 Lad os tage et eksempel:
 
-```sc
+```sc title="Brug af envelope til modulation af flere parametre"
 (
 {
     // Envelopen oprettes og gemmes under den lokale variabel env
@@ -112,38 +110,36 @@ Lad os tage et eksempel:
 )
 ```
 
-## Envelopes med og uden gate
+## Standardenvelopes
 
-Ud over `Env.perc` og `Env.new/Env.circle` har vi adgang til en række standard-envelopes. Her kan vi skelne mellem to slags envelopes:
+Ud over `Env.perc` og `Env.new/Env.circle` har vi adgang til en række standard-envelopes. Her kan vi skelne mellem to slags envelopes: Selvafsluttende envelopes, hvor vi kender eller angiver varigheden på forhånd, og vedvarende envelopes, hvor varigheden afhænger af .
 
-**Selv-afsluttende envelopes (uden gate)**
+### Selvafsluttende envelopes (uden gate)
 
-:   Selv-afsluttende envelopes (fx Env.perc) varer præcis den tid det tager at gennemløbe alle envelopens segmenter. Envelopens varighed er fast og afhænger ikke af en såkaldt gate. Det gælder fx disse envelopes:
-    ```sc
-    Env.perc
-    Env.triangle
-    Env.linen
-    Env.sine
-    ```
+Selvafsluttende envelopes som `Env.perc` varer præcis den tid det tager at gennemløbe alle envelopens segmenter. Envelopens varighed er fast og afhænger ikke af en såkaldt gate. Det gælder blandt andet disse standardenvelopes:
 
-**Vedvarende envelopes (med gate)**
+- `Env.perc`
+- `Env.triangle`
+- `Env.linen`
+- `Env.sine`
 
-:   Vedvarende (sustaining) envelopes bliver hængende på et bestemt punkt imellem to segmenter, indtil de bliver bedt om at gå videre. Dette kender vi fra keyboards, hvor tonen begynder at klinge, når vi trykker tangenten ned, og fortsætter indtil vi slipper tangenten igen. Måden hvorpå vi beder envelopen om at fortsætte til næste segment er ved at bruge en såkaldt gate.
-    Her er nogle vedvarende envelopes: 
-    
-    ```sc
-    Env.asr
-    Env.adsr
-    Env.cutoff
-    Env.dadsr
-    ```
-    Vi kan anvende gates manuelt på følgende måde:
-    ```sc
-    // Start en tone med åben gate (gate = 1)
-    ~tone = {arg gate = 1; SinOsc.ar * EnvGen.kr(Env.asr, gate);}.play;
-    // Vent lidt, før vi går videre til release-segmentet
-    ~tone.set(\gate, 0);
-    ```
+### Vedvarende envelopes (med gate)
+
+Vedvarende (sustaining) envelopes bliver hængende på et bestemt punkt imellem to segmenter, indtil de bliver bedt om at gå videre. Dette kender vi fra keyboards, hvor tonen begynder at klinge, når vi trykker tangenten ned, og fortsætter indtil vi slipper tangenten igen. Måden hvorpå vi beder envelopen om at fortsætte til næste segment er ved at bruge en såkaldt gate. Centrale eksempler er de følgende envelopes:
+
+- `Env.asr`
+- `Env.adsr`
+- `Env.cutoff`
+- `Env.dadsr`
+
+Når vi bruger `Pbind` og patterns til at styre artikulationen af toner, styres åbning og lukning af gates til envelopes automatisk. Vi kan dog sagtens anvende vedvarende envelopes med gates manuelt på følgende måde:
+
+```sc title="Simpel ASR-envelope med gate"
+// Start en tone med åben gate (gate = 1)
+~tone = {arg gate = 1; SinOsc.ar * EnvGen.kr(Env.asr, gate);}.play;
+// Vent lidt, før vi går videre til release-segmentet
+~tone.set(\gate, 0);
+```
 
 ## Automatisk oprydning med doneAction
 
@@ -153,7 +149,7 @@ Hvis du kan se, at du har en række gamle Synths liggende på lydserveren fra ek
 
 Vi beder ofte SuperCollider om at rydde op, når en envelope er færdiggjort. Det kan vi bl.a. gøre ved hjælp af envelope-generatorens `doneAction`-argument. Sammenlign disse to eksempler (hold øje med Node Tree-vinduet og bemærk hvilken forskel `doneAction: Done.freeSelf` gør):
 
-```sc
+```sc title="Visning af Synths på lydserveren"
 s.nodeTree;  // vis en liste med alle Synths på lydserveren
 {PinkNoise.ar * EnvGen.kr(Env.perc) * 0.1}.play;
 {PinkNoise.ar * EnvGen.kr(Env.perc, doneAction: Done.freeSelf) * 0.1}.play;
@@ -163,12 +159,12 @@ Hvornår skal man så bruge `doneAction: Done.freeSelf`? Jo, hvis man har gang i
 
 ### Hvad er `doneAction: 2`?
 
-`doneAction: 2` og `doneAction: Done.freeSelf` betyder det samme - at Synth'en skal fjernes fra lydserveren, når envelopen er slut:
+`doneAction: 2` og `doneAction: Done.freeSelf` betyder det samme - at Synth'en skal fjernes fra lydserveren, når envelopen er slut.
 
-```sc
+```sc title="Varianter over doneAction: 2"
 {PinkNoise.ar * EnvGen.kr(Env.perc, doneAction: Done.freeSelf) * 0.1}.play;
 {PinkNoise.ar * EnvGen.kr(Env.perc, doneAction: 2) * 0.1}.play;
 ```
 
-Om man bruger `doneAction: 2` eller `doneAction: Done.freeSelf` er således helt valgfrit. Førstnævnte er kortest at skrive, men sidstnævnte er umiddelbart lettest at forstå, når man man læser koden.
+Om man bruger `doneAction: 2` eller `doneAction: Done.freeSelf` er helt valgfrit. Førstnævnte er kortest at skrive, men sidstnævnte er umiddelbart lettest at forstå, når man man læser koden.
 

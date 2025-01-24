@@ -9,15 +9,15 @@ Sidst men ikke mindst: Bogen her udgør et *supplerende* læringsmateriale. Det 
 
 ## Sådan bruger du denne bog
 
-Bogen kan bruges af alle, der ønsker at lære musik- og lydprogrammering på grundlæggende niveau.
+Bogen er skrevet med henblik på studerende på de videregående uddannelser men kan bruges af alle, der har en forståelse af musikteori og musikteknologi på grundlæggende niveau.
 
 Hvis man er begynder, er det en god idé at starte fra kapitel 1 og arbejde sig fremad. Man skal kravle, før man kan gå, og det er min erfaring, at det er sjovest at tage fat på de mere avancerede emner, når man har godt styr på de grundlæggende færdigheder. Er man mere erfaren inden for programmering og computermusik, kan man bruge bogen som et opslagsværk.
 
 Uanset hvilken baggrund man har, vil jeg kraftigt anbefale, at man undervejs i læsningen selv indtaster og afprøver eksemplerne med kildekode.
 
-- Det er sjovere at lege med eksemplerne på egen hånd
-- Man forstår og husker bedre hvordan koden fungerer, når man selv har indtastet den
-- Man lærer et nyt sprog bedst ved at bruge det
+- Man forstår og husker bedre hvordan koden fungerer, når man selv har indtastet den.
+- Man lærer et nyt sprog bedst ved at bruge det.
+- Og sidst, men bestemt ikke mindst: Det er sjovere at lege med eksemplerne på egen hånd!
 
 Prøv selv at installere SuperCollider og indtaste nedenstående kildekode i SuperColliders tekst-editor. Placer cursoren på én af de midterste linjer og tast Ctrl-Enter eller Cmd-Enter for at høre lyden. Stop lyden igen med Ctrl-Punktum eller Cmd-Punktum.
 
@@ -33,7 +33,7 @@ s.waitForBoot({
 )
 ```
 
-Du vil nu høre en ...
+Du vil nu høre en sinustone, som springer
 
 ## Tre indholdstyper
 
@@ -43,9 +43,9 @@ Bogens kapitler indeholder forskellige afsnit, der kan bruges alt efter behov og
 - *Cheat sheets*: Overskuelige, korte oversigter over centrale redskaber og teknikker
 - *Øvelser*: Praktiske udfordringer, som giver mulighed for at arbejde hands on med emnerne
 
-Bogen her kan også læses i en webudgave på [sparkletop.github.io](https://sparkletop.github.io).
+Bogen kan også læses i en webudgave på [sparkletop.github.io](https://sparkletop.github.io).
 
 ## Licens
 
-Bogen er skrevet og gjort tilgængelig for offentligheden af [Anders Eskildsen](https://vbn.aau.dk/en/persons/146493) under Creative Commons-licensen [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Det betyder, at bogen må deles og bearbejdes, så længe licensbetingelserne overholdes - læs nærmere herom hos Creative Commons.
+Bogen er skrevet af [Anders Eskildsen](https://vbn.aau.dk/en/persons/146493) og gjort tilgængelig for offentligheden under Creative Commons-licensen *CC BY 4.0*. Det betyder, at bogen må deles og bearbejdes, så længe licensbetingelserne overholdes (herunder tydelig henvisning til forfatteren). Læs nærmere herom hos [Creative Commons](https://creativecommons.org/licenses/by/4.0/).
 

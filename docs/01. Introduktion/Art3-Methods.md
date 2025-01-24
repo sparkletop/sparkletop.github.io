@@ -28,30 +28,26 @@ En klasse er blot en kategori af objekter. Klasser repræsenteres af ord, som er
 Class methods er knyttet til, ja, klasser. En class method noterer man direkte efter klassenavnet, adskilt med et punktum. Det kan fx se sådan her ud:
 
 ``` sc title="Eksempler på class methods"
-Pbind.new;             // opretter en ny Pbind
 TempoClock.tempo;      // finder eller angiver tempo
-SinOsc.ar;             // opretter en audio-rate sinus-oscillator
-SinOsc.kr;             // opretter en control-rate sinus-oscillator
 Scale.directory;       // viser alle indbyggede skalaer
+SinOsc.ar;             // angiver en sinus-oscillator
+Pbind.new;             // opretter en ny Pbind (kan udgøre ramme for generativ komposition)
 ```
 
-#### Den (lidt) hemmelige method `.new`
-
-Der findes i SuperCollider en særlig class method, som vi bruger hele tiden: `.new`. Den har en særstatus, fordi den er så udbredt.
-
-`.new` skaber et nyt objekt (en "instance" eller forekomst) af den klasse, man angiver før punktummet.
+Der findes i SuperCollider en særlig class method, som vi bruger hele tiden: `.new`. Den har en særstatus, fordi den er så udbredt. `.new` skaber et nyt objekt (en "instance" eller forekomst) af den klasse, man angiver før punktummet.
 
 ``` sc title="Eksempler på .new"
-Pbind.new()
-SynthDef.new()
-Scale.new()
+Pbind.new()     // opretter en ny Pbind
+SynthDef.new()  // opretter en ny SynthDef
+Scale.new()     // opretter en ny skala
 ```
 
 `.new` er så almindeligt, at der for rigtig mange klasser findes en genvej til at bruge method'en - nemlig helt at udelade `.new`. Derfor giver disse to udtryk samme resultat:
 
 ``` sc title="Eksplicit og implicit .new"
-Pwhite.new(0, 10, 5)   // .new fremgår eksplicit
-Pwhite(0, 10, 5)       // .new er underforstået
+Pwhite.new(0, 10)   // .new fremgår eksplicit
+Pwhite(0, 10)       // .new er underforstået
+// Denne forekomst af Pwhite vil generere værdier mellem 0 og 10
 ```
 
 ### Instance methods

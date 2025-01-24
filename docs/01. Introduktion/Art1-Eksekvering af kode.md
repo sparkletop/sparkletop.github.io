@@ -9,8 +9,8 @@ Når man første gang åbner SuperCollider, mødes man af en umiddelbart noget m
 
 Man eksekverer kode ved at taste Ctrl+Enter på Windows/Linux eller Cmd+Enter på Mac. Prøv det selv:
 
-- Kopiér eller indtast linjerne herunder i et SuperCollider-dokument.
-- Sæt cursoren på en af linjerne herunder og tast Ctrl+Enter (PC) eller Cmd+Enter (Mac).
+- Indtast linjerne herunder i et SuperCollider-dokument.
+- Sæt cursoren på en af linjerne og tast Ctrl+Enter (PC) eller Cmd+Enter (Mac).
 - Iagttag derefter outputtet i SuperCollider's "Post window" (som ved et nyinstalleret setup vil befinde sig til højre i skærmbilledet).
 
 ```sc title="Eksekvering af kode"

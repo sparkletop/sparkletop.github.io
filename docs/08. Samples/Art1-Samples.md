@@ -11,21 +11,21 @@ Vi har indtil nu arbejdet med rent syntetisk dannede klange i SuperCollider. Men
 
 For at arbejde med et sample/en lydfil, skal samplet indlæses i en såkaldt `Buffer`, som udgør et afgrænset område i lydserverens hukommelse. Det gør vi med `Buffer.read`, hvor første argument er lydserveren (i vores tilfælde `s`), og andet argument er stien til den lydfil, vi ønsker.
 
-Her bruges et sample, der følger med SuperCollider, men man kan nemt arbejde med egne samples - erstat blot `Platform.resourceDir +/+ "sounds/a11wlk01.wav"` med stien til din egen lydfil. Stien kan genereres automatisk ved at trække filen ind i SuperCollider med musen, eller ved at copy-paste filen fra en mappe.
+Til at starte med kan vi bruge et sample, der følger med SuperCollider (linje 3). Men man kan nemt arbejde med egne samples (se linje 6 herunder) - erstat blot `C:/lydfiler/minlydfil.wav` med stien til din egen lydfil. Stien kan genereres automatisk ved at trække filen ind i SuperCollider med musen, eller ved at copy-paste filen fra en mappe på din computer.
 
 ```sc title="Indlæsning af lydfil i Buffer"
 (
-// ~lydFilSti = "C:/lydfiler/minlydfil.wav";
+// Et indbygget sample indlæses i buffer
+~sample = Buffer.read(s, Platform.resourceDir +/+ "sounds/a11wlk01.wav");
 
-~lydFilSti = Platform.resourceDir +/+ "sounds/a11wlk01.wav";
-
-~sample = Buffer.read(s, ~lydFilSti);
+// En ekstern lydfil indlæses i buffer
+~sample = Buffer.read(s, "C:/lydfiler/minlydfil.wav");
 )
 ```
 
-Når samplet er indlæst i en `Buffer` under variabelnavnet `~sample`, kan vi bruge de forskellige instance methods, som knytter sig til buffere:
+Når lydfilen er indlæst i en `Buffer` under variabelnavnet `~sample`, kan vi bruge de forskellige instance methods, som knytter sig til buffere, til at vise noget grundlæggende information om samplet:
 
-```sc
+```sc title="Nyttige methods til buffere"
 ~sample.play;      // afspilning, anvendes kun til test
 
 ~sample.query;     // info om bufferens indhold

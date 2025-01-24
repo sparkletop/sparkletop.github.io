@@ -87,16 +87,16 @@ OBS: Til denne øvelse skal der anvendes et mono-sample.
 
 ## Opgave 3: Lydcollage-komposition
 
-Fremstil en abstrakt lydcollage med minimalistiske træk. Kompositionen skal baseres på ét sample og realiseres ved hjælp af nedenstående SynthDef og Pbind.
+Fremstil en abstrakt lydcollage med minimalistiske træk. Kompositionen skal baseres på ét sample og realiseres ved at bruge patterns sammen med nedenstående `SynthDef`.
 
 1. Vælg og indlæs et sample, som...
-    - indeholder en vedvarende lyd (dvs. uden lange pauser i lyden)
-    - varer mellem 2 og 10 sekunder
-    - tonalt set er relativt enkel og stabil
-    - indeholder én monokanal (brug evt. `Buffer.readChannel` som ved opgave 1, hvis din ønskede fil er stereo-format)
+    1. indeholder en vedvarende lyd (dvs. uden lange pauser i lyden)
+    1. varer mellem 2 og 10 sekunder
+    1. tonalt set er relativt enkel og stabil
+    1. indeholder én monokanal (brug evt. `Buffer.readChannel` som ved opgave 1, hvis din ønskede fil er stereo-format)
 1. Modificér `Pbind`'en herunder ved at erstatte faste værdier med patterns, således at vi hører en klangligt varieret lydcollage baseret på det valgte sample.
 
-```sc hl_lines="42 47-66"
+```sc title="SynthDef til sampleafspilning"
 // Erstat stien med en sti til din egen lydfil
 ~vedvarendeLyd = Buffer.readChannel(s, "C:/lydfiler/minSejeLydfil.wav", [0]);
 
@@ -136,7 +136,11 @@ SynthDef(\sampleM, {
     Out.ar(out, sig);
 }).add;
 )
+```
 
+
+
+```sc title="Samplecollage genereret med patterns" hl_lines="4 9-18"
 (
 TempoClock.tempo = 60/60;
 Pdef(\collage,

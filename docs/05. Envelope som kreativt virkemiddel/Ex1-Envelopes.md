@@ -3,11 +3,11 @@ tags:
     - Øvelser
 ---
 
-# Øvelse 5: Envelopes og SynthDefs
+# Øvelse: Envelopes og SynthDefs
 
 I denne øvelse arbejder du med envelopes. Som et element i nogle af opgaverne, indgår disse envelopes i SynthDefs.
 
-## Opgave 1: Brug af envelopes til modulation af amplitude
+## Brug af envelopes til modulation af amplitude
 
 1. Tag udgangspunkt i nedenstående kildekode, og brug følgende envelopes til at modulere amplituden for en firkantet bølgeform:
     1. Indbyggede envelopes med standardværdier for attack, release mm.
@@ -35,7 +35,7 @@ Justér kun på de markerede linjer i kodeblokken herunder.
 )
 ```
 
-## Opgave 2: Unikke envelopes
+## Unikke envelopes
 
 Definér din egen envelope, som overholder følgende krav:
 
@@ -69,7 +69,7 @@ Justér kun på de markerede linjer i kodeblokken herunder.
 )
 ```
 
-## Opgave 3: Simpel lilletrommelyd
+## Simpel lilletrommelyd
 
 Vi skal her fremstille en simpel lilletrommelyd. De centrale lydlige egenskaber ved trommelyde varierer meget hurtigt over tid, og det kan vi simulere ved hjælp af envelopes.
 
@@ -113,7 +113,7 @@ Denne klangdannelsesopskrift stammer fra s. 121-122 i [*Creating Sounds from Scr
 
 Se i øvrigt [et andet bud på syntetisk dannelse af lilletrommelyd](../06. Filterbaseret klangdannelse/Art2-Lilletromme.md).
 
-## Opgave 4: SynthDef med vedvarende envelope
+## SynthDef med vedvarende envelope
 
 1. Justér nedenstående SynthDef, så den anvender en vedvarende envelope i stedet for en selv-afsluttende envelope.
     - OBS: Dette kræver tilføjelse af gate-argument - se hvordan i [artiklen om envelopes](Art1-Envelopes.md).
@@ -151,7 +151,7 @@ Pmono(\opgave4,
 ```
 
 
-## Bonusopgave: Hjemmelavede LFO'er med `Env.circle`
+## Hjemmelavede LFO'er med `Env.circle`
 
 1. Modificér SynthDef'en, således at LFO'en modulerer mindst to forskellige, lydlige parametre (fx tonehøjde, panorering, lydstyrke, cutoff-frekvens etc.). Husk at [skalere outputtet fra LFO'en](../04. Oscillatorer og modulation/Art2-Skalering.md), så det passer til modulationens formål.
 1. Design din egen LFO ved hjælp af `Env.circle`. Du kan finde et eksempel herpå i [artiklen vedr. nye envelopes og LFO'er](Art3-Nye envelopes og LFO.md#envelope-som-lfo).
