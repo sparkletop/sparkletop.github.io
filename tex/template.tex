@@ -60,6 +60,12 @@
 \parindent=0pt
 \parskip=0.3em
 
+\nouppercaseheads
+% \makepagestyle{plain}
+% \makeevenfoot{plain}{}{\thepage}{}
+% \makeoddfoot{plain}{}{\thepage}{}
+\pagestyle{plain}
+
 % Begin section on new page if more than 70% of the page is filled
 \newcommand{\sectionbreak}{\ifdim\pagetotal<.7\textheight\else\clearpage\fi}
 \titleformat{\section}[block]
@@ -72,21 +78,26 @@
 \definecolor{hl}{rgb}{0.85, 0.92, 0.85} % code block highlight color
 \setminted{
   style=friendly,
-  frame=none,
-  framesep=2mm,
+  frame=single,
+  framesep=1mm,
   xleftmargin=0.5em,
   xrightmargin=0.5em,
-  numbersep=1em,
+  numbersep=0.7em,
   linenos=true,
   bgcolor=bg,
+  bgcolorpadding=0.5em,
   breaklines=true,
   highlightcolor=hl,
   ignorelexererrors=true,
   fontsize=\footnotesize
 }
-\renewcommand{\listingscaption}{Kildekodeboks}
+\renewcommand{\listingscaption}{Kodeboks}
+\renewcommand{\listoflistingscaption}{Kodebokse}
+\setmintedinline{bgcolor=none, style=friendly, breaklines=true}  % requires a more recent version of minted than 2.9
+
 \captionsetup{skip=0.2em, font=scriptsize}
-\setmintedinline{bgcolor=none}  % requires a more recent version of minted than 2.9
+
+\hfuzz=1pt
 
 % List settings
 \setlist{noitemsep}
@@ -105,7 +116,8 @@
 \frontmatter
 \maketitle
 \tableofcontents
-
+\include{preface.tex}
+\mainmatter
 \include{content.tex}
 
 \listoffigures

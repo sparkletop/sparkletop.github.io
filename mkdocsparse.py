@@ -208,15 +208,8 @@ if __name__ == "__main__":
     with open(SOLOED_MD_FILES_LIST, 'r') as solo_file:
         solo_files = solo_file.read().split('\n')
     
+    tex = ''
 
-    # First we process the preface
-    if args.frontmatter_inpath:
-        preface = "\\chapter{Forord}\n"
-        preface += convert_section(args.frontmatter_inpath, "Forord")
-        tex = preface + '\n\n' + "\\mainmatter\n\n"
-    else:
-        tex = "\\mainmatter\n\n"
-    
     # walk the subdirectories of the docs directory and create chapters for each one
     chapters = [d for d in os.listdir(mkdocs_folder) if isdir(join(mkdocs_folder, d))]
     chapters.sort()
