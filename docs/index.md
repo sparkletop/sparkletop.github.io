@@ -17,6 +17,7 @@ Blokke af kildekode her på siden kan let kopieres og indsættes i SuperCollider
 }.play;
 )
 ```
+![type:audio](media/audio/sinus-random.ogg)
 
 Modulerne indeholder tre typer af dokumenter:
 
