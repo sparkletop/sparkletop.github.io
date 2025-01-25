@@ -57,7 +57,14 @@ def preprocess_mkdocs_markdown(md_content: str):
         doctype = yml['tags'][0]   # assuming the first tag is the document type
         prefix = '' if doctype not in ['Øvelser', 'Cheat sheets'] else '!!!!!NEWPAGE!!!!!' + '\n' + '!!!!!' + doctype + '!!!!!'
         md_content = md_content.replace(frontmatter.group(0), prefix)
-        print(doctype)
+    
+    # turn 'abstract' admonition into plain text intro
+    abstract = re.search(r"^(?:!{3}|\?{3}) abstract.+?\n((?:\s.*\n+)+?)^#", md_content, re.MULTILINE)
+    if abstract:
+        intro = abstract.group(1)
+        intro = '\n'.join([line.strip() for line in intro.split('\n')])
+
+        md_content = md_content.replace(abstract.group(0), intro + '#')
     
     return md_content
 
