@@ -1,0 +1,13 @@
+@keyframes highlight {
+    from {
+        color: goldenrod;
+        transform: scaleX(1.1) translateX(25px);
+    }
+    to {
+        
+    }
+}
+
+:target {
+    animation: highlight 5s ease-in-out;
+}
