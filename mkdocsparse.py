@@ -187,8 +187,13 @@ def make_chapter(chapter_title, md_files, ignore_files, solo_files):
 
     for file_path in md_files:
         filename = os.path.basename(file_path)
-        if (solo_files and filename in solo_files) or (filename not in ignore_files):
-            chapter_tex = chapter_tex + "\n" + convert_section(file_path)
+        if len(solo_files) > 0:
+            # Solo files have been specified
+            if filename in solo_files:
+                chapter_tex = chapter_tex + "\n" + convert_section(file_path)
+        elif filename not in ignore_files:
+            # This is a normal build, process files not in ignore list
+            chapter_tex = chapter_tex + "\n" + convert_section(file_path)            
 
     return chapter_tex
 
@@ -212,6 +217,8 @@ if __name__ == "__main__":
         ignore_files = ignore_file.read().split('\n')
     with open(SOLOED_MD_FILES_LIST, 'r') as solo_file:
         solo_files = solo_file.read().split('\n')
+        if solo_files == ['']:
+            solo_files = []
     
     tex = ''
 
