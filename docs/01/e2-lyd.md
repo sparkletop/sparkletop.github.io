@@ -37,7 +37,7 @@ Tip: Kør `Scale.directory;` for at få vist de forskellige indbyggede skalaer. 
 1. Overvej hvad de enkelte kodelinjer gør ved lyden.
 1. Eksekvér kodeblokken og lyt til resultatet. Tryk Ctrl/Cmd-Punktum for at stoppe igen.
 1. Prøv at ændre på tallene eller vælge andre oscillatorer, og kør blokken igen for at lytte til resultatet.
-1. Prøv at ændre `LFNoise0` til `LFNoise1` eller `LFNoise2`. Hvordan forandrer det lyden?
+1. Prøv at ændre `LFNoise0` til `LFNoise1`, `LFNoise2`, `LFSaw` eller `LFPulse`. Hvordan forandrer det lyden?
 
 ```sc title="Sjov med LFO'er"
 (
