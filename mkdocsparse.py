@@ -39,6 +39,7 @@ AUDIO_EXAMPLE_BASE_URL = 'https://sparkletop.github.io/Ressourcer/lydeksempler'
 AUDIO_EXAMPLE_FILE_PATH = './docs/Ressourcer/lydeksempler.md'
 IGNORED_MD_FILES_LIST = 'ignored_MD_files.txt'
 SOLOED_MD_FILES_LIST = 'soloed_MD_files.txt'
+PREFACE_MD_FILE = './tex/preface.md'
 
 def preprocess_mkdocs_markdown(md_content: str):
     # preprocess mkdocs-material content tabs (remove indentation)
@@ -77,6 +78,9 @@ def postprocess_tex(tex: str):
     tex = re.sub("!!!!!Øvelser!!!!!", r'\\pagecolor{exercise}', tex)
     tex = re.sub("!!!!!Cheat sheets!!!!!", r'\\pagecolor{cheatsheet}', tex)
     
+    # Show section coloring in preface
+    tex = tex.replace('\\item[Cheat sheets]', '\\item[\\colorbox{cheatsheet}{Cheat sheets}]')
+    tex = tex.replace('\\item[Øvelser]', '\\item[\\colorbox{exercise}{Øvelser}]')
 
     # update figure paths
     tex = tex.replace("../media/", "../docs/media/")
@@ -219,8 +223,12 @@ if __name__ == "__main__":
         solo_files = solo_file.read().split('\n')
         if solo_files == ['']:
             solo_files = []
-    
     tex = ''
+
+    # Process preface first
+    tex = tex + make_chapter('Forord', [PREFACE_MD_FILE], ignore_files, solo_files)
+
+    tex = tex + "\n\n\\mainmatter\n"
 
     # Get the navigation from mkdocs.yml
     mkdocs_config_file = join(args.mkdocs_folder, 'mkdocs.yml')
