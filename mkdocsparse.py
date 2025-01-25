@@ -89,7 +89,7 @@ def postprocess_tex(tex: str):
             print(f"Unsupported link: {link}, leaving as is...")
     return tex
 
-def convert_section(md_file_path: str, section_label: str):
+def convert_section(md_file_path: str):
     # assume that each section is a markdown file
     print(f"Processing document: {md_file_path}")
     md_content = ""
@@ -105,9 +105,10 @@ def convert_section(md_file_path: str, section_label: str):
     )
 
     # add a label to each section for use in cross references
+    label = os.path.basename(md_file_path)
     new_section = re.sub(
         r"(\\section{.+?}\n)",
-        r"\1\\label{" + section_label + r"}\n",
+        r"\1\\label{" + label + r"}\n",
         new_section
     )
 
@@ -167,29 +168,25 @@ def generate_audio_examples_page(tex: str):
             file_contents.truncate()
             print(f"New version of {AUDIO_EXAMPLE_FILE_PATH} generated.")
 
-def make_chapter(chapter_title, chapter_dir, ignore_files, solo_files):
-    # loop over .md files, convert to tex, and return the string
-    # remove "01. " etc. from the chapter title
-    md_files = [f for f in os.listdir(chapter_dir) if f.endswith('.md')]
-    if not md_files:
-        return ""
+def make_chapter(chapter_title, md_files, ignore_files, solo_files):
+    # loop over the given .md files, convert to tex, and return the string
 
+    # remove "1. " etc. from the chapter title, since LaTeX handles the numbering for us
     chapter_title = re.sub(r'^\d+\.\s+', '', chapter_title)
-    chapter_tex = f"\\chapter{{{chapter_title}}}\n\\label{{chap:{chapter_title}}}\n!!!!!RESETPAGECOLOR!!!!!\n"
+    chapter_tex = f"\\chapter{{{chapter_title}}}\n\\label{{chap:{chapter_title}}}\n!!!!!RESETPAGECOLOR!!!!!"
 
     chapter_titles.append(chapter_title)
 
-    md_files.sort()
-    for filename in md_files:
+    for file_path in md_files:
+        filename = os.path.basename(file_path)
         if (solo_files and filename in solo_files) or (filename not in ignore_files):
-            path = join(chapter_dir, filename)
-            chapter_tex = chapter_tex + "\n" + convert_section(path, filename)
+            chapter_tex = chapter_tex + "\n" + convert_section(file_path)
 
     return chapter_tex
 
 if __name__ == "__main__":
     """
-    Walk a 'docs' directory in an mkdocs site and convert the markdown files to a TeX file containing everything
+    Convert the sources for an mkdocs site to a LaTeX file
     """
     parser = argparse.ArgumentParser(description="Convert mkdocs site into a LaTeX document using the md2tex engine + some custom pre- and postprocessing to deal specifically with mkdocs content.")
     parser.add_argument("--mkdocs_folder", type=str, default="./", help="Path to the mkdocs root directory (where 'docs/' is a subdirectory)")
@@ -199,7 +196,7 @@ if __name__ == "__main__":
     
     # Parse the arguments
     args = parser.parse_args()
-    mkdocs_folder = os.path.join(args.mkdocs_folder, 'docs')
+    docs_folder = join(args.mkdocs_folder, 'docs')
     tex_outpath = args.tex_outpath
 
     # Read the list of ignored markdown files
@@ -210,11 +207,38 @@ if __name__ == "__main__":
     
     tex = ''
 
-    # walk the subdirectories of the docs directory and create chapters for each one
-    chapters = [d for d in os.listdir(mkdocs_folder) if isdir(join(mkdocs_folder, d))]
-    chapters.sort()
-    for chap in chapters:
-        tex = tex + '\n' + make_chapter(chap, join(mkdocs_folder, chap), ignore_files, solo_files)
+    # Get the navigation from mkdocs.yml
+    mkdocs_config_file = join(args.mkdocs_folder, 'mkdocs.yml')
+    with open(mkdocs_config_file, 'r') as m:
+        mkdocs_config = yaml.load(m.read(), yaml.FullLoader)
+        if 'nav' in mkdocs_config.keys():
+            # Follow the structure of mkdocs.yml nav list
+            nav = mkdocs_config['nav']
+            nav.pop(0) # ignore index page
+
+            # Turn web page top hierarchy categories into chapters
+            for top_level_dict in nav:
+                chapter_title = list(top_level_dict.keys())[0]                
+                md_files = []
+                for page in list(top_level_dict.values())[0]:
+                    if isinstance(page, dict):  # Page has been given 
+                        md_file = list(page.values())[0]
+                    else:
+                        md_file = page
+                    md_files.append(join(docs_folder, md_file))
+                tex = tex + '\n' + make_chapter(chapter_title, md_files, ignore_files, solo_files)
+        else:
+            # There is no nav specified, so we walk the subdirectories of
+            # the docs directory and create chapters for each one
+            chapter_dirs = [d for d in os.listdir(docs_folder) if isdir(join(docs_folder, d))]
+            chapter_dirs.sort()
+            for chapter_dir in chapter_dirs:
+                md_files = [f for f in os.listdir(join(docs_folder, chapter_dir)) if f.endswith('.md')]
+                if not md_files:
+                    continue
+                else:
+                    md_files.sort()
+                    tex = tex + '\n' + make_chapter(chapter_dir, md_files, ignore_files, solo_files)
 
     tex = postprocess_tex(tex)
 
