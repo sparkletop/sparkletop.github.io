@@ -133,6 +133,7 @@ def generate_audio_examples_page(tex: str):
     audio_examples = re.finditer(r"\\caption{(.+?)}(?:.*\n){,5}(%AUDIO_FILE:(.+?.ogg))", tex, re.M)
     for example in audio_examples:
         path = example.group(3)
+        path = path.replace('/docs', '')
         comment_substring = example.group(2)
         caption = example.group(1)
         slugified_caption = re.sub(r"[^a-zA-Z0-9_]+", '-', caption).lower()
