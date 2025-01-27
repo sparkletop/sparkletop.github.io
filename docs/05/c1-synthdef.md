@@ -3,14 +3,18 @@ tags:
     - Cheat sheets
 ---
 
-
 # Cheat sheet: SynthDef-skabeloner
 
-SynthDefs kan indrettes på ganske mange forskellige måder, men hvis man skal fremstille lydkilder med tonalt indhold og en mono- eller stereofon lydkilde kan skabeloner herunder være et udmærket udgangspunkt.
+SynthDefs kan indrettes på mange forskellige måder. Men til mono- eller stereofone lyde, hvor en given tonehøjde er vigtig, kan skabelonerne herunder være et udmærket udgangspunkt. Begge skabeloner er i sig selv ret kedelige med en simpel sinustone, men det kan du nemt udbygge med et mere interessant lyddesign. Du bruger skabelonen på følgende måde:
 
-Husk at ændre `\navn` til et deskriptivt navn for din SynthDef.
+- `\navn` skal ændres til et mere deskriptivt navn for din SynthDef.
+- Du kan tilføje argumenter efter behov ved at følge den syntaks, der er anvendt på linje 3 og 4.
+- Du kan tilføje lokale variabler ligesom på linje 5 til at definere signalflowet i SynthDef'en.
+- Du kan ændre `SinOsc.ar(freq)` til noget andet, alt efter hvilken lydkilde du ønsker at arbejde med.
+- Du kan tilføje yderligere indhold og lydlig transformation til SynthDef'en mellem linje 5 og 10 (tilføj gerne flere linjer).
+- Linje 10 med `Out.ar` er oftest den sidste linje i en SynthDef, som sørger for, at signalet panoreres og volumenjusteres som ønsket, inden det sendes til de ønskede output-kanaler.
 
-```sc title="Skabelon til monofone lydkilder"
+```sc title="SynthDef-skabelon til monofone lydkilder"
 (
 SynthDef(\navn, {
 	arg freq = 440, pan = 0,
@@ -25,7 +29,9 @@ SynthDef(\navn, {
 )
 ```
 
-```sc title="Skabelon til stereofone lydkilder"
+I SynthDef'en herunder er lydkilden, en sinustone, blot dupliceret med `.dup`, så den klinger i to kanaler. Det er oplagt at foretage ændringer og tilføjelser her for at opnå et mere interessant steroe-lyddesign. Med `Balance2.ar` balanceres der til sidst mellem de to kanaler. Læs eventuelt nærmere om stereofoni og *multichannel expansion* i [kapitlet om oscillatorbanke](../07/a1-oscillatorbanke.md).
+
+```sc title="SynthDef-skabelon til stereofone lydkilder"
 (
 SynthDef(\navn, {
 	arg freq = 440, pan = 0,
