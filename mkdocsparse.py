@@ -35,7 +35,7 @@ from md2tex import convert as convert_md2tex
 
 chapter_titles = []
 
-AUDIO_EXAMPLE_BASE_URL = 'https://sparkletop.github.io/Ressourcer/lydeksempler'
+AUDIO_EXAMPLE_BASE_URL = 'https://sparkletop.github.io/Ressourcer/lydeksempler/'
 AUDIO_EXAMPLE_FILE_PATH = './docs/Ressourcer/lydeksempler.md'
 IGNORED_MD_FILES_LIST = 'ignored_MD_files.txt'
 SOLOED_MD_FILES_LIST = 'soloed_MD_files.txt'
@@ -131,46 +131,46 @@ def generate_audio_examples_page(tex: str):
     os.chdir('./tex/')
     os.system('lualatex -draftmode template.tex')
     os.chdir('..')
-
-    # find audio files + caption text
-    audio_examples_info = []
-    audio_examples = re.finditer(r"\\caption{(.+?)}(?:.*\n){,5}(%AUDIO_FILE:(.+?.ogg))", tex, re.M)
-    for example in audio_examples:
-        path = example.group(3)
-        path = path.replace('/docs', '')
-        comment_substring = example.group(2)
-        caption = example.group(1)
-        slugified_caption = re.sub(r"[^a-zA-Z0-9_]+", '-', caption).lower()
-        
-        # insert LaTeX link to sound example
-        url = AUDIO_EXAMPLE_BASE_URL + r'\#' + slugified_caption
-        # here we need to find the minted code block's number from the .aux file
-        example_link = r" - \href{" + url + r"}{Lydeksempel}"
-        tex = tex.replace(caption, caption + example_link) # add a link to the caption
-        tex = tex.replace(comment_substring, "") # delete the comment now that it's been processed
-
-        audio_examples_info.append(dict(path=path, caption=caption))
-
-    # Build examples page
-    md = "# Lydeksempler\n\nHerunder finder du alle lydeksempler til bogen *Musik- og lydprogrammering med SuperCollider*. Lydeksemplerne er organiseret efter kapitel.\n\n"
-
     with open('tex/content.aux', 'r') as aux_file:
         aux_data = aux_file.read()
     
-    current_chapter = -42
-    for example in audio_examples_info:
-        data = re.search(r'{\\numberline {(.*?)}.*' + example['caption'], aux_data, re.M)
-        if data:
-            caption_number = data.group(1)
-            
-            chapter_number = int(re.sub(r"\.\d+", '', caption_number))
-            if chapter_number is not current_chapter:
-                md += f"## Kapitel {chapter_number}: {chapter_titles[chapter_number]}\n\n"
-                current_chapter = chapter_number
-
-            md = md + f"### Lydeksempel {caption_number}: {example['caption']}\n\n"
-            md = md + f"![type:audio]({example['path']})\n\n"
+    # Example page beginning
+    md = "# Lydeksempler\n\nHerunder finder du alle lydeksempler til bogen *Musik- og lydprogrammering med SuperCollider*. Lydeksemplerne er organiseret efter kapitel.\n\n"
     
+    current_chapter = -42
+            
+    # Iterate over captions that are followed by audio file comments
+    # and add section to markdown + proper link to caption
+    audio_examples = re.finditer(r"\\caption{(.+?)}(?:.*\n){,5}(%AUDIO_FILE:(.+?.ogg))", tex, re.M)    
+    for example in audio_examples:
+        old_caption = example.group(1)
+        
+        audio_file_path = example.group(3).replace('/docs', '')
+
+        comment_substring = example.group(2)
+        tex = tex.replace(comment_substring, "") # delete the comment now that it's been processe
+
+        data = re.search(r'{\\numberline {(.*?)}.*' + old_caption, aux_data, re.M)
+        caption_number = data.group(1)
+        chapter_number = int(re.sub(r"\.\d+", '', caption_number))
+        
+        # Add chapter heading to markdown if entry is in a new chapter
+        if chapter_number is not current_chapter:
+            md += f"## Kapitel {chapter_number}: {chapter_titles[chapter_number]}\n\n"
+            current_chapter = chapter_number
+        
+        # Add entry to markdown
+        heading = f"Lydeksempel {caption_number}: {old_caption}"
+        md = md + f"### {heading}\n\n"
+        md = md + f"![type:audio]({audio_file_path})\n\n"
+
+        # Update caption in tex string by inserting link to sound example
+        slugified_caption = re.sub(r" +", '-', heading).lower()
+        slugified_caption = re.sub(r"[^a-zA-Z0-9-]+", '', slugified_caption)
+        url = AUDIO_EXAMPLE_BASE_URL + "#" + slugified_caption
+        example_link = convert_md2tex(f" · [Lydeksempel]({url})")
+        tex = tex.replace(old_caption, old_caption + example_link)
+
     # If audio examples page has changed, overwrite the old one with the newly generated data
     with open(AUDIO_EXAMPLE_FILE_PATH, 'r+') as file_contents:
         old_examples_md = file_contents.read()
@@ -179,6 +179,8 @@ def generate_audio_examples_page(tex: str):
             file_contents.write(md)
             file_contents.truncate()
             print(f"New version of {AUDIO_EXAMPLE_FILE_PATH} generated.")
+    
+    return tex
 
 def make_chapter(chapter_title, md_files, ignore_files, solo_files):
     # loop over the given .md files, convert to tex, and return the string
@@ -267,9 +269,13 @@ if __name__ == "__main__":
 
     with open(tex_outpath, 'w') as file:
         file.write(tex)
-        print(f"File {tex_outpath} written successfully.")
+        print(f"{tex_outpath} generated successfully.")
 
     if args.generate_examples_page:
-        generate_audio_examples_page(tex)
-
+        tex = generate_audio_examples_page(tex)
+        # We need to rewrite the file with updated captions
+        with open(tex_outpath, 'w') as file:
+            file.write(tex)
+            print(f"{tex_outpath} updated with audio example links.")
+    
     exit(0)
