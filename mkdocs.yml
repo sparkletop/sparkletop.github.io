@@ -107,10 +107,9 @@ nav:
     - Granular syntese: 09/a1-granular.md
     - 09/a2-tempo-pitch.md
     - 09/a3-tekstur-klangflade.md
-    - 09/a4-groove.md
     - 09/e1-granular.md
   - 10. Algoritmisk beatslicing:
-    - Beatslicing med patterns: 10/a1-beatslicing.md
+    - Beatslicing med patterns: 10/a2-beatslicing.md
     - 10/e1-beatslicing.md
   - Diverse ressourcer:
     - MIDI-output fra SuperCollider: Ressourcer/art1-MIDI-output.md

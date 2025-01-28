@@ -11,7 +11,7 @@ Denne øvelse
 ## Opgave 0: Klargøring
 
 1. Indlæs først et eller flere trommeloops under variablen `~sample`til brug i nedenstående øvelse. Det er (for denne øvelse) vigtigt, at trommeloopet er metrisk underdelt i sekstendedele og varer præcis én takt.
-1. Indlæs `SynthDef`'en `\slice` fra [artiklen om beatslicing](a1-beatslicing.md).
+1. Indlæs `SynthDef`'en `\slice` fra [artiklen om beatslicing](a2-beatslicing.md).
 
 ## Opgave 1: Algoritmisk beatslicing
 
@@ -22,10 +22,10 @@ Skab et nyt beat ud af et eksisterende beat ved hjælp af SynthDef og loop fra O
 1. Mikrotimingen skal "humaniseres" ved hjælp af `\lag`-nøglen - vælg hertil selv et passende pattern og værdier.
 1. Vælg selv yderligere parametre til justering.
 
-``` sc
+```sc title="Beatslicing"
 (
 TempoClock.tempo = 115 / 60;
-Pdef(\test,
+Pdef(\beat,
     Pbind(
         \instrument, \slice,
         \buf, ~sample,
