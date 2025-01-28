@@ -56,7 +56,7 @@ I de tilfælde skal vi først starte SuperColliders lydserver. Dette kan gøres 
 s.boot;
 ```
 
-Bemærk, at når lydserveren er bootet, blvier tallene nederst i højre hjørne grønne. Derefter kan vi afspille lyde:
+Bemærk, at når lydserveren er bootet, bliver tallene nederst i højre hjørne grønne. Derefter kan vi afspille lyde:
 
 ``` sc title="Et par simple lyde"
 { SinOsc.ar(440) * 0.1 }.play

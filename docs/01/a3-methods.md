@@ -34,7 +34,7 @@ SinOsc.ar;             // angiver en sinus-oscillator
 Pbind.new;             // opretter en ny Pbind (kan udgøre ramme for generativ komposition)
 ```
 
-Der findes i SuperCollider en særlig class method, som vi bruger hele tiden: `.new`. Den har en særstatus, fordi den er så udbredt. `.new` skaber et nyt objekt (en "instance" eller forekomst) af den klasse, man angiver før punktummet.
+Der findes i SuperCollider en særlig class method, som vi bruger hele tiden: `.new`. Denne method skaber et nyt objekt (en "instance" eller forekomst) af den klasse, man angiver før punktummet.
 
 ``` sc title="Eksempler på .new"
 Pbind.new()     // opretter en ny Pbind
@@ -42,7 +42,7 @@ SynthDef.new()  // opretter en ny SynthDef
 Scale.new()     // opretter en ny skala
 ```
 
-`.new` er så almindeligt, at der for rigtig mange klasser findes en genvej til at bruge method'en - nemlig helt at udelade `.new`. Derfor giver disse to udtryk samme resultat:
+`.new` har en særstatus, fordi det at oprette en ny forekomst af noget er så almindeligt, at der for rigtig mange klasser findes en genvej til at bruge method'en - nemlig helt at udelade `.new`. Derfor giver disse to udtryk samme resultat:
 
 ``` sc title="Eksplicit og implicit .new"
 Pwhite.new(0, 10)   // .new fremgår eksplicit
@@ -50,17 +50,23 @@ Pwhite(0, 10)       // .new er underforstået
 // Denne forekomst af Pwhite vil generere værdier mellem 0 og 10
 ```
 
+Om man bruger eks- eller implicit `.new` er et spørgsmål om personlig præference.
+
 ### Instance methods
 
-Instance methods bruger vi på "instances", dvs. konkrete forekomster af bestemte typer af objekter. Fx er `9` en forekomst af klassen `SimpleNumber`. `"kaffe"` er en forekomst af klassen `String`.
+Instance methods bruger vi på "instances", dvs. konkrete forekomster af bestemte klasser af objekter. Fx er `9` en forekomst af klassen `SimpleNumber`. `"kaffe"` er en forekomst af klassen `String`. Instance methods noteres ligesom class methods med et punktum først[^1], men de forekommer efter instances, ikke klassenavne. Her er nogle eksempler:
 
-Instance methods noteres ligesom class methods med et punktum først, men de forekommer efter instances, ikke klassenavne. Her er nogle eksempler:
+`.midicps`
 
-``` sc title="Eksempler på instance methods"
-69.midicps             // vi beder om at regne MIDI-tonetallet 69 om til Hz (69 er en forekomst/instance af klassen SimpleNumber)
-"kaffe".dup            // vi duplicerer teksten "kaffe" (en forekomst/instance af klassen String)
-Pbind.new().play       // vi afspiller en ny Pind (en forekomst/instance af klassen Pbind)
-```
+:   En method, som blandt andet kan anvendes på tal (og [UGens](../04/a1-ugens.md)). Method'en omregner MIDI-tonetallet 69 til frekvens målt i Hz. `69.midicps` bliver altså til `440`.
+
+`.dup`
+
+:   Kopierer det objekt, den anvendes på. Det kan fx være en sinustone-oscillator: `SinOsc.ar.dup` giver to sinustone-oscillatorer.
+
+`.play`
+
+:   Kan bruges i flere forskellige sammenhænge. Med `Pbind.new().play` kan vi starte med at afspille en ny Pind.
 
 Nogle methods kan styres med input i form af argumenter:
 
@@ -70,14 +76,14 @@ SinOsc.ar.dup(10)      // vi beder om 10 ens sinustone-oscillatorer
 Pwhite(0, 7)           // vi beder om et pattern, der kan generere tilfældige tal mellem 0 og 7
 ```
 
-Mange methods kan bruges med forskellige slags objekter, fx .play (start lydserveren for at høre lydeksemplerne med `s.boot;`):
+Mange methods kan bruges med forskellige slags objekter, fx `.play`:
 
 ``` sc title="Forskellige resultater med .play"
 Pbind().play;
 {SinOsc.ar * 0.1}.play;
 Routine({"hej ".post; 1.wait; "med dig".postln;}).play;
 
-// ... men `.play` kan ikke anvendes på alle objekter!
+// ... men .play kan ikke anvendes på alle objekter!
 10.play       // giver en fejlmeddelelse (.play findes ikke som instance method for SimpleNumber)
 Pbind.play    // giver en fejlmeddelelse (.play findes kun som instance method, ikke som class method for Pbind)
 ```
@@ -104,3 +110,5 @@ SinOsc
 .ar
 .reverse
 ```
+
+[^1]: For nogle (men ikke alle) methods findes en syntaktisk variant, hvor instance methods noteres *før* objektet, adskilt med et simpelt mellemrum. Fx er `play {SinOsc.ar};` helt korrekt syntaks, der svarer til `{SinOsc.ar}.play;`. Jeg anbefaler, at man holder sig til den sidstnævnte form, da punktummet mellem method og objekt tydeliggør, hvad der er method og hvad denne method knytter sig til.

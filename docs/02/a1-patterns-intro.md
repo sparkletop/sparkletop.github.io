@@ -184,14 +184,20 @@ Ligesom med `Pseq` kan vi bruge `Pwhite` til at styre en række forskellige andr
 
 ```sc title="Pwhite over det hele"
 (
-~eksempel = Pbind(
+Pbind(
+	// En fast sekvens af tonehøjder
 	\degree, Pseq([0, 2, 4, 5], inf),
+	
+	// \db angiver Lydstyrke, målt i decibel
 	\db, Pwhite(-30, -20),
+	
+	// \dur angiver tonevarigheder, målt i antal taktslag
 	\dur, Pwhite(0.1, 0.2),
+
+	// \pan angiver panorering, hvor -1 er venstre og 1 er højre
 	\pan, Pwhite(-1.0, 1.0),
 ).play;
 )
-~eksempel.stop;
 ```
 
 Med `Pwhite` er alle tal mellem minimum og maksimum lige sandsynlige. Dette er dog ikke altid den mest interessante statistiske fordeling - fx kan det være mere oplagt, at værdierne tættere på en bestemt grænse er mest sandsynlige, eller at udfaldene fordeler sig omkring en middelværdi efter en normalfordeling. Det kan vi gøre med `Pexprand` og `Pgauss`:
@@ -216,9 +222,16 @@ Når vi arbejder med patterns som kompositionsredskaber, er det typisk relevante
 
 ```sc title="Matematiske operationer med outputtet fra patterns"
 Pbind(\degree, Pseq([0, 1, 2])).play;
+// -> 0, 1, 2
+
 Pbind(\degree, Pseq([0, 1, 2]) + 1).play;
+// -> 1, 2, 3
+
 Pbind(\degree, Pseq([0, 1, 2]) * 2).play;
-Pbind(\degree, Pseq([0, 1, 2]) * Pwhite(1, 3)).play; // Vi kan også lave matematiske operationer mellem patterns!
+// -> 0, 2, 4
+
+Pbind(\degree, Pseq([0, 1, 2]) * Pseq([1, 3], inf)).play;
+// -> 0, 3, 2
 ```
 
 Afrunding er også muligt - fx kan vi afrunde tilfældigt genererede tal mellem -12 og +12 til nærmeste tal i 3-tabellen og derved få en skala, der er bygget op af små tertser:
@@ -236,6 +249,11 @@ Vi kan også bruge nogle specifikke pattern-methods til at gentage outputtet fra
 
 ```sc title="Pattern-methods: .repaet, .stutter og .clump"
 Pbind(\degree, Pseq([0, 1, 2]).repeat(3)).play;
+// -> 0, 1, 2, 0, 1, 2, 0, 1, 2
+
 Pbind(\degree, Pseq([0, 1, 2]).stutter(3)).play;
+// -> 0, 0, 0, 1, 1, 1, 2, 2, 2
+
 Pbind(\degree, Pseq([0, 1, 2]).clump(3)).play;
+// [0, 1, 2], [0, 1, 2], [0, 1, 2]
 ```
