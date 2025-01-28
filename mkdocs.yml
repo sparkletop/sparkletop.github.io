@@ -31,6 +31,8 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+copyright: Copyright &copy; 2022-2025 Anders Eskildsen
+
 plugins:
   - tags:
       tags_file: index.md
