@@ -1,3 +1,3 @@
 #!/bin/bash 
 
-latexmk -pdflua -latexoption="-shell-escape" -cd tex/template.tex
+latexmk -pdflua -latexoption="-shell-escape" -bibtex -cd tex/template.tex

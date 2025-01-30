@@ -38,6 +38,8 @@ plugins:
       tags_file: index.md
   - search
   - mkdocs-audio
+  - bibtex:
+      bib_file: "tex/mlprefs.bib"
   
 markdown_extensions:
   - pymdownx.highlight:
