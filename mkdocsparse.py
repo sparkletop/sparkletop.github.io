@@ -41,6 +41,33 @@ IGNORED_MD_FILES_LIST = 'ignored_MD_files.txt'
 SOLOED_MD_FILES_LIST = 'soloed_MD_files.txt'
 PREFACE_MD_FILE = './tex/preface.md'
 
+def get_matching_brackets(code: str):
+    r"""
+    Finds and returns the substring of the input code contained by an 
+    outer pair of matching opening and closing curly brackets `{...}`, assuming that any inner pairs of brackets which are opened are closed again.
+    
+    Escaped brackets `\{` and `\}` are ignored.
+    
+    :param code: The input string containing code with curly brackets.
+    :return: The substring from the start of the input code up to and including
+             the matching closing bracket.
+    """
+    pos = 0
+    numOpened = 0
+    hasOpened = False
+    for c in code:
+        if c == '{' and code[pos-1] != "\\":
+            numOpened += 1
+            hasOpened = True
+        elif c == '}' and code[pos-1] != "\\":
+            numOpened -= 1
+            if numOpened == 0 and hasOpened:
+                # we found the closing bracket
+                pos += 1
+                break
+        pos += 1
+    return code[:pos]
+
 def preprocess_mkdocs_markdown(md_content: str):
     # preprocess mkdocs-material content tabs (remove indentation)
     # matches and processes sections that begin with '=== xyz' followed by indented content or empty lines
@@ -85,6 +112,14 @@ def postprocess_tex(tex: str):
     # update figure paths
     tex = tex.replace("../media/", "../docs/media/")
 
+    # Replace \mintinline with \texttt in footnotes
+    fnotes = re.finditer(r"\\footnote{.+}", tex, re.MULTILINE)
+    for f in fnotes:
+        match = f.group(0)
+        old_fnote = get_matching_brackets(match)
+        new_fnote = re.sub(r"\\mintinline{.+?}{(.+?)}", r"\\texttt{\1}", old_fnote)
+        tex = tex.replace(old_fnote, new_fnote)
+    
     # deal with internal links
     links = re.finditer(r"(?<!!)\[(.*?)\]\((.*?)\)", tex)
     for link in links:
