@@ -101,7 +101,7 @@ def postprocess_tex(tex: str):
     tex = tex.replace("\t", "    ")
 
     tex = re.sub("!!!!!NEWPAGE!!!!!", r'\\newpage', tex)
-    tex = re.sub("!!!!!RESETPAGECOLOR!!!!!", r'\\nopagecolor', tex)
+    tex = re.sub("!!!!!RESETPAGECOLOR!!!!!", r'\\pagecolor{normal}', tex)
     tex = re.sub("!!!!!Øvelser!!!!!", r'\\pagecolor{exercise}', tex)
     tex = re.sub("!!!!!Cheat sheets!!!!!", r'\\pagecolor{cheatsheet}', tex)
     
@@ -121,7 +121,7 @@ def postprocess_tex(tex: str):
         tex = tex.replace(old_fnote, new_fnote)
     
     # deal with internal links
-    links = re.finditer(r"(?<!!)\[(.*?)\]\((.*?)\)", tex)
+    links = re.finditer(r"(?<!!)\[([^@\n\{\}]+?)\]\((.*?)\)", tex)
     for link in links:
         # Clean up link to only have filename
         filename = re.sub(r"\\#.+$", "", link[2]) # remove anchor, subsection labelling not implemented yet...
