@@ -1,7 +1,7 @@
 @keyframes highlight {
     from {
         color: goldenrod;
-        transform: scaleX(1.1) translateX(25px);
+        transform: scaleX(1.01) translateX(3px);
     }
     to {
         
@@ -9,5 +9,5 @@
 }
 
 :target {
-    animation: highlight 5s ease-in-out;
+    animation: highlight 4s ease-in-out;
 }
