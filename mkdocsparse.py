@@ -66,6 +66,8 @@ def get_matching_brackets(code: str):
     return code[:pos]
 
 def preprocess_mkdocs_markdown(md_content: str):
+    # Processes one markdown page at a time
+
     # preprocess mkdocs-material content tabs (remove indentation)
     # matches and processes sections that begin with '=== xyz' followed by indented content or empty lines
     content_tabs_blocks = re.finditer(r"^(===.*$)(?:\n(^\s*$|^ {4}.*$))+", md_content, re.M)
@@ -94,13 +96,16 @@ def preprocess_mkdocs_markdown(md_content: str):
     return md_content
 
 def postprocess_tex(tex: str):
+    # Processes the full tex document contents as one string
     # replace tabs with spaces
     tex = tex.replace("\t", "    ")
-
+    
     tex = re.sub("!!!!!NEWPAGE!!!!!", r'\\newpage', tex)
     tex = re.sub("!!!!!RESETPAGECOLOR!!!!!", r'\\pagecolor{normal}', tex)
     tex = re.sub("!!!!!Øvelser!!!!!", r'\\pagecolor{exercise}', tex)
     tex = re.sub("!!!!!Cheat sheets!!!!!", r'\\pagecolor{cheatsheet}', tex)
+    tex = re.sub(r"!!!!!faHeadphones\*!!!!!", r'\\faHeadphones*', tex)
+    tex = re.sub("!!!!!faLink!!!!!", r'\\faLink', tex)
     
     # Show section coloring in preface
     tex = tex.replace('\\item[Cheat sheets]', '\\item[\\colorbox{cheatsheet}{Cheat sheets}]')
@@ -151,7 +156,7 @@ def convert_section(md_file_path: str):
         md_content = file.read()
         md_content = preprocess_mkdocs_markdown(md_content)
     
-    new_section = convert_md2tex(
+    tex = convert_md2tex(
         md_content,
         document_class="article",
         minted_language="./sc_lexer.py:SuperColliderLexer",
