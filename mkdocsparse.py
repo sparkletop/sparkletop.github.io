@@ -33,10 +33,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'md2tex'))
 
 from md2tex import convert as convert_md2tex
 
-chapter_titles = []
-
-AUDIO_EXAMPLE_BASE_URL = 'https://sparkletop.github.io/Ressourcer/lydeksempler/'
-AUDIO_EXAMPLE_FILE_PATH = './docs/Ressourcer/lydeksempler.md'
+BASE_URL = 'https://sparkletop.github.io/'
 IGNORED_MD_FILES_LIST = 'ignored_MD_files.txt'
 SOLOED_MD_FILES_LIST = 'soloed_MD_files.txt'
 PREFACE_MD_FILE = './tex/preface.md'
@@ -112,6 +109,17 @@ def postprocess_tex(tex: str):
     # update figure paths
     tex = tex.replace("../media/", "../docs/media/")
 
+    # change link to web edition in preface
+    tex = tex.replace('href{https://sparkletop.github.io/./tex/preface/', 'href{https://sparkletop.github.io/')
+
+    # add sound icon to relevant code block captions
+    audio_examples = re.finditer(r"\\caption{(.+?)}(?:.*\n){,5}(%AUDIO_FILE:(.+?.ogg))", tex, re.M)
+    for example in audio_examples:
+        match = example.group(0)
+        old_icon_code = re.search(r"(\\faLink)(?!\\faHeadphones)", match, re.M).group(1)
+        new_icon_code = old_icon_code + "\\enskip\\faHeadphones*"
+        tex = tex.replace(match, match.replace(old_icon_code, new_icon_code))
+    
     # Replace \mintinline with \texttt in footnotes
     fnotes = re.finditer(r"\\footnote{.+}", tex, re.MULTILINE)
     for f in fnotes:
@@ -151,70 +159,25 @@ def convert_section(md_file_path: str):
     )
 
     # add a label to each section for use in cross references
-    label = os.path.basename(md_file_path)
-    new_section = re.sub(
+    md_filename = os.path.basename(md_file_path)
+    tex = re.sub(
         r"(\\section{.+?}\n)",
-        r"\1\\label{" + label + r"}\n",
-        new_section
+        r"\1\\label{" + md_filename + r"}\n",
+        tex
     )
 
-    return new_section
+    # for each code block, add a link to the web version
+    code_block_captions = re.finditer(r"\\caption\{(.+?)\}\n\\end\{listing\}", tex)
+    for num, block in enumerate(code_block_captions):
+        segment = block.group(0)
+        section_page_url = md_file_path.replace('./docs/', '').replace('.md', '/')
+        url = BASE_URL + section_page_url + "\#__code_" + str(num)
+        tex_link = '\\href{' + url + '}{\\faLink}'
+        caption_text = block.group(1)
+        new_caption_text = caption_text + '\\hfill' + tex_link
+        new_segment = segment.replace(caption_text, new_caption_text)
+        tex = tex.replace(segment, new_segment)
 
-def generate_audio_examples_page(tex: str):
-    # generate aux file to get code block numbers
-    print("Generating .aux files to find code block numbering")
-    os.chdir('./tex/')
-    os.system('lualatex -draftmode template.tex')
-    os.chdir('..')
-    with open('tex/content.aux', 'r') as aux_file:
-        aux_data = aux_file.read()
-    
-    # Example page beginning
-    md = "# Lydeksempler\n\nHerunder finder du alle lydeksempler til bogen *Musik- og lydprogrammering med SuperCollider*. Lydeksemplerne er organiseret efter kapitel.\n\n"
-    
-    current_chapter = -42
-            
-    # Iterate over captions that are followed by audio file comments
-    # and add section to markdown + proper link to caption
-    audio_examples = re.finditer(r"\\caption{(.+?)}(?:.*\n){,5}(%AUDIO_FILE:(.+?.ogg))", tex, re.M)    
-    for example in audio_examples:
-        old_caption = example.group(1)
-        
-        audio_file_path = example.group(3).replace('/docs', '')
-
-        comment_substring = example.group(2)
-        tex = tex.replace(comment_substring, "") # delete the comment now that it's been processe
-
-        data = re.search(r'{\\numberline {(.*?)}.*' + old_caption, aux_data, re.M)
-        caption_number = data.group(1)
-        chapter_number = int(re.sub(r"\.\d+", '', caption_number))
-        
-        # Add chapter heading to markdown if entry is in a new chapter
-        if chapter_number is not current_chapter:
-            md += f"## Kapitel {chapter_number}: {chapter_titles[chapter_number]}\n\n"
-            current_chapter = chapter_number
-        
-        # Add entry to markdown
-        heading = f"Lydeksempel {caption_number}: {old_caption}"
-        md = md + f"### {heading}\n\n"
-        md = md + f"![type:audio]({audio_file_path})\n\n"
-
-        # Update caption in tex string by inserting link to sound example
-        slugified_caption = re.sub(r" +", '-', heading).lower()
-        slugified_caption = re.sub(r"[^a-zA-Z0-9-]+", '', slugified_caption)
-        url = AUDIO_EXAMPLE_BASE_URL + "#" + slugified_caption
-        example_link = convert_md2tex(f" · [Lydeksempel]({url})")
-        tex = tex.replace(old_caption, old_caption + example_link)
-
-    # If audio examples page has changed, overwrite the old one with the newly generated data
-    with open(AUDIO_EXAMPLE_FILE_PATH, 'r+') as file_contents:
-        old_examples_md = file_contents.read()
-        if md != old_examples_md:
-            file_contents.seek(0)
-            file_contents.write(md)
-            file_contents.truncate()
-            print(f"New version of {AUDIO_EXAMPLE_FILE_PATH} generated.")
-    
     return tex
 
 def make_chapter(chapter_title, md_files, ignore_files, solo_files):
@@ -223,8 +186,6 @@ def make_chapter(chapter_title, md_files, ignore_files, solo_files):
     # remove "1. " etc. from the chapter title, since LaTeX handles the numbering for us
     chapter_title = re.sub(r'^\d+\.\s+', '', chapter_title)
     chapter_tex = f"\\chapter{{{chapter_title}}}\n\\label{{chap:{chapter_title}}}\n!!!!!RESETPAGECOLOR!!!!!"
-
-    chapter_titles.append(chapter_title)
 
     for file_path in md_files:
         filename = os.path.basename(file_path)
@@ -245,8 +206,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Convert mkdocs site into a LaTeX document using the md2tex engine + some custom pre- and postprocessing to deal specifically with mkdocs content.")
     parser.add_argument("--mkdocs_folder", type=str, default="./", help="Path to the mkdocs root directory (where 'docs/' is a subdirectory)")
     parser.add_argument("--tex_outpath", type=str, default="./tex/content.tex", help="Path to the main output TeX file")
-    parser.add_argument("--frontmatter_inpath", type=str, default="./tex/preface.md", help="Path to the front matter input markdown file")
-    parser.add_argument("--generate_examples_page", action="store_true", default=False, help="Generate new sound examples page for mkdocs")
     
     # Parse the arguments
     args = parser.parse_args()
@@ -305,12 +264,5 @@ if __name__ == "__main__":
     with open(tex_outpath, 'w') as file:
         file.write(tex)
         print(f"{tex_outpath} generated successfully.")
-
-    if args.generate_examples_page:
-        tex = generate_audio_examples_page(tex)
-        # We need to rewrite the file with updated captions
-        with open(tex_outpath, 'w') as file:
-            file.write(tex)
-            print(f"{tex_outpath} updated with audio example links.")
     
     exit(0)

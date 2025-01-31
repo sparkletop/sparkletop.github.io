@@ -1,13 +1,13 @@
-@keyframes highlight {
+@keyframes code_block_highlight {
     from {
-        color: goldenrod;
-        transform: scaleX(1.01) translateX(3px);
+        box-shadow: 0px 0px 15px rgba(39, 151, 255, 0.874);
+        /* box-shadow: 0px 0px 15px rgba(148, 236, 17, 0.874); */
     }
     to {
         
     }
 }
 
-:target {
-    animation: highlight 4s ease-in-out;
+pre:target {
+    animation: code_block_highlight 6s ease-out;
 }

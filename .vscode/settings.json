@@ -22,16 +22,6 @@
                 },
                 "problemMatcher": []
             },
-            { // Partial build from Markdown to TeX - without examples page
-            "label": "markdown 2 tex build (don't generate examples page)",
-            "type": "shell",
-            "command": "python ${workspaceFolder}/mkdocsparse.py",
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            },
-            "problemMatcher": []
-        },
             { // Partial build from TeX to pdf
                 "label": "tex 2 pdf build",
                 "type": "shell",
