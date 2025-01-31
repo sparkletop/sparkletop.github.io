@@ -10,7 +10,7 @@ Herunder finder du alle lydeksempler til bogen *Musik- og lydprogrammering med S
 
 ## Kapitel 6: Klangdannelse med filtre
 
-### Lydeksempel 6.2: To forskellige lilletrommelyde
+### Lydeksempel 6.6: To forskellige lilletrommelyde
 
 ![type:audio](../media/audio/snare.ogg)
 

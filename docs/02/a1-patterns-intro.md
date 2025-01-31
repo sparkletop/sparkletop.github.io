@@ -247,7 +247,7 @@ Pbind(
 
 Vi kan også bruge nogle specifikke pattern-methods til at gentage outputtet fra patterns på forskellig vis. Kør nedenstående kode og gæt selv hvad `.repeat`, `.stutter` og `.clump` gør:
 
-```sc title="Pattern-methods: .repaet, .stutter og .clump"
+```sc title="Pattern-methods: .repeat, .stutter og .clump"
 Pbind(\degree, Pseq([0, 1, 2]).repeat(3)).play;
 // -> 0, 1, 2, 0, 1, 2, 0, 1, 2
 

@@ -1,23 +1,24 @@
 ---
 tags:
-    - Eksempler
+    - Artikler
 ---
 
-# Eksempler på subtraktiv klangdannelse
+# Simple blæser- og strygerlyde
 
-Nedenstående eksempler er inspireret af Andrea Pejrolo og Scott B. Metcalfes "opskrifter" på subtraktiv syntese i bogen [*Creating Sounds from Scratch*](https://global.oup.com/academic/product/creating-sounds-from-scratch-9780199921898).
+Subtraktiv syntese anvendes ofte til at emulere lyden af akustiske instrumenter. Dermed naturligvis ikke sagt, at resultatet altid klinger præcis som det akustiske forbillede; syntetiske blæser-, stryger- og trommelyde har fået deres egen genkendelige rolle inden for både den elektroniske musik og populærmusikken. Tænk blot på trommelydene fra en Roland TR-808, der indgår i utallige hiphop-tracks.
 
+Nedenstående klarinet- og strygerlyde er løseligt baseret på Pejrolo og Metcalfes gennemgang af subtraktive klangdannelsesteknikker[@pejrolo2017, pp. 119-120].
 
 ## Syntetisk klarinet
 
-En simpel "klarinet"-lyd, jf. Pejrolo & Metcalfe s. 119.
+En simpel "klarinet"-lyd, hvor lydkilden udgøres af en kvadratisk bølgeform, der sendes gennem et lavpas-filter med resonans.
 
-```sc
+```sc title="SynthDef til syntetisk klarinet"
 (
 SynthDef(\clarinet, {
 	arg freq = 440, gate = 1;
 
-	// lydkilde: firkantet bølgeform med mulighed for glissando via .lag (sliding)
+	// lydkilde: firkantet bølgeform med mulighed for glissando via .lag
 	var oscillator = Pulse.ar(freq.lag(0.025));
 	// resonant low pass-filter anvendes til klanglig justering
 	var sig = RLPF.ar(oscillator, 1200, 0.5);
@@ -27,7 +28,11 @@ SynthDef(\clarinet, {
 	Out.ar(0, sig.dup);
 }).add;
 )
+```
 
+Hvis vi skal "spille på" denne SynthDef og ønsker at fastholde idéen om en klarinetlyd, er det værd at bemærke - hvilket måske er indlysende - at klarinetten er et *monofont* instrument. Det betyder, at der ikke kan være tidsligt overlappende toner som ved et klaver eller en guitar. Vi kan derfor oplagt bruge `Pmono` eller `PmonoArtic` til fx at spille et par skalaløb:
+
+```sc title="Et par hoppende skalaløb"
 (
 Pmono(\clarinet,
 	\degree, Pseq([0, 1, 2, 3, 4, 5, 6, 7], 2),
@@ -39,9 +44,9 @@ Pmono(\clarinet,
 
 ## Firser-strings
 
-Simpel 80'er-strings, jf. Pejrolo & Metcalfe s. 120.
+Simpel 80'er-strings.
 
-```sc
+```sc title="SynthDef til firser-strings"
 (
 SynthDef(\stringz, {
 	arg freq = 440, gate = 1;
@@ -57,13 +62,17 @@ SynthDef(\stringz, {
 	);
 	var sig = RLPF.ar(oscillator, cutoff, 0.4);
 
-	// lydstyrke styres med en separat envelope
+	// lydstyrke styres med en separat ADSR-envelope
 	sig = sig * EnvGen.kr(Env.adsr(0.2, 0.4), gate, doneAction: Done.freeSelf) * 0.1;
 	Out.ar(0, sig.dup);
 }).add;
 )
+```
 
-( // en akkordrække
+For at få et indtryk af de fyldige lydmuligheder kan vi afspille et par akkorder med vores syntetiske strygerlyd:
+
+```sc title="En akkordrække med firser-strings" 
+(
 Pbind(
 	\instrument, \stringz,
 	\degree, [-7, 0, 2, 4, 6, 8],

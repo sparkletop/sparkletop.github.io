@@ -30,7 +30,7 @@ Pbind(
 )
 ```
 
-Tip: Kør `Scale.directory;` for at få vist de forskellige indbyggede skalaer. Det er også muligt [at definere sine egne skalaer](https://doc.sccode.org/Classes/Scale.html#*new) eller bruge [alternative stemningssystemer](https://doc.sccode.org/Classes/Tuning.html).
+Tip: Kør `Scale.directory;` for at få vist de forskellige indbyggede skalaer. Det er også muligt [at definere sine egne skalaer](https://doc.sccode.org/Classes/Scale.html#*new) eller bruge alternative [stemningssystemer](https://doc.sccode.org/Classes/Tuning.html).
 
 ## Selvkørende oscillatorer
 

@@ -5,9 +5,11 @@ tags:
 
 # Rissets klokke
 
-Jean-Claude Risset var en fransk komponist, der bl.a. arbejdede med additiv syntese og derved skabte en særlig klokkelyd. Nedenstående SynthDef er en SuperCollider-implementering, som er baseret på [Miller Puckettes gennemgang af Rissets klokke](http://msp.ucsd.edu/techniques/v0.11/book-html/node71.html#fig04.17). Der gøres flittig brug af [multichannel expansion](a1-oscillatorbanke.md#multikanalslyd-med-multichannel-expansion).
+Jean-Claude Risset var en fransk komponist, der bl.a. arbejdede med additiv syntese og som en pioner inden for computermusikken var en af de første, der eksperimenterede med de store klanglige muligheder man kan opnå med mikrovariationer i overtoners amplitude over tid[@roads2023, p. 123].
 
-```sc
+Nedenstående SynthDef er en SuperCollider-implementering af en berømt klokkelyd, som Risset skabte. Værdierne er baseret på Miller Puckettes[-@puckette2007, pp. 107-108] gennemgang af teknikken. Der gøres flittig brug af [multichannel expansion](a1-oscillatorbanke.md#multikanalslyd-med-multichannel-expansion).
+
+```sc title="SynthDef til Rissets klokke"
 (
 SynthDef(\risset,{
 	arg freq = 440, atk = 0.01, rel = 3, pan = 0, amp = 0.1, out = 0;
@@ -34,7 +36,11 @@ SynthDef(\risset,{
 	Out.ar(out, sig);
 }).add;
 )
+```
 
+Med patterns kan vi blandt andet variere på envelopesegmenterne og strække de varigheder, som oprindeligt er angivet:
+
+``` sc title="En simpel, generativ komposition for Rissets klokke"
 (
 Pbind(
 	\instrument, \risset,

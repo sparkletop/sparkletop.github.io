@@ -7,7 +7,7 @@ tags:
 
 Orgelet - elektrisk eller akustisk - er et glimrende eksempel på additiv klangdannelse. Her er en meget simpel simulering af et Hammond-orgel, løseligt baseret på [data fra Electric Druid](https://electricdruid.net/technical-aspects-of-the-hammond-organ/).
 
-```sc
+```sc title="SynthDef til simpel emulering af Hammond-orgel"
 (
 SynthDef(\organ, {
     arg freq = 440, amp = 0.1, pan = 0, gate = 1,
@@ -33,8 +33,11 @@ SynthDef(\organ, {
     Out.ar(0, sig);
 }).add;
 )
+```
 
-// Test lyden 
+Med SynthDef'en kan vi indstille orgelets drawbars...
+
+```sc title="Test lyden af Hammond-orgel-SynthDef'en"
 x = Synth(\organ);
 
 // Tilfældige drawbar-positioner
@@ -45,7 +48,11 @@ x.set(\rotationSpeed, 1);
 x.set(\rotationSpeed, 0);
 
 x.set(\gate, 0);
+```
 
+Noget om kompositionen.
+
+```sc title="Test lyden af Hammond-orgel-SynthDef'en"
 (
 // En lille komposition for orgel
 Pbind(

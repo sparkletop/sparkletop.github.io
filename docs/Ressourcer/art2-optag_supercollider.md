@@ -11,7 +11,6 @@ SuperCollider har ganske udmærkede metoder til at optage outputtet fra lydserve
 At optage outputtet fra SuperColliders lydserver er ganske enkelt:
 
 ```sc title="Enkel optagelse med s.record"
-
 // Start optagelsen
 s.record;
 

@@ -22,15 +22,15 @@ Det grundlæggende redskab for musikalsk lyddesign i SuperCollider og lignende p
 
 ### Fra patterns til UGens
 
-Vi har hidtil primært arbejdet med SuperColliders patterns. Patterns kører i SuperColliders **fortolker** (det program, som fortolker den kildekode, vi eksekverer). `Pbind` har været den primære ramme om kompositionsarbejdet med patterns.
+Vi har hidtil primært arbejdet med SuperColliders patterns. Patterns kører i SuperColliders **fortolker** - det program, som fortolker den kildekode, vi eksekverer. `Pbind` har været den primære ramme om kompositionsarbejdet med patterns.
 
-UGens kører i modsætning til patterns på SuperColliders **lydserver**, som er et andet program end fortolkeren. Det betyder, at syntaksen og logikken i UGens er en smule anderledes end den kode, vi hidtil har set. Rammen for vores arbejde med UGens er UGen-funktioner, der noteres med `{}.play`:
+UGens kører i modsætning til patterns på SuperColliders **lydserver**, som er et andet program end fortolkeren. Det betyder, at syntaksen og logikken i UGens er en smule anderledes end den kode, vi hidtil har set. Rammen for vores arbejde med UGens er UGen-funktioner, som vi ofte noterer med `{}.play`:
 
 ```sc title="En ydmyg sinustone"
 { SinOsc.ar }.play;
 ```
 
-Man kan ikke bruge patterns inde i UGen-funktioner. Men lidt senere i kurset kommer vi til at kombinere patterns og UGens ved at registrere vores UGen-funktioner som såkaldte `SynthDef`s. Så kan vi spille på dem ved hjælp af patterns.
+Man kan ikke bruge patterns inde i UGen-funktioner. Men lidt senere i kurset kommer vi til at kombinere patterns og UGens ved at registrere vores UGen-funktioner som såkaldte `SynthDef`s. Så kan vi spille på UGen-funktioner ved hjælp af patterns.
 
 Forholdet mellem patterns og UGens er nemlig lidt ligesom forholdet mellem en musiker (patterns) og et instrument (UGens); Man kan godt komponere med patterns uden at bruge UGens (fx ved at spille på et andet instrument via MIDI). Man kan også godt komponere udelukkende ved hjælp af UGens (ligesom en selvkørende, modulær synthesizer). Men den særlige fordel ved platforme som SuperCollider er kombinationen af de to niveauer, når vi bruger det righoldige pattern-bibliotek sammen med vores egne UGen-lyddesign får vi mange kompositionsmuligheder.
 

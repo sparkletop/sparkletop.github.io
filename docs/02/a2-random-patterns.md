@@ -18,7 +18,7 @@ Hvorfor mon der er flere forskellige tilfældighedsgeneratorer at vælge imellem
 `Pwhite`
 
 :   Alle tal mellem et givet minimum og maksimum er lige sandsynlige. Relateret til den måde hvorpå man genererer [hvid støj](https://en.wikipedia.org/wiki/White_noise#Statistical_properties). Anvendes typisk når man ønsker "helt" tilfældige værdier med mulighed for store og små spring. Fx ved atonal eller arytmisk komposition.
-    ![10.000 værdier genereret med `Pwhite(0, 100, 10000)`](../media/figures/pwhite.png)
+    ![10.000 værdier genereret med `Pwhite(0, 100, 10000)`](../media/figures/pwhite.png){: .w100 }
 
 `Pbrown`
 

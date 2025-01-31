@@ -2,6 +2,7 @@
 tags:
     - Cheat sheets
 ---
+
 # Cheat sheet: Pbind-nøgler
 
 I SuperCollider kan man sammensætte længere forløb af musikalske "begivenheder" ved hjælp af `Pbind`:
@@ -79,7 +80,7 @@ Kromatisk og modal transponering kan indføres med:
 Til at notere rytmik bruger vi primært nøglerne `\dur` og `\legato`
 
 - `\dur` - tidsinterval mellem på hinanden følgende anslag, målt i taktslag (ikke sekunder!)
-- `\legato` - hvor længe en tone klinger, målt relativt i forhold til \dur (>1 giver legato, <1 giver staccato)     
+- `\legato` - hvor længe en tone klinger, målt relativt i forhold til `\dur` (>1 giver legato, <1 giver staccato)     
 
 ```sc
 ~eksempel = Pbind(\dur, 1).play;        // tidsinterval 1 taktslag, dvs. en 4.-del
