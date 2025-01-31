@@ -44,10 +44,6 @@ pre:target {
     font-size: .9em;
 }
 
-pre {
-    border: 1px solid rgba(128, 128, 128, 0.4);
-}
-
 details.abstract {
     font-size: .9em;
 }

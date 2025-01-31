@@ -5,13 +5,13 @@ tags:
 
 # Hvordan får vi SuperCollider til at gøre noget?
 
-Alt hvad man kan gøre i SuperCollider er knyttet til konkrete *methods*. Hvis vi forstår og kan anvende de forskellige methods, der findes, kan vi groft sagt bruge alle de redskaber, der findes i SuperCollider!
+Alt hvad man kan gøre i SuperCollider er knyttet til konkrete *methods*. Hvis vi forstår og kan anvende de forskellige methods, der findes, kan vi groft sagt bruge alle de redskaber, der findes i SuperCollider! Derfor er det relevant at lære lidt om hvordan methods fungerer.
 
 ## Methods indeholder funktionalitet
 
-Teknisk set er en method en *funktion*. Methods udfører bestemte handlinger, når de bliver aktiveret. I SuperCollider-kildekode ser man ofte methods noteret lige efter punktummer. Fx sådan her:
+Teknisk set er en method en *funktion*. Methods udfører bestemte handlinger/funktioner, når de bliver aktiveret. I SuperCollider-kildekode ser man ofte methods noteret lige efter punktummer. Fx sådan her:
 
-```sc title="Tre methods"
+```sc title="Tre methods med forskellige funktioner"
 "Hello world".postln;  // method'en .postln viser objekter i post window, i dette tilfælde et stykke tekst
 Scale.minorPentatonic; // method'en .minorPentatonic angiver (kombineret med Scale) en mol-pentaton skala
 69.midicps;            // method'en .midicps omregner et tal fra MIDI-tonehøjde til frekvens, målt i Hertz
@@ -19,13 +19,11 @@ Scale.minorPentatonic; // method'en .minorPentatonic angiver (kombineret med Sca
 
 Methods kaldes undertiden også for "messages". Det skyldes, at methods anvendes på "noget", og dette noget kalder man så en "receiver". I udtrykket `69.midicps` er `69` receiveren, som modtager vores message `midicps`. 
 
-## Methods hører til klasser og instanser
+Alle methods hører til enten en *class* (klasse) eller en *instance* (forekomst). 
 
-En klasse er blot en kategori af objekter. Klasser repræsenteres af ord, som er skrevet med stort begyndelsesbogstav, fx `Scale`, `Pbind` og `SinOsc`. 
+## Class methods
 
-### Class methods
-
-Class methods er knyttet til, ja, klasser. En class method noterer man direkte efter klassenavnet, adskilt med et punktum. Det kan fx se sådan her ud:
+En klasse er blot en kategori af objekter. Klasser repræsenteres af ord, som er skrevet med stort begyndelsesbogstav, fx `Scale`, `Pbind` og `SinOsc`. Class methods er knyttet til, ja, klasser. En class method noterer man direkte efter klassenavnet, adskilt med et punktum. Det kan fx se sådan her ud:
 
 ``` sc title="Eksempler på class methods"
 TempoClock.tempo;      // finder eller angiver tempo
@@ -50,9 +48,9 @@ Pwhite(0, 10)       // .new er underforstået
 // Denne forekomst af Pwhite vil generere værdier mellem 0 og 10
 ```
 
-Om man bruger eks- eller implicit `.new` er et spørgsmål om personlig præference.
+Om man bruger eks- eller implicit `.new` er et spørgsmål om personlig præference. Eksplicit er mest tydeligt at læse, men ofte vil den implicitte udgave give sig selv. Det er fx tilføldet, når vi i næste kapitel skal arbejde med [patterns](../02/a1-patterns-intro.md), hvor man konkret .
 
-### Instance methods
+## Instance methods
 
 Instance methods bruger vi på "instances", dvs. konkrete forekomster af bestemte klasser af objekter. Fx er `9` en forekomst af klassen `SimpleNumber`. `"kaffe"` er en forekomst af klassen `String`. Instance methods noteres ligesom class methods med et punktum først[^1], men de forekommer efter instances, ikke klassenavne. Her er nogle eksempler:
 
@@ -88,7 +86,7 @@ Routine({"hej ".post; 1.wait; "med dig".postln;}).play;
 Pbind.play    // giver en fejlmeddelelse (.play findes kun som instance method, ikke som class method for Pbind)
 ```
 
-## Dokumentation af methods
+## Dokumentation for methods
 
 I SuperColliders dokumentation kan man se hvilke methods, der passer til forskellige klasser.
 

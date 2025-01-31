@@ -75,7 +75,7 @@ nav:
   - 2. At generere en strøm af værdier:
     - Introduktion til Patterns: 02/a1-patterns-intro.md
     - 02/a2-random-patterns.md
-    - 02/c1-pbind.md
+    - 02/a3-pbind.md
     - 02/c2-patterns.md
     - 02/e1-patterns.md
     - 02/e2-generativ-komposition.md
