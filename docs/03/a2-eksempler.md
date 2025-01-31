@@ -96,7 +96,7 @@ Pbind(
 1. Besvar: Hvad betyder `Array.interpolation(16, -20, -10)`?
 1. Justér kildekoden på følgende vis:
     1. Tilføj mindst én akkord til `Pwrand` (husk, at sandsynlighederne `[0.9, 0.1]` skal svare til antallet af valgmuligheder og tilsammen skal give 1)
-    1. Erstat `Pxrand` med et pattern efter eget valg, og notér hvilken forskel dette gør
+    1. Erstat `Pxrand` med et [listebaseret pattern](../02/a2-random-patterns.md#listebaserede-generatorer) efter eget valg, og notér hvilken forskel dette gør
 
 ```sc title="Øvelse: Rytmiserede og dynamiserede akkorder"
 (
@@ -121,7 +121,7 @@ Pbind(
 ## Korte, rytmiske sekvenser
 
 1. Besvar: I dette eksempel kan man argumentere for, at der arbejdes med en kombination af tilfældighed og genkendelighed. Hvilke teknikker resulterer i skabelsen af balance mellem det tilfældige og det genkendelige? 
-1. Skriv en ny komposition, som er inspireret af kildekoden her samt din besvarelse af spørgsmålet ovenfor.
+1. Skriv en ny komposition, som er inspireret af kildekoden her samt din besvarelse af opgaverne ovenfor.
 
 ```sc title="Øvelse: Korte, rytmiske sekvenser"
 (

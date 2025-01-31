@@ -20,18 +20,18 @@ Man eksekverer kode ved at taste Ctrl+Enter på Windows/Linux eller Cmd+Enter p�
 - Iagttag derefter outputtet i SuperCollider's "Post window" (som ved et nyinstalleret setup vil befinde sig til højre i skærmbilledet).
 
 ```sc title="Eksekvering af kode linje for linje"
-5 + 10
-Scale.major
-rrand(0, 100)
-"Vekseldominant".postln
+5 + 10;
+Scale.major;
+rrand(0, 100);
+"Vekseldominant".postln;
 ```
 
 ## Mere end én handling ad gangen
 
 Hvis vi gerne vil gøre mere end én ting ad gangen, kan vi adskille vores instrukser (statements) til SuperCollider ved hjælp af semikolon:
 
-``` sc title="Flere statements på én kodelinje"
-"Et fantastisk tal:".postln; rrand(0, 100).postln
+``` sc title="Flere statements på én kodelinje med semikolon"
+"Et fantastisk tal:".postln; rrand(0, 100).postln;
 ```
 
 Hvis vi udelader semikolon, kan SuperCollider ikke forstå hvor den ene instruks stopper og hvornår den næste starter. Det er derfor - med nogle få vigtige undtagelser - typisk fornuftigt at afslutte sine kodelinjer med et semikolon.
