@@ -1,27 +1,28 @@
 ---
 tags:
-    - Eksempler
+    - Øvelser
 ---
-# Fem simple pattern-baserede kompositioner
 
-Denne artikel handler om at læse, undersøge, forstå og variere/eksperimentere med eksempler på patternbaseret komposition. Der er nogen redundans i forhold til sektion 2 - men som tidligere nævnt er det vigtigt at have styr på det grundlæggende, før man kan gå videre til det mere avancerede.
+# Analyse af pattern-kompositioner
 
-Artiklen er udformet som instrukser til praktisk selvstudium. Når du besvarer spørgsmålene, kan disse tricks være en god hjælp til at forstå hvad der foregår:
+Denne øvelse handler om at *læse*, *undersøge*, *forstå* og *variere*/*eksperimentere* med eksempler på patternbaseret komposition. Du vil opleve en vis redundans i forhold til forrige kapitel, hvilket er helt med vilje; det er vigtigt at have styr på det grundlæggende, før man kan gå videre til det mere avancerede.
+
+Når du besvarer spørgsmålene, kan disse tricks være en god hjælp til at forstå hvad der foregår:
 
 - Brug `.trace` til at tjekke outputtet fra forskellige patterns, fx `Pwhite(0, 5).trace`.
-- Brug SuperColliders dokumentation - sæt cursoren ved et pattern-navn og tast Ctrl/Cmd-D. Scroll herefter ned til bunden af dokumentationsfilen for at se eksempler på hvordan det pågældende pattern fungerer.
+- Brug SuperColliders dokumentation - sæt cursoren ved et pattern-navn og tast Ctrl/Cmd-D. Scroll herefter ned til bunden af den pågældendedokumentationsside for at se eksempler på hvordan det pågældende pattern fungerer.
 - Eksperimentér med at ændre på nogle af værdierne for at få en fornemmelse af, hvordan teknikkerne fungerer.
 
-## Eksempel 1: Nøgler
+## Sammensætning af nøgler og patterns
 
-1. Notér for hver linje i `Pbind`'en: Hvilken funktion har de enkelte nøgler (`\octave`, `\root` osv.)?
+1. Notér for hver linje i `Pbind`'en: Hvilken funktion har de enkelte nøgler (`\octave`, `\root` osv.)? Jf. [forrige kapitel](../02/c1-pbind.md).
 1. Hvilken effekt opnår man ved at kombinere `Pwhite` og `.stutter`?
 1. Variér og eksperimentér med mindst tre aspekter af kompositionen:
     1. De valgte trin og nodeværdier
     1. Den valgte skala
-    1. De valgte patterns (`Pseq`, `Pwhite` osv.)
+    1. De valgte patterns
 
-```sc title="Eksempel 1"
+```sc title="Øvelse: Nøgler"
 (
 TempoClock.tempo = 120/60;
 
@@ -43,16 +44,16 @@ Pbind(
 )
 ```
 
-## Eksempel 2: Skala-udforskning med `Pbrown`
+## Skala-udforskning med `Pbrown`
 
 1. Besvar: Hvad er forskellen på `Pbrown` og `Pwhite`?
 1. Besvar: Hvilken funktion har nøglen `\ctranspose`?
 1. Variér og eksperimentér med mindst tre aspekter af kompositionen:
     1. De valgte trin og nodeværdier
     1. Den valgte skala
-    1. De valgte patterns (`Pseq`, `Pwhite` osv.)
+    1. De valgte patterns
 
-```sc title="Eksempel 2"
+```sc title="Øvelse: Skala-udforskning med Pbrown"
 (
 TempoClock.tempo = 80 / 60;
 
@@ -65,14 +66,14 @@ Pbind(
 )
 ```
 
-## Eksempel 3: Pentatone mønstre
+## Pentatone mønstre
 
 1. Beskriv forholdet mellem tilfældighed og kompositorisk struktur i denne korte komposition.
 1. Skriv to variationer af kompositionen:
     1. Én version, som har en højere grad af tilfældighed
     1. Én version, som har en højere grad af struktur og gentagelse
 
-```sc title="Eksempel 3"
+```sc title="Øvelse: Pentatone mønstre"
 (
 TempoClock.tempo = 140 / 60;
 Pbind(
@@ -89,7 +90,7 @@ Pbind(
 )
 ```
 
-## Eksempel 4: Rytmiserede og dynamiserede akkorder
+## Rytmiserede og dynamiserede akkorder
 
 1. Besvar: Hvilken effekt har kombinationerne af `.stutter` og `.repeat` på outputtet fra de forskellige patterns?
 1. Besvar: Hvad betyder `Array.interpolation(16, -20, -10)`?
@@ -97,7 +98,7 @@ Pbind(
     1. Tilføj mindst én akkord til `Pwrand` (husk, at sandsynlighederne `[0.9, 0.1]` skal svare til antallet af valgmuligheder og tilsammen skal give 1)
     1. Erstat `Pxrand` med et pattern efter eget valg, og notér hvilken forskel dette gør
 
-```sc title="Eksempel 4"
+```sc title="Øvelse: Rytmiserede og dynamiserede akkorder"
 (
 TempoClock.tempo = 120 / 60;
 
@@ -117,12 +118,12 @@ Pbind(
 )
 ```
 
-## Eksempel 5: Korte, rytmiske sekvenser
+## Korte, rytmiske sekvenser
 
 1. Besvar: I dette eksempel kan man argumentere for, at der arbejdes med en kombination af tilfældighed og genkendelighed. Hvilke teknikker resulterer i skabelsen af balance mellem det tilfældige og det genkendelige? 
 1. Skriv en ny komposition, som er inspireret af kildekoden her samt din besvarelse af spørgsmålet ovenfor.
 
-```sc title="Eksempel 5"
+```sc title="Øvelse: Korte, rytmiske sekvenser"
 (
 TempoClock.tempo = 85 / 60;
 

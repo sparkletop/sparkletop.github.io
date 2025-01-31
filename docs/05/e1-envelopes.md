@@ -7,25 +7,23 @@ tags:
 
 I denne øvelse arbejder du med envelopes. Som et element i nogle af opgaverne, indgår disse envelopes i SynthDefs.
 
-## Brug af envelopes til modulation af amplitude
+## Brug af indbyggede envelopes
 
-1. Tag udgangspunkt i nedenstående kildekode, og brug følgende envelopes til at modulere amplituden for en firkantet bølgeform:
+1. Tag udgangspunkt i nedenstående kildekode, og brug følgende envelopes:
     1. Indbyggede envelopes med standardværdier for attack, release mm.
-        - `Env.perc`
-        - `Env.linen`
-        - `Env.sine`
-        - `Env.triangle`
+        1. `Env.perc`
+        1. `Env.linen`
+        1. `Env.sine`
+        1. `Env.triangle`
     1. Indbyggede envelopes med specifikke indstillinger
-        - `Env.perc` med attack-tid på 200 milisekunder og release-tid på 3 sekunder
-        - `Env.linen` med sustain-**tid** på 2 sekunder
-        - `Env.sine` med varighed på 0.1 sekund
-2. Modificér dernæst koden, således at vi også modulerer `Pulse`-oscillatorens frekvens med envelope-generatoren, skaleret med `.exprange` til intervallet 55-440.
-
-Husk, at `.plot` kan være en nyttig hjælp: `Env.perc(1, 3).plot`
+        1. `Env.perc` med attack-tid på 200 milisekunder og release-tid på 3 sekunder
+        1. `Env.linen` med sustain-**tid** på 2 sekunder
+        1. `Env.sine` med varighed på 0.1 sekund
+1. Modificér dernæst koden, således at vi også modulerer `Pulse`-oscillatorens frekvens med envelope-generatoren, skaleret med `.exprange` til intervallet 55-440.
 
 Justér kun på de markerede linjer i kodeblokken herunder.
 
-```sc title="Opgave 1" hl_lines="3 4"
+```sc title="Øvelse med indbyggede envelopes" hl_lines="3"
 (
 {
 	var env = EnvGen.kr(    , doneAction: Done.freeSelf);
@@ -34,6 +32,8 @@ Justér kun på de markerede linjer i kodeblokken herunder.
 }.play;
 )
 ```
+
+Husk, at `.plot` kan være en nyttig hjælp: `Env.perc(1, 3).plot`
 
 ## Unikke envelopes
 

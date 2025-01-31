@@ -46,26 +46,18 @@ Tip: Kør `Scale.directory;` for at få vist de forskellige indbyggede skalaer. 
 
 	// prøv at ændre på de forskellige tal herunder
 	var freq = 330;
-
 	var lfoFreqStart = 2;
-
 	var lfoFreqEnd = 10;
-
 	var duration = 7;
-
 	lfoFreq = Line.kr(
 		lfoFreqStart,
 		lfoFreqEnd,
 		duration,
 		doneAction: Done.freeSelf
 	);
-
 	lfoFreq = lfoFreq.dup(2);
-
 	lfo = LFNoise0.kr(lfoFreq);
-
 	lfo = lfo.bipolar(24);
-
 	lfo = lfo.round(4);
 
 	// justér ikke herunder
