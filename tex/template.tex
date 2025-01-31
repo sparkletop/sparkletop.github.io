@@ -1,12 +1,15 @@
-\documentclass[a4paper, 12pt]{memoir}
+\documentclass[oneside, a4paper, 12pt]{memoir}
 
 \usepackage[danish]{babel}        % for Danish metatext
-\usepackage{graphicx}             % for includegraphics
+\usepackage{graphicx}             % for figures
 \usepackage[chapter]{minted}      % for code highlighting
+\usepackage{csquotes}             % for proper quotation marks
 \usepackage{caption}              % to better control captions
-\usepackage{fontspec}             % for using fonts
-\usepackage{textcomp}             % for special symbols - necessary?
-\usepackage{titlesec}             % to better control section heading placement
+\usepackage{fontspec}             % for font specifiation
+\usepackage{textcomp}             % for special symbols
+\usepackage{fontawesome5}         % for FA icons
+\usepackage{relsize}              % for specifying relative font sizes
+\usepackage{titlesec}             % to better control section headings
 \usepackage{xcolor,pagecolor}     % for coloring links and page backgrounds
 \usepackage[hidelinks]{hyperref}  % to make links between sections etc.
 \usepackage{enumitem}             % to style lists
@@ -15,71 +18,51 @@
   expansion=true,
   tracking=true
   ]{microtype}                    % to address overflowing margins
+\usepackage[
+  style=authoryear-icomp
+  ]{biblatex}                     % for literature references
 
-\hypersetup{
-  colorlinks,
-  linkcolor={red!20!black},
-  citecolor={blue!20!black},
-  urlcolor={blue!32!black}
-}
+\addbibresource{mlprefs.bib}
 
-% Margins
-\setlrmarginsandblock{3cm}{3cm}{*}
-\setulmarginsandblock{3cm}{*}{1}
-\checkandfixthelayout 
+% Font settings
+\setmainfont{Source Sans Pro}
+\setmonofont[Contextuals={Alternate}]{Fira Code}
 
 % Page background colors
 \definecolor{exercise}{HTML}{BCFFCD}%{95FFAF}
 \definecolor{cheatsheet}{HTML}{C1EEFF}
+\definecolor{normal}{rgb}{1, 1, 1}
 
-% Font settings
-\setmonofont{SourceCodePro}[
-  Path = fonts/Source_Code_Pro/static/,
-  Extension = .ttf,
-  BoldFont = *-Bold,
-  UprightFont = *-Regular,
-  ItalicFont = *-Italic,
-  BoldItalicFont = *-BoldItalic
-  ]
-
-\setmainfont{FunnelSans}[
-  Path = fonts/Funnel_Sans/static/,
-  Extension = .ttf,
-  BoldFont = *-Bold,
-  UprightFont = *-Regular,
-  ItalicFont = *-Italic,
-  BoldItalicFont = *-BoldItalic
-  ]
-
-\setsecheadstyle{\Large\bfseries}
-\setsubsecheadstyle{\large\bfseries}
-\setsubsubsecheadstyle{\normalsize\bfseries}
+% Layout setup
+\chapterstyle{veelo}
+\hangsecnum
+\setsecheadstyle{\large\bfseries}
+\setsubsecheadstyle{\normalsize\bfseries}
+\setsubsubsecheadstyle{\normalsize\itshape}
 \setsecnumdepth{subsection}
 
-\chapterstyle{veelo}
 \parindent=0pt
-\parskip=0.3em
+\parskip=1em
+\setlength\bibitemsep{\itemsep}
 
-\nouppercaseheads
-% \makepagestyle{plain}
-% \makeevenfoot{plain}{}{\thepage}{}
-% \makeoddfoot{plain}{}{\thepage}{}
-\pagestyle{plain}
+\captionsetup{skip=0.5em, font=footnotesize}
+ 
+\copypagestyle{chapter}{plain}
+\makeevenfoot{ruled}{}{\footnotesize\thepage}{}
+\makeoddfoot{ruled}{}{\footnotesize\thepage}{}
+\makeevenfoot{chapter}{}{\footnotesize\thepage}{}
+\makeoddfoot{chapter}{}{\footnotesize\thepage}{}
 
-% Begin section on new page if more than 70% of the page is filled
-\newcommand{\sectionbreak}{\ifdim\pagetotal<.7\textheight\else\clearpage\fi}
-\titleformat{\section}[block]
-  {\sectionbreak\normalfont\Large\bfseries}
-  {\thesection}{1em}{}
-  {}
+\pagestyle{ruled}
 
-% Code listings
-\definecolor{bg}{rgb}{0.9, 0.905, 0.9} % code block background color
+% Settings for code listings
+\definecolor{bg}{rgb}{0.95, 0.955, 0.945} % code block background color
 \definecolor{hl}{rgb}{0.85, 0.92, 0.85} % code block highlight color
 \setminted{
   style=friendly,
   frame=single,
   framesep=1mm,
+  framerule=1pt,
   xleftmargin=0.5em,
   xrightmargin=0.5em,
   numbersep=0.7em,
@@ -89,40 +72,75 @@
   breaklines=true,
   highlightcolor=hl,
   ignorelexererrors=true,
-  fontsize=\footnotesize
+  fontsize=\footnotesize,
+}
+\setmintedinline{
+  bgcolor=none,
+  style=friendly,
+  breaklines=true,
+  fontsize=\relsize{-1}
 }
 \renewcommand{\listingscaption}{Kodeboks}
 \renewcommand{\listoflistingscaption}{Kodebokse}
-\setmintedinline{bgcolor=none, style=friendly, breaklines=true}  % requires a more recent version of minted than 2.9
-
-\captionsetup{skip=0.2em, font=scriptsize}
-
-\hfuzz=1pt
+\renewcommand{\listoflistings}{%
+  %\cleardoublepage
+  \addcontentsline{toc}{chapter}{\listoflistingscaption}%
+  \listof{listing}{\listoflistingscaption}%
+}
+\AtBeginEnvironment{minted}{\setlength{\parskip}{0pt}}
 
 % List settings
 \setlist{noitemsep}
 \setlist[description]{style=nextline}
 \setlist[itemize]{leftmargin=1.7em, labelindent=0pt, label=\textbf{\char`~}, font=\fontfamily{SourceCodePro}}
 \setlist[enumerate]{leftmargin=1.7em, labelindent=0pt}
-
+\AtBeginEnvironment{itemize}{\setlength{\parskip}{0.1em}}
+\AtBeginEnvironment{enumerate}{\setlength{\parskip}{0.1em}}
 
 % Metadata
 \title{Musik- og lydprogrammering med SuperCollider}
 \author{Anders Eskildsen}
 \date{\today}
 
+% Misc
+\hfuzz=2pt
+\vfuzz=2pt
+
+\hypersetup{
+  bookmarksnumbered,
+  % Black links for TOC
+  colorlinks,
+  linkcolor={black},
+  citecolor={black},
+  urlcolor={black}
+}
+  
 \begin{document}
-\openany
 
 \frontmatter
-\maketitle
+
 \tableofcontents
 
-\include{content.tex}
+\hypersetup{
+  % Colored links for main book body
+  linkcolor={red!50!black},
+  citecolor={green!20!black},
+  urlcolor={blue!32!black}
+}
+
+\include{content}
+
+\backmatter
+
+\hypersetup{
+  % Black links for back matter
+  linkcolor={black},
+  citecolor={black},
+  urlcolor={black}
+}
 
 \listoffigures
-\listoflistings % doesn't look great - needs section-relative numbering like figures
-%\appendix
-%\include{tex/appendix-0}
+%\listoflistings
+\printbibliography
 
 \end{document}
