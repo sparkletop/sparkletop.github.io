@@ -1,7 +1,7 @@
 *.scd
 site
 .venv
-
+.cache
 
 tex/fonts
 tex/content.tex
