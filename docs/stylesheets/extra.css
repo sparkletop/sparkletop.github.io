@@ -4,10 +4,54 @@
         /* box-shadow: 0px 0px 15px rgba(148, 236, 17, 0.874); */
     }
     to {
-        
+
+    }
+}
+
+@keyframes heading_highlight {
+    from {
+        color: rgba(113, 185, 252, 0.874);
+    }
+    to {
+
     }
 }
 
 pre:target {
     animation: code_block_highlight 6s ease-out;
+}
+
+:target {
+    animation: heading_highlight 1s ease-in-out;
+}
+
+.md-typeset h1 {
+    font-weight: 700;
+    letter-spacing: -0.015em;
+}
+
+.md-typeset h2 {
+    font-weight: 500;
+    margin: 2.3em 0 .9em;
+}
+.md-typeset h3 {
+    font-weight: 500;
+    font-style: italic;
+}
+
+.highlight span.filename {
+    font-weight: 500;
+    font-size: .9em;
+}
+
+pre {
+    border: 1px solid rgba(128, 128, 128, 0.4);
+}
+
+details.abstract {
+    font-size: .9em;
+}
+
+summary {
+    font-weight: 500 !important;
 }
