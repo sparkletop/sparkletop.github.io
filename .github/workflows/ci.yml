@@ -22,7 +22,7 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - run: pip install mkdocs-material 
-      - run: pip install markdown-captions
       - run: pip install mkdocs-audio
       - run: pip install mkdocs-bibtex
+      - run: pip install mkdocs-caption
       - run: mkdocs gh-deploy --force

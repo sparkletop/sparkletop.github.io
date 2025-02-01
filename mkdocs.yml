@@ -44,7 +44,10 @@ plugins:
   - bibtex:
       bib_file: "tex/mlprefs.bib"
   - privacy
-  
+  - caption:
+      figure:
+        caption_prefix: ''
+    
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
@@ -121,4 +124,3 @@ nav:
     - MIDI-output fra SuperCollider: Ressourcer/art1-MIDI-output.md
     - Ressourcer/art2-optag_supercollider.md
     - Ressourcer/gratis-samples.md
-    - Ressourcer/lydeksempler.md
