@@ -24,7 +24,7 @@ Når vi ønsker at modulere outputtet fra en UGen på denne måde, kan vi ganske
 )
 ```
 
-![En umodificeret sinusbølge og en sinusbølge med nedskaleret amplitude](../media/figures/to_amplituder.png)
+![En umodificeret sinusbølge og en sinusbølge med nedskaleret amplitude](../media/figures/to_amplituder.png){ width="80%" }
 
 Det er værd at bemærke, at outputtet maksimalt kan være -1 til 1. Værdier derover risikerer at overstyre. Når vi modulerer amplitude for hørbare UGens, skalerer vi derfor oftest amplituden **ned** ved at gange med en faktor mellem 0 og 1:
 
@@ -48,7 +48,7 @@ Skalering af output fra en UGen til et interval fra 0 til et maksimum kan gøres
 )
 ```
 
-![Brug af UGen-method'en `.unipolar`](../media/figures/unipolar.png)
+![Brug af UGen-method'en `.unipolar`](../media/figures/unipolar.png){ width="80%" }
 
 Hvis vi eksempelvis gerne vil modulere amplituden for et signal med pink støj, kan det gøres på følgende vis:
 
@@ -78,7 +78,7 @@ Her kan vi med fordel bruge to UGen-methods, som hedder `.range` og `.exprange`.
 { SinOsc.ar(3).range(100, 200) }.plot(1);
 ```
 
-![Brug af UGen-method'en `.range`](../media/figures/range.png)
+![Brug af UGen-method'en `.range`](../media/figures/range.png){ width="80%" }
 
 Det er vigtigt, at vi bruger dette på modulatoren - ikke på lydkilden:
 

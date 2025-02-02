@@ -25,6 +25,7 @@ Det grundlæggende redskab for musikalsk lyddesign i SuperCollider og lignende p
 Vi har hidtil primært arbejdet med SuperColliders patterns. Patterns kører i SuperColliders **fortolker** - det program, som fortolker den kildekode, vi eksekverer. `Pbind` har været den primære ramme om kompositionsarbejdet med patterns.
 
 UGens kører i modsætning til patterns på SuperColliders **lydserver**, som er et andet program end fortolkeren. Det betyder, at syntaksen og logikken i UGens er en smule anderledes end den kode, vi hidtil har set. Rammen for vores arbejde med UGens er UGen-funktioner, som vi ofte noterer med `{}.play`:
+ Kodelinjerne mellem disse tuborg-parenteser kører på SuperColliders lydserver, når de efterfølges af `.play`, dvs. `{}.play`.
 
 ```sc title="En ydmyg sinustone"
 { SinOsc.ar }.play;
@@ -48,17 +49,10 @@ Den mest enkle UGen er `SinOsc` - en ydmyg sinustone-oscillator. Vi afspiller de
 {SinOsc.ar(220) * 0.1}.play;
 
 // Vi kan plotte outputtet med .plot i stedet for .play
-{SinOsc.ar}.plot;
-
-// Sammenligning af sinusbølger med forskellige parametre
-{SinOsc.ar([220, 440, 2000])}.plot;  // frekvenser på 220Hz, 440Hz og 2000Hz
-{[SinOsc.ar, SinOsc.ar * 0.1]}.plot; // peak-amplitude på 1 og 0.1
-{[SinOsc.ar(440), SinOsc.ar(440, pi/2)]}.plot; // sinusbølge og faseforskudt sinusbølge (cosinus)
+// Her frekvenser på 220Hz, 440Hz og 2000Hz
+{SinOsc.ar([220, 440, 2000])}.plot;
 ```
-
-![Sinusbølger ved 220Hz, 440Hz og 2kHz](../media/figures/tre_frekvenser.png)
-
-UGens bruges inde i såkaldte funktioner, som noteres med `{}`. Kodelinjerne mellem disse tuborg-parenteser kører på SuperColliders lydserver, når de efterfølges af `.play`, dvs. `{}.play`.
+![Sinusbølger ved 220Hz, 440Hz og 2kHz](../media/figures/tre_frekvenser.png){ width="70%" }
 
 ## Modulation
 

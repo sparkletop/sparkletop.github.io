@@ -3,7 +3,7 @@ tags:
     - Artikler
 ---
 
-# Cheat sheet: Pbind-nøgler
+# Pbind-nøgler
 
 I SuperCollider kan man sammensætte længere forløb af musikalske "begivenheder" ved hjælp af `Pbind`. Det er ofte inden for Pbind, at vi specificerer musikalske parametre som tonehøjde, dynamik, rytmik og frasering. Det gør vi ved at sammensætte nøgler og værdier i formen `\nøgle, værdi`:
 

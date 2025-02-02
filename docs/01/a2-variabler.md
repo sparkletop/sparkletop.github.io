@@ -4,69 +4,67 @@ tags:
 ---
 # Brug af variabler
 
-Vi kan opbevare forskellige former for data i computerens hukommelse ved hjælp af variabler. Variabler kan forstås som en slags opbevaringsrum, hvor vi kan gemme ting og finde dem frem igen senere. Der er to typer variabler: *Globale* og *lokale* variabler.
+Vi kan opbevare forskellige former for data i computerens hukommelse ved hjælp af variabler. Man kan forestille sig en skuffe, som man sætter en seddel på med en kort beskrivelse af indholdet. Når man så skal finde indholdet frem igen eller putte noget nyt indhold i, finder man blot skuffen med den rette seddel frem. Variabler fungerer lidt på samme måde: Når man opretter en variabel, gemmer man et objekt under et bestemt navn. Når man så senere skal bruge objektet igen, henviser man blot til variablens navn. Og nu vi er ved variabelnavne: De starter altid med et lille begyndelsesbogstav[^1]. Hvis vi prøver at bruge variabelnavnet `~Kaffe`, vil vi derfor få en fejlmeddelelse. Brug i stedet `~kaffe`.
 
 ## Globale variabler
 
-Globale variabler kan tilgås (næsten) overalt i et SuperCollider-program. De noteres med tegnet tilde (`~`), direkte efterfulgt af et passende navn, fx sådan her:
+Der er to typer variabler: *Globale* og *lokale* variabler. Globale variabler kan anvendes (næsten) overalt i et SuperCollider-program. De noteres med tegnet tilde (`~`), direkte efterfulgt af et passende navn, fx sådan her:
 
-```sc
-~alder;
-~kaffekop;
-```
+```sc title="Globale variabler"
+~trin;
+~akkord;
 
-Alle enkeltbogstaver fra `a` til `z` udgør også globale variabler:
-
-```sc
+// Alle enkeltbogstaver fra `a` til `z` udgør også globale variabler:
 a;
-q;
+b;
 ```
 
-For at kunne bruge variabler skal vi kunne definere, tilgå og ændre deres indhold.
+For at bruge variabler skal vi kunne tilgå og definere deres indhold.
 
-- For at tilgå variablen, dvs. finde dens indhold frem og bruge det til noget, bruger vi slet og ret variabelnavnet, fx `~alder`.
-- For at definere eller ændre variablens indhold, bruger vi variabelnavnet på venstre side af et lighedstegn, og det nye indhold på højre side: `~alder = 10`. Dette kaldes også *assignment*.
+
+For at tilgå variablen, dvs. finde dens indhold frem og bruge det til noget, bruger vi slet og ret variabelnavnet, fx `~trin`.
+- For at definere eller ændre variablens indhold, bruger vi først variabelnavnet efterfulgt af et lighedstegn, og det nye indhold på højre side af lighedstegnet: `~trin = 2`. Dette kaldes også *assignment*, fordi vi i dette tilfælde "assigner" tallet 2 til variable med navnet `~trin`.
 
 ``` sc title="Grundlæggende brug af variabler"
-~alder.postln; // tjek først variablens indhold
-~alder = 23;   // gem et tal (også kendt som "assignment")
-~alder.postln; // tjek variablens indhold igen
+~trin.postln; // tjek først variablens indhold
+~trin = 5;    // gem et tal
+~trin.postln; // tjek variablens indhold igen
 
 //Vi kan efterfølgende tilgå og bruge variablens indhold blot ved at bruge dens navn:
-~alder * 100;
+~trin - 10;
 ```
 
-En variabel kan efterfølgende let omdefineres:
+En variabel kan efterfølgende let omdefineres ved at foretage en ny assignment:
 
 ``` sc title="At omdefinere indholdet af en variabel"
 // Vi kan også omdefinere indholdet med endnu en assignment:
-~alder = 50;
-~alder.postln;
+~trin = 50;
+~trin.postln;
 
 // Variablens nuværende indhold kan anvendes, når man regner en ny værdi ud og gemmer under samme variabelnavn:
-~alder = ~alder * 10 + 7;
-~alder.postln;
+~trin = ~trin * 10 + 7;
+~trin.postln;
 ```
 
-Der findes en mindre teknisk forskel på variabler som `~kaffe` og `k`, men på begynderniveau[^1] er det ikke nødvendigt at skelne mellem de to.
-
-### Variabelnavne starter med et lille bogstav
-
-Variabelnavne starter altid med et lille begyndelsesbogstav, fordi stort begyndelsesbogstav er forbeholdt klassenavne. Hvis vi prøver at bruge variabelnavnet `~Kaffe`, vil vi derfor få en fejlmeddelelse. Brug i stedet `~kaffe`.
+Der findes en mindre teknisk forskel på variabler som `~trin` og `t`, men på begynderniveau er det ikke nødvendigt at skelne mellem de to[^2].
 
 ## Lokale variabler
 
-Kan udelukkende tilgås inden for en afgrænset kodeblok bestående af `()` eller `{}`. Lokale variabler defineres med nøgleordet `var` og anvendes uden `~`.
+Vi bruger blandt andet lokale variabler til at gemme data som akkorder og rytmer, men også til at [definere signalflowet](../04/a1-ugens.md#signalflow-med-lokale-variabler), når vi designer lyde.
 
-``` sc title="Lokale variabler"
+Lokale variabler defineres med nøgleordet `var` i stedet for `~`. De kan udelukkende tilgås inden for en afgrænset kodeblok bestående af almindelige parenteser eller tuborg-parenteser, og de skal oprettes i begyndelsen af den kodeblok, de tilhører.
+
+``` sc title="En lokal variabel"
 (
-var model = "Fabia";
-model.postln; // inden for kodeblokken: viser variablens indhold
+var akkord = [0, 1, 4];
+akkord.postln;
+// Inden for kodeblokken: viser variablens indhold
 )
 
-model.postln; // uden for kodeblokken: giver en fejlmeddelelse
+akkord.postln;
+// Uden for kodeblokken: giver en fejlmeddelelse
 ```
 
-Lokale variabler bruges blandt andet til at gemme data som akkorder og rytmer, men også til at definere signalflowet, når man designer lyde i en såkaldt SynthDef. Det vender vi tilbage til senere.
+[^1]: Teknisk set skal variable begynde med småt begyndelsesbogstav fordi stort begyndelsesbogstav er forbeholdt de såkaldte [klassenavne](a3-methods.md#class-methods).
 
-[^1]: Rent teknisk udgør variabler som `~kaffe` og `~the` såkaldte *environment variables*, hvor variabler som `a`, `b` og `c` er globale variabler i mere klassisk forstand. Med environment variables kan man skifte mellem environments og dermed adskille det man i mere avanceret programmering kalder for [*namespaces*](https://en.wikipedia.org/wiki/Namespace). Som begynder skal man ikke bekymre sig om dette, da vi på grundlæggende niveau udelukkende arbejder inden for ét environment. Vi kan dermed for enkelhedens skyld betragte environment variables som globale variabler.
+[^2]: Rent teknisk udgør variabler som `~kaffe` og `~the` såkaldte *environment variables*, hvor variabler som `a`, `b` og `c` er globale variabler i mere klassisk forstand. Med environment variables kan man skifte mellem environments og dermed adskille det man i mere avanceret programmering kalder for [*namespaces*](https://en.wikipedia.org/wiki/Namespace). Som begynder skal man ikke bekymre sig om dette, da vi på grundlæggende niveau udelukkende arbejder inden for ét environment. Vi kan dermed for enkelhedens skyld betragte environment variables som globale variabler.

@@ -5,16 +5,19 @@ tags:
 
 # Hvordan får vi SuperCollider til at gøre noget?
 
-Alt hvad man kan gøre i SuperCollider er knyttet til konkrete *methods*. Hvis vi forstår og kan anvende de forskellige methods, der findes, kan vi groft sagt bruge alle de redskaber, der findes i SuperCollider! Derfor er det relevant at lære lidt om hvordan methods fungerer.
+Alt hvad man kan *gøre* i SuperCollider er knyttet til konkrete *methods*. Hvis vi forstår og kan anvende de forskellige methods, der findes, kan vi groft sagt bruge alle de redskaber, der findes i SuperCollider! Derfor er det relevant at lære hvordan methods fungerer.
 
 ## Methods indeholder funktionalitet
 
-Teknisk set er en method en *funktion*. Methods udfører bestemte handlinger/funktioner, når de bliver aktiveret. I SuperCollider-kildekode ser man ofte methods noteret lige efter punktummer. Fx sådan her:
+Teknisk set er en method en *funktion*. Methods udfører bestemte handlinger/funktioner, når de bliver aktiveret. I SuperCollider-kildekode ser man ofte methods noteret lige efter punktummer. I et fiktivt eksempel som `~car.drive`, er `drive` en method, som anvendes på det, der er gemt under variablen `~car` - antagelig for at få en bil til at køre. Men lad os kigge på nogle reelle methods i SuperCollider: 
 
-```sc title="Tre methods med forskellige funktioner"
-"Hello world".postln;  // method'en .postln viser objekter i post window, i dette tilfælde et stykke tekst
-Scale.minorPentatonic; // method'en .minorPentatonic angiver (kombineret med Scale) en mol-pentaton skala
-69.midicps;            // method'en .midicps omregner et tal fra MIDI-tonehøjde til frekvens, målt i Hertz
+```sc title="Tre methods med forskellig funktionalitet"
+// method'en .postln viser objekter i post window, i dette tilfælde et stykke tekst
+"Hello world".postln;
+// method'en .minorPentatonic angiver (kombineret med Scale) en mol-pentaton skala
+Scale.minorPentatonic;
+// method'en .midicps omregner et tal fra MIDI-tonehøjde til frekvens, målt i Hertz
+69.midicps;
 ```
 
 Methods kaldes undertiden også for "messages". Det skyldes, at methods anvendes på "noget", og dette noget kalder man så en "receiver". I udtrykket `69.midicps` er `69` receiveren, som modtager vores message `midicps`. 
@@ -23,16 +26,16 @@ Alle methods hører til enten en *class* (klasse) eller en *instance* (forekomst
 
 ## Class methods
 
-En klasse er blot en kategori af objekter. Klasser repræsenteres af ord, som er skrevet med stort begyndelsesbogstav, fx `Scale`, `Pbind` og `SinOsc`. Class methods er knyttet til, ja, klasser. En class method noterer man direkte efter klassenavnet, adskilt med et punktum. Det kan fx se sådan her ud:
+En klasse er blot en kategori af objekter. Klasser repræsenteres af ord, som er skrevet med stort begyndelsesbogstav, fx `Scale`, `Pbind` og `SinOsc`. Class methods er knyttet til, ja, klasser. For at aktivere en class method noterer man førstklassenavnet, derefter et punktum, og til sidst method-navnet. Det kan fx se sådan her ud:
 
 ``` sc title="Eksempler på class methods"
-TempoClock.tempo;      // finder eller angiver tempo
-Scale.directory;       // viser alle indbyggede skalaer
-SinOsc.ar;             // angiver en sinus-oscillator
-Pbind.new;             // opretter en ny Pbind (kan udgøre ramme for generativ komposition)
+TempoClock.tempo; // finder eller angiver tempo
+Scale.directory;  // viser alle indbyggede skalaer
+SinOsc.ar;        // angiver en sinus-oscillator
+Pbind.new;        // opretter en ny Pbind (ramme for komposition)
 ```
 
-Der findes i SuperCollider en særlig class method, som vi bruger hele tiden: `.new`. Denne method skaber et nyt objekt (en "instance" eller forekomst) af den klasse, man angiver før punktummet.
+Der findes i SuperCollider en særlig class method, som vi bruger hele tiden: `.new`. Denne method skaber et nyt objekt - en "instance"/forekomst af den valgte klasse.
 
 ``` sc title="Eksempler på .new"
 Pbind.new()     // opretter en ny Pbind
@@ -48,7 +51,7 @@ Pwhite(0, 10)       // .new er underforstået
 // Denne forekomst af Pwhite vil generere værdier mellem 0 og 10
 ```
 
-Om man bruger eks- eller implicit `.new` er et spørgsmål om personlig præference. Eksplicit er mest tydeligt at læse, men ofte vil den implicitte udgave give sig selv. Det er fx tilføldet, når vi i næste kapitel skal arbejde med [patterns](../02/a1-patterns-intro.md), hvor man konkret .
+Om man bruger eks- eller implicit `.new` er et spørgsmål om personlig præference. Den eksplicitte tilgang er mest tydelig at læse, men ofte vil den implicitte udgave give sig selv. Det er fx tilfældet, når vi i næste kapitel skal arbejde med [patterns](../02/a1-patterns-intro.md), hvor man konkret .
 
 ## Instance methods
 

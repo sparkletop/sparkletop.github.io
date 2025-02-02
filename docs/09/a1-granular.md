@@ -57,7 +57,7 @@ Der findes yderligere argumenter til `GrainBuf`, men de er af mindre betydning f
 
 Som argument til `GrainBuf.ar` angiver vi blandt andet et såkaldt triggersignal, som fortæller `GrainBuf`, hvornår der skal udløses et nyt grain. Man kan anvende et hvilket som helst signal som trigger, men typiske valg er `Impulse`, som udsender triggere med en fast frekvens, og `Dust`, som udsender triggere på tilfældige tidspunkter, men med et gennemsnitligt antal pr. sekund, groft svarende til frekvensen for `Impulse`.
 
-![{ [Impulse.kr(50), Dust.kr(50)] }.plot(1)](../media/figures/triggere.png)
+![{ [Impulse.kr(50), Dust.kr(50)] }.plot(1)](../media/figures/triggere.png){ width="80%" }
 
 Hvorfor bruge den mere uregelmæssige og kaotiske `Dust` fremfor `Impulse`? Jo, med `Impulse` kan triggeren komme til at fungere som en form for amplitude-modulation, hvor frekvensen træder frem som et hørbart artefakt med særskilt pitch. For at modvirke dette kan man anvende `Dust`, der ikke resulterer i samme periodiske mønster. Hertil kommer selvfølgelig, at man kan have æstetisk præference for det mere tilfældighedsprægede udtryk, som også kendetegner `Dust`.
 

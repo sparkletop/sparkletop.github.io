@@ -51,3 +51,9 @@ details.abstract {
 summary {
     font-weight: 500 !important;
 }
+
+@media only screen and (max-width: 650px) {
+    img {
+        width: 100%;
+    }
+}

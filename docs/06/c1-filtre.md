@@ -14,15 +14,9 @@ tags:
 
 ==}
 
-Inden man kører nedenstående eksempler, kan det være en god idé at fremkalde en visuel analyse af frekvensspektret for at se hvordan filteret påvirker lyden. Her sørger vi for, at vinduet med frekvensspektret forbliver i front selvom vi vælger et andet vindue.
-
-```sc
-FreqScope(server: s).window.alwaysOnTop_(true);
-```
-
 Filter-UGens kan bruges på mange forskellige lydkilder, men hvid støj (`WhiteNoise.ar`) er særligt nyttigt til at visualisere, hvordan filtre påvirker lydsignalet, da hvid støj teoretisk set har samme lydstyrke i hele frekvensspektret. Cutoff-frekvensen er i næsten alle eksempler herunder 440hz, så filtrenes respons kan sammenlignes.
 
-```sc
+```sc title="Cheat sheet: Filter-UGens"
 // Low/high pass filter, 2. orden
 {LPF.ar(WhiteNoise.ar * 0.5, 440)}.play
 {HPF.ar(WhiteNoise.ar * 0.5, 440)}.play
@@ -35,7 +29,7 @@ Filter-UGens kan bruges på mange forskellige lydkilder, men hvid støj (`WhiteN
 {BLowPass4.ar(WhiteNoise.ar * 0.5, 440, 0.1)}.play
 {BHiPass4.ar(WhiteNoise.ar * 0.5, 440, 0.1)}.play
 
-// Moog low pass VCF filter, "resonans" = 3
+// "Moog"-agtigt low pass VCF filter, "resonans" = 3
 {MoogFF.ar(WhiteNoise.ar * 0.5, 440, 3)}.play
 
 // Low/high shelf filter, gain -20dB
@@ -62,5 +56,4 @@ Filter-UGens kan bruges på mange forskellige lydkilder, men hvid støj (`WhiteN
 { Klank.ar(`[[440, 923, 1153, 1723], nil, [1, 1, 1, 1]], Dust.ar(5, 0.5)) }.play;
 ```
 
-Der findes mange andre filtre, fx `Comb` og `Allpass`, men de anvendes typisk til lidt specielle formål. 
-
+Der findes mange andre filtre, fx `Comb` og `Allpass`, men de anvendes typisk til specielle formål som rumklangsdesign og feedbackbaserede effekter. 

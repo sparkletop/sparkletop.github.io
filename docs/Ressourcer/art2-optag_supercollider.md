@@ -83,7 +83,7 @@ Som eksempel på virtuel audio routing kan vi tage det scenarie, at en Windows-b
 **Først forberedes routingen i Reaper**
 
 :   Start Reaper. Armér derefter et spor til optagelse og vælg ReaRoute som audio-input.
-    ![Vælg ReaRoute som input i Reaper](../media/figures/rearoute.png)
+    ![Vælg ReaRoute som input i Reaper](../media/figures/rearoute.png){ width="80%" }
 
 **Dernæst konfigureres SuperColliders lydserver**
 

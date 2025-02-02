@@ -11,14 +11,14 @@ Hvor mange synthesizere kun har en ADSR-envelope, har SuperCollider en række fo
 
 ## `Line` og `XLine` - enkle envelope-generatorer
 
-De mest enkle envelope-generatorer er `Line` og `XLine` - UGens, som genererer en henholdsvis lineær og eksponentiel udvikling fra ét punkt til et andet over et specificeret tidsrum. Her er et eksempel, hvor envelopen bevæger sig fra 100 til 800 i løbet af 1 sekund: 
+De mest enkle envelope-generatorer er `Line` og `XLine` - UGens, som genererer en henholdsvis lineær og eksponentiel udvikling fra ét punkt til et andet over et specificeret tidsrum. Her er et eksempel, hvor envelopen bevæger sig fra 100 til 2000 i løbet af 1 sekund: 
 
 ```sc title="Line og XLine"
-Line.kr(100, 800, 1)
-XLine.kr(100, 800, 1)
+Line.kr(100, 2000, 1)
+XLine.kr(100, 2000, 1)
 ```
 
-![Line og XLine](../media/figures/line-og-xline.png)
+![Line og XLine](../media/figures/line-og-xline.png){ width="80%" }
 
 
 Vi bruger `Line` og `XLine` ligesom andre UGens, fx til at styre frekvensen for en oscillator:
@@ -46,7 +46,7 @@ Env.sine
 
 Vi kan vise en grafisk repræsentation med `.plot` - fx `Env.perc.plot`. Her er de ovennævnte envelopes plottet på denne måde:
 
-![Forskellige standardenvelopes](../media/figures/standardenvelopes.png)
+![Forskellige standardenvelopes](../media/figures/standardenvelopes.png){ width="80%" }
 
 ### Et eksempel: `Env.perc`
 
@@ -147,7 +147,7 @@ Envelopes er forbundet med noget, der hedder `doneAction`, som angår hvad Super
 
 Hvis du kan se, at du har en række gamle Synths liggende på lydserveren fra eksemplerne ovenfor (kør `s.queryAllNodes` og tjek post window), kan du fjerne dem med Ctrl-Punktum/Cmd-Punktum.
 
-Vi beder ofte SuperCollider om at rydde op, når en envelope er færdiggjort. Det kan vi bl.a. gøre ved hjælp af envelope-generatorens `doneAction`-argument. Sammenlign disse to eksempler (hold øje med Node Tree-vinduet og bemærk hvilken forskel `doneAction: Done.freeSelf` gør):
+Vi beder ofte SuperCollider om at rydde op, når en envelope er færdiggjort. Det kan vi gøre ved hjælp af envelope-generatorens `doneAction`-argument. Sammenlign disse to eksempler (hold øje med Node Tree-vinduet og bemærk hvilken forskel `doneAction: Done.freeSelf` gør):
 
 ```sc title="Visning af Synths på lydserveren"
 s.nodeTree;  // vis en liste med alle Synths på lydserveren
