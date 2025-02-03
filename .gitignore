@@ -39,3 +39,4 @@ _minted*
 *.pdf
 *.xdv
 *.lol
+*.bcf-*
