@@ -253,9 +253,7 @@ if __name__ == "__main__":
             solo_files = []
 
     # Process preface first
-    content_tex = make_chapter('Forord', [PREFACE_MD_FILE], 0) if check_included(PREFACE_MD_FILE, ignore_files, solo_files) else ''
-
-    content_tex = content_tex + "\n\n\\mainmatter\n"
+    make_chapter('Forord', [PREFACE_MD_FILE], 0) if check_included(PREFACE_MD_FILE, ignore_files, solo_files) else ''
 
     # Get the navigation from mkdocs.yml
     mkdocs_config_file = join(args.mkdocs_folder, 'mkdocs.yml')
@@ -296,12 +294,7 @@ if __name__ == "__main__":
     
     current_chapter = 1
     for chapter_title, md_files in chapters.items():
-        content_tex = content_tex + '\n' + make_chapter(chapter_title, md_files, current_chapter)
+        make_chapter(chapter_title, md_files, current_chapter)
         current_chapter += 1
-
-    
-    with open(tex_outpath, 'w') as file:
-        file.write(content_tex)
-        print(f"{tex_outpath} generated.")
     
     exit(0)
