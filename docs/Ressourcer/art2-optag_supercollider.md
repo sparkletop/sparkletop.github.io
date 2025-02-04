@@ -4,11 +4,7 @@ På et tidspunkt i din rejse med musik- og lydprogrammering ved hjælp af SuperC
 
 ## Intern optagelse af SuperColliders lydserver
 
-SuperCollider har ganske udmærkede metoder til at optage outputtet fra lydserveren og lagre det i en lydfil.
-
-### Enkel optagelse
-
-At optage outputtet fra SuperColliders lydserver er ganske enkelt:
+Det er ganske enkelt at optage outputtet fra lydserveren og gemme optagelsen i en lydfil:
 
 ```sc title="Enkel optagelse med s.record"
 // Start optagelsen
@@ -24,9 +20,11 @@ s.stopRecording;
 Platform.recordingsDir.openOS;
 ```
 
-Efter ovenstående tre linjer er kørt, vil SuperColliders post window vise hvor på din harddisk, lydfilen med optagelsen er gemt. Som udgangspunkt gemmes optagelser i en mappe, der kan findes med `Platform.recordingsDir`, og lydfilen får tildelt et navn med et unikt timestamp (således at flere optagelser foretaget efter hinanden ikke overskriver eksisterende filer).
+Efter ovenstående linjer er kørt, vil SuperColliders post window vise hvor på din harddisk, lydfilen med optagelsen er gemt. Som udgangspunkt gemmes optagelser i en mappe, der kan findes ved at køre en linje med koden `Platform.recordingsDir;`. Filerne som indeholder optagelserne får tildelt et navn med et unikt timestamp, så flere optagelser foretaget efter hinanden ikke overskriver eksisterende filer.
 
-Vi kan selv angive filsti og -navn, antal kanaler, samt evt. en varighed. Her eksempelvis en fil, der hedder optagelse.wav og gemmes under C:/samples, har to lydkanaler (dvs. stereo) og varer tre sekunder:
+I stedet for den automatiske navngivning er det muligt at angive filsti og -navn. Man kan også definere antal kanaler der skal optages samt en varighed for optagelsen mm.[^1]. Her eksempelvis en fil, der hedder "optagelse.wav" og gemmes under mappen "C:/samples", har to lydkanaler (dvs. stereo) og varer tre sekunder:
+
+[^1]: Du kan læse nærmere om argumenterne til `s.record()` i [SuperColliders dokumentation](https://docs.supercollider.online/Classes/Server.html#-record).
 
 ```sc title="Argumenter til s.record"
 s.record(
@@ -37,65 +35,58 @@ s.record(
 // s.stopRecording er ikke nødvendigt her
 ```
 
-De sidste argumenter til s.record (bus og node) kan læseren selv undersøge nærmere i [SuperColliders dokumentation](https://docs.supercollider.online/Classes/Server.html#-record).
+Laver du optagelser på denne måde, bør du være opmærksom på, at kører man koden ovenfor flere gange, vil den seneste eksekvering overskrive den tidligere optagelse. Man mister dermed de første "takes". 
 
-### Optagelse med "præcist" begyndelsestidspunkt
+## Optagelse med præcist begyndelsestidspunkt
 
-Fordi der skal allokeres midlertidig buffer-hukommelse starter `s.record` optagelsen et kort stykke tid efter, at kodelinjen er kørt. Det er lidt upraktisk, hvis man gerne vil starte optagelsen, præcist når man sætter en lyd i gang. Derfor kan man forberede optagelsen, så den kan startes på et præcist tidspunkt:
+Fordi der skal allokeres buffer-hukommelse til optagelsen starter `s.record` optagelsen et kort stykke tid efter, at kodelinjen er kørt. Det er lidt upraktisk, hvis man gerne vil starte optagelsen, præcist når man sætter en lyd i gang. Derfor kan man forberede optagelsen med `s.prepareForRecord`, så den kan startes på et præcist tidspunkt:
 
 ```sc title="Forberedt optagelse"
-// Forbered optagelsen
-s.prepareForRecord(); // her kan path og numChannels evt. specificeres
+// Her kan path og numChannels evt. specificeres som argumenter
+s.prepareForRecord();
 
-// Start optagelse og lydproduktion
 (
-s.record(duration: 1.1); // Optagelsen stopper automatisk efter 1.1 sekund
+// Optagelsen startes og stopper automatisk igen efter 1.1 sekund
+s.record(duration: 1.1);
+// Vi starter også en stereo-lyd, som varer lidt mere end 1 sekund
 { Pulse.ar([220, 222]) * Env.perc.kr(2) }.play;
 )
 ```
 
-### Superhurtig NRT-optagelse
+## Superhurtig NRT-optagelse
 
 Hvis man har lavet en algoritme, der kan fremstille lydoptagelser der er lange eller et stort antal, kan det være nyttigt at få SuperCollider til at generere lydfilerne i "non-realtime" - deraf tilnavnet NRT. Det er et lidt mere kompliceret emne, som læseren selv kan studere nærmere i [SuperColliders dokmentation](https://docs.supercollider.online/Guides/Non-Realtime-Synthesis.html) samt i [en udmærket blog-post af Mads Kjeldgaard](https://madskjeldgaard.dk/posts/2019-08-05-supercollider-how-to-render-patterns-as-sound-files-using-nrt/).
 
 ## Routing fra SuperCollider til DAW
 
-I mange tilfælde er det nyttigt at route lyden fra SuperCollider over til et andet program, fx en DAW. Det kan man gøre på tre overordnede måder, som nævnt i [Abletons udmærkede oversigt](https://help.ableton.com/hc/en-us/articles/360010526359-How-to-route-audio-between-applications):
+I mange tilfælde er det nyttigt at route lyden fra SuperCollider over til et andet program, fx en DAW. Det kan man gøre på tre overordnede måder, som nævnt i [Abletons udmærkede vejledning](https://help.ableton.com/hc/en-us/articles/360010526359-How-to-route-audio-between-applications):
 
 - Analog loopback
 - Digital loopback
 - Virtuel audio routing
 
-Analog og digital loopback beror på, at der sendes lyd ud af et lydkorts udgange og direkte tilbage via lydkortets indgange. Nogle lydkort-drivere understøtter, at dette kan gøres uden fysiske kabler. Disse tilgange kræver typisk et eksternt lydkort.
+Analog og digital *loopback* beror på, at der sendes lyd ud af et lydkorts udgange og direkte tilbage via lydkortets indgange. Nogle lydkort-drivere understøtter, at dette kan gøres uden fysiske kabler. Disse tilgange kræver typisk et eksternt lydkort.
 
-Virtuel audio routing kan udføres uden særlig hardware (eksternt lydkort) og er derfor en meget anvendt tilgang. Det udføres som regel med tredjepartssoftware, der figurerer i styresystemet som en ekstra lydkortdriver. Denne kan så både bruges som in- og output. I den ovennævnte oversigt fra Ableton fremgår en række sådanne redskaber til Mac og Windows. På Linux findes der ganske glimrende redskaber som [jack](https://jackaudio.org/) og [pipewire](https://www.pipewire.org/).
+Virtuel audio routing kan udføres uden særlig hardware (eksternt lydkort) og er derfor en meget anvendt tilgang. Det udføres som regel med tredjepartssoftware, der figurerer i styresystemet som en ekstra lydkortdriver. Denne kan så både bruges som in- og output i programmer som SuperCollider og DAWs. I [vejledningen fra Ableton](https://help.ableton.com/hc/en-us/articles/360010526359-How-to-route-audio-between-applications) fremgår en række redskaber til Mac og Windows. På Linux findes der udmærkede redskaber som [jack](https://jackaudio.org/) og [pipewire](https://www.pipewire.org/) til avanceret, intern audio-routing.
 
-Virtuel audio routing fra SuperCollider til en DAW oprettes typisk på følgende måde (efter al software er installeret):
-
-- Start den virtuelle lyddriver (fx [Blackhole](https://github.com/ExistentialAudio/BlackHole) på Mac eller [VoiceMeeter](https://vb-audio.com/Voicemeeter/index.htm) på Windows).
-- Start DAW og vælg den virtuelle lyddriver som audio device input.
-- Start SuperCollider, indstil lydserveren til at bruge den virtuelle lyddriver som audio device, og (gen)start lydserveren.
-
-### Eksempel: SuperCollider til Reaper via ReaRoute
+### Eksempel - Windows: SuperCollider til Reaper via ReaRoute
 
 Som eksempel på virtuel audio routing kan vi tage det scenarie, at en Windows-bruger vil sende lyd fra SuperColliders lydserver til DAW'en Reaper. Dette kan gøres ved hjælp af systemet [ReaRoute](https://www.youtube.com/watch?v=OnfTq8EtluU), der følger med Reaper, hvis man vinger det af under installationen. Fremgangsmåden er som følger:
 
-**Først forberedes routingen i Reaper**
-
-:   Start Reaper. Armér derefter et spor til optagelse og vælg ReaRoute som audio-input.
+1. Start den virtuelle lyddriver
+    1. Når vi har installeret ReaRoute, starter den automatisk, når vi starter Reaper. 
+1. Forberedelse i Reaper
+    1. Start Reaper.
+    1. Aktivér derefter et spor til optagelse og vælg ReaRoute som audio-input.
     ![Vælg ReaRoute som input i Reaper](../media/figures/rearoute.png){ width="80%" }
-
-**Dernæst konfigureres SuperColliders lydserver**
-
-:   Indstil først SuperColliders lydserver til at bruge ReaRoute som output. Start eller genstart derefter lydserveren.    
-    ```sc title="Vælg ReaRoute som output i SuperCollider"
-    // Angiv ReaRoute som audio device (lydkort) for lydserveren
-    Server.default.options.device = "ASIO : ReaRoute ASIO (x64)"
-    
-    // Start eller genstart lydserveren
-    s.boot; // eller s.reboot;
-    
-    // Test at lyden går igennem til Reaper
-    { PinkNoise.ar * Env.perc.kr(2) }.play;
-    ```
+    1. Du er nu klar til at se og høre outputtet fra SuperCollider i Reaper.
+1. Indstil SuperCollider 
+    1. I SuperCollider kan vi indstille lydserveren til at sende lyden til et bestemt output ved hjælp af `s.options.device = "Mit lydkort";`. Men hvordan ved man, hvad man skal skrive i stedet for "Mit lydkort"?
+        1. Når man booter lydserveren med `s.boot`, vises en liste med mulighederne under `Device options:`.
+        1. Her vil der fremgå en linje, der minder om denne: `  - ASIO : ReaRoute ASIO (x64)   (device #9 with 16 ins 16 outs)`.
+        1. ReaRoutes navn i SuperCollider er altså `"ASIO : ReaRoute ASIO (x64)"`.
+        1. Vi angiver derfor `s.options.device = "ASIO : ReaRoute ASIO (x64)";`.
+    1. Valget af ReaRoute træder først i kraft, næste gang vi booter serveren. Derfor kører vi `s.reboot;` (eller `s.boot`, hvis serveren ikke er bootet allerede).
+        1. Herefter kan vi se, hvilken port SuperCollider sender lyd til under `Booting with:` i post window.
+    1. Test at lyden går igennem til Reaper: `{PinkNoise.ar * Env.perc.kr(2)}.play;`
 

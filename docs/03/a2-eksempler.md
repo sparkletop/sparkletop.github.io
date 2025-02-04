@@ -15,7 +15,7 @@ Når du besvarer spørgsmålene, kan disse tricks være en god hjælp til at for
 
 ## Sammensætning af nøgler og patterns
 
-1. Notér for hver linje i `Pbind`'en: Hvilken funktion har de enkelte nøgler (`\octave`, `\root` osv.)? Jf. [forrige kapitel](../02/c1-pbind.md).
+1. Notér for hver linje i `Pbind`'en: Hvilken funktion har de enkelte nøgler (`\octave`, `\root` osv.)? Jf. [forrige kapitel](../02/a3-pbind.md).
 1. Hvilken effekt opnår man ved at kombinere `Pwhite` og `.stutter`?
 1. Variér og eksperimentér med mindst tre aspekter af kompositionen:
     1. De valgte trin og nodeværdier
