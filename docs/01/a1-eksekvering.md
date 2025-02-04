@@ -3,15 +3,7 @@ tags:
     - Artikler
 ---
 
-??? abstract "Introduktion til kapitlet"
-
-    Dette kapitel introducerer til grundlæggende programmering i SuperCollider. Som det første lærer vi den grundlæggende syntaks, så vi kan skrive kildekode, der fungerer. Samtidig introduceres nogle grundbegreber, som det er vigtigt at have styr på, inden vi går videre: *Eksekvering af kildekode*, brug af såkaldte *variabler* og *methods*, samt noget vi bruger konstant til at angive musikalske og lydlige parametre, som hedder *argumenter*.
-
-    I slutningen af kapitlet til laver vi nogle [grundlæggende programmeringsøvelser](e1-basics.md) og [øvelser med lyde](e2-lyd.md), men hovedfokus er altså i første omgang på at skrive og eksekvere kildekode i SuperColliders brugerflade. I [næste kapitel](../02/a1-patterns-intro.md), der handler om generativ komposition med patterns, kommer vi til at spille en masse toner.
-
 # Eksekvering af kode
-
-Når man første gang åbner SuperCollider, mødes man af en umiddelbart noget minimalistisk brugerflade. Med mindre man har arbejdet med programmering i anden sammenhæng, vil det i begyndelsen være lidt uvant, at brugerfladen først og fremmest består i et tekstdokument, hvor man noterer og eksekverer kildekode. Men det ændrer sig hurtigt, når man kommer i gang, og inden længe kommer man til at sætte pris på den enkelhed, brugerfladen også repræsenterer.
 
 Man eksekverer kode ved at taste Ctrl+Enter på Windows/Linux eller Cmd+Enter på Mac. Prøv det selv:
 
@@ -19,7 +11,7 @@ Man eksekverer kode ved at taste Ctrl+Enter på Windows/Linux eller Cmd+Enter p�
 - Sæt cursoren på en af linjerne og tast Ctrl+Enter (PC) eller Cmd+Enter (Mac).
 - Iagttag derefter outputtet i SuperCollider's "Post window" (som ved et nyinstalleret setup vil befinde sig til højre i skærmbilledet).
 
-```sc title="Eksekvering af kode linje for linje"
+```sc title="Eksekvering af kildekode, linje for linje"
 5 + 10;
 Scale.major;
 rrand(0, 100);
@@ -69,6 +61,6 @@ Pbind(\degree, [0, 2, 4]).play;
 *Hvis din server ikke booter:* Skulle din server mod forventning ikke starte, kan det ofte skyldes indstillingerne i lydkortet eller driverproblemer. På Mac sker det jævnligt, at styresystemet indstiller input og output til to forskellige samplerates. Dette er imidlertid ikke kompatibelt med SuperColliders lydserver, hvilket man kan se, hvis man i post window får fejlmeddelsen "Sample rate mismatch". I den situation er man nødt til at indstille styresystemet korrekt, og det er heldigvis enkelt: Kør nedenstående for at åbne "Audio MIDI Setup" og indstil input og output til den samme samplerate (fx 44.1kHz eller 48kHz).
 
 ```sc title="Løsning til 'sample rate mismatch'-fejl på Mac"
-// Linje herunder åbner programmet 'Audio MIDI Setup'
+// Linjen herunder åbner programmet 'Audio MIDI Setup'
 "open -a 'Audio MIDI Setup'".unixCmd;
 ```

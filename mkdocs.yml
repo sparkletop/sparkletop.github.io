@@ -70,7 +70,8 @@ markdown_extensions:
 nav:
   - Forside: index.md
   - 1. Grundlæggende programmering:
-    - Eksekvering af kildekode: 01/a1-eksekvering.md
+    - SuperColliders brugerflade: 01/a0-brugerflade.md
+    - 01/a1-eksekvering.md
     - 01/a2-variabler.md
     - 01/a3-methods.md
     - 01/e1-basics.md
