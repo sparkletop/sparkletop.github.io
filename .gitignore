@@ -5,7 +5,7 @@ site
 
 tex/fonts
 tex/content.tex
-
+tex/chapters
 
 ## aux TeX files
 _minted*

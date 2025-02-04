@@ -185,24 +185,51 @@ def convert_section(md_file_path: str):
 
     return tex
 
-def make_chapter(chapter_title, md_files, ignore_files, solo_files):
-    # loop over the given .md files, convert to tex, and return the string
-
+def make_chapter(chapter_title: str, md_files: list, current_chapter: int):
     # remove "1. " etc. from the chapter title, since LaTeX handles the numbering for us
     chapter_title = re.sub(r'^\d+\.\s+', '', chapter_title)
-    chapter_tex = f"\\chapter{{{chapter_title}}}\n\\label{{chap:{chapter_title}}}\n!!!!!RESETPAGECOLOR!!!!!"
+
+    tex = f"\\chapter{{{chapter_title}}}\n\\label{{chap:{chapter_title}}}\n!!!!!RESETPAGECOLOR!!!!!"
 
     for file_path in md_files:
-        filename = os.path.basename(file_path)
-        if len(solo_files) > 0:
-            # Solo files have been specified
-            if filename in solo_files:
-                chapter_tex = chapter_tex + "\n" + convert_section(file_path)
-        elif filename not in ignore_files:
-            # This is a normal build, process files not in ignore list
-            chapter_tex = chapter_tex + "\n" + convert_section(file_path)            
+        tex = tex + "\n" + convert_section(file_path)
+    
+    tex = postprocess_tex(tex)
+    
+    tex_filename = 'chap' + f"{current_chapter:02}" + '.tex'
+    tex_file_path = join('tex', 'chapters', tex_filename)
+    current_chapter += 1
+    
+    def write_tex_file():
+        with open(tex_file_path, 'w') as file:
+            file.write(tex)
 
-    return chapter_tex
+    # check if this file exists and branch out from there
+    try:
+        with open(tex_file_path, 'r') as file:
+            old_tex = file.read()
+        if old_tex != tex:
+            write_tex_file()
+            print(f"- Regenerating {tex_file_path}, (content has changed)")
+    except FileNotFoundError:
+        print(f"- Creating {tex_file_path} (no previous document)")
+        write_tex_file()
+
+    # return the input statement for the new TeX chapter file
+    return r"\input{" + join('chapters', tex_filename) + "}"
+
+def check_included(file_path, ignore_files, solo_files):
+    filename = os.path.basename(file_path)
+    if len(solo_files) > 0:
+        # Solo files have been specified
+        if filename in solo_files:
+            return True
+    elif filename not in ignore_files:
+        # This is a normal build, process files not in ignore list
+        return True
+    else:
+        return False
+
 
 if __name__ == "__main__":
     """
@@ -221,53 +248,60 @@ if __name__ == "__main__":
     with open(IGNORED_MD_FILES_LIST, 'r') as ignore_file:
         ignore_files = ignore_file.read().split('\n')
     with open(SOLOED_MD_FILES_LIST, 'r') as solo_file:
-        solo_files = solo_file.read().split('\n')
+        solo_files = solo_file.read().split('\n') 
         if solo_files == ['']:
             solo_files = []
-    tex = ''
 
     # Process preface first
-    tex = tex + make_chapter('Forord', [PREFACE_MD_FILE], ignore_files, solo_files)
+    content_tex = make_chapter('Forord', [PREFACE_MD_FILE], 0) if check_included(PREFACE_MD_FILE, ignore_files, solo_files) else ''
 
-    tex = tex + "\n\n\\mainmatter\n"
+    content_tex = content_tex + "\n\n\\mainmatter\n"
 
     # Get the navigation from mkdocs.yml
     mkdocs_config_file = join(args.mkdocs_folder, 'mkdocs.yml')
     with open(mkdocs_config_file, 'r') as m:
         mkdocs_config = yaml.load(m.read(), yaml.FullLoader)
-        if 'nav' in mkdocs_config.keys():
-            # Follow the structure of mkdocs.yml nav list
-            nav = mkdocs_config['nav']
-            nav.pop(0) # ignore index page
+    
+    chapters = {}
+    if 'nav' in mkdocs_config.keys():
+        # Follow the structure of mkdocs.yml nav list
+        nav = mkdocs_config['nav']
+        nav.pop(0) # ignore index page
 
-            # Turn web page top hierarchy categories into chapters
-            for top_level_dict in nav:
-                chapter_title = list(top_level_dict.keys())[0]                
-                md_files = []
-                for page in list(top_level_dict.values())[0]:
-                    if isinstance(page, dict):  # Page has been given 
-                        md_file = list(page.values())[0]
-                    else:
-                        md_file = page
-                    md_files.append(join(docs_folder, md_file))
-                tex = tex + '\n' + make_chapter(chapter_title, md_files, ignore_files, solo_files)
-        else:
-            # There is no nav specified, so we walk the subdirectories of
-            # the docs directory and create chapters for each one
-            chapter_dirs = [d for d in os.listdir(docs_folder) if isdir(join(docs_folder, d))]
-            chapter_dirs.sort()
-            for chapter_dir in chapter_dirs:
-                md_files = [f for f in os.listdir(join(docs_folder, chapter_dir)) if f.endswith('.md')]
-                if not md_files:
-                    continue
+        # Turn web page top hierarchy categories into chapters
+        for top_level_dict in nav:
+            chapter_title = list(top_level_dict.keys())[0]
+            md_files = []
+            for page in list(top_level_dict.values())[0]:
+                if isinstance(page, dict):  # Page has been given 
+                    md_file = list(page.values())[0]
                 else:
-                    md_files.sort()
-                    tex = tex + '\n' + make_chapter(chapter_dir, md_files, ignore_files, solo_files)
+                    md_file = page
+                if check_included(md_file, ignore_files, solo_files):
+                    md_files.append(join(docs_folder, md_file))
+            if md_files:
+                chapters[chapter_title] = md_files
+    else:
+        # There is no nav specified, so we walk the subdirectories of
+        # the docs directory and create chapters for each one
+        chapter_dirs = [d for d in os.listdir(docs_folder) if isdir(join(docs_folder, d))]
+        chapter_dirs.sort()
+        for chapter_dir in chapter_dirs:
+            md_files = [f for f in os.listdir(join(docs_folder, chapter_dir)) if (f.endswith('.md') & check_included(f, ignore_files, solo_files))]
+            if not md_files:
+                continue
+            else:
+                md_files.sort()
+                chapters[chapter_dir] = md_files
+    
+    current_chapter = 1
+    for chapter_title, md_files in chapters.items():
+        content_tex = content_tex + '\n' + make_chapter(chapter_title, md_files, current_chapter)
+        current_chapter += 1
 
-    tex = postprocess_tex(tex)
-
+    
     with open(tex_outpath, 'w') as file:
-        file.write(tex)
-        print(f"{tex_outpath} generated successfully.")
+        file.write(content_tex)
+        print(f"{tex_outpath} generated.")
     
     exit(0)
