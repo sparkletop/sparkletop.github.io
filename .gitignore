@@ -3,7 +3,6 @@ site
 .venv
 .cache
 
-tex/fonts
 tex/content.tex
 tex/chapters
 
