@@ -1,7 +1,6 @@
 @keyframes code_block_highlight {
     from {
         box-shadow: 0px 0px 15px rgba(39, 151, 255, 0.874);
-        /* box-shadow: 0px 0px 15px rgba(148, 236, 17, 0.874); */
     }
     to {
 
@@ -50,6 +49,10 @@ details.abstract {
 
 summary {
     font-weight: 500 !important;
+}
+
+.md-typeset figure {
+    width:  initial;
 }
 
 @media only screen and (max-width: 650px) {

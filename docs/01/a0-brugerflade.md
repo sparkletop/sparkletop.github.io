@@ -13,7 +13,7 @@ tags:
 
 # SuperColliders brugerflade
 
-Når man åbner SuperCollider, vil der typisk være tre forskellige "kasser", en menu øverst i vinduet samt nogle få dataindikatorer nederst til højre.
+Velkommen til SuperCollider! Når man åbner SuperCollider første gang efter en frisk installation, vil brugerfladen typisk indeholde følgende elementer:
 
 1. Den tomme kasse til venstre indeholder dokumenter. Det er her, vi skriver og eksekverer kildekode.
 1. Kasse øverst til højre med navnet *Help browser* giver adgang til SuperColliders dokumentation. Det er denne boks, der henvises til, når vi i denne bog taler om at slå noget op i SuperColliders dokumentation.
@@ -27,16 +27,37 @@ Help browser'en og SuperColliders Post window kan flyttes, lukkes eller rykkes t
 
 ## Tre komponenter
 
-Rent teknisk består SuperCollider faktisk af tre forskellige programmer/processer. Det er ikke nødvendigt at kende alle detaljer om, hvordan de fungerer og samarbejder, men det er nyttigt at vide, at de findes.
+Rent teknisk består SuperCollider faktisk af tre forskellige programmer/processer. Det er ikke nødvendigt at kende alle detaljer om, hvordan de fungerer og samarbejder, men det er nyttigt at vide, at de findes, så man kan følge med, når vi taler om at arbejde med fortolkeren eller lydserveren
 
-*scide* - brugerfladen
+*scide*, aka. brugerfladen
 
-:   Den grafiske brugerflade, som er beskrevet ovenfor, kaldes også for SuperColliders IDE (Integrated development environment).
+:   Den grafiske brugerflade, som er beskrevet ovenfor, kaldes også for SuperColliders IDE (Integrated development environment). Det er dette program, vi interagerer direkte med, når vi arbejder med SuperCollider
 
-*sclang* - fortolkeren
+*sclang*, aka. fortolkeren
 
 :   Fortolkeren (på engelsk "the interpreter") kører i baggrunden og er ansvarlig for at fortolke og udføre instrukserne i den SuperCollider-kildekode, vi eksekverer i brugerfladen. Starter automatisk, når vi starter brugerfladen. 
 
-*scsynth* - lydserveren
+*scsynth*, aka. lydserveren
 
 :   Lydserveren kører også i baggrunden og er ansvarlig for at fremstille de lyde, vi (gennem fortolkeren) specificerer. Lydserveren starter ikke automatisk sammen med brugerfladen men skal bootes, før vi kan lave lyd i SuperCollider.
+
+Fortolkeren og lydserveren kommunikerer med hinanden ved hjælp af noget, der hedder [OSC](https://opensoundcontrol.stanford.edu/index.html)-meddelelser (Open Sound Control)[^1]. OSC er et mere præcist og fleksibelt alternativ til MIDI.
+
+[^1]: Fordi lydserveren er et selvstændigt program, der kan styres med OSC-meddelelser, findes der andre "klient"-programmer, der bruger SuperColliders lydserver uden at bruge fortolkeren, fx Sonic Pi, TidalCycles, Overtone, FoxDot og SuperDirt.
+
+```mermaid
+flowchart LR
+  I[scide]
+  L[sclang]
+  S[scsynth]
+  O(DAW/lydkort)
+  I<-->L
+  L<--OSC-->S
+  S-.->I
+  S==lyd==>O
+```
+/// caption
+Dataflow mellem SuperColliders tre komponenter
+///
+
+

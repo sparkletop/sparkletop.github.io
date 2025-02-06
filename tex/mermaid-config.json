@@ -1,0 +1,4 @@
+{
+  "theme": "forest",
+  "themeCSS": "#my-svg .edgeLabel p { background-color: white !important; }"
+}

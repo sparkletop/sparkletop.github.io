@@ -27,6 +27,8 @@ import re
 from os.path import join, isdir
 import argparse
 import yaml
+from pathvalidate import sanitize_filename
+import subprocess
 
 # Add the md2tex submodule folder to the path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'md2tex'))
@@ -37,6 +39,7 @@ BASE_URL = 'https://sparkletop.github.io/'
 IGNORED_MD_FILES_LIST = 'ignored_MD_files.txt'
 SOLOED_MD_FILES_LIST = 'soloed_MD_files.txt'
 PREFACE_MD_FILE = './tex/preface.md'
+MERMAID_DIAGRAM_DIR = './tex/diagrams/'
 
 def get_matching_brackets(code: str):
     r"""
@@ -92,6 +95,39 @@ def preprocess_mkdocs_markdown(md_content: str):
         intro = '\n'.join([line.strip() for line in intro.split('\n')])
 
         md_content = md_content.replace(abstract.group(0), intro + '#')
+
+    md_content = re.sub(r"!\[type:audio\]\((.+?)\)", r"%AUDIO_FILE:\1", md_content)
+
+    # process mermaid diagrams
+    # 1. find diagrams + /// captions
+    mermaids = re.finditer(r"^```\s*mermaid\s*(.+?)\s*```\s*///\s*caption\s*(.+?)\s*///", md_content, re.M | re.DOTALL)
+    for mermaid in mermaids:
+        diagram_code = mermaid.group(1)
+        caption = mermaid.group(2)
+        basename = sanitize_filename(caption).replace(' ', '_')
+        code_file = join(MERMAID_DIAGRAM_DIR, basename + '.mmd')
+        image_file = join(MERMAID_DIAGRAM_DIR, basename + '.png')
+        ex_nihilo = False
+        changed = False
+        try:
+            # compare to contents of cached .mmd file in tex/diagrams
+            with open(code_file, 'r') as data:
+                old_diagram_code = data.read()
+            changed = old_diagram_code != diagram_code
+        except FileNotFoundError:
+            ex_nihilo = True
+        
+        if ex_nihilo or changed:
+            # write the new diagram code to .mmd file   
+            with open(code_file, 'w') as file:
+                file.write(diagram_code)
+            # use mermaid-cli to convert the diagram to png format
+            command = f"./node_modules/.bin/mmdc --input {code_file} --output {image_file} --backgroundColor transparent --scale 2 --configFile tex/mermaid-config.json"
+            subprocess.run([command], shell=True, check=True)
+        
+        # TODO: update markdown with the proper image caption and path
+        md_image = f"![{caption}]({image_file.replace('tex/','')})"
+        md_content = md_content.replace(mermaid.group(0), md_image)
     
     return md_content
 
@@ -253,12 +289,15 @@ if __name__ == "__main__":
             solo_files = []
 
     # Process preface first
-    make_chapter('Forord', [PREFACE_MD_FILE], 0) if check_included(PREFACE_MD_FILE, ignore_files, solo_files) else ''
+    if check_included(PREFACE_MD_FILE, ignore_files, solo_files):
+        make_chapter('Forord', [PREFACE_MD_FILE], 0)
 
     # Get the navigation from mkdocs.yml
     mkdocs_config_file = join(args.mkdocs_folder, 'mkdocs.yml')
     with open(mkdocs_config_file, 'r') as m:
-        mkdocs_config = yaml.load(m.read(), yaml.FullLoader)
+        data = m.read()
+        data = re.search(r"^nav:.+", data, re.M | re.DOTALL).group(0)
+        mkdocs_config = yaml.load(data, yaml.FullLoader)
     
     chapters = {}
     if 'nav' in mkdocs_config.keys():

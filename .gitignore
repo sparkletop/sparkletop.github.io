@@ -3,8 +3,11 @@ site
 .venv
 .cache
 
+node_modules
+
 tex/content.tex
 tex/chapters
+tex/diagrams
 
 ## aux TeX files
 _minted*
