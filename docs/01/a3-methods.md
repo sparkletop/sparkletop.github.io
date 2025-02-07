@@ -5,11 +5,11 @@ tags:
 
 # Hvordan får vi SuperCollider til at gøre noget?
 
-Alt hvad man kan *gøre* i SuperCollider er knyttet til konkrete *methods*. Hvis vi forstår og kan anvende de forskellige methods, der findes, kan vi groft sagt bruge alle de redskaber, der findes i SuperCollider! Derfor er det relevant at lære hvordan methods fungerer.
+Alt hvad man kan *gøre* i SuperCollider er knyttet til noget, der hedder *methods*. Hvis vi forstår og kan anvende de forskellige methods, der findes, kan vi groft sagt bruge alle de redskaber, der findes i SuperCollider! Derfor er det relevant at lære hvordan methods fungerer. Samtidig er det vigtigt at forstå hvad *argumenter* er, da vi bruger argumenter for at angive, hvordan en method skal udføres.
 
-## Methods indeholder funktionalitet
+## Methods er funktionalitet
 
-Teknisk set er en method en *funktion*. Methods udfører bestemte handlinger/funktioner, når de bliver aktiveret. I SuperCollider-kildekode ser man ofte methods noteret lige efter punktummer. I et fiktivt eksempel som `~car.drive`, er `drive` en method, som anvendes på det, der er gemt under variablen `~car` - antagelig for at få en bil til at køre. Men lad os kigge på nogle reelle methods i SuperCollider: 
+Teknisk set er en method en særlig *funktion*, idet dens rolle er at udføre en bestemt handling, når den bliver aktiveret. I SuperCollider-kildekode ser man ofte methods noteret lige efter punktummer. I et fiktivt eksempel som `~car.drive`, er `drive` en method, som anvendes på det, der er gemt under variablen `~car` - antagelig for at få en bil til at køre. Men lad os kigge på nogle reelle methods i SuperCollider: 
 
 ```sc title="Tre methods med forskellig funktionalitet"
 // method'en .postln viser objekter i post window, i dette tilfælde et stykke tekst
