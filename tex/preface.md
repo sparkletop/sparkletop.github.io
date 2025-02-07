@@ -23,7 +23,7 @@ Uanset hvilken baggrund man har, vil jeg anbefale, at man undervejs i læsningen
 - Man lærer et nyt sprog bedst, når man bruger det i praksis.
 - Og sidst, men bestemt ikke mindst: Det er sjovere at lege med eksemplerne på egen hånd end at læse om dem!
 
-For at gøre det så let som muligt for dig at komme i gang på egen hånd, indeholder denne bog en lang række eksempler, som du selv kan bruge direkte i SuperCollider. Alle bokse med kildekode her i bogen kan let kopieres ved at klikke på !!!!!faLink!!!!!-ikonet under kodeboksen, hvorved en webside åbner med den samme kodeboks. Derfra kan koden let kopieres med et klik på en knap øverst til højre. Hvis der også er et !!!!!faHeadphones*!!!!!-ikon, kan man på samme webside høre hvordan det pågældende eksempel lyder.
+For at gøre det så let som muligt for dig at komme i gang på egen hånd, indeholder denne bog en lang række eksempler, som du selv kan bruge direkte i SuperCollider. Alle bokse med kildekode her i bogen kan let kopieres ved at klikke på !!!faLink!!!-ikonet under kodeboksen, hvorved en webside åbner med den samme kodeboks. Derfra kan koden let kopieres med et klik på en knap øverst til højre. Hvis der også er et !!!faHeadphones*!!!-ikon, kan man på samme webside høre hvordan det pågældende eksempel lyder.
 
 ```sc title="Første eksempel"
 (

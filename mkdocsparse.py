@@ -40,6 +40,14 @@ IGNORED_MD_FILES_LIST = 'ignored_MD_files.txt'
 SOLOED_MD_FILES_LIST = 'soloed_MD_files.txt'
 PREFACE_MD_FILE = './tex/preface.md'
 MERMAID_DIAGRAM_DIR = './tex/diagrams/'
+ET = '!!!' # escape token
+
+class Counter:
+    audio_examples = 0
+    mermaids = 0
+    md_docs = 0
+    chapters = 0
+    code_blocks = 0
 
 def get_matching_brackets(code: str):
     r"""
@@ -85,7 +93,7 @@ def preprocess_mkdocs_markdown(md_content: str):
     if frontmatter:
         yml = yaml.load(frontmatter.group(1), yaml.FullLoader)
         doctype = yml['tags'][0]   # assuming the first tag is the document type
-        prefix = '' if doctype not in ['Øvelser', 'Cheat sheets'] else '!!!!!NEWPAGE!!!!!' + '\n' + '!!!!!' + doctype + '!!!!!'
+        prefix = '' if doctype not in ['Øvelser', 'Cheat sheets'] else f"{ET}NEWPAGE{ET}\n{ET}{doctype}{ET}"
         md_content = md_content.replace(frontmatter.group(0), prefix)
     
     # turn 'abstract' admonition into plain text intro
@@ -96,7 +104,8 @@ def preprocess_mkdocs_markdown(md_content: str):
 
         md_content = md_content.replace(abstract.group(0), intro + '#')
 
-    md_content = re.sub(r"!\[type:audio\]\((.+?)\)", r"%AUDIO_FILE:\1", md_content)
+    # escape audio examples
+    md_content = re.sub(r"!\[type:audio\]\((.+?)\)", ET + 'AUDIO:' + r"\1" + ET, md_content)
 
     # process mermaid diagrams
     # 1. find diagrams + /// captions
@@ -125,25 +134,31 @@ def preprocess_mkdocs_markdown(md_content: str):
             command = f"./node_modules/.bin/mmdc --input {code_file} --output {image_file} --backgroundColor transparent --scale 2 --configFile tex/mermaid-config.json"
             subprocess.run([command], shell=True, check=True)
         
-        # TODO: update markdown with the proper image caption and path
+        # update markdown with regular image syntax
         md_image = f"![{caption}]({image_file.replace('tex/','')})"
         md_content = md_content.replace(mermaid.group(0), md_image)
+        
+        Counter.mermaids += 1
     
+    Counter.md_docs += 1
+
     return md_content
 
 def postprocess_tex(tex: str):
-    # Processes the full tex document contents as one string
+    # Processes a tex chapter as one string
+    
     # replace tabs with spaces
     tex = tex.replace("\t", "    ")
     
-    tex = re.sub("!!!!!NEWPAGE!!!!!", r'\\newpage', tex)
-    tex = re.sub("!!!!!RESETPAGECOLOR!!!!!", r'\\pagecolor{normal}', tex)
-    tex = re.sub("!!!!!Øvelser!!!!!", r'\\pagecolor{exercise}', tex)
-    tex = re.sub("!!!!!Cheat sheets!!!!!", r'\\pagecolor{cheatsheet}', tex)
-    tex = re.sub(r"!!!!!faHeadphones\*!!!!!", r'\\faHeadphones*', tex)
-    tex = re.sub("!!!!!faLink!!!!!", r'\\faLink', tex)
+    # replace escaped commands from preprocessing
+    tex = re.sub(f"{ET}NEWPAGE{ET}", r'\\newpage', tex)
+    tex = re.sub(f"{ET}RESETPAGECOLOR{ET}", r'\\pagecolor{normal}', tex)
+    tex = re.sub(f"{ET}Øvelser{ET}", r'\\pagecolor{exercise}', tex)
+    tex = re.sub(f"{ET}Cheat sheets{ET}", r'\\pagecolor{cheatsheet}', tex)
+    tex = re.sub(ET + r"faHeadphones\*" + ET, r'\\faHeadphones*', tex)
+    tex = re.sub(f"{ET}faLink{ET}", r'\\faLink', tex)
     
-    # Show section coloring in preface
+    # show section coloring in preface
     tex = tex.replace('\\item[Cheat sheets]', '\\item[\\colorbox{cheatsheet}{Cheat sheets}]')
     tex = tex.replace('\\item[Øvelser]', '\\item[\\colorbox{exercise}{Øvelser}]')
 
@@ -154,13 +169,17 @@ def postprocess_tex(tex: str):
     tex = tex.replace('href{https://sparkletop.github.io/./tex/preface/', 'href{https://sparkletop.github.io/')
 
     # add sound icon to relevant code block captions
-    audio_examples = re.finditer(r"\\caption{(.+?)}(?:.*\n){,5}(%AUDIO_FILE:(.+?.ogg))", tex, re.M)
+    audio_examples = re.finditer(r"\\caption(?:.*\n){,5}(!!!AUDIO:.+?!!!)", tex, re.M)
     for example in audio_examples:
         match = example.group(0)
+        escaped_string = example.group(1)
         old_icon_code = re.search(r"(\\faLink)(?!\\faHeadphones)", match, re.M).group(1)
         new_icon_code = old_icon_code + "\\enskip\\faHeadphones*"
         tex = tex.replace(match, match.replace(old_icon_code, new_icon_code))
-    
+        tex = tex.replace(escaped_string, '')
+        
+        Counter.audio_examples += 1
+
     # Replace \mintinline with \texttt in footnotes
     fnotes = re.finditer(r"\\footnote{.+}", tex, re.MULTILINE)
     for f in fnotes:
@@ -186,7 +205,7 @@ def postprocess_tex(tex: str):
 
 def convert_section(md_file_path: str):
     # assume that each section is a markdown file
-    print(f"Processing document: {md_file_path}")
+    print(f"Processing source: {md_file_path}")
     md_content = ""
     with open(md_file_path, mode="r") as file:
         md_content = file.read()
@@ -206,13 +225,14 @@ def convert_section(md_file_path: str):
         r"\1\\label{" + md_filename + r"}\n",
         tex
     )
-
     # for each code block, add a link to the web version
-    code_block_captions = re.finditer(r"\\caption\{(.+?)\}\n\\end\{listing\}", tex)
+    code_block_captions = re.finditer(r"\\caption\{(.+?)\}\s*\\end\{listing\}", tex, re.M)
     for num, block in enumerate(code_block_captions):
+        Counter.code_blocks += 1
         segment = block.group(0)
+        print(num)
         section_page_url = md_file_path.replace('./docs/', '').replace('.md', '/')
-        url = BASE_URL + section_page_url + "\#__code_" + str(num)
+        url = BASE_URL + section_page_url + r"\#__code_" + str(num)
         tex_link = '\\href{' + url + '}{\\faLink}'
         caption_text = block.group(1)
         new_caption_text = caption_text + '\\hfill' + tex_link
@@ -222,10 +242,11 @@ def convert_section(md_file_path: str):
     return tex
 
 def make_chapter(chapter_title: str, md_files: list, current_chapter: int):
+    Counter.chapters += 1
     # remove "1. " etc. from the chapter title, since LaTeX handles the numbering for us
     chapter_title = re.sub(r'^\d+\.\s+', '', chapter_title)
 
-    tex = f"\\chapter{{{chapter_title}}}\n\\label{{chap:{chapter_title}}}\n!!!!!RESETPAGECOLOR!!!!!"
+    tex = f"\\chapter{{{chapter_title}}}\n\\label{{chap:{chapter_title}}}\n{ET}RESETPAGECOLOR{ET}"
 
     for file_path in md_files:
         tex = tex + "\n" + convert_section(file_path)
@@ -335,5 +356,12 @@ if __name__ == "__main__":
     for chapter_title, md_files in chapters.items():
         make_chapter(chapter_title, md_files, current_chapter)
         current_chapter += 1
+    
+    print(f"""Stats:
+- {Counter.audio_examples} audio examples
+- {Counter.mermaids} mermaid diagrams
+- {Counter.code_blocks} code blocks with captions
+- {Counter.md_docs} markdown_documents
+- {Counter.chapters} chapters""")
     
     exit(0)
