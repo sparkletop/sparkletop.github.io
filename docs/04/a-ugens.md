@@ -33,7 +33,7 @@ UGens kører i modsætning til patterns på SuperColliders **lydserver**, som er
 
 Man kan ikke bruge patterns inde i UGen-funktioner. Men lidt senere i kurset kommer vi til at kombinere patterns og UGens ved at registrere vores UGen-funktioner som såkaldte `SynthDef`s. Så kan vi spille på UGen-funktioner ved hjælp af patterns.
 
-Forholdet mellem patterns og UGens er nemlig lidt ligesom forholdet mellem en musiker (patterns) og et instrument (UGens); Man kan godt komponere med patterns uden at bruge UGens (fx ved at spille på et andet instrument via MIDI). Man kan også godt komponere udelukkende ved hjælp af UGens (ligesom en selvkørende, modulær synthesizer). Men den særlige fordel ved platforme som SuperCollider er kombinationen af de to niveauer: Når vi bruger det righoldige [pattern](../02/a1-patterns-intro.md)-bibliotek sammen med vores egne UGen-lyddesign får vi utroligt mange kompositionsmuligheder. Mere herom i [næste kapitel](../05/a2-synthdef.md).
+Forholdet mellem patterns og UGens er nemlig lidt ligesom forholdet mellem en musiker (patterns) og et instrument (UGens); Man kan godt komponere med patterns uden at bruge UGens (fx ved at spille på et andet instrument via MIDI). Man kan også godt komponere udelukkende ved hjælp af UGens (ligesom en selvkørende, modulær synthesizer). Men den særlige fordel ved platforme som SuperCollider er kombinationen af de to niveauer: Når vi bruger det righoldige [pattern](../02/a-patterns-intro.md)-bibliotek sammen med vores egne UGen-lyddesign får vi utroligt mange kompositionsmuligheder. Mere herom i [næste kapitel](../05/a-synthdef.md).
 
 ## Første trin med `SinOsc`
 

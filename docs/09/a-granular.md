@@ -13,7 +13,7 @@ Granular er et komplekst emne med mange muligheder og parametre. Her introducere
 
 ## Grundlæggende `GrainBuf`
 
-Man kan i princippet danne grains af hvilken som helst lydkilde, men samples eller live-lydsignaler anvendes ganske ofte som kildemateriale. Herunder tager vi udgangspunkt i et sample, som er [indlæst i en buffer](../08/a1-samples.md). I den sammenhæng er det oplagt at anvende UGen'en `GrainBuf`, som netop læser grains fra en buffer (som skal indeholde et mono-sample).
+Man kan i princippet danne grains af hvilken som helst lydkilde, men samples eller live-lydsignaler anvendes ganske ofte som kildemateriale. Herunder tager vi udgangspunkt i et sample, som er [indlæst i en buffer](../08/a-samples.md). I den sammenhæng er det oplagt at anvende UGen'en `GrainBuf`, som netop læser grains fra en buffer (som skal indeholde et mono-sample).
 
 ### Argumenter til `GrainBuf`
 

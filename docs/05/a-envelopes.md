@@ -143,7 +143,7 @@ Når vi bruger `Pbind` og patterns til at styre artikulationen af toner, styres 
 
 ## Automatisk oprydning med doneAction
 
-Envelopes er forbundet med noget, der hedder `doneAction`, som angår hvad SuperColliders lydserver skal gøre med netværket af UGens, når envelope-generatoren har gennemløbet alle envelopens segmenter. I eksemplerne ovenfor har vi ikke bedt SuperCollider om at gøre noget særligt, når envelopen er slut, men det er ofte yderst relevant at fjerne vores UGen-netværk (også kaldet en `Synth`) fra serveren igen. Dette bliver særligt tydeligt, når vi gennemgår [Synth, SynthDef og Pbind](a2-synthdef.md). 
+Envelopes er forbundet med noget, der hedder `doneAction`, som angår hvad SuperColliders lydserver skal gøre med netværket af UGens, når envelope-generatoren har gennemløbet alle envelopens segmenter. I eksemplerne ovenfor har vi ikke bedt SuperCollider om at gøre noget særligt, når envelopen er slut, men det er ofte yderst relevant at fjerne vores UGen-netværk (også kaldet en `Synth`) fra serveren igen. Dette bliver særligt tydeligt, når vi gennemgår [Synth, SynthDef og Pbind](a-synthdef.md). 
 
 Hvis du kan se, at du har en række gamle Synths liggende på lydserveren fra eksemplerne ovenfor (kør `s.queryAllNodes` og tjek post window), kan du fjerne dem med Ctrl-Punktum/Cmd-Punktum.
 

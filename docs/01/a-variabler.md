@@ -50,7 +50,7 @@ Der findes en mindre teknisk forskel på variabler som `~trin` og `t`, men på b
 
 ## Lokale variabler
 
-Vi bruger blandt andet lokale variabler til at gemme data som akkorder og rytmer, men også til at [definere signalflowet](../04/a1-ugens.md#signalflow-med-lokale-variabler), når vi designer lyde.
+Vi bruger blandt andet lokale variabler til at gemme data som akkorder og rytmer, men også til at [definere signalflowet](../04/a-ugens.md#signalflow-med-lokale-variabler), når vi designer lyde.
 
 Lokale variabler defineres med nøgleordet `var` i stedet for `~`. De kan udelukkende tilgås inden for en afgrænset kodeblok bestående af almindelige parenteser eller tuborg-parenteser, og de skal oprettes i begyndelsen af den kodeblok, de tilhører.
 
@@ -65,6 +65,6 @@ akkord.postln;
 // Uden for kodeblokken: giver en fejlmeddelelse
 ```
 
-[^1]: Teknisk set skal variable begynde med småt begyndelsesbogstav fordi stort begyndelsesbogstav er forbeholdt de såkaldte [klassenavne](a3-methods.md#class-methods).
+[^1]: Teknisk set skal variable begynde med småt begyndelsesbogstav fordi stort begyndelsesbogstav er forbeholdt de såkaldte [klassenavne](a-methods.md#class-methods).
 
 [^2]: Rent teknisk udgør variabler som `~kaffe` og `~the` såkaldte *environment variables*, hvor variabler som `a`, `b` og `c` er globale variabler i mere klassisk forstand. Med environment variables kan man skifte mellem environments og dermed adskille det man i mere avanceret programmering kalder for [*namespaces*](https://en.wikipedia.org/wiki/Namespace). Som begynder skal man ikke bekymre sig om dette, da vi på grundlæggende niveau udelukkende arbejder inden for ét environment. Vi kan dermed for enkelhedens skyld betragte environment variables som globale variabler.

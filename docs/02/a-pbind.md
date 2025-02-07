@@ -124,4 +124,4 @@ Til at notere volumen kan man vælge mellem nøglerne `\db` eller `\amp`. Med `\
 ~eksempel.stop;
 ```
 
-[^1]: Når man senere i kurset skriver sine egne SynthDefs, fungerer ovennævnte nøgler kun, når man anvender argumenterne `freq`, `amp` og `gate` korrekt i sin SynthDef. Se hertil afsnittet om [argumentnavne i SynthDef](../05/a2-synthdef.md#argumentnavne-i-synthdef).
+[^1]: Når man senere i kurset skriver sine egne SynthDefs, fungerer ovennævnte nøgler kun, når man anvender argumenterne `freq`, `amp` og `gate` korrekt i sin SynthDef. Se hertil afsnittet om [argumentnavne i SynthDef](../05/a-synthdef.md#argumentnavne-i-synthdef).

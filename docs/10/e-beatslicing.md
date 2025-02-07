@@ -11,7 +11,7 @@ Denne øvelse
 ## Opgave 0: Klargøring
 
 1. Indlæs først et eller flere trommeloops under variablen `~sample`til brug i nedenstående øvelse. Det er (for denne øvelse) vigtigt, at trommeloopet er metrisk underdelt i sekstendedele og varer præcis én takt.
-1. Indlæs `SynthDef`'en `\slice` fra [artiklen om beatslicing](a2-beatslicing.md).
+1. Indlæs `SynthDef`'en `\slice` fra [artiklen om beatslicing](a-beatslicing.md).
 
 ## Opgave 1: Algoritmisk beatslicing
 

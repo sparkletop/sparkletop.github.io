@@ -15,7 +15,7 @@ Når du besvarer spørgsmålene, kan disse tricks være en god hjælp til at for
 
 ## Sammensætning af nøgler og patterns
 
-1. Notér for hver linje i `Pbind`'en: Hvilken funktion har de enkelte nøgler (`\octave`, `\root` osv.)? Jf. [forrige kapitel](../02/a3-pbind.md).
+1. Notér for hver linje i `Pbind`'en: Hvilken funktion har de enkelte nøgler (`\octave`, `\root` osv.)? Jf. [forrige kapitel](../02/a-pbind.md).
 1. Hvilken effekt opnår man ved at kombinere `Pwhite` og `.stutter`?
 1. Variér og eksperimentér med mindst tre aspekter af kompositionen:
     1. De valgte trin og nodeværdier
@@ -96,7 +96,7 @@ Pbind(
 1. Besvar: Hvad betyder `Array.interpolation(16, -20, -10)`?
 1. Justér kildekoden på følgende vis:
     1. Tilføj mindst én akkord til `Pwrand` (husk, at sandsynlighederne `[0.9, 0.1]` skal svare til antallet af valgmuligheder og tilsammen skal give 1)
-    1. Erstat `Pxrand` med et [listebaseret pattern](../02/a2-random-patterns.md#listebaserede-generatorer) efter eget valg, og notér hvilken forskel dette gør
+    1. Erstat `Pxrand` med et [listebaseret pattern](../02/a-random-patterns.md#listebaserede-generatorer) efter eget valg, og notér hvilken forskel dette gør
 
 ```sc title="Øvelse: Rytmiserede og dynamiserede akkorder"
 (

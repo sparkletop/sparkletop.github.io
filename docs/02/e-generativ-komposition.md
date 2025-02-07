@@ -8,7 +8,7 @@ Denne øvelse handler om at bruge patterns til generativ komposition.
 
 ## Opgave 1: Aleatorik ud over det hele
 
-Skriv en komposition med `Pbind`, hvor alle parametre genereres tilfældigt, dvs. de faste værdier skal erstattes med patterns. Se evt. [artiklen om patterns og tilfældighed](a2-random-patterns.md).
+Skriv en komposition med `Pbind`, hvor alle parametre genereres tilfældigt, dvs. de faste værdier skal erstattes med patterns. Se evt. [artiklen om patterns og tilfældighed](a-random-patterns.md).
 
 ```sc title="Opgave 1"
 (

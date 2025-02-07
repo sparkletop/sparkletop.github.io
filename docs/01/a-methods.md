@@ -51,7 +51,7 @@ Pwhite(0, 10)       // .new er underforstået
 // Denne forekomst af Pwhite vil generere værdier mellem 0 og 10
 ```
 
-Om man bruger eks- eller implicit `.new` er et spørgsmål om personlig præference. Den eksplicitte tilgang er mest tydelig at læse, men ofte vil den implicitte udgave give sig selv. Det er fx tilfældet, når vi i næste kapitel skal arbejde med [patterns](../02/a1-patterns-intro.md), hvor man konkret .
+Om man bruger eks- eller implicit `.new` er et spørgsmål om personlig præference. Den eksplicitte tilgang er mest tydelig at læse, men ofte vil den implicitte udgave give sig selv. Det er fx tilfældet, når vi i næste kapitel skal arbejde med [patterns](../02/a-patterns-intro.md), hvor man konkret .
 
 ## Instance methods
 
@@ -59,7 +59,7 @@ Instance methods bruger vi på "instances", dvs. konkrete forekomster af bestemt
 
 `.midicps`
 
-:   En method, som blandt andet kan anvendes på tal (og [UGens](../04/a1-ugens.md)). Method'en omregner MIDI-tonetallet 69 til frekvens målt i Hz. `69.midicps` bliver altså til `440`.
+:   En method, som blandt andet kan anvendes på tal (og [UGens](../04/a-ugens.md)). Method'en omregner MIDI-tonetallet 69 til frekvens målt i Hz. `69.midicps` bliver altså til `440`.
 
 `.dup`
 

@@ -7,7 +7,7 @@ tags:
 
 Denne lilletrommelyd er inspireret af Gordon Reids [artikel](https://www.soundonsound.com/techniques/practical-snare-drum-synthesis) fra magasinet *Sound on Sound*[@reid2002] om syntetisk dannelse af lilletrommelyd. Lyddesignet her simulerer forskellige klangelementer i en "realistisk" lilletrommelyd, fra trommens "krop" og resonans til seiding og anden støj.
 
-SynthDef'en illustrerer, hvordan man bruger forskellige [filtre](c1-filtre.md) sammen med [envelopes](../05/a1-envelopes.md) til at modulere klangens forandring over tid.
+SynthDef'en illustrerer, hvordan man bruger forskellige [filtre](c-filtre.md) sammen med [envelopes](../05/a-envelopes.md) til at modulere klangens forandring over tid.
 
 ```sc title="En SynthDef til syntetisk emuleret lilletrommelyd"
 (

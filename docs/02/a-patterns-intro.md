@@ -7,7 +7,7 @@ tags:
 
 	Generativ komposition kan være kernen i den kreative proces, når man komponerer, hvilket ofte er tilfældet inden for computermusikken. Men i bredere forstand kan vi også bruge generative processer til at skabe samples, sekvenser, variationer mm. til brug i mere traditionel komposition og lydproduktion.
 
-	I SuperCollider udgør de såkaldte patterns et centralt redskab til generativ komposition. Dette kapitel introducerer først til patterns på et grundlæggende niveau, med særligt fokus på hvordan det centrale redskab `Pbind` knytter generative patterns til musikalske parametre som tonehøjde og rytmik. I [næste kapitel](../03/a1-indlejring.md) går vi mere i dybden med hvordan patterns blandt andet ved hjælp af en teknik kaldet *indlejring* kan kombineres til at danne komplekse, generative systemer. 
+	I SuperCollider udgør de såkaldte patterns et centralt redskab til generativ komposition. Dette kapitel introducerer først til patterns på et grundlæggende niveau, med særligt fokus på hvordan det centrale redskab `Pbind` knytter generative patterns til musikalske parametre som tonehøjde og rytmik. I [næste kapitel](../03/a-indlejring.md) går vi mere i dybden med hvordan patterns blandt andet ved hjælp af en teknik kaldet *indlejring* kan kombineres til at danne komplekse, generative systemer. 
 
 # Introduktion til patterns
 
@@ -148,7 +148,7 @@ Pbind(
 )
 ```
 
-Vi ser nærmere på forskellige teknikker til indlejring af patterns [i næste kapitel](../03/a1-indlejring.md).
+Vi ser nærmere på forskellige teknikker til indlejring af patterns [i næste kapitel](../03/a-indlejring.md).
 
 ## Introduktion til Pwhite, en tilfældighedsgenerator
 
@@ -214,7 +214,7 @@ Pbind(\degree, Pbrown(-7, 7, 1, 8).trace).play; // små spring
 Pbind(\degree, Pbrown(-7, 7, 5, 8).trace).play; // større spring
 ```
 
-Vi kigger nærmere på disse forskellige tilfældighedsgenerator i [næste afsnit](a2-random-patterns.md) samt i [cheat sheetet vedr. patterns](c2-patterns.md).
+Vi kigger nærmere på disse forskellige tilfældighedsgenerator i [næste afsnit](a-random-patterns.md) samt i [cheat sheetet vedr. patterns](c-patterns.md).
 
 ## Nyttige teknikker til at arbjede med patterns
 

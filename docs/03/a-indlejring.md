@@ -7,13 +7,13 @@ tags:
 
 Det er relativt let at lave en simpel, algoritmisk komposition ved hjælp af patterns. Men det kan være mere vanskeligt at bevæge sig videre fra det meget simple eller meget tilfældighedsprægede udtryk. Her kan en teknik, som kaldes indlejring af patterns, være med til at give et mere nuanceret og subtilt udtryk.
 
-Generativ eller algoritmisk komposition indebærer, at man i et vist omfang overlader dele af det kompositoriske arbejde til et system eller en algoritme. Her spiller [tilfældighedsgeneratorer](../02/a2-random-patterns.md) ofte (men ikke altid) en central rolle.
+Generativ eller algoritmisk komposition indebærer, at man i et vist omfang overlader dele af det kompositoriske arbejde til et system eller en algoritme. Her spiller [tilfældighedsgeneratorer](../02/a-random-patterns.md) ofte (men ikke altid) en central rolle.
 
 Total tilfældighed er imidlertid sjældent specielt interessant. Derfor kan man med fordel indlejre tilfældighed som et begrænset element i en ellers fastlagt struktur.
 
 ## En sekvens af patterns
 
-Vi har tidligere set, [hvordan `Pseq` kan generere sekvenser af værdier](../02/a1-patterns-intro.md). Men `Pseq` er fleksibel og kan lige så vel bruges til sekvenser af patterns. Det betyder, at i stedet for at angive værdier, kan angive patterns. Der vil så 
+Vi har tidligere set, [hvordan `Pseq` kan generere sekvenser af værdier](../02/a-patterns-intro.md). Men `Pseq` er fleksibel og kan lige så vel bruges til sekvenser af patterns. Det betyder, at i stedet for at angive værdier, kan angive patterns. Der vil så 
 Her eksempelvis en sekvens med en blanding af faste og tilfældigt genererede skalatrin:
 
 ```sc title="Patterns som undersekvenser"

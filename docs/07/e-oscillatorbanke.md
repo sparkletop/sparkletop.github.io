@@ -47,7 +47,7 @@ Løs følgende opgaver ved hjælp af `Pan2`:
 
 ## Opgave 3: Additiv syntese
 
-Fremstil i nedenstående SynthDef en kompleks klang ved hjælp af additiv syntese med sinustoner (eksempler herpå kan findes i artiklen om [additiv syntese](a2-additiv.md)). Klangen skal overholde følgende krav:
+Fremstil i nedenstående SynthDef en kompleks klang ved hjælp af additiv syntese med sinustoner (eksempler herpå kan findes i artiklen om [additiv syntese](a-additiv.md)). Klangen skal overholde følgende krav:
 
 1. Klangen skal ud over grundtonen (`freq`) indeholde mindst tre forskellige overtoner (dvs. med et harmonisk forhold til `freq`)
 1. Klangen skal derudover indeholde mindst to forskellige partialtoner (dvs. med et inharmonisk forhold til `freq`)

@@ -7,7 +7,7 @@ tags:
 
 Jean-Claude Risset var en fransk komponist, der bl.a. arbejdede med additiv syntese og som en pioner inden for computermusikken var en af de første, der eksperimenterede med de store klanglige muligheder man kan opnå med mikrovariationer i overtoners amplitude over tid[@roads2023, p. 123].
 
-Nedenstående SynthDef er en SuperCollider-implementering af en berømt klokkelyd, som Risset skabte. Værdierne er baseret på Miller Puckettes[-@puckette2007, pp. 107-108] gennemgang af teknikken. Der gøres flittig brug af [multichannel expansion](a1-oscillatorbanke.md#multikanalslyd-med-multichannel-expansion).
+Nedenstående SynthDef er en SuperCollider-implementering af en berømt klokkelyd, som Risset skabte. Værdierne er baseret på Miller Puckettes[-@puckette2007, pp. 107-108] gennemgang af teknikken. Der gøres flittig brug af [multichannel expansion](a-oscillatorbanke.md#multikanalslyd-med-multichannel-expansion).
 
 ```sc title="SynthDef til Rissets klokke"
 (

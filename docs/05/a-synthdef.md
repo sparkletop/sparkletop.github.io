@@ -92,7 +92,7 @@ Synth(\tone, [\freq, 1000]);
 ~tone.set(\freq, rrand(100, 800));
 ```
 
-I mange SynthDefs er det nyttigt at bruge en [envelope](a1-envelopes.md) til at styre volumen over tid. Med `doneAction` angiver vi, at Synth'en skal fjernes, når tonen er klinget ud (læs evt. nærmere om [automatisk oprydning med doneAction](a1-envelopes.md#automatisk-oprydning-med-doneaction)).
+I mange SynthDefs er det nyttigt at bruge en [envelope](a-envelopes.md) til at styre volumen over tid. Med `doneAction` angiver vi, at Synth'en skal fjernes, når tonen er klinget ud (læs evt. nærmere om [automatisk oprydning med doneAction](a-envelopes.md#automatisk-oprydning-med-doneaction)).
 
 ### SynthDef og Pbind
 
@@ -118,7 +118,7 @@ Pbind(
 )
 ```
 
-SynthDefs bliver i øvrigt meget lettere at læse, hvis vi bruger [lokale variabler](../01/a2-variabler.md#lokale-variabler). Koden herunder fungerer præcis som ovenfor, men er markant mere læsbar, da vi kan følge signalflowet gennem de lokale variabler (hvis ellers variabelnavnene er tilstrækkeligt deskriptive):
+SynthDefs bliver i øvrigt meget lettere at læse, hvis vi bruger [lokale variabler](../01/a-variabler.md#lokale-variabler). Koden herunder fungerer præcis som ovenfor, men er markant mere læsbar, da vi kan følge signalflowet gennem de lokale variabler (hvis ellers variabelnavnene er tilstrækkeligt deskriptive):
 
 ```sc title="Signalflow i SynthDef med lokale variabler"
 (
@@ -289,7 +289,7 @@ Disse argumentnavne er ikke så vidt vides strengt nødvendige. Men der er tale 
 
 `buf`
 
-:   Anvendes til at angive en `Buffer` på lydserveren. Dette er fx relevant, når [der arbejdes med samples](../08/a1-samples.md), wavetables og lignende.
+:   Anvendes til at angive en `Buffer` på lydserveren. Dette er fx relevant, når [der arbejdes med samples](../08/a-samples.md), wavetables og lignende.
 
 ### Argumentnavne, som i mange tilfælde bør undgås
 

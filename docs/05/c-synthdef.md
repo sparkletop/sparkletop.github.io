@@ -29,7 +29,7 @@ SynthDef(\navn, {
 )
 ```
 
-I SynthDef'en herunder er lydkilden, en sinustone, blot dupliceret med `.dup`, så den klinger i to kanaler. Det er oplagt at foretage ændringer og tilføjelser her for at opnå et mere interessant steroe-lyddesign. Med `Balance2.ar` balanceres der til sidst mellem de to kanaler. Læs eventuelt nærmere om stereofoni og *multichannel expansion* i [kapitlet om oscillatorbanke](../07/a1-oscillatorbanke.md).
+I SynthDef'en herunder er lydkilden, en sinustone, blot dupliceret med `.dup`, så den klinger i to kanaler. Det er oplagt at foretage ændringer og tilføjelser her for at opnå et mere interessant steroe-lyddesign. Med `Balance2.ar` balanceres der til sidst mellem de to kanaler. Læs eventuelt nærmere om stereofoni og *multichannel expansion* i [kapitlet om oscillatorbanke](../07/a-oscillatorbanke.md).
 
 ```sc title="SynthDef-skabelon til stereofone lydkilder"
 (
