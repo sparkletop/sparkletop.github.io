@@ -230,7 +230,6 @@ def convert_section(md_file_path: str):
     for num, block in enumerate(code_block_captions):
         Counter.code_blocks += 1
         segment = block.group(0)
-        print(num)
         section_page_url = md_file_path.replace('./docs/', '').replace('.md', '/')
         url = BASE_URL + section_page_url + r"\#__code_" + str(num)
         tex_link = '\\href{' + url + '}{\\faLink}'
@@ -288,6 +287,25 @@ def check_included(file_path, ignore_files, solo_files):
         return False
 
 
+def process_nav(nav, docs_folder, ignore_files, solo_files):
+    chapters = {}
+    for top_level_dict in nav:
+        for chapter_title, value in top_level_dict.items():
+            md_files = []
+            if isinstance(value, str):
+                # Chapter has only one page
+                md_files.append(value)
+            else:
+                # Chapter has several pages
+                for page in value:
+                    md_file = next(iter(page.values())) if isinstance(page, dict) else page
+                    md_files.append(md_file)
+            checked_md_files = [join(docs_folder, md_file) for md_file in md_files if check_included(md_file, ignore_files, solo_files)]
+            if checked_md_files:
+                chapters[chapter_title] = checked_md_files
+    return chapters
+
+
 if __name__ == "__main__":
     """
     Convert the sources for an mkdocs site to a LaTeX file
@@ -302,10 +320,10 @@ if __name__ == "__main__":
     tex_outpath = args.tex_outpath
 
     # Read the list of ignored markdown files
-    with open(IGNORED_MD_FILES_LIST, 'r') as ignore_file:
-        ignore_files = ignore_file.read().split('\n')
-    with open(SOLOED_MD_FILES_LIST, 'r') as solo_file:
-        solo_files = solo_file.read().split('\n') 
+    with open(IGNORED_MD_FILES_LIST, 'r') as f:
+        ignore_files = f.read().split('\n')
+    with open(SOLOED_MD_FILES_LIST, 'r') as f:
+        solo_files = f.read().split('\n') 
         if solo_files == ['']:
             solo_files = []
 
@@ -325,33 +343,16 @@ if __name__ == "__main__":
         # Follow the structure of mkdocs.yml nav list
         nav = mkdocs_config['nav']
         nav.pop(0) # ignore index page
-
-        # Turn web page top hierarchy categories into chapters
-        for top_level_dict in nav:
-            chapter_title = list(top_level_dict.keys())[0]
-            md_files = []
-            for page in list(top_level_dict.values())[0]:
-                if isinstance(page, dict):  # Page has been given 
-                    md_file = list(page.values())[0]
-                else:
-                    md_file = page
-                if check_included(md_file, ignore_files, solo_files):
-                    md_files.append(join(docs_folder, md_file))
-            if md_files:
-                chapters[chapter_title] = md_files
+        chapters = process_nav(nav, docs_folder, ignore_files, solo_files)
     else:
         # There is no nav specified, so we walk the subdirectories of
         # the docs directory and create chapters for each one
         chapter_dirs = [d for d in os.listdir(docs_folder) if isdir(join(docs_folder, d))]
-        chapter_dirs.sort()
-        for chapter_dir in chapter_dirs:
+        for chapter_dir in sorted(chapter_dirs):
             md_files = [f for f in os.listdir(join(docs_folder, chapter_dir)) if (f.endswith('.md') & check_included(f, ignore_files, solo_files))]
-            if not md_files:
-                continue
-            else:
-                md_files.sort()
-                chapters[chapter_dir] = md_files
-    
+            if md_files:
+                chapters[chapter_dir] = sorted(md_files)
+        
     current_chapter = 1
     for chapter_title, md_files in chapters.items():
         make_chapter(chapter_title, md_files, current_chapter)
