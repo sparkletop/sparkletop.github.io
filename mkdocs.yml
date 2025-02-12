@@ -75,6 +75,7 @@ markdown_extensions:
 
 nav:
   - Forside: index.md
+  - Indledning: 00/a-indledning.md
   - 1. Grundlæggende programmering:
     - SuperColliders brugerflade: 01/a-brugerflade.md
     - 01/a-eksekvering.md
@@ -82,7 +83,7 @@ nav:
     - 01/a-methods.md
     - 01/e-basics.md
     - 01/e-lyd.md
-  - 2. At generere en strøm af værdier:
+  - 2. At generere en strøm af lyde:
     - Introduktion til Patterns: 02/a-patterns-intro.md
     - 02/a-random-patterns.md
     - 02/a-pbind.md
