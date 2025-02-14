@@ -61,5 +61,15 @@
             "args": "build"
         }
     ],
-    "latex-workshop.latex.autoBuild.run": "never"
+    "latex-workshop.latex.autoBuild.run": "never",
+    "markdownlint.config": {
+        "MD041": false,
+        "MD046": false,
+        "MD049": { "style": "asterisk" },
+        "MD050": { "style": "asterisk" },
+    },
+    "[markdown]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true
+    },
 }
