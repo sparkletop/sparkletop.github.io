@@ -43,6 +43,7 @@ plugins:
   - mkdocs-audio
   - bibtex:
       bib_file: "tex/mlprefs.bib"
+      csl_file: "docs/stylesheets/apa.csl"
   - privacy
   - caption:
       figure:
