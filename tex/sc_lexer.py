@@ -25,8 +25,8 @@ class SuperColliderLexer(RegexLexer):
             (r'//.*?$', Comment.Singleline),
             (r'\b(var|arg)\b', Keyword.Declaration),
             (r'~[a-z]\w+?\b', Name.Variable),
-            (r'\b(if|else|while|for|do|switch|case|forBy)\b', Keyword), # Control structures
-            (r'\b[A-Z][\w_]+?\b', Name.Class), # Class names begin with a capital letter
+            # Class names begin with a capital letter
+            (r'\b[A-Z][\w_]+?\b', Name.Class),
             (r'\b(true|false|nil|pi|inf)\b', Keyword.Constant), 
             (r'\'[a-z][\w_]+?\'', String.Symbol),
             (r'\\[a-z][\w_]+?\b', String.Symbol),

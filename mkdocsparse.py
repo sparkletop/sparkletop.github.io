@@ -243,7 +243,7 @@ def convert_section(md_file_path: str):
 def make_chapter(chapter_title: str, md_files: list, current_chapter: int):
     Counter.chapters += 1
     # remove "1. " etc. from the chapter title, since LaTeX handles the numbering for us
-    chapter_title = re.sub(r'^\d+\.\s+', '', chapter_title)
+    chapter_title = re.sub(r'^\d+\.?\s+', '', chapter_title)
 
     tex = f"\\chapter{{{chapter_title}}}\n\\label{{chap:{chapter_title}}}\n{ET}RESETPAGECOLOR{ET}"
 
