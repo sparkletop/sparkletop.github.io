@@ -69,6 +69,8 @@
         "MD050": { "style": "asterisk" },
     },
     "[markdown]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true
     },
