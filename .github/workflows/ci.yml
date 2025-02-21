@@ -26,5 +26,5 @@ jobs:
       - run: pip install mkdocs-bibtex
       - run: pip install mkdocs-caption
       - run: pip install mkdocs-mermaid2-plugin
-      - run: pip install pypandoc
+      - run: apt install pandoc
       - run: mkdocs gh-deploy --force
