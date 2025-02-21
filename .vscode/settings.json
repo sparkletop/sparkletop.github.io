@@ -3,7 +3,7 @@
         "version": "2.0.0",
         "tasks": [ 
             { // Full build from Markdown to pdf
-                "label": "Build PDF from markdown sources",
+                "label": "full markdown to PDF build",
                 "type": "shell",
                 "command": "${workspaceFolder}/build.sh",
                 "group": {
@@ -52,6 +52,16 @@
                 },
                 "problemMatcher": []
             },
+            { // Sync media files and .bib file from local sources
+                "label": "Update media",
+                "type": "shell",
+                "command": "./sync_media.sh",
+                "group": {
+                    "kind": "build",
+                    "isDefault": false
+                },
+                "problemMatcher": []
+            },
         ]
     },
     "keybindings": [
@@ -59,7 +69,12 @@
             "key": "ctrl+shift+b",
             "command": "workbench.action.runTask",
             "args": "build"
-        }
+        },
+        {
+            "key": "ctrl+alt+u",
+            "command": "workbench.action.tasks.runTask",
+            "args": "Update media"
+        },
     ],
     "latex-workshop.latex.autoBuild.run": "never",
     "markdownlint.config": {
