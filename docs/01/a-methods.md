@@ -7,22 +7,24 @@ tags:
 
 Alt hvad man kan *gøre* i SuperCollider er knyttet til noget, der hedder *methods*. Hvis vi forstår og kan anvende de forskellige methods, der findes, kan vi groft sagt bruge alle de redskaber, der findes i SuperCollider! Derfor er det relevant at lære hvordan methods fungerer. Samtidig er det vigtigt at forstå hvad *argumenter* er, da vi bruger argumenter for at angive, hvordan en method skal udføres.
 
-## Methods er funktionalitet
+## Funktionalitet er knyttet til methods
 
-Teknisk set er en method en særlig *funktion*, idet dens rolle er at udføre en bestemt handling, når den bliver aktiveret. I SuperCollider-kildekode ser man ofte methods noteret lige efter punktummer. I et fiktivt eksempel som `~car.drive`, er `drive` en method, som anvendes på det, der er gemt under variablen `~car` - antagelig for at få en bil til at køre. Men lad os kigge på nogle reelle methods i SuperCollider: 
+Når vi skal have SuperCollider til at udføre en handling, som fx at sætte en lyd i gang, bruger vi en eller flere konkrete *methods*. En method er en *funktion*, hvis rolle er at udføre en bestemt handling, når den bliver aktiveret.
+
+Lyder det abstrakt? Okay, lad os se på hvordan methods optræder i kildekode: Methods noteret typisk lige efter punktummer. I et fiktivt eksempel som `~car.drive`, er `drive` altså en method. Methods kaldes undertiden også for "messages". Det skyldes, at methods altid anvendes på "noget", og dette noget kalder man så en "receiver" - i det fiktive eksempel her er receiveren det, der er gemt under variablen `~car`. Men lad os kigge på nogle reelle methods i SuperCollider:
 
 ```sc title="Tre methods med forskellig funktionalitet"
 // method'en .postln viser objekter i post window, i dette tilfælde et stykke tekst
 "Hello world".postln;
-// method'en .minorPentatonic angiver (kombineret med Scale) en mol-pentaton skala
+
+// method'en .minorPentatonic angiver (kombineret med receiveren Scale) en mol-pentaton skala
 Scale.minorPentatonic;
+
 // method'en .midicps omregner et tal fra MIDI-tonehøjde til frekvens, målt i Hertz
 69.midicps;
 ```
 
-Methods kaldes undertiden også for "messages". Det skyldes, at methods anvendes på "noget", og dette noget kalder man så en "receiver". I udtrykket `69.midicps` er `69` receiveren, som modtager vores message `midicps`. 
-
-Alle methods hører til enten en *class* (klasse) eller en *instance* (forekomst). 
+Vi kan ikke gennemgå alle methods i SuperCollider her, da der er alt for mange til at det rent praktisk giver mening. Men vi kommer løbende i bogen til at gå i dybden med hvordan man bruger konkrete methods. Dog er det vigtigt at forstå, at alle methods hører til enten en *class* (klasse) eller en *instance* (forekomst).
 
 ## Class methods
 
@@ -69,25 +71,43 @@ Instance methods bruger vi på "instances", dvs. konkrete forekomster af bestemt
 
 :   Kan bruges i flere forskellige sammenhænge. Med `Pbind.new().play` kan vi starte med at afspille en ny Pind.
 
-Nogle methods kan styres med input i form af argumenter:
-
-``` sc title="Styring af methods med argumenter"
-SinOsc.ar(220)         // vi beder om en sinustone-oscillator, som svinger med 220 Hertz
-SinOsc.ar.dup(10)      // vi beder om 10 ens sinustone-oscillatorer
-Pwhite(0, 7)           // vi beder om et pattern, der kan generere tilfældige tal mellem 0 og 7
-```
-
-Mange methods kan bruges med forskellige slags objekter, fx `.play`:
+Mange methods kan bruges med forskellige slags objekter. Det gælder eksempelvis for `.play`, som vi bruger jævnligt. Her er nogle eksempler (for at høre resultatet af de første to linjer skal lydserveren først bootes med `s.boot`):
 
 ``` sc title="Forskellige resultater med .play"
 Pbind().play;
 {SinOsc.ar * 0.1}.play;
 Routine({"hej ".post; 1.wait; "med dig".postln;}).play;
-
-// ... men .play kan ikke anvendes på alle objekter!
-10.play       // giver en fejlmeddelelse (.play findes ikke som instance method for SimpleNumber)
-Pbind.play    // giver en fejlmeddelelse (.play findes kun som instance method, ikke som class method for Pbind)
 ```
+
+Det er dog ikke alt, der kan "afspilles" med `.play`. Begge instrukser herunder resulterer derfor i fejlmeddelelser:
+
+```sc title=".play kan ikke anvendes på alle objekter!"
+10.play
+// Det giver ikke mening at afspille et tal
+
+Pbind.play
+// .play findes som instance method for forekomster af Pbind, ikke som class method
+```
+
+## Argumenter
+
+I mange tilfælde kan vi styre hvordan en given method fungerer. Det gør vi ved hjælp af *argumenter*. Men argumenter - hvad er nu det for noget? Vi har ovenfor set en række tilfælde, hvor en method er blevet efterfulgt af et sæt parenteser, nogle gange med nogle tal eller anden tekst noteret mellem parenteserne. Det, der står mellem parenteserne, kalder vi for argumenter. Med vores fiktive eksempel ovenfor kunne man forestille sig, at `~car.drive(50)` og `~car.drive(100)` ville få en bil til at køre med henholdsvis 50 km/t og 100 km/t. Her er nogle reelle eksempler på
+
+``` sc title="Styring af methods med argumenter"
+// vi beder om en sinustone-oscillator, som svinger ved 220 Hertz audio rate
+SinOsc.ar(220)
+
+// vi beder om 10 kopier af en sinustone-oscillator
+SinOsc.ar.dup(10)
+
+// vi beder om et pattern, der kan generere tilfældige tal mellem 0 og 7
+Pwhite.new(0, 7)
+```
+
++ Navngivne argumenter.
+
++ Standardværdier.
+
 
 ## Dokumentation for methods
 

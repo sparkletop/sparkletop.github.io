@@ -65,6 +65,6 @@ akkord.postln;
 // Uden for kodeblokken: giver en fejlmeddelelse
 ```
 
-[^1]: Teknisk set skal variable begynde med småt begyndelsesbogstav fordi stort begyndelsesbogstav er forbeholdt de såkaldte [klassenavne](a-methods.md#class-methods).
+[^1]: Teknisk set skal variabler begynde med småt begyndelsesbogstav, fordi stort begyndelsesbogstav er forbeholdt de såkaldte [klassenavne](a-methods.md#class-methods).
 
 [^2]: Rent teknisk udgør variabler som `~kaffe` og `~the` såkaldte *environment variables*, hvor variabler som `a`, `b` og `c` er globale variabler i mere klassisk forstand. Med environment variables kan man skifte mellem environments og dermed adskille det man i mere avanceret programmering kalder for [*namespaces*](https://en.wikipedia.org/wiki/Namespace). Som begynder skal man ikke bekymre sig om dette, da vi på grundlæggende niveau udelukkende arbejder inden for ét environment. Vi kan dermed for enkelhedens skyld betragte environment variables som globale variabler.

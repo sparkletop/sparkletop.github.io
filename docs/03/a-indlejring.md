@@ -13,8 +13,7 @@ Total tilfældighed er imidlertid sjældent specielt interessant. Derfor kan man
 
 ## En sekvens af patterns
 
-Vi har tidligere set, [hvordan `Pseq` kan generere sekvenser af værdier](../02/a-patterns-intro.md). Men `Pseq` er fleksibel og kan lige så vel bruges til sekvenser af patterns. Det betyder, at i stedet for at angive værdier, kan angive patterns. Der vil så 
-Her eksempelvis en sekvens med en blanding af faste og tilfældigt genererede skalatrin:
+Vi har tidligere set, [hvordan `Pseq` kan generere sekvenser af værdier](../02/a-patterns-intro.md). Men `Pseq` er fleksibel og kan lige så vel bruges til sekvenser af patterns. Det betyder, at vi som elementer i vores sekvens kan angive patterns i stedet for værdier. Når `Pseq` når til et pattern, gennemløber den nemlig alle de værdier, som det pågældende pattern genererer, før den går videre. Her er eksempelvis en sekvens med en blanding af faste og tilfældigt genererede skalatrin:
 
 ```sc title="Patterns som undersekvenser"
 (
@@ -28,7 +27,7 @@ Pbind(
         Pshuf([-1, -3]),
         // og til sidst et dybt g
         -3
-        // sekvensen fremgår tre dage
+    // sekvensen forløber tre gange
     ], 3),
 ).play;
 )
@@ -82,9 +81,9 @@ Pbind(
 
 ## Automatisk sammenflettede sekvenser
 
-Der findes et særligt pattern, som er velegnet til at flette sekvenser sammen - `Place`. Her sætter man to eller flere sekvenser eller enkeltværdier sammen i et array, og `Place` veksler så mellem de forskellige kilder. Arrayet gennemløbes det antal gange, man angiver (herunder 4 gennemløb).
+`Place` er et særligt pattern, som er velegnet til at flette sekvenser sammen. Her sætter man to eller flere sekvenser eller enkeltværdier sammen i et array, og `Place` veksler så mellem de forskellige kilder. Arrayet gennemløbes det antal gange, man angiver (herunder 4 gennemløb).
 
-```sc title"Sammenflettede sekvenser med Place"
+``` sc title="Sammenflettede sekvenser med Place"
 (
 Pbind(
 	\degree, Place([
@@ -99,7 +98,7 @@ Pbind(
 
 Der findes også en variant, som i stedet tillader, at man erstatter sekvenserne med patterns, nemlig `Ppatlace`. Det er meget oplagt som ramme for indlejrede patterns og filtreret tilfældighed:
 
-```sc title="Sammenflettede patterns med Ppatlace"
+``` sc title="Sammenflettede patterns med Ppatlace"
 (
 Pbind(
 	\degree, Ppatlace([

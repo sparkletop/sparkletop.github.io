@@ -10,9 +10,9 @@ I SuperCollider kan man sammensætte længere forløb af musikalske "begivenhede
 ```sc title="Nøgler og værdier i Pbind"
 (
 ~eksempel = Pbind(
-	\degree, 4, // 5. skalatrin, et g (fordi udgangspunktet er C-dur)
-	\dur, 0.5,  // varighed på et halvt taktslag (dvs. en ottendedel i almindelig musikterminologi)
-	\db, -25,   // -25 decibel lydstyrke
+    \degree, 4, // 5. skalatrin, et g (fordi udgangspunktet er C-dur)
+    \dur, 0.5,  // varighed på et halvt taktslag (dvs. en ottendedel i almindelig musikterminologi)
+    \db, -25,   // -25 decibel lydstyrke
 ).play;
 )
 ~eksempel.stop;
@@ -32,11 +32,11 @@ Til at notere tonehøjder bruger vi primært nøglerne
 ```sc title="Skalatrin, skala, oktav og grundtone"
 ( 
 ~eksempel = Pbind(
-	\degree, [0, 2, 4, 6],   // en diatonisk firklang
-	\scale, Scale.minor,     // mol-skala
-	\octave, 5,              // oktav 5 er den oktav, som starter ved noglehuls-c
-	\root, -3                // 3 halvtoner under nøglehuls-c (i dette tilfælde a)
-).play;						 // tilsammen en A-mol7
+    \degree, [0, 2, 4, 6],   // en diatonisk firklang
+    \scale, Scale.minor,     // mol-skala
+    \octave, 5,              // oktav 5 er den oktav, som starter ved noglehuls-c
+    \root, -3                // 3 halvtoner under nøglehuls-c (i dette tilfælde a)
+).play;                         // tilsammen en A-mol7
 )
 ~eksempel.stop;
 ```
@@ -59,25 +59,25 @@ Kromatisk og modal transponering kan angives med:
 ```sc title="Modal og kromatisk transponering"
 (
 ~eksempel = Pbind(
-	\degree, [0, 2, 4],
-	\mtranspose, Pseq([0, 1, 2, 3]),
+    \degree, [0, 2, 4],
+    \mtranspose, Pseq([0, 1, 2, 3]),
 ).play;
 )
 (
 ~eksempel = Pbind(
-	\degree, [0, 2, 4],
-	\ctranspose, Pseq([0, 1, 2, 3]),
+    \degree, [0, 2, 4],
+    \ctranspose, Pseq([0, 1, 2, 3]),
 ).play;
 )
 ~eksempel.stop;
 ```
 
-## Varighed, frasering og timing 
+## Varighed, frasering og timing
 
 Til at notere rytmik bruger vi primært nøglerne `\dur` og `\legato`
 
 - `\dur` - tidsinterval mellem på hinanden følgende anslag, målt i taktslag (ikke sekunder!)
-- `\legato` - hvor længe en tone klinger, målt relativt i forhold til `\dur` (>1 giver legato, <1 giver staccato)     
+- `\legato` - hvor længe en tone klinger, målt relativt i forhold til `\dur` (>1 giver legato, <1 giver staccato)
 
 ```sc title="Rytmik og frasering"
 ~eksempel = Pbind(\dur, 1).play;        // tidsinterval 1 taktslag, dvs. en 4.-del
@@ -93,8 +93,8 @@ For at justere timing relativt til beatet kan man bruge nøglen `\lag` (fx for a
 ~eksempel = Pbind(\lag, 1.5).play // giver kun mening relativt til fx et beat
 (
 ~eksempel = Pbind(
-	\degree, [0, 2, 4, 6],
-	\strum, 0.05
+    \degree, [0, 2, 4, 6],
+    \strum, 0.05
 ).play;
 )
 ~eksempel.stop;
@@ -115,9 +115,10 @@ Hvad nu, hvis vi gerne vil bruge almindelige rytmeangivelser i SuperCollider? Jo
 ~eksempel.stop;
 ```
 
-## Lydstyrke 
+## Lydstyrke
 
 Til at notere volumen kan man vælge mellem nøglerne `\db` eller `\amp`. Med `\db` omregner SuperCollider automatisk fra decibel, hvor `0` er den maksimale værdi, `-20` svarer til, at lyden bliver opfattet halvt så kraftigt som ved maksimal lydstyrke, og så fremdeles. Med nøglen `\amp` angiver vi i stedet amplituden direkte, typisk som en værdi mellem 0 og 1.
+
 ```sc title="Lydstyrke"
 ~eksempel = Pbind(\db, -30).play
 ~eksempel = Pbind(\amp, 0.2).play
