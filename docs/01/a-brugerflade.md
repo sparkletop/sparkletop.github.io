@@ -17,7 +17,7 @@ Første gang man åbner SuperCollider, mødes man af en umiddelbart noget minima
 1. Menuen øverst giver adgang til forskellige almindelige funktioner som "save" og "load" samt nogle SuperCollider-specifikke indstillinger og funktioner.
 1. Talrækken nederst til højre giver forskellige informationer om SuperColliders tilstand, primært i forhold til lydserveren. Her kan man højreklikke for at få vist en menu med forskellige funktioner.
 
-![Forskellige dele af SuperColliders brugerflade](../media/figures/ide.png){ width="100%" }
+![Forskellige dele af SuperColliders brugerflade](../media/figures/ide.png){ width="90%" }
 
 Help browser'en og SuperColliders Post window kan flyttes, lukkes eller rykkes til et separat vindue. Men for begyndere kan det være fornuftigt at beholde setup'et som det er indtil videre, så redskaberne er til at finde. Dog kan man nemt genaktivere kasserne via menuen *View*, hvis de er blevet lukket.
 

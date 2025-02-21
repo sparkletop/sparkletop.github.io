@@ -3,9 +3,9 @@ tags:
     - Artikler
 ---
 
-# Eksekvering af kode
+# Eksekvering af kildekode
 
-Man eksekverer kode ved at taste Ctrl+Enter på Windows/Linux eller Cmd+Enter på Mac. Prøv det selv:
+Et program består af nedskrevne *instrukser* (på engelsk *statements*), som computeren skal udføre. I SuperCollider kan få computeren til at udføre instrukser ved at *eksekvere* udvalgte dele af kildekoden. Man eksekverer kildekode ved at taste Ctrl+Enter på Windows/Linux eller Cmd+Enter på Mac. Prøv det selv:
 
 - Indtast linjerne herunder i et SuperCollider-dokument.
 - Sæt cursoren på en af linjerne og tast Ctrl+Enter (PC) eller Cmd+Enter (Mac).
@@ -18,11 +18,11 @@ rrand(0, 100);
 "Vekseldominant".postln;
 ```
 
-## Mere end én handling ad gangen med kodeblokke
+## Mere end én instruks ad gangen
 
-Hvis vi gerne vil gøre mere end én ting ad gangen, kan vi adskille vores instrukser (statements) til SuperCollider ved hjælp af semikolon:
+Hvis vi gerne vil gøre mere end én ting ad gangen, kan vi adskille vores instrukser ved hjælp af semikolon:
 
-``` sc title="Flere statements på én kodelinje med semikolon"
+``` sc title="Flere instrukser på én kodelinje med semikolon"
 "Et fantastisk tal:".postln; rrand(0, 100).postln;
 ```
 

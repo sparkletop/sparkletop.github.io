@@ -14,15 +14,14 @@ Der er to typer variabler: *Globale* og *lokale* variabler. Globale variabler ka
 ~trin;
 ~akkord;
 
-// Alle enkeltbogstaver fra `a` til `z` udgør også globale variabler:
+// Alle enkeltbogstaver fra a til z udgør også globale variabler:
 a;
 b;
 ```
 
 For at bruge variabler skal vi kunne tilgå og definere deres indhold.
 
-
-For at tilgå variablen, dvs. finde dens indhold frem og bruge det til noget, bruger vi slet og ret variabelnavnet, fx `~trin`.
+- For at tilgå variablen, dvs. finde dens indhold frem og bruge det til noget, bruger vi slet og ret variabelnavnet, fx `~trin`.
 - For at definere eller ændre variablens indhold, bruger vi først variabelnavnet efterfulgt af et lighedstegn, og det nye indhold på højre side af lighedstegnet: `~trin = 2`. Dette kaldes også *assignment*, fordi vi i dette tilfælde "assigner" tallet 2 til variable med navnet `~trin`.
 
 ``` sc title="Grundlæggende brug af variabler"
