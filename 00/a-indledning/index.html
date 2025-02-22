@@ -1,0 +1,2064 @@
+
+<!doctype html>
+<html lang="da" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../../01/a-brugerflade/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
+    
+    
+      
+        <title>Indledning - Musik- og lydprogrammering</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,700,700i%7CSource+Code+Pro:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Source Sans Pro";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#programmeringsredskaber-og-computermusik" class="md-skip">
+          Gå til indholdet
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Sidehoved">
+    <a href="../.." title="Musik- og lydprogrammering" class="md-header__button md-logo" aria-label="Musik- og lydprogrammering" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m22 12-2 1-1 1-1-1-1 3-1-3-1 8-1-8-1 2-1-2-1 4-1-4-1 9-1-9-1 6-1-6-1 1-1-1-2-1 2-1 1-1 1 1 1-6 1 6 1-9 1 9 1-4 1 4 1-2 1 2 1-8 1 8 1-3 1 3 1-1 1 1z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Musik- og lydprogrammering
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Indledning
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Søg" placeholder="Søg" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Søg">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Nulstil søgning" aria-label="Nulstil søgning" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Start søgning
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Musik- og lydprogrammering" class="md-nav__button md-logo" aria-label="Musik- og lydprogrammering" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m22 12-2 1-1 1-1-1-1 3-1-3-1 8-1-8-1 2-1-2-1 4-1-4-1 9-1-9-1 6-1-6-1 1-1-1-2-1 2-1 1-1 1 1 1-6 1 6 1-9 1 9 1-4 1 4 1-2 1 2 1-8 1 8 1-3 1 3 1-1 1 1z"/></svg>
+
+    </a>
+    Musik- og lydprogrammering
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Forside
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Indledning
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Indledning
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Indholdsfortegnelse">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Indholdsfortegnelse
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fra-music-n-til-supercollider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fra MUSIC-N til SuperCollider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bogens-fokusomrader" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bogens fokusområder
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bogens fokusområder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algoritmisk-komposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algoritmisk komposition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#klangdannelse-og-lyddesign" class="md-nav__link">
+    <span class="md-ellipsis">
+      Klangdannelse og lyddesign
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    1. Grundlæggende programmering
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            1. Grundlæggende programmering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01/a-brugerflade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SuperColliders brugerflade
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01/a-eksekvering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Eksekvering af kildekode
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01/a-variabler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Brug af variabler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01/a-funktioner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Funktioner
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01/a-methods/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hvordan får vi SuperCollider til at gøre noget?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01/e-basics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Øvelse: Grundlæggende programmering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01/e-lyd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Øvelse: De første bip
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2. At generere en strøm af lyde
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            2. At generere en strøm af lyde
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02/a-patterns-intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduktion til Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02/a-random-patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patterns som aleatoriske og stokastiske redskaber
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02/a-pbind/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pbind-nøgler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02/c-patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cheat sheet: Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02/e-patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Øvelse 2A: Grundlæggende brug af Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02/e-generativ-komposition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Øvelse 2B: Generativ komposition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    3. Komposition med patterns
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            3. Komposition med patterns
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03/a-indlejring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Indlejrede patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03/a-eksempler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Analyse af pattern-kompositioner
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03/e-minimalisme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Øvelse: Minimalistisk komposition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    4. Oscillatorer og modulation
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            4. Oscillatorer og modulation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04/a-ugens/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Oscillatorer i form af UGens
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04/a-skalering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modulation af UGens
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04/c-ugens/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cheat sheet: Centrale UGens
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04/c-ugen-methods/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cheat sheet: UGen-methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04/e-ugens/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Øvelse: Brug af UGens
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    5. Envelopes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            5. Envelopes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05/a-envelopes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Brug af envelopes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05/a-synthdef/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Synth og SynthDef
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05/a-nye-envelopes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Specialdesignede envelopes og LFO'er
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05/c-synthdef/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cheat sheet: SynthDef-skabeloner
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05/e-envelopes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Øvelse: Envelopes og SynthDefs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    6. Klangdannelse med filtre
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            6. Klangdannelse med filtre
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06/a-subtraktiv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Eksempler på subtraktiv syntese
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06/a-lilletromme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lilletromme
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06/c-filtre/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cheat sheet: Filter-UGens
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06/e-subtraktiv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Øvelse 6: Anvendelse af filtre
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    7. Klangdannelse med oscillatorbanke
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            7. Klangdannelse med oscillatorbanke
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07/a-oscillatorbanke/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Oscillatorbanke
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07/a-additiv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Additiv syntese
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07/a-risset/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rissets klokke
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07/a-orgel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Additiv orgellyd
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07/e-oscillatorbanke/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Øvelse 7: Multikanalslyd og additiv syntese
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    8. Samplemanipulation
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            8. Samplemanipulation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08/a-samples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Anvendelse af samples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08/e-samples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Øvelse 8: Samples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    9. Klangdannelse med granular syntese
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            9. Klangdannelse med granular syntese
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09/a-granular/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Granular syntese
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09/a-tempo-pitch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adskil tempo og tonehøjde
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09/a-tekstur-klangflade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Granular lyddesign-idéer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09/e-granular/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Øvelse 9: Granular syntese
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    10. Algoritmisk beatslicing
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            10. Algoritmisk beatslicing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10/a-beatslicing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Beatslicing med patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10/e-beatslicing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Øvelse 10: Beatslicing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Diverse ressourcer
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            Diverse ressourcer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ressourcer/art1-MIDI-output/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MIDI-output fra SuperCollider
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ressourcer/art2-optag_supercollider/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Optag lyd fra SuperCollider
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ressourcer/gratis-samples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kilder til gratis samples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oversigt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Oversigt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <a href="../../oversigt/#tag:artikler" class="md-tag">Artikler</a>
+      
+    
+  </nav>
+
+
+
+<div><details class="abstract">
+<summary>Kapitelabstrakt</summary>
+<p>Denne bog introducerer til programmering som et kreativt redskab for musikstuderende på de videregående uddannelser. Med afsæt i platformen SuperCollider introducerer bogen på grundlæggende niveau til unikke tilgange til komposition og lydproduktion fra computermusikkens verden. Bogen er henvendt til studerende eller særligt interesserede som ikke nødvendigvis har erfaring med programmering, men som har kendskab til musikteori og -teknologi på grundlæggende niveau.</p>
+<p>Dette indledende kapitel introducerer programmering som en musikalsk aktivitet i et historisk perspektiv og forklarer hvordan redskabet SuperCollider passer ind i det musikteknologiske landskab. I bogen arbejdes der på to niveauer - det overordnede kompositionsniveau, hvor vi bruger algoritmer til at generere musikalske forløb, og det mere detaljerede niveau, hvor vi arbejder med at producere lyd med lydsignalernes byggeklodser i form af oscillatorer, samples, envelopes, filtre mm. Det særlige ved SuperCollider er, at man kan kombinere disse to abstraktionsniveauer, hvilket gør redskabet utroligt fleksibelt og righoldigt.</p>
+</details>
+<h1 id="programmeringsredskaber-og-computermusik">Programmeringsredskaber og computermusik</h1>
+<p>Matematikeren og grevinden Ada Lovelace er af computerhistorikere posthumt blevet anerkendt som verdens første programmør, fordi hun i 1842 beskrev det, der sidenhen er blevet betegnet som den første computeralgoritme (Gregersen, 2015)<sup id="fnref:gregersen2015"><a class="footnote-ref" href="#fn:gregersen2015">1</a></sup>. Lovelace var meget optaget af den samtidige forsker Charles Babbages arbejde med hulkort-maskiner, som var forgængere til nutidens digitale computere. Babbage arbejde blandt andet med at designe en "Analytical engine", der groft sagt skulle fungere som det vi i dag ville kalde en regnemaskine. Men Lovelace så et meget større potentiale i Babbages hulkortmaskine end den oprindelig var tiltænkt, nemlig at den med abstrakte operationer ville kunne gøre meget andet end foretage udregninger med tal - eksempelvis at komponere musik:</p>
+<blockquote>
+<p>It might act upon other things besides <em>number</em>, were objects found whose mutual fundamental relations could be expressed by those of the abstract science of operations, and which should be also susceptible of adaptations to the action of the operating notation and mechanism of the engine. Supposing, for instance, that the fundamental relations of pitched sounds in the science of harmony and of musical composition were susceptible of such expression and adaptations, the engine might compose elaborate and scientific pieces of music of any degree of complexity or extent. (Lovelace, 2015, p. 162)<sup id="fnref:lovelace2015"><a class="footnote-ref" href="#fn:lovelace2015">2</a></sup></p>
+</blockquote>
+<p>Selvom der skulle gå mere end et århundrede før den computergenererede musik blev udbredt, har Lovelace så afgjort fået ret i sin forudsigelse. I bred forstand kan man sige, at alle de digitale redskaber hvormed vi i dag producerer, distribuerer og forbruger musik, er baseret på computerprogrammering - om end vi interagerer med de fleste af disse redskaber gennem grafiske brugerflader eller fysiske interfaces. I mere konkret forstand er programmering for nogle musikere og komponister inden for computermusikken og den elektroniske musik i dag det primære redskab til at skabe musik, da de nuværende redskaber giver en fantastisk frihed og fleksibilitet, hvis man er villig til at sætte sig ind i programmeringsteknikkerne.</p>
+<h2 id="fra-music-n-til-supercollider">Fra MUSIC-N til SuperCollider</h2>
+<p>Computermusikkens redskaber har gennemgået en omfattende udvikling siden de tidligste eksperimenter med computerbaseret komposition i midten af det 20. århundrede. Fokuserer vi specifikt på musik- og lydprogrammering, er der også sket ganske meget siden de første forskere i 1950'erne eksperimenterede med at få dyre mainframe-computere til at komponere musik. I disse tidlige eksperimenter skabte computeren et partitur uden nogen form for klangdannelse. I 1957 opfandt Max Mathews ved AT&amp;T Bell Laboratories programmeringssproget <em>MUSIC</em>, der sammen med efterfølgerne <em>MUSIC II</em>, <em>MUSIC III</em>, <em>MUSIC V</em> m.fl. kendes under betegnelsen "<em>MUSIC-N</em> languages" (Wang, 2017, p. 61)<sup id="fnref:wang2017"><a class="footnote-ref" href="#fn:wang2017">3</a></sup>.</p>
+<p>Med <em>MUSIC-N</em> og opfindelsen af <a href="https://en.wikipedia.org/wiki/Digital-to-analog_converter">DAC-enheder</a>, som konverterer et digitalt signal til et analogt, blev vejen banet for, at computere både kunne generere partiturer og tilmed realisere de lyde, som partituret specificerede. Fra <em>MUSIC III</em> var et centralt designprincip på plads, som også efterfølgende musikprogrammeringssprog baserede sig på, nemlig kategoriseringen af tonegeneratorer, filtre, envelopegeneratorer mm. som såkaldte <em>Unit Generators</em> (i daglige tale <em>UGens</em>) (Wang, 2017, p. 61)<sup id="fnref2:wang2017"><a class="footnote-ref" href="#fn:wang2017">3</a></sup>. Man sammensætter disse UGens til en slags, så eksempelvis en envelopegenerator-UGen styrer amplituden/lydstyrken for en sinustone, der er genereret med en tonegenerator-UGen. I <em>MUSIC-N</em>-lingo kalder sådan en sammenkobling for et "instrument" og en samling af sådanne instrumenter for et "orkester". Dette orkester kan så realisere et "partitur", analogt til almindelig praksis med musikalsk fremførelse baseret på musiknotation (Wang, 2017, p. 61)<sup id="fnref3:wang2017"><a class="footnote-ref" href="#fn:wang2017">3</a></sup>. Dette skete dog ikke i realtid, da computeren møjsommeligt skulle tygge sig igennem et partitur og derved skabe en lydfil. Ifølge Mathews kunne den computer, han arbejdede med i slutningen af 1950'erne, bruge flere minutter på at generere blot ét sekunds lyd, og det endda med ganske begrænsede klanglige muligheder (Collins &amp; D'Escrivan, 2017, p. 84)<sup id="fnref:collins2017a"><a class="footnote-ref" href="#fn:collins2017a">4</a></sup>.</p>
+<p>I forlængelse af <em>MUSIC-N</em> blev der skabt mere moderne og avancerede programmeringssprog og -platforme til musik og lyd, herunder først og fremmest <a href="https://csound.com/"><em>Csound</em></a> fra midten af 1980'erne, der som open source-projekt fortsat er i anvendelse i dag. Csound kunne ikke oprindeligt generere lyd i realtid (hvilket dog er blevet tilføjet sidenhen) - der skulle i stedet et andet projekt til for at ændre dette: I 1980'erne skabte Miller S. Puckette ved <a href="https://www.ircam.fr/">IRCAM</a> det i dag meget udbredte værktøj <a href="https://cycling74.com/products/max"><em>Max</em></a>, der var opkaldt efter førnævnte Max Mathews. <em>Max</em> var i første omgang designet til at være et MIDI-system, der kunne styre ekstern signalbehandlingshardware i IRCAM's eksperimentelle lydstudier og blev udgivet som kommerciel software. Det innovative ved <em>Max</em> var, at der er tale om en grafisk brugerflade, hvor brugeren opretter forskellige små bokse og forbinder dem med virtuelle kabler for at definere signalflowet, lidt ligesom en modulær synthesizer.</p>
+<p>Senere udviklede Puckette et nyt system kaldet <a href="https://puredata.info/"><em>Pure Data</em></a> (i daglig tale blot <em>Pd</em>), der i sin brugerflade var en gentænkning af <em>Max</em>, men derudover også inkorporerede en lyd-engine, som man kunne styre fra brugerfladen (Puckette, 1996)<sup id="fnref:puckette1996"><a class="footnote-ref" href="#fn:puckette1996">5</a></sup>. <em>Pd</em> er open source, og lyddelen blev derfor også inkorporeret i <em>Max</em>, der i den sammenhæng fik navnet <em>Max/MSP</em>. <em>Pd</em>, som er gratis og open source, og den kommercielle slægtning <em>Max/MSP</em> er i dag meget populære og udbredte redskaber inden for computermusik. Begge platforme er gode kandidater til at blive anvendt af musikstuderende i dag, fordi de med den grafiske brugerflade er lette at komme i gang med, hvis man ikke har arbejdet med programmering før. Når de ikke er valgt som platform til denne bog, er det fordi de mere omfattende projekter, man går i gang med umiddelbart efter begynderstadiet, hurtigt bliver yderst komplekse og vanskelige at håndtere i den visuelle platform. Dertil er en tekstbaseret tilgang bedre egnet, om end dette selvfølgelig også afhænger af personlige præferencer og færdigheder.</p>
+<p><a href="https://supercollider.github.io/"><em>SuperCollider</em></a>, der er platformen i denne bog, blev oprindeligt skabt af James McCartney og udgivet som kommerciel software i 1996 (McCartney, 2002)<sup id="fnref:mccartney2002"><a class="footnote-ref" href="#fn:mccartney2002">6</a></sup>. I 2002 frigav McCartney imidlertid SuperCollider under en open source-licens, og projektet udvikles og anvendes i dag af musikere, komponister, forskere, lyddesignere m.fl. i et omfattende open source-fællesskab. SuperCollider er i den aktuelle version 3 et af de mest fremtrædende redskaber til algoritmisk komposition og programmatisk lydproduktion vi har til rådighed i dag.</p>
+<p>Et af de særlige træk ved SuperCollider er, at det består af tre dele: Et tekstbaseret programmeringssprog, en state-of-the-art lydserver samt en dedikeret teksteditor med indbygget dokumentation og hjælp. På grund af denne tredelte opbygning kan SuperColliders lydserver anvendes som komponent i andre systemer, hvilket er blevet udnyttet i mange specialdesignede programmeringsplatforme som <a href="https://sonic-pi.net/"><em>Sonic Pi</em></a>, <a href="https://tidalcycles.org/"><em>TidalCycles</em></a>, <a href="https://overtone.github.io/"><em>Overtone</em></a> m.fl. Et andet nyere skud på stammen, der dog ikke har lige så stor anvendelse som Pd, Max/MSP og SuperCollider, er programmeringssproget <a href="https://chuck.cs.princeton.edu/"><em>ChucK</em></a>, som er ganske interessant men knap så oplagt som et redskab til begyndere.</p>
+<p>Med denne bog ønsker jeg at bidrage til, at flere musikere får adgang til de fantastiske muligheder, musik- og lydprogrammering giver inden for komposition og lydproduktion. I dag kan enhver med en laptop, en DAW og et abbonnement på loops og samples relativt let skabe musik, sammenlignet med de lydstudieressourcer, der var nødvendige for blot få årtier siden. Samtidig med at denne almengørelse af musikteknologien giver flere mennesker får mulighed for fremstille musik, bliver det samtidig sværere som kunstner at skille sig ud fra mængden. At investere tid og engagement i programmering som redskab er for musikere og komponister giver mulighed for at skabe unikke musikalske og lydlige træk, som kun vanskeligt eller slet ikke kan frembringes med mere gængs, kommerciel musiksoftware.</p>
+<h2 id="bogens-fokusomrader">Bogens fokusområder</h2>
+<p>Programmering kan i dag foregå på mange forskellige abstraktionsniveauer, da der findes ganske mange programmeringssprog, som er designet med forskellige formål. Den såkaldte <a href="https://www.britannica.com/technology/machine-language">maskinkode</a> udgøver det laveste niveau og består af sekvenser af binære tal, som indikerer basale operationer, der kan udføres af en computerprocessor. For mennesker er maskinsprog yderst vanskelig at fremstille og læse, fordi det er så fjernt fra menneskers ordinære sprog. Derfor har man opfundet en række programmeringssprog, der opererer på et højere abstraktionsniveau. I det børnevenlige programmeringssprog <a href="https://scratch.mit.edu/">Scratch</a> kan man eksempelvis lave små spil ved at sammenkoble forskellige klodser med musen.</p>
+<p>SuperCollider og andre musikfokuserede programmeringssprog fungerer på et relativt højt abstraktionsniveau. Det betyder i denne sammenhæng, at mange tekniske detaljer er abstraheret væk, således at programmøren kan fokusere på de musikalske/lydlige aspekter. Det vi typisk arbejder med her, svarer i nogen udstrækning til de ovenfor nævnte metaforer "partitur" og "orkester". I det følgende vil jeg kort uddybe, hvad det betyder i denne bog. Mere specifikt skal vi i bogen arbejde med det, man kalder algoritmisk komposition (svarende til "partituret"), dvs. vi skal fremstille algoritmer og mønstre, der kan generere musikalske forløb. Derudover skal vi også arbejde med klangdannelse, dvs. vi skal fremstille små programmer, der designer de enkelte klange og lyde, vores kompositioner består af.</p>
+<h3 id="algoritmisk-komposition">Algoritmisk komposition</h3>
+<p>Umiddelbart kunne man godt forestille sig, at algoritmisk komposition er noget, der primært hører til computermusikken. Men en algoritme kan defineres som en foreskrevet proces, som gennem en række konkrete trin har til formål at løse et bestemt problem. Og i den betydning har algoritmen en længere historie som et musikalsk-kompositorisk redskab.</p>
+<blockquote>
+<p>Within the field of algorithmic composition the algorithm constitutes an abstract model which defines and controls some or all structural aspects of the music. This model can also serve as a generator that is capable of producing the piece as a possible variant within a field of possibilities. The latter approach can be implemented as a computer program, but the underlying idea is much older. (Essl, 2017, p. 105)<sup id="fnref3:essl2017"><a class="footnote-ref" href="#fn:essl2017">7</a></sup></p>
+</blockquote>
+<p>Essl sporer algoritmisk kompositionsteknik helt tilbage til den tidlige polyfone musik, som er noget af det ældste nedskrevne musik, der findes i vesten (Essl, 2017, p. 106)<sup id="fnref:essl2017"><a class="footnote-ref" href="#fn:essl2017">7</a></sup>. Nyere eksempler findes i J. S. Bachs regelbaserede kompositionsteknikker og såkaldte gådekanon-kompositioner samt i W. A. Mozarts berømte <em>Musikalisches Würfelspiel</em>, hvor terningekast afgør rækkefølgen af det musikalske materiale og dermed giver mulighed for at skabe forskellige variationer over den underliggende metrik og harmonik (Essl, 2017, p. 106)<sup id="fnref2:essl2017"><a class="footnote-ref" href="#fn:essl2017">7</a></sup>. Tjek eventuelt selv partituret ud (Mozart, 1793)<sup id="fnref:mozart1793"><a class="footnote-ref" href="#fn:mozart1793">8</a></sup>.</p>
+<p><figure id="_figure-1"><img alt="Fra forsiden til W. A. Mozarts Musikalische Würfelspiele. Kilde: IMSLP. Offentligt domæne." src="../../media/figures/mozart.png" width="80%"><figcaption> Fra forsiden til W. A. Mozarts Musikalische Würfelspiele. Kilde: IMSLP. Offentligt domæne.</figcaption></figure></p>
+<p>I det 20. århundredes vestlige kompositionsmusik indgår algoritmisk komposition i flere af hovedstrømningerne. Med først tolvtonemusikken og senere hen serialismen og aleatorikken gør mange komponister forskellige algoritmer til det centrale redskab i deres kompositionsproces. I modsætning til de ofte meget deterministiske algoritmer introducerede komponisten Iannis Xenakis idéen om <em>stokatisk musik</em>, hvor tilfældighedsoperationer baseret på matematisk bestemte sandsynligheder bliver en central del af algoritmerne. I forlængelse af dette samt minimalismen, den amerikanske eksperimentalmusik og den tidlige ambiente musik blev idéen om <em>generativ komposition</em> stadfæstet som et af den moderne kompositionsmusiks modus operandi. Hertil kom, at de ovenfor omtalte udviklinger inden for computerteknologi og redskaber til computermusik gradvist blev en del af kompositionsmusikken, og computermusikken vandt samtidig frem som et selvstændigt, men beslægtet felt, hvori algoritmisk komposition spiller en væsentlig rolle.</p>
+<p>SuperCollider er et fantastisk redskab til algoritmisk komposition, blandt andet fordi programmeringssproget indeholder et omfattende bibliotek af såkaldte patterns - generative mønstre, der kan kombineres på mange forskellige måder. I denne bog udforsker vi på grundlæggende niveau hvordan vi med disse redskaber kan styre både overordnede formmæssige forhold i musikken, men også hvordan vi kan skabe variationer og musikalsk indhold på mere detaljerede niveauer. Én praktisk tilgang er at bruge SuperCollider som en generativ maskine, der spiller på andre synthesizere eller styrer instrumentplugins i en DAW, fx via MIDI. Men der er mange fordele ved at bruge SuperColliders egen lydserver i stedet, hvor vi selv kan designe klangdannelsen. Man kan på denne måde bruge algoritmisk komposition til ikke blot at styre traditionelle kompositionsparametre som tonehøjde, rytmik og dynamik, men også til at variere og komponere med andre lydlige parametre.</p>
+<h3 id="klangdannelse-og-lyddesign">Klangdannelse og lyddesign</h3>
+<p>Klangdannelse sker naturligt, når fysiske objekter bliver sat i vibration og derfor udsender lydbølger. Objektets akustiske egenskaber medvirker til afgøre klangen, hvilket ligger til grund for akustiske instrumenter. Den elektroniske klangdannelse har, ligesom algoritmisk komposition og computermusik, en interessant historie, der kun kort kan antydes her. Den tidlige elekroniske klangdannelse var udelukkende analog, hvor elektriske komponenter sammensat i kredsløb genererede strømsignaler, der blev omdannet til lyd via højttalere. Selv i dag er den analoge klangdannelse lidt af et plusord, da den ofte forbindes med en særligt "varm" kvalitet, og der produceres derfor også i dag analoge synthesizere. Men digital teknologi har en række fordele, heriblandt fx at instrumentets tonehøjde ikke varierer, når temperaturen stiger og falder (hvilket er tilfældet med mange analoge synthesizere, hvor den elektriske modstand i udstyret varierer med temperaturen). En tilstrækkeligt kraftig digital computer kan uden problemer fremstille lyden af tusindvis af oscillatorer (tonegeneratorer) i realtid, hvor en analog synthesizer, der skulle gøre det samme, ville kræve tusindvis af elektriske komponenter, hvilket er urealistisk i et hardwaresetup.</p>
+<p>Størstedelen af redskaberne til elektroniske klangdannelse er derfor i dag digitale, hvad enten de findes i plugin-form eller som hardwareenheder. Men selv digitale lydredskaber søger ofte at emulere lyden af analogt grej ved at tilføje forskellige former for støj og lydlige artefakter som klanglig farvning af et lydsignal. "Virtual analog" er blevet en væsentlig salgsrubrik. Samtidig lever den såkaldt modulære synthesizer i bedste velgående, hvor der efterhånden findes tonsvis af lyd- og kontrolmoduler i det populære "Eurorack"-format. Også den modulære synthesizer er blevet emuleret digitalt, blandt andet af programmet <a href="https://vcvrack.com/"><em>VCV Rack</em></a> (og open source-klonen <a href="https://cardinal.kx.studio/"><em>Cardinal</em></a>). Med disse modulære redskaber består kompositions- og lyddesignarbejdet i at koble forskellige moduler sammen med patchkabler og justere på modulernes indstillinger ved hjælp af fadere og drejeknapper.</p>
+<p>I SuperCollider og lignende platforme kan vi på samme måde arbejde med enheder, der svarer til elektriske komponenter som tonegeneratorer og hardware-moduler som envelopegeneratorer eller granular synthesis-moduler. Dette gør vi ved hjælp af SuperColliders lydserver og de ovenfor omtalte <em>UGens</em>. De fleste UGens har forskellige <em>input</em> og <em>output</em> samt en række <em>indstillinger</em>. Som eksempel kan vi tage sinustonegeneratoren <code>SinOsc</code>, der er en af de UGens, vi møder senere i bogen. Den har som output et lydsignal i form af en sinusbølge. Den har også et frekvens-input, hvormed vi kan styre hvor mange gange per sekund vi gennemløber bølgeformen (og dermed styre hvilken tonehøjde, der spilles). Dette input kan vi indstille til en fast værdi, fx 440Hz, kammertonen, eller vi kan styre det med en anden UGen, så tonehøjden varierer over tid. I det tilfælde siger vi, at vi <em>modulerer</em> oscillatorens frekvens. SinOsc har også nogle indstillinger, eksempelvis kan vi specificere initialfasen, dvs. hvor i bølgeformen, oscillatoren skal begynde, når den først bliver sat i gang.</p>
+<p>Der findes ganske mange UGens, hvormed vi kan skabe og transformere klange, arbejde med samples og så videre. Klassiske klangdannelsesteknikker kan fint implementeres i SuperCollider, hvilket denne bog viser på flere forskellige områder. Men der er ingen faste regler, når det gælder kreative praksisser som komposition og lyddesign, og vi kan derfor også udvide, "hacke" og eksperimentere inden for klangdannelsen. Ved at gøre det opnå man to vigtige ting:</p>
+<ul>
+<li>For det første kan vi skabe unikke klanguniverser, der ikke lyder som alle de almindelige plugins. Dette betyder ikke, at SuperCollider eller andre lignende platforme skal erstatte de sædvanlige redskaber som DAWs og plugins. Men det er et unikt redskab at have adgang til, når man vil skille sig ud både i lydligt resultat og i kompositionsmetode.</li>
+<li>For det andet, og mindst lige så vigtigt, kan vi ved at eksperimentere med klangdannelse i SuperCollider lære en masse om lyd, klang og digital lydteknologi. Det sidste er vigtig viden i en tid, hvor digital musikproduktion er blevet allemandseje og er markedsgjort i en meget udstrakt grad. Det er med andre ord meget væsentligt at kunne gennemskue på et grundlæggende niveau, hvordan teknologierne fungerer og hvad de kan anvendes til.</li>
+</ul>
+<p>I de følgende kapitler arbejder vi med disse to abstraktionsniveauer først hver for sig, og derefter i kombination. Men først en advarsel: Når man har fået blod på tanden og fornemmer mulighederne ved kombination af disse to stærke redskaber, kan det være svært at lægge fra sig igen. God fornøjelse med komposition og lydproduktion i SuperCollider!</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:gregersen2015">
+<p>Gregersen, E. (2015). Ada Lovelace: The First Computer Programmer. In <em>Encyclopedia Britannica</em>. https://www.britannica.com/story/ada-lovelace-the-first-computer-programmer. <a class="footnote-backref" href="#fnref:gregersen2015" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:lovelace2015">
+<p>Lovelace, A. A. (2015). 1842 Notes to the translation of the Sketch of the Analytical Engine. <em>Ada User Journal</em>, <em>36</em>(3), 152--180. <a class="footnote-backref" href="#fnref:lovelace2015" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+<li id="fn:wang2017">
+<p>Wang, G. (2017). A History of Programming and Music. In N. Collins &amp; J. D'Escrivan (Eds.), <em>The Cambridge Companion to Electronic Music</em> (pp. 58--74). Cambridge University Press. <a class="footnote-backref" href="#fnref:wang2017" title="Jump back to footnote 3 in the text">↩</a><a class="footnote-backref" href="#fnref2:wang2017" title="Jump back to footnote 3 in the text">↩</a><a class="footnote-backref" href="#fnref3:wang2017" title="Jump back to footnote 3 in the text">↩</a></p>
+</li>
+<li id="fn:collins2017a">
+<p>Collins, N., &amp; D'Escrivan, J. (Eds.). (2017). Artists' Statements I. In <em>The Cambridge Companion to Electronic Music</em> (pp. 75--85). Cambridge University Press. <a class="footnote-backref" href="#fnref:collins2017a" title="Jump back to footnote 4 in the text">↩</a></p>
+</li>
+<li id="fn:puckette1996">
+<p>Puckette, M. S. (1996). Pure Data. <em>Proceedings of the International Computer Music Conference</em>, 269--272. <a class="footnote-backref" href="#fnref:puckette1996" title="Jump back to footnote 5 in the text">↩</a></p>
+</li>
+<li id="fn:mccartney2002">
+<p>McCartney, J. (2002). Rethinking the Computer Music Language: SuperCollider. <em>Computer Music Journal</em>, <em>26</em>(4), 61--68. <a href="https://www.jstor.org/stable/3681770">https://www.jstor.org/stable/3681770</a> <a class="footnote-backref" href="#fnref:mccartney2002" title="Jump back to footnote 6 in the text">↩</a></p>
+</li>
+<li id="fn:essl2017">
+<p>Essl, K. (2017). Algorithmic Composition. In N. Collins &amp; J. D'Escrivan (Eds.), <em>The Cambridge Companion to Electronic Music</em> (pp. 104--122). Cambridge University Press. <a class="footnote-backref" href="#fnref:essl2017" title="Jump back to footnote 7 in the text">↩</a><a class="footnote-backref" href="#fnref2:essl2017" title="Jump back to footnote 7 in the text">↩</a><a class="footnote-backref" href="#fnref3:essl2017" title="Jump back to footnote 7 in the text">↩</a></p>
+</li>
+<li id="fn:mozart1793">
+<p>Mozart, W. A. (1793). <em>Musikalische [W[ü]{.nocase}rfelspiele]{.nocase}, K.Anh.C.30.01</em>. N. Simrock. <a class="footnote-backref" href="#fnref:mozart1793" title="Jump back to footnote 8 in the text">↩</a></p>
+</li>
+</ol>
+</div></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Tilbage til start
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Sidefod" >
+        
+          
+          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Forrige: Forside">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Forrige
+              </span>
+              <div class="md-ellipsis">
+                Forside
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../01/a-brugerflade/" class="md-footer__link md-footer__link--next" aria-label="Næste: SuperColliders brugerflade">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Næste
+              </span>
+              <div class="md-ellipsis">
+                SuperColliders brugerflade
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022-2025 Anders Eskildsen
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "header.autohide", "navigation.instant", "toc.follow", "toc.integrate", "search.suggest", "navigation.footer", "navigation.top"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Kopieret til udklipsholderen", "clipboard.copy": "Kopi\u00e9r til udklipsholderen", "search.result.more.one": "1 resultat mere p\u00e5 denne side", "search.result.more.other": "# resultater mere p\u00e5 denne side", "search.result.none": "Ingen resultater fundet", "search.result.one": "1 resultat", "search.result.other": "# resultater", "search.result.placeholder": "Indtast s\u00f8geord", "search.result.term.missing": "Mangler", "select.version": "V\u00e6lg version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+        <script src="../../assets/external/unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
