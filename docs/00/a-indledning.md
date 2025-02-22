@@ -9,7 +9,7 @@ tags:
 
     Dette indledende kapitel introducerer programmering som en musikalsk aktivitet i et historisk perspektiv og forklarer hvordan redskabet SuperCollider passer ind i det musikteknologiske landskab. I bogen arbejdes der på to niveauer - det overordnede kompositionsniveau, hvor vi bruger algoritmer til at generere musikalske forløb, og det mere detaljerede niveau, hvor vi arbejder med at producere lyd med lydsignalernes byggeklodser i form af oscillatorer, samples, envelopes, filtre mm. Det særlige ved SuperCollider er, at man kan kombinere disse to abstraktionsniveauer, hvilket gør redskabet utroligt fleksibelt og righoldigt.
 
-# En ultrakort historie om programmeringsredskaber og computermusik
+# Programmeringsredskaber og computermusik
 
 Matematikeren og grevinden Ada Lovelace er af computerhistorikere posthumt blevet anerkendt som verdens første programmør, fordi hun i 1842 beskrev det, der sidenhen er blevet betegnet som den første computeralgoritme [@gregersen2015]. Lovelace var meget optaget af den samtidige forsker Charles Babbages arbejde med hulkort-maskiner, som var forgængere til nutidens digitale computere. Babbage arbejde blandt andet med at designe en "Analytical engine", der groft sagt skulle fungere som det vi i dag ville kalde en regnemaskine. Men Lovelace så et meget større potentiale i Babbages hulkortmaskine end den oprindelig var tiltænkt, nemlig at den med abstrakte operationer ville kunne gøre meget andet end foretage udregninger med tal - eksempelvis at komponere musik:
 

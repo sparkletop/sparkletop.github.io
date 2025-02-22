@@ -5,7 +5,7 @@ tags:
 
 # Hvordan får vi SuperCollider til at gøre noget?
 
-Alt hvad man kan *gøre* i SuperCollider er knyttet til noget, der hedder *methods*. Hvis vi forstår og kan anvende de forskellige methods, der findes, kan vi groft sagt bruge alle de redskaber, der findes i SuperCollider! Derfor er det relevant at lære hvordan methods fungerer. Samtidig er det vigtigt at forstå hvad *argumenter* er, da vi bruger argumenter for at angive, hvordan en method skal udføres.
+Al indbygget funktionalitet i SuperCollider er knyttet til en særlig gruppe af funktioner, der kaldes *methods*. Hvis vi forstår og kan anvende de forskellige methods, der findes, kan vi groft sagt bruge alle de redskaber, der findes i SuperCollider! Derfor er det relevant at lære hvordan methods fungerer.
 
 ## Funktionalitet er knyttet til methods
 
@@ -59,10 +59,6 @@ Om man bruger eks- eller implicit `.new` er et spørgsmål om personlig præfere
 
 Instance methods bruger vi på "instances", dvs. konkrete forekomster af bestemte klasser af objekter. Fx er `9` en forekomst af klassen `SimpleNumber`. `"kaffe"` er en forekomst af klassen `String`. Instance methods noteres ligesom class methods med et punktum først[^1], men de forekommer efter instances, ikke klassenavne. Her er nogle eksempler:
 
-`.midicps`
-
-:   En method, som blandt andet kan anvendes på tal (og [UGens](../04/a-ugens.md)). Method'en omregner MIDI-tonetallet 69 til frekvens målt i Hz. `69.midicps` bliver altså til `440`.
-
 `.dup`
 
 :   Kopierer det objekt, den anvendes på. Det kan fx være en sinustone-oscillator: `SinOsc.ar.dup` giver to sinustone-oscillatorer.
@@ -71,7 +67,15 @@ Instance methods bruger vi på "instances", dvs. konkrete forekomster af bestemt
 
 :   Kan bruges i flere forskellige sammenhænge. Med `Pbind.new().play` kan vi starte med at afspille en ny Pind.
 
-Mange methods kan bruges med forskellige slags objekter. Det gælder eksempelvis for `.play`, som vi bruger jævnligt. Her er nogle eksempler (for at høre resultatet af de første to linjer skal lydserveren først bootes med `s.boot`):
+`.midicps`
+
+:   En method, som blandt andet kan anvendes på tal (og [UGens](../04/a-ugens.md)). Method'en omregner MIDI-tonetallet 69 til frekvens målt i Hz. `69.midicps` bliver altså til `440`. Bemærk, at dette er præcist det samme som vi så ifm. [indbyggede funktioner](a-funktioner.md#indbyggede-funktioner), altså `midicps(69)`.
+
+[^1]: For nogle (men ikke alle) methods findes en syntaktisk variant, hvor instance methods noteres *før* objektet, adskilt med et simpelt mellemrum. Fx er `play {SinOsc.ar};` helt korrekt syntaks, der svarer til `{SinOsc.ar}.play;`. Jeg anbefaler, at man holder sig til den sidstnævnte form, da punktummet mellem method og objekt tydeliggør, hvad der er method og hvad denne method knytter sig til.
+
+Flere gængse methods kan heldigvis bruges med mange forskellige slags objekter[^3]. Det gælder eksempelvis for `.play`, som vi bruger jævnligt. Her er nogle eksempler (for at høre resultatet af de første to linjer skal lydserveren først bootes):
+
+[^3]: Særligt programmeringsteknisk interesserede læsere kan notere sig, at dette med et fancy udtryk fra det såkaldt objektorienterede programmeringsparadigme kaldes for ["polymorfisme"](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)).
 
 ``` sc title="Forskellige resultater med .play"
 Pbind().play;
@@ -104,10 +108,9 @@ SinOsc.ar.dup(10)
 Pwhite.new(0, 7)
 ```
 
-+ Navngivne argumenter.
+- Navngivne argumenter.
 
-+ Standardværdier.
-
+- Standardværdier.
 
 ## Dokumentation for methods
 
@@ -131,5 +134,3 @@ SinOsc
 .ar
 .reverse
 ```
-
-[^1]: For nogle (men ikke alle) methods findes en syntaktisk variant, hvor instance methods noteres *før* objektet, adskilt med et simpelt mellemrum. Fx er `play {SinOsc.ar};` helt korrekt syntaks, der svarer til `{SinOsc.ar}.play;`. Jeg anbefaler, at man holder sig til den sidstnævnte form, da punktummet mellem method og objekt tydeliggør, hvad der er method og hvad denne method knytter sig til.
