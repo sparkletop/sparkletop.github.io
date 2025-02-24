@@ -53,7 +53,7 @@
                 "problemMatcher": []
             },
             { // Sync media files and .bib file from local sources
-                "label": "Update media",
+                "label": "Sync media and .bib file",
                 "type": "shell",
                 "command": "./sync_media.sh",
                 "group": {
