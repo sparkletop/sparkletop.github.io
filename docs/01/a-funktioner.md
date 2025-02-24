@@ -3,9 +3,9 @@ tags:
     - Artikler
 ---
 
-# Funktioner
+# Funktioner for den dovne programmør
 
-I programmering er *funktioner* et grundlæggende koncept, som er væsentligt at forstå. I SuperCollider og de fleste andre programmeringssprog er en funktion en defineret række af instrukser, der fungerer lidt ligesom de kodeblokke, vi kiggede på [ovenfor](./a-eksekvering.md#mere-end-én-instruks-ad-gangen). De er nyttige, hvis vi gerne vil gøre det samme mange gange, da vi i stedet for at skrive den samme kodeblok mange gange blot kan "kalde" funktionen.
+Vi er nu nået til et emne, som er en gave til den dovne programmer, der ikke gider at skrive det samme sæt af instrukser mere end én gang. Heldigvis er det faktisk ofte en god idé at være doven på denne måde, fordi det er effektivt at indkapsle og genbruge sæt af instrukser, da det gør os i stand til at gøre mange ting med meget lidt kildekode. I programmering er *funktioner* et grundlæggende koncept, som er væsentligt at forstå. I SuperCollider og de fleste andre programmeringssprog er en funktion en defineret række af instrukser, der fungerer lidt ligesom de kodeblokke, vi kiggede på [ovenfor](./a-eksekvering.md#mere-end-én-instruks-ad-gangen). De er nyttige, hvis vi gerne vil gøre det samme mange gange, da vi i stedet for at skrive den samme kodeblok mange gange blot kan "kalde" funktionen.
 
 ## Hjemmelavede funktioner
 
@@ -155,4 +155,4 @@ midicps(57);
 midicps(rrand(0, 127));
 ```
 
-I det sidste eksempel her bliver den "inderste" funktion udført først, dvs. `rrand` vælger først sit tal, og derefter omregner midicps dette tal til en frekvens. Dette kaldes med et fancy udtryk "order of execution", og det betyder, at SuperCollider udregner de "inderste" værdier først, når vores kode eksekveres.
+I det sidste eksempel her bliver den "inderste" funktion udført først, dvs. `rrand` vælger først sit tal, og derefter omregner `midicps` dette tal til en frekvens. Dette kaldes med et fancy udtryk "order of execution", og det betyder, at SuperCollider udregner de "inderste" værdier først, når vores kode eksekveres.

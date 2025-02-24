@@ -3,7 +3,7 @@ tags:
     - Artikler
 ---
 
-# Hvordan får vi SuperCollider til at gøre noget?
+# Indbygget funktionalitet i methods
 
 Al indbygget funktionalitet i SuperCollider er knyttet til en særlig gruppe af funktioner, der kaldes *methods*. Hvis vi forstår og kan anvende de forskellige methods, der findes, kan vi groft sagt bruge alle de redskaber, der findes i SuperCollider! Derfor er det relevant at lære hvordan methods fungerer.
 

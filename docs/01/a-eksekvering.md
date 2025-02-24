@@ -22,11 +22,11 @@ rrand(0, 100);
 
 Hvis vi gerne vil gøre mere end én ting ad gangen, kan vi adskille vores instrukser ved hjælp af semikolon:
 
-``` sc title="Flere instrukser på én kodelinje med semikolon"
+``` sc title="Adskillelse af instrukser ved hjælp af semikolon"
 "Et fantastisk tal:".postln; rrand(0, 100).postln;
 ```
 
-Hvis vi udelader semikolon, kan SuperCollider ikke forstå hvor den ene instruks stopper og hvornår den næste starter. Det er derfor - med nogle få vigtige undtagelser - typisk fornuftigt at afslutte sine kodelinjer med et semikolon.
+Hvis vi udelader semikolon, kan SuperCollider ikke forstå hvor den ene instruks stopper og hvornår den næste starter. Da vi ofte for overskuelighedens skyld skriver én instruks per kodelinje, er det en god tommelfingerregel - med nogle få vigtige undtagelser - at afslutte kodelinjer med et semikolon.
 
 Ofte er det en god idé at fordele instrukserne over flere linjer. Hvis vi vil have SuperCollider til at udføre flere linjer med instrukser umiddelbart efter hinanden, kan vi gøre dette ved at afslutte de enkelte linjer med semikolon og omkranse linjerne med parenteser. Dette kaldes en *kodeblok*. Kodeblokken eksekveres ved, at man sætter cursoren på en af linjerne og trykker Ctrl/Cmd-Enter. Det betyder ikke noget præcis hvilken linje, bare cursoren befinder sig et sted mellem de yderste parenteser.
 
