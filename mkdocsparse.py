@@ -76,6 +76,12 @@ def get_matching_brackets(code: str):
         pos += 1
     return code[:pos]
 
+def section_slugify(url: str):
+    slug = re.sub(r"\s+", '-', url)
+    slug = re.sub(r"[^-\w]", '', slug)
+    slug = slug.lower()
+    return slug
+
 def preprocess_mkdocs_markdown(md_content: str):
     # Processes one markdown page at a time
 
@@ -140,6 +146,13 @@ def preprocess_mkdocs_markdown(md_content: str):
         
         Counter.mermaids += 1
     
+    # add a label for subsections to be postprocessed
+    headers = re.finditer(r"^#{2,10}\s*(.*)$", md_content, re.MULTILINE)
+    for h in headers:
+        match, name = h.group(0), h.group(1)
+        label = f"\n{ET}LABEL:{section_slugify(name)}{ET}\n"
+        md_content = md_content.replace(match, match + label)
+    
     Counter.md_docs += 1
 
     return md_content
@@ -157,6 +170,7 @@ def postprocess_tex(tex: str):
     tex = re.sub(f"{ET}Cheat sheets{ET}", r'\\pagecolor{cheatsheet}', tex)
     tex = re.sub(ET + r"faHeadphones\*" + ET, r'\\faHeadphones*', tex)
     tex = re.sub(f"{ET}faLink{ET}", r'\\faLink', tex)
+    tex = re.sub(f"{ET}LABEL:(.*?){ET}", r'\\label{\1}', tex)
     
     # show section coloring in preface
     tex = tex.replace('\\item[Cheat sheets]', '\\item[\\colorbox{cheatsheet}{Cheat sheets}]')
@@ -192,15 +206,26 @@ def postprocess_tex(tex: str):
     links = re.finditer(r"(?<!!)\[([^@\n\{\}]+?)\]\((.*?)\)", tex)
     for link in links:
         # Clean up link to only have filename
-        filename = re.sub(r"\\#.+$", "", link[2]) # remove anchor, subsection labelling not implemented yet...
-        filename = re.sub(r"^\.\./.+/", "", filename)
+        destination = link.group(2)
+        clean_destination = re.sub(r"^\.\./.+/", "", destination) # remove intial ../
+        filename = re.sub(r"\\#.+$", "", clean_destination) # remove anchor, subsection labelling not implemented yet...
 
-        if filename.endswith(".md"):
-            # This is a link to other markdown document, so we assume there
-            # is a \label in the corresponding LaTeX section corresponding to file name
-            tex = tex.replace(link[0], link[1] + r" (se afsnit \ref{" + filename + r"})")
-        else:
+        if not filename.endswith(".md"):
             print(f"Unsupported link: {link}, leaving as is...")
+        
+        # This is a link to other markdown document, so we assume there
+        # is a \label in the corresponding LaTeX section corresponding to file name
+        # or slugified section
+        
+        section_name = re.search(r"\\#(.+)$", clean_destination)
+        if section_name:
+            label = section_name.group(1)
+        else:
+            label = filename
+        
+        tex = tex.replace(link[0], link[1] + r" (se afsnit \ref{" + label + r"})")
+        
+            
     return tex
 
 def convert_section(md_file_path: str):
