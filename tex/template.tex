@@ -13,6 +13,7 @@
 \usepackage{xcolor,pagecolor}     % for coloring links and page backgrounds
 \usepackage[hidelinks]{hyperref}  % to make links between sections etc.
 \usepackage{enumitem}             % to style lists
+\usepackage{pdfpages}             % to include cover page
 \usepackage[
   protrusion=true,
   expansion=true,
@@ -118,7 +119,7 @@
 \begin{document}
 
 \frontmatter
-
+\includepdf{coverpage.pdf}
 \tableofcontents
 
 \hypersetup{
