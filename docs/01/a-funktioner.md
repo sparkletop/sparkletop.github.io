@@ -5,15 +5,15 @@ tags:
 
 # Funktioner for den dovne programmør
 
-Vi er nu nået til et emne, som er en gave til den dovne programmer, der ikke gider at skrive det samme sæt af instrukser mere end én gang. Heldigvis er det faktisk ofte en god idé at være doven på denne måde, fordi det er effektivt at indkapsle og genbruge sæt af instrukser, da det gør os i stand til at gøre mange ting med meget lidt kildekode. I programmering er *funktioner* et grundlæggende koncept, som er væsentligt at forstå. I SuperCollider og de fleste andre programmeringssprog er en funktion en defineret række af instrukser, der fungerer lidt ligesom de kodeblokke, vi kiggede på [ovenfor](./a-eksekvering.md#mere-end-én-instruks-ad-gangen). De er nyttige, hvis vi gerne vil gøre det samme mange gange, da vi i stedet for at skrive den samme kodeblok mange gange blot kan "kalde" funktionen.
+Vi er nu nået til et emne, som er en gave til den dovne programmer, der ikke gider at skrive det samme sæt af instrukser mere end én gang. Heldigvis er det faktisk ofte en god idé at være doven på denne måde, fordi det er effektivt at indkapsle og genbruge sæt af instrukser, da det gør os i stand til at gøre mange ting med meget lidt kildekode. I programmering er *funktioner* et grundlæggende koncept, som er væsentligt at forstå. I SuperCollider og de fleste andre programmeringssprog er en funktion en defineret række af instrukser, der fungerer lidt ligesom de kodeblokke, vi kiggede på [ovenfor](a-eksekvering.md#mere-end-én-instruks-ad-gangen). De er nyttige, hvis vi gerne vil gøre det samme mange gange, da vi i stedet for at skrive den samme kodeblok mange gange blot kan "kalde" funktionen.
 
 ## Hjemmelavede funktioner
 
 Funktioner fungerer som sagt næsten ligesom de kodeblokke vi har set, hvor flere instrukser er omkranset af parenteser. Med funktioner bruger vi blot tuborgklammer (`{}`) i stedet for parenteser. Kører man linjen `{};` i SuperCollider, vil post window således vise `a Function`. For at gøre brug af funktioner, kan vi gøre følgende:
 
 - Vi skriver mellem tuborgklammerne de instrukser, funktionen skal udføre, adskilt med semikolon.
-- Dernæst [gemmer vi funktionen under en global variabel](./a-variabler.md#globale-variabler), så vi kan referere til den igen andre steder i kildekoden.
-- Hvis vi vil *kalde* funktionen, dvs. eksekvere de instrukser, som er indeholdt i funktionen, kan vi koble noget ekstra kode på variabelnavnet, nemlig `.value`. Dette er en *method*, hvilket bliver forklaret mere indgående [nedenfor](./a-methods.md).
+- Dernæst [gemmer vi funktionen under en global variabel](a-variabler.md#globale-variabler), så vi kan referere til den igen andre steder i kildekoden.
+- Hvis vi vil *kalde* funktionen, dvs. eksekvere de instrukser, som er indeholdt i funktionen, kan vi koble noget ekstra kode på variabelnavnet, nemlig `.value`. Dette er en *method*, hvilket bliver forklaret mere indgående [nedenfor](a-methods.md).
 
 ```sc title="En funktion"
 // Vi gemmer funktionen under en variabel
@@ -87,7 +87,7 @@ Når vi ikke angiver en værdi til et argument (ovenfor er `kaffe`-argumentet ik
 
 ## Mellemregninger med lokale variabler
 
-I praksis arbejder vi typisk med mere komplekse funktioner end de eksempmler vi har set ovenfor. I den sammenhæng er det særligt nyttigt at anvende [lokale variabler](./a-variabler.md#lokale-variabler) til at holde styr på data i vores mellemregninger. Lad os eksempelvis tilføje en udregning til vores lille eksempel:
+I praksis arbejder vi typisk med mere komplekse funktioner end de eksempmler vi har set ovenfor. I den sammenhæng er det særligt nyttigt at anvende [lokale variabler](a-variabler.md#lokale-variabler) til at holde styr på data i vores mellemregninger. Lad os eksempelvis tilføje en udregning til vores lille eksempel:
 
 ```sc title="Lokale variabler i funktioner"
 ~minFunktion = {

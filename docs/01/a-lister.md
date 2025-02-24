@@ -123,7 +123,7 @@ Iteration er et særdeles nyttigt redskab, som både benyttes i komposition, som
 
 ## Tricks til skabelse af lister
 
-I stedet for at definere vores lister manuelt kan vi være snedige og oprette dem med en algoritme. Det kan fx være, at vi gerne vil have en lineær talrække . Eller en liste med 100 tilfældige tal mellem 0 og 127 (som er den dynamiske rækkevidde i MIDI-protokollen). Eller en liste med elementer skabt af en funktion. I disse situationer kan du have glæde af disse tips og tricks.
+I stedet for at definere vores lister manuelt kan vi være snedige og oprette dem med en algoritme. Det kan fx være, at vi gerne vil have en lineær talrække, en liste med tilfældige tal, eller en liste med elementer skabt af en funktion, vi selv skriver. Disse måder at generere lister på finder du herunder.
 
 ### Automatiske talrækker
 
@@ -181,7 +181,7 @@ Array.rand(10, 0, 127);
 
 Dette kan vi eksempelvis bruge til at spille forskellige toner eller volumen-indstillinger på en ekstern synthesizer via MIDI.
 
-Der findes et par beslægtede methods, som kan være nyttige, blandt andet `Array.rand2()` og `Array.exprand`. Særligt interesserede læsere kan se hvordan de fungerer i SuperColliders dokumentation - se sektionen om class methods under [opslaget om `Array`](https://doc.sccode.org/Classes/Array.html).
+Der findes et par beslægtede methods, som kan være nyttige, blandt andet `Array.rand2()` og `Array.exprand`. Særligt interesserede læsere kan se hvordan de fungerer i SuperColliders dokumentation - se sektionen om class methods under [opslaget om Array](https://doc.sccode.org/Classes/Array.html).
 
 ### Hjemmestrikkede algoritmer til at generere lister
 
