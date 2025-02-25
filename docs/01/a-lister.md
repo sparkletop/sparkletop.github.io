@@ -70,7 +70,7 @@ Der findes derudover en lang række [methods](a-methods.md), som er særlige for
 
 Hvis man ønsker at gøre noget for alle elementer i en liste, men ikke kan finde en indbygget method til at opnå det ønskede resultat, kan man angive - you guessed it - en [funktion](a-funktioner.md), som kører for hvert element. Inden for programmeringsverdenen siger man i det tilfælde, at man *itererer over listens elementer*. Hertil findes der særligt to nyttige methods for lister: `.do` og `.collect`. Forskellen på de to er, at førstnævnte blot udfører funktionen for hvert element, hvor sidstnævnte skaber et nyt array med outputtet fra hvert funktionskald. Det lyder måske teknisk, men lad os tage nogle eksempler for at forstå sammenhængen.
 
-For at iterere over en liste angiver vi som et argument til `.do` den funktion, vi ønsker at udføre. Inde i den funktion [opretter vi et argument](a-funktioner.md#argumenter). Herunder vises de tre elementer blot i post window med et lille stykke tekst efter.
+For at iterere over en liste angiver vi som et argument til `.do` den funktion, vi ønsker at udføre. Inde i den funktion [opretter vi et argument](a-funktioner.md#input-til-funktioner-argumenter). Herunder vises de tre elementer blot i post window med et lille stykke tekst efter.
 
 ```sc title="Iteration med .do"
 (
@@ -230,4 +230,4 @@ I SuperCollider og mange andre programmeringssprog er der ofte mere end én meto
 // -> [ 220, 440, 660, 880, 1100, 1320, 1540, 1760, 1980, 2200 ]
 ```
 
-Der er ikke nogen tilgang, som er mere rigtig end andre. Vi bruger primært `Array.fill`, når der ikke findes tilsvarende methods eller genveje - eller hvis vi foretrækker den eksplicitte og tydelige form, når vi skal skrive og læse koden. Ellers kan vi også bruge ovenstående alternativer.
+Der er ikke nogen tilgang, som er mere rigtig end andre. Jeg bruger primært `Array.fill` eller `.collect`, når der ikke findes tilsvarende methods eller genveje, eller hvis jeg foretrækker den eksplicitte og tydelige form på grund af tydelighed.

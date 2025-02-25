@@ -3,12 +3,20 @@ tags:
     - Eksempler
 ---
 
-# Granular lyddesign-idéer
+# Granular lyddesign
 
+Mulighederne i granular syntese er mange, men hvordan udnytter man et potentielt meget komplekst redskab?
 
-``` sc
+I det følgende bruger vi følgende sample, som er indlæst i en buffer under variablen ~sample.
+
+<!-- ![type:audio](file.ogg) -->
+
+## Granular grooves
+
+Ved hjælp af LFO'er kan vi skabe rytme og gentagelse, så resultatet bliver et abstrkt groove.
+
+``` sc title="Modulation af GrainBuf-parametre med LFO"
 (
-// Modulation af centrale parametre med sinusbølger som LFO'er
 var trin = Env.new([0, 4, 7, 2], [1, 1, 1, 2], curve: \step);
 {
     var overlap = LFTri.kr(1).exprange(0.2, 25);
@@ -18,7 +26,7 @@ var trin = Env.new([0, 4, 7, 2], [1, 1, 1, 2], curve: \step);
         numChannels: 2,
         trigger: Impulse.ar(trigFreq),
         dur: grainDur,
-        sndbuf: ~guitar,
+        sndbuf: ~sample,
         /* rate: (
             LFPulse.kr(1).range(0, 7) +
             LFNoise0.kr(0.25).bipolar(2).round
@@ -31,11 +39,12 @@ var trin = Env.new([0, 4, 7, 2], [1, 1, 1, 2], curve: \step);
 )
 ```
 
+## Aleatorisk tesktur
 
+Med tilfældighedsgeneratorer som `TRand` eller `TIRand`.
 
-``` sc
+``` sc title="Tilfældige værdier for hvert grain"
 (
-// Tilfældige værdier for hvert grain, genereret ved hjælp af fælles trigger
 {
     var overlap = 5;
     var grainDur = 0.100;
@@ -46,7 +55,7 @@ var trin = Env.new([0, 4, 7, 2], [1, 1, 1, 2], curve: \step);
         numChannels: 2,
         trigger: trigger,
         dur: grainDur,
-        sndbuf: ~guitar,
+        sndbuf: ~sample,
         // variér evt. grænseværdierne herunder
         rate: TIRand.ar(-12, 12, trigger).poll.midiratio,
         pos: TRand.ar(0, 1, trigger),

@@ -37,7 +37,7 @@ Samplepakker som er designet til at udgøre et spilbart, virtuelt musikinstrumen
 
 | Link | Beskrivelse |
 | --- | --- |
-| [SampleRadar](https://www.musicradar.com/news/tech/free-music-samples-royalty-free-loops-hits-and-multis-to-download) | Yderst omfattende arkiv med royalty-fri instrumentsamples og loops fra magasinerne *Computer Music *og *Future Music*, hostet af [musicradar.com](https://www.musicradar.com/) |
+| [SampleRadar](https://www.musicradar.com/news/tech/free-music-samples-royalty-free-loops-hits-and-multis-to-download) | Yderst omfattende arkiv med royalty-fri instrumentsamples og loops fra magasinerne *Computer Music*og *Future Music*, hostet af [musicradar.com](https://www.musicradar.com/) |
 | [Versilian Studios Chamber Orchestra Community Edition (VSCO-2-CE)](https://vis.versilstudios.com/vsco-community.html#versions) | Public domain-samples af klassiske orkesterinstrumenter  i høj kvalitet |
 | [Legowelt](http://legowelt.org/samples/) | Stor samling af vel-samplede lyde fra forskellige, mere eller mindre obskure hardwaresynthesizere (websitets design er som taget ud af 1990'erne, men de forskellige sample packs er af udmærket kvalitet) |
 | [99 Sounds](https://99sounds.org/) | Pay-what-you-want sample packs, bl.a. mange velsamplede trommelyde<br /><br />Download kræver registrering med mail-adresse på platformen Gumroad |

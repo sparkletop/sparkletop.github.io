@@ -16,7 +16,7 @@ MIDIClient.init;
 ~daw = MIDIOut.newByName("IAC Driver", "Bus 1"); // Typisk portnavn på Mac
 ```
 
-Så er vi klar til at sende MIDI-meddelelser fra SuperCollider. For at teste forbindelse kan vi sende en Note On- og en Note Off-meddelelse, hvorved vi burde 
+Så er vi klar til at sende MIDI-meddelelser fra SuperCollider. For at teste forbindelse kan vi sende en Note On- og en Note Off-meddelelse, hvorved vi burde
 
 ```sc title="Test MIDI-forbindelsen med toneanslag og -afslag"
 ~daw.noteOn(chan: 0, note: 64, veloc: 80);

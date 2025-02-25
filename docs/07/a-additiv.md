@@ -9,15 +9,9 @@ Klassisk additiv syntese baseres på ideen om, at komplekse bølgeformer og derm
 
 ## Standardbølgeformer
 
-Som eksempel på additiv syntese kan vi starte med at generere tre standardbølgeformer. Kilden til algoritmerne er Thor Magnussons[-@magnusson2021] udmærkede introduktion til additiv syntese.
+Som eksempel på additiv syntese kan vi starte med at generere tre standardbølgeformer. Kilden til algoritmerne er Thor Magnussons[-@magnusson2021] udmærkede introduktion til additiv syntese. Sørg for at [visualisere lydserverens output](../04/a-ugens.md#ugens-og-signalflow).
 
 Disse bølgeformer udnytter den såkaldt naturlige [overtonerække](https://www.musikipedia.dk/overtoner), som består af en række overtoner med frekvenser, der ligger et helt antal gange over en grundtones frekvens. Hvis grundtonen svinger ved 100Hz, vil den første tone i den naturlige overtonerække svinge ved 200Hz, den næste ved 300Hz, derefter 400Hz og så fremdeles.
-
-Vis frekvensspektrum og bølgeform og hold dem i forgrunden:
-``` sc 
-s.freqscope.window.alwaysOnTop_(true);
-s.scope.window.alwaysOnTop_(true);
-```
 
 ### Savtakket bølgeform
 
@@ -26,12 +20,12 @@ Den savtakkede bølgeform indeholder alle overtoner i overtonerækken. Her blot 
 ```sc title="Fremstilling af en savtakket bølgeform ved addition af sinusbølger"
 (
 {
-	var sig = 30.collect({
-		arg num;
-		var overtone = num + 1;
-		SinOsc.ar(220 * overtone) * 0.5 / overtone;
-	});
-	sig.sum * 0.05;
+    var sig = 30.collect({
+        arg num;
+        var overtone = num + 1;
+        SinOsc.ar(220 * overtone) * 0.5 / overtone;
+    });
+    sig.sum * 0.05;
 }.play;
 )
 ```
@@ -43,12 +37,12 @@ Den firkantede bølgeform kan skabes med overtonerne med ulige numre, dvs. nr. 1
 ```sc title="Fremstilling af en firkantet bølgeform ved addition af sinusbølger"
 (
 {
-	var sig = 30.collect({
-		arg num;
-		var overtone = num * 2 + 1;
-		SinOsc.ar(220 * overtone) * 0.5 / overtone;
-	});
-	sig.sum * 0.05;
+    var sig = 30.collect({
+        arg num;
+        var overtone = num * 2 + 1;
+        SinOsc.ar(220 * overtone) * 0.5 / overtone;
+    });
+    sig.sum * 0.05;
 }.play;
 )
 ```
@@ -60,12 +54,12 @@ Den trekantede bølgeform kan ligesom den firkantede skabes med overtonerne med 
 ```sc title="Fremstilling af en trekantet bølgeform ved addition af sinusbølger"
 (
 {
-	var sig = 30.collect({
-		arg num;
-		var overtone = num * 2 + 1;
-		SinOsc.ar(440 * overtone, pi/2) * 0.7 / overtone.pow(2);
-	});
-	sig.sum * 0.1;
+    var sig = 30.collect({
+        arg num;
+        var overtone = num * 2 + 1;
+        SinOsc.ar(440 * overtone, pi/2) * 0.7 / overtone.pow(2);
+    });
+    sig.sum * 0.1;
 }.play;
 )
 ```
@@ -81,12 +75,12 @@ En ikke-standard bølgeform, som består af hver tredje overtone:
 ```sc title="Fremstilling af en bølgeform med hver 3. overtone ved addition af sinusbølger"
 (
 {
-	var sig = 15.collect({
-		arg num;
-		var overtone = num * 3 + 1;
-		SinOsc.ar(220 * overtone) * 0.6 / overtone
-	});
-	sig * 0.1;
+    var sig = 15.collect({
+        arg num;
+        var overtone = num * 3 + 1;
+        SinOsc.ar(220 * overtone) * 0.6 / overtone
+    });
+    sig * 0.1;
 }.play;
 )
 ```
@@ -118,7 +112,7 @@ Klokkelyde er generelt kendetegnet ved et højt indhold af partialtoner. For at 
 
 Kør blokken flere gange for at høre variationsmulighederne. Justér evt. på parametrene for at skabe andre klangmuligheder.
 
-```sc
+```sc title="Kaotisk klokkelyd"
 (
 {
     var sig = 16.collect({
@@ -136,4 +130,3 @@ Kør blokken flere gange for at høre variationsmulighederne. Justér evt. på p
 ```
 
 Se i øvrigt også afsnittet om [Rissets klokke](a-risset.md).
-

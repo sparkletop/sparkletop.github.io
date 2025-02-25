@@ -4,13 +4,9 @@ tags:
 ---
 # Cheat sheet: UGen-methods
 
-Når vi arbejder med UGens og eksempelvis bruger signalet fra én UGen til at modulere en anden, er det nyttigt at kende til 
+Når vi arbejder med UGens og eksempelvis bruger signalet fra én UGen til at modulere en anden, er det nyttigt at kende til disse methods til oprettelse og justering af UGens.
 
-## 5 vigtige UGen-methods
-
-Disse vigtige methods tillader os at justere output fra UGens på forskellige måder.
-
-```sc
+```sc title="Essentielle UGen-methods"
 // .ar - generer lydsignal (audio rate), anvendes typisk til lydkilder, filtre og routing-UGens
 {SinOsc.ar * 0.1}.play;
 
@@ -29,4 +25,3 @@ Disse vigtige methods tillader os at justere output fra UGens på forskellige m�
 {SinOsc.ar(440).dup * 0.1}.play;      // to kanaler
 {SinOsc.ar(440).dup(10) * 0.1}.play;  // 10 kanaler
 ```
-

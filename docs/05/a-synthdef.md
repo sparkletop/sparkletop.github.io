@@ -6,38 +6,41 @@ tags:
 
 Hidtil har vores lyddesign været enkle og midlertidige - med `{}.play` kan vi hurtigt teste UGens og idéer. Men vi kan gøre vores lyddesign meget mere fleksibelt og anvendeligt til længere kompositionsforløb ved at samle vores UGens i en såkaldt `SynthDef`.
 
-## Hvad er en `Synth`?
+## Hvad er en Synth?
 
-Bemærk først, hvad der bliver vist i SuperColliders post window, når vi kører nedenstående linje: 
-```sc
+Bemærk først, hvad der bliver vist i SuperColliders post window, når vi kører nedenstående linje:
+
+```sc title="En simpel Synth"
 {SinOsc.ar * 0.1}.play;
 ```
 
 Vi får at vide, at vi har startet en såkaldt `Synth`. Hver gang vi producerer lyd på lydserveren, har vi gang i en eller flere Synths. Når vi fx afspiller toner med en `Pbind`, genererer vi en ny Synth for hver tone, der spiller. Kør fx nedenstående blok og se listen over Synths i plotTree-vinduet:  
 
-```sc
+```sc title="Pbind producerer Synths"
 (
 s.plotTree;
 Pbind(
-	\degree, Pwhite(0, 4),
-	\legato, Pwhite(2.0, 4.0)
+    \degree, Pwhite(0, 4),
+    \legato, Pwhite(2.0, 4.0)
 ).play;
 )
 ```
 
-Vi kan starte Synths direkte ved at bruge `Synth.new`:
-```sc
+Vi kan alternativt starte en Synth direkte ved at bruge `Synth.new`:
+
+```sc title="Brug af Synth.new"
 Synth.new(\default);
-Synth(\default);   // samme resultat, .new er implicit
+Synth(\default);
+// Samme resultat: .new er implicit
 ```
 
-Men hvad er mon `\default`? Jo, det er navnet på en bestemt `SynthDef`. 
+Men hvad er mon `\default`? Jo, det er navnet på en bestemt `SynthDef`.
 
-## Hvad er en `SynthDef`?
+## Hvad er en SynthDef?
 
 Ordet SynthDef står, ikke overraskende, for **Synth-definition**. Med SynthDefs kan vi lave lyddesign-opskrifter og generere Synths på meget fleksibel vis.
 
-En SynthDef adskiller sig fra de mere primitive `{}.play` på følgende måder:
+En SynthDef adskiller sig fra den mere primitive form `{}.play` på følgende måder:
 
 - En ny SynthDef (`SynthDef.new`) skal registreres på lydserveren med `.add;`
 - En SynthDef skal have et navn, så vi kan henvise til den senere, fx `\minSynthDef`
@@ -46,11 +49,11 @@ En SynthDef adskiller sig fra de mere primitive `{}.play` på følgende måder:
 
 Det kan eksempelvis se således ud:
 
-```sc
+```sc title="En simpel SynthDef"
 (
 // Vi skriver først SynthDef'en og registrerer den på lydserveren
 SynthDef(\minSynthDef, {
-	Out.ar(0, SinOsc.ar(440) * 0.1);
+    Out.ar(0, SinOsc.ar(440) * 0.1);
 }).add;
 )
 
@@ -64,24 +67,28 @@ Sammenhængen mellem `Synth`, `SynthDef` og `Pbind` er helt central i SuperColli
 
 - `SynthDef` kan forstås som et instrument, der bestemmer klang og variationsmuligheder.
 - `Synth`s kan forstås som de konkrete lyde, man skaber med instrumentet.
-- `Pbind` udgør således kompositionen eller partituret.
+- `Pbind` udgør således kompositionen eller partituret[^1].
 
-Hvis man i denne analogi synes, at der mangler en musiker til at udføre kompositionen, kan man tænke på den `EventStreamPlayer`, som opstår, når vi bruger `Pbind().play` - det er dette objekt, som faktisk udfører partituret og starter/stopper Synths på lydserveren ud fra de instrukser, vi har angivet med `Pbind`.
+[^1:]Hvis man i denne analogi synes, at der mangler en musiker til at udføre kompositionen, kan man tænke på den `EventStreamPlayer`, som opstår, når vi bruger `Pbind().play` - det er dette objekt, som faktisk udfører partituret og starter/stopper Synths på lydserveren ud fra de instrukser, vi har angivet med `Pbind`.
 
 ### SynthDef og Synth
 
-Lad os se på hvordan samspillet mellem `Synth`, `SynthDef` og `Pbind` fungerer i praksis.
+Lad os se på hvordan samspillet mellem `Synth` og `SynthDef` og `Pbind` fungerer i praksis.
 
 SynthDef'en `\minSynthDef` ovenfor fungerer, men er ikke særligt fleksibel. Vi kan fx kun spille én tone med den, og vi er nødt til at stoppe den manuelt med Ctrl-/Cmd-punktum. For at kunne spille forskellige toner kan vi indføre et argument. Her vælger jeg at indføre argumentet `freq` ved hjælp af nøgleordet `arg`, og jeg angiver også en standardværdi på `440`:
 
 ```sc title="SynthDef og Synth"
 (
 SynthDef(\tone, {
-	arg freq = 440;  // <--- her erklærer vi argumentet og angiver standardværdien
-	Out.ar(0, SinOsc.ar(freq) * 0.1); // <--- her bruger vi argumentet, ligesom en variabel
+    arg freq = 440;  // <--- her erklærer vi argumentet og angiver standardværdien
+    Out.ar(0, SinOsc.ar(freq) * 0.1); // <--- her bruger vi argumentet, ligesom en variabel
 }).add;
 )
+```
 
+Når vi har tilføjet vores SynthDef til lydserveren, kan vi starte nye Synths baseret på definitionen:
+
+```sc title="Synth baseret på SynthDef"
 Synth(\tone);
 Synth(\tone, [\freq, 220]);
 Synth(\tone, [\freq, 1000]);
@@ -101,19 +108,19 @@ Når vores SynthDef er sat op på denne måde, kan vi bruge `Pbind` til at gener
 ```sc title="SynthDef og Pbind"
 (
 SynthDef(\simpel, {
-	arg freq = 440;
-	Out.ar(0, SinOsc.ar(freq) * 0.1
-		* EnvGen.kr(Env.perc, doneAction: Done.freeSelf)
-	);
+    arg freq = 440;
+    Out.ar(0, SinOsc.ar(freq) * 0.1
+        * EnvGen.kr(Env.perc, doneAction: Done.freeSelf)
+    );
 }).add;
 )
 
 // Nu kan vi bruge Pbind til at "spille på" vores SynthDef, som om den er et instrument:
 (
 Pbind(
-	// SynthDef-navnet angives under nøglen \instrument
-	\instrument, \simpel,
-	\degree, Pwhite(-7, 7),
+    // SynthDef-navnet angives under nøglen \instrument
+    \instrument, \simpel,
+    \degree, Pwhite(-7, 7),
 ).play;
 )
 ```
@@ -123,13 +130,13 @@ SynthDefs bliver i øvrigt meget lettere at læse, hvis vi bruger [lokale variab
 ```sc title="Signalflow i SynthDef med lokale variabler"
 (
 SynthDef(\simpel, {
-	arg freq = 440;
-	// 'sig' er variabelnavnet for vores hovedsignal
-	var sig = SinOsc.ar(freq);
-	// 'env' er variabelnavnet for vores envelope
-	var env = EnvGen.kr(Env.perc, doneAction: Done.freeSelf);
-	sig = sig * env * 0.1;
-	Out.ar(0, sig);
+    arg freq = 440;
+    // 'sig' er variabelnavnet for vores hovedsignal
+    var sig = SinOsc.ar(freq);
+    // 'env' er variabelnavnet for vores envelope
+    var env = EnvGen.kr(Env.perc, doneAction: Done.freeSelf);
+    sig = sig * env * 0.1;
+    Out.ar(0, sig);
 }).add;
 )
 ```
@@ -139,22 +146,22 @@ Med et par ekstra argumenter og en `Pan2`-UGen kan vi styre volumen og stereo-pa
 ```sc title="Komposition og lyddesign med variabel tonehøjde, panorering og volumen" hl_lines="3 7"
 (
 SynthDef(\fleksibel, {
-	arg freq = 440, pan = 0, amp = 0.1;
-	var sig = SinOsc.ar(freq);
-	var env = EnvGen.kr(Env.perc, doneAction: Done.freeSelf);
-	sig = sig * env;
+    arg freq = 440, pan = 0, amp = 0.1;
+    var sig = SinOsc.ar(freq);
+    var env = EnvGen.kr(Env.perc, doneAction: Done.freeSelf);
+    sig = sig * env;
     sig = Pan2.ar(sig, pan, amp);
-	Out.ar(0, sig);
+    Out.ar(0, sig);
 }).add;
 )
 
 (
 Pbind(
-	\instrument, \fleksibel,
-	\degree, Pwhite(-7, 7).stutter(2),
-	\pan, Prand([1, 0, -1], inf),
-	\amp, Pexprand(0.01, 0.2),
-	\dur, 0.4,
+    \instrument, \fleksibel,
+    \degree, Pwhite(-7, 7).stutter(2),
+    \pan, Prand([1, 0, -1], inf),
+    \amp, Pexprand(0.01, 0.2),
+    \dur, 0.4,
 ).play;
 )
 ```
@@ -167,38 +174,40 @@ Pbind(
 - Vi bruger en vedvarende envelope, fx `Env.asr`
 - Vi angiver `gate` som argument nr. 2 til `EnvGen.kr`
 
-```sc title="Legato og staccato med vedvarende envelopes" hl_lines="3 5 16 24"
+```sc title="SynthDef med vedvarende envelope" hl_lines="3 5"
 (
 SynthDef(\vedvarende, {
-	arg freq = 440, pan = 0, amp = 0.1, gate = 1;
-	var sig = SinOsc.ar(freq);
-	var env = EnvGen.kr(Env.asr, gate, doneAction: Done.freeSelf);
-	sig = sig * env;
+    arg freq = 440, pan = 0, amp = 0.1, gate = 1;
+    var sig = SinOsc.ar(freq);
+    var env = EnvGen.kr(Env.asr, gate, doneAction: Done.freeSelf);
+    sig = sig * env;
     sig = Pan2.ar(sig, pan, amp);
-	Out.ar(0, sig);
+    Out.ar(0, sig);
 }).add;
 )
 ```
 
-```
+Med ovenstående SynthDef indlæst på lydserveren kan vi spille legato og staccato ved hjælp af `\sustain`-nøglen i `Pbind`.
+
+```sc title="Legato og staccato" hl_lines="5 13"
 ( // Legato-frasering
 Pbind(
-	\instrument, \vedvarende,
-	\degree, Pwhite(-7, 7),
+    \instrument, \vedvarende,
+    \degree, Pwhite(-7, 7),
     \sustain, 3,
 ).play;
 )
 
 ( // Staccato-frasering
 Pbind(
-	\instrument, \vedvarende,
-	\degree, Pwhite(-7, 7),
+    \instrument, \vedvarende,
+    \degree, Pwhite(-7, 7),
     \sustain, 0.1,
 ).play;
 )
 ```
 
-### Vedvarende `Synth` med `Pmono` og `PmonoArtic`
+### Vedvarende Synth med Pmono og PmonoArtic
 
 Som vi har set, er Pbind god til sekvenser, der starter mange Synths. Men til gengæld kan Pbind ikke ændre på indstillingerne for Synths, fx tonehøjde eller panorering, når de er startet. Det kan vi gøre manuelt ved hjælp af `.set`-metoden:
 
@@ -209,32 +218,41 @@ Som vi har set, er Pbind god til sekvenser, der starter mange Synths. Men til ge
 ~tone.set(\freq, 500);
 ```
 
-Hvis vi vil gøre noget lignende med patterns, kan vi i stedet for Pbind bruge `Pmono` eller `PmonoArtic`. Begge disse kusiner til Pbind starter blot én Synth ad gangen og justerer efterfølgende parametrene ved hjælp af de sædvanlige koblinger af nøgler og patterns, som vi kender fra Pbind. SynthDef-navnet angives som første argument, uden `\instrument`-nøglen (herunder genbruger vi en let justeret SynthDef fra eksemplet ovenfor):
+Hvis vi med vores egne SynthDefs vil skabe glissandi frem for spring i tonehøjde, kan vi bruge method'en `.lag` på frekvens-argumentet, hvilket vil interpolere mellem værdier frem for at springe imellem dem. Vi kan med et argument styre, hvor lang tid det tager at nå til den nye værdi.
 
-```sc hl_lines="4 14" title="Glidende arpeggio med Pmono"
+```sc title="Glissandi med .lag" hl_lines="4"
 (
 SynthDef(\glissando, {
-	arg freq = 440, pan = 0, amp = 0.1, gate = 1;
-	// .lag giver en glidende overgang mellem skiftende værdier (her glissando)
-	var sig = SinOsc.ar(freq.lag(0.01));
-	var env = EnvGen.kr(Env.asr, gate, doneAction: Done.freeSelf);
-	sig = sig * env;
+    arg freq = 440, pan = 0, amp = 0.1, gate = 1;
+    // .lag giver en glidende overgang mellem skiftende værdier (her glissando)
+    var sig = SinOsc.ar(freq.lag(0.01));
+    var env = EnvGen.kr(Env.asr, gate, doneAction: Done.freeSelf);
+    sig = sig * env;
     sig = Pan2.ar(sig, pan, amp);
-	Out.ar(0, sig);
+    Out.ar(0, sig);
 }).add;
-)
 
+~tone = Synth(\default);
+~tone.set(\freq, exprand(200, 2000));
+)
+```
+
+Hvis vi vil skabe en komposition med patterns, hvor vi bruger denne glissando-egenskab ved vores SynthDef, kan vi i stedet for Pbind bruge `Pmono` eller `PmonoArtic`. Begge disse kusiner til Pbind starter blot én Synth ad gangen og justerer efterfølgende parametrene ved hjælp af de sædvanlige koblinger af nøgler og patterns, som vi kender fra Pbind. SynthDef-navnet angives som første argument, dvs. uden `\instrument`-nøglen:
+
+```sc title="Pmono og glissando"
 (
-s.plotTree;  // vis Synths på serveren - Pmono starter kun én Synth
 Pmono(\glissando,
     \degree, Pseq([0, 2, 4, 6], inf),
     \mtranspose, Pwhite(0, 7).stutter(4),
     \dur, 0.15,
 ).play;
+
+// vis Synths på serveren - Pmono starter kun én Synth
+s.plotTree;
 )
 ```
 
-Hvis vi har brug for at lave pauser mellem de strømme af værdier, der bliver skiftet imellem ved hjælp af `Pmono`, kan vi bruge `PmonoArtic`.
+Hvis vi har brug for at lave pauser i lyden mellem de strømme af værdier, der bliver skiftet imellem ved hjælp af `Pmono`, kan vi bruge `PmonoArtic`.
 
 På patterns-iden styres artikulationen med `\sustain`- eller `\legato`-nøglen; når `\sustain` er mindre end `\dur`, afsluttes Synthen, og der startes en ny ved næste event. Den mest praktiske tilgang er at bruge nøglen `legato`, hvor vi angiver en værdi, som er mindre end 1, når vi ønsker at lave ophold, og en værdi der er højere end eller lig med 1, når vi ønsker en sammenhængende tone.
 
@@ -253,7 +271,7 @@ PmonoArtic(\glissando,
 
 Argumenterne i vores SynthDefs kan i princippet have de navne vi gerne vil give dem (dog skal de starte med små bogstaver, ligesom variabler). Argumentnavne kunne fx være `kaffe`, `the`, `mario`, `luke` eller `leia`. Men sædvanligvis kan det være en god idé at give argumenterne nogle deskriptive navne som fx `cutoffFreq`, `release`, `drive`, `delayTime` eller lignende, så man kan regne ud hvad de betyder, når man vender tilbage til koden efter noget tid.
 
-Men vedrørende SynthDef-argumentnavne findes der nogle få undtagelser som er værd at kende, og de gennemgås herunder. Der er tale om konventioner, som gør vores SynthDefs fleksible i sammenspil med andre dele af SuperCollider. Herunder gives et par anbefalinger for argument-navngivning:
+Vedrørende argumentnavne i SynthDef findes der nogle få undtagelser som er værd at kende, og de gennemgås herunder. Der er tale om konventioner, som gør vores SynthDefs fleksible i sammenspil med andre dele af SuperCollider. Herunder gives et par anbefalinger for argument-navngivning:
 
 ### Vigtige argumentnavne
 
@@ -296,7 +314,7 @@ Disse argumentnavne er ikke så vidt vides strengt nødvendige. Men der er tale 
 `dur`, `scale`, `sustain`, `stretch`, `midinote` med flere
 
 :   Disse navne bruges til automatiske omregninger, når vi komponerer med `Pbind` (qua SuperColliders såkaldte **default Event**). Hvis man bruger dem som SynthDef-argumentnavne uden at være klar over dette, kan der hurtigt opstå mærkelige konsekvenser, som kan være svære at gennemskue.
-    
+
     Man kan se den samlede liste over termer, der bruges til automatisk udredning af tonehøjde, timing og amplitude i [James Harkins' udmærkede oversigt](http://doc.sccode.org/Tutorials/A-Practical-Guide/PG_07_Value_Conversions.html).
 
     Tommelfingerregelen er at lade pattern/event-systemet foretage de automatiske udregninger:

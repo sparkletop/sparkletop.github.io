@@ -3,15 +3,15 @@ tags:
     - Artikler
 ---
 
-Lydens forandring over tid er en vigtig del af lyddesign. Et af de vigtigste redskaber til at arbejde med lydlig forandring over tid er envelopes. Envelopes anvendes i elektronisk klangdannelse typisk til at styre en tone eller en lyds volumen over tid, men envelopes kan med fordel bruges på mange andre måder. 
+Lydens forandring over tid er en vigtig del af lyddesign. Et af de vigtigste redskaber til at arbejde med lydlig forandring over tid er envelopes. Envelopes anvendes i elektronisk klangdannelse typisk til at styre en tone eller en lyds volumen over tid, men envelopes kan med fordel bruges på mange andre måder.
 
 # Envelopes
 
 Hvor mange synthesizere kun har en ADSR-envelope, har SuperCollider en række forskellige, indbyggede envelopes. Man kan også definere sine egne envelopes. Det er endda muligt at loope envelopes, så de kommer til at udgøre LFO'er. Dermed kan envelopes potentielt være et særdeles kreativt virkemiddel.
 
-## `Line` og `XLine` - enkle envelope-generatorer
+## Line og XLine - enkle envelope-generatorer
 
-De mest enkle envelope-generatorer er `Line` og `XLine` - UGens, som genererer en henholdsvis lineær og eksponentiel udvikling fra ét punkt til et andet over et specificeret tidsrum. Her er et eksempel, hvor envelopen bevæger sig fra 100 til 2000 i løbet af 1 sekund: 
+De mest enkle envelope-generatorer er `Line` og `XLine` - UGens, som genererer en henholdsvis lineær og eksponentiel udvikling fra ét punkt til et andet over et specificeret tidsrum. Her er et eksempel, hvor envelopen bevæger sig fra 100 til 2000 i løbet af 1 sekund:
 
 ```sc title="Line og XLine"
 Line.kr(100, 2000, 1)
@@ -19,7 +19,6 @@ XLine.kr(100, 2000, 1)
 ```
 
 ![Line og XLine](../media/figures/line-og-xline.png){ width="80%" }
-
 
 Vi bruger `Line` og `XLine` ligesom andre UGens, fx til at styre frekvensen for en oscillator:
 
@@ -29,7 +28,7 @@ Vi bruger `Line` og `XLine` ligesom andre UGens, fx til at styre frekvensen for 
 {SinOsc.ar(XLine.kr(100, 800, 0.050)) * 0.1}.play; // eksponentiel udvikling over 50 milisekunder
 ```
 
-## `Env` og `EnvGen` - envelopes for enhver smag
+## Env og EnvGen - envelopes for enhver smag
 
 `Line` og `XLine` genererer envelopes med ét segment (dvs. ét tidsinterval med ét start- og slutpunkt). Envelopes har imidlertid meget ofte mere end ét segment. Og de forskellige segmenter kan have meget forskellige former/"krumninger".
 
@@ -48,7 +47,7 @@ Vi kan vise en grafisk repræsentation med `.plot` - fx `Env.perc.plot`. Her er 
 
 ![Forskellige standardenvelopes](../media/figures/standardenvelopes.png){ width="80%" }
 
-### Et eksempel: `Env.perc`
+### Et eksempel: Env.perc
 
 Hvordan bruger vi envelopes? Lad os kigge på et eksempel - `Env.perc`.
 
@@ -84,9 +83,9 @@ Det er ofte nyttigt at skille disse elementer ad på forskellige linjer og bruge
 ```sc title="Envelope som lokal variabel"
 (
 {
-	var env = EnvGen.kr(Env.perc);
-	var sig = PinkNoise.ar;
-	sig * env * 0.1;
+    var env = EnvGen.kr(Env.perc);
+    var sig = PinkNoise.ar;
+    sig * env * 0.1;
 }.play;
 )
 ```
@@ -99,13 +98,13 @@ Lad os tage et eksempel:
 (
 {
     // Envelopen oprettes og gemmes under den lokale variabel env
-	var env = EnvGen.kr(Env.perc(0.1, 5));
+    var env = EnvGen.kr(Env.perc(0.1, 5));
     // Envelopesignalet skaleres med .exprange til en mere passende rækkevidde for tonehøjde
     // Resultatet gemmes under variablen freq, som bruges til oscillatoren Pulse
     var freq = env.exprange(440, 880);
-	var sig = Pulse.ar(freq);
+    var sig = Pulse.ar(freq);
     // Det umodificerede envelopesignal anvendes til at styre lydstyrken
-	sig * env * 0.1;
+    sig * env * 0.1;
 }.play;
 )
 ```
@@ -143,7 +142,7 @@ Når vi bruger `Pbind` og patterns til at styre artikulationen af toner, styres 
 
 ## Automatisk oprydning med doneAction
 
-Envelopes er forbundet med noget, der hedder `doneAction`, som angår hvad SuperColliders lydserver skal gøre med netværket af UGens, når envelope-generatoren har gennemløbet alle envelopens segmenter. I eksemplerne ovenfor har vi ikke bedt SuperCollider om at gøre noget særligt, når envelopen er slut, men det er ofte yderst relevant at fjerne vores UGen-netværk (også kaldet en `Synth`) fra serveren igen. Dette bliver særligt tydeligt, når vi gennemgår [Synth, SynthDef og Pbind](a-synthdef.md). 
+Envelopes er forbundet med noget, der hedder `doneAction`, som angår hvad SuperColliders lydserver skal gøre med netværket af UGens, når envelope-generatoren har gennemløbet alle envelopens segmenter. I eksemplerne ovenfor har vi ikke bedt SuperCollider om at gøre noget særligt, når envelopen er slut, men det er ofte yderst relevant at fjerne vores UGen-netværk (også kaldet en `Synth`) fra serveren igen. Dette bliver særligt tydeligt, når vi gennemgår [Synth, SynthDef og Pbind](a-synthdef.md).
 
 Hvis du kan se, at du har en række gamle Synths liggende på lydserveren fra eksemplerne ovenfor (kør `s.queryAllNodes` og tjek post window), kan du fjerne dem med Ctrl-Punktum/Cmd-Punktum.
 
@@ -157,7 +156,7 @@ s.nodeTree;  // vis en liste med alle Synths på lydserveren
 
 Hvornår skal man så bruge `doneAction: Done.freeSelf`? Jo, hvis man har gang i flere envelopes på én gang (hvilket man sagtens kan have i SuperCollider), så er det som tommelfingerregel en god idé at bruge `doneAction: Done.freeSelf` til den envelope, som styrer tonens lydstyrke over tid. Så undgår vi at få ophobet gamle Synths på lydserveren.
 
-### Hvad er `doneAction: 2`?
+### Hvad er doneAction?
 
 `doneAction: 2` og `doneAction: Done.freeSelf` betyder det samme - at Synth'en skal fjernes fra lydserveren, når envelopen er slut.
 
@@ -167,4 +166,3 @@ Hvornår skal man så bruge `doneAction: Done.freeSelf`? Jo, hvis man har gang i
 ```
 
 Om man bruger `doneAction: 2` eller `doneAction: Done.freeSelf` er helt valgfrit. Førstnævnte er kortest at skrive, men sidstnævnte er umiddelbart lettest at forstå, når man man læser koden.
-

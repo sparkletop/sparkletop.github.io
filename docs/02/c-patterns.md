@@ -6,7 +6,7 @@ tags:
 
 ## 11 primære patterns
 
-```sc title="11 primære patterns"
+```sc title="6 listebaserede patterns"
 // Pseq - en fleksibel sequencer
 Pbind(\degree, Pseq([0, -3, 1], 2)).play;
 
@@ -24,7 +24,9 @@ Pbind(\degree, Pwrand([0, -1, 1, 4], [0.6, 0.1, 0.1, 0.2], inf), \dur, 0.5).play
 
 // Pshuf - en fætter/kusine til Pseq, gentager en sekvens i tilfældig rækkefølge
 Pbind(\degree, Pshuf([0, 1, 4, 6], 2), \dur, 0.5).play;
+```
 
+```sc title="5 tilfældighedsgeneratorer"
 // Pwhite - tilfældige tal, ligeligt fordelt mellem min og max
 Pbind(\degree, Pwhite(-7, 7)).play;
 

@@ -5,7 +5,7 @@ tags:
 
 # Funktioner for den dovne programmør
 
-Vi er nu nået til et emne, som er en gave til den dovne programmer, der ikke gider at skrive det samme sæt af instrukser mere end én gang. Heldigvis er det faktisk ofte en god idé at være doven på denne måde, fordi det er effektivt at indkapsle og genbruge sæt af instrukser, da det gør os i stand til at gøre mange ting med meget lidt kildekode. I programmering er *funktioner* et grundlæggende koncept, som er væsentligt at forstå. I SuperCollider og de fleste andre programmeringssprog er en funktion en defineret række af instrukser, der fungerer lidt ligesom de kodeblokke, vi kiggede på [ovenfor](a-eksekvering.md#mere-end-én-instruks-ad-gangen). De er nyttige, hvis vi gerne vil gøre det samme mange gange, da vi i stedet for at skrive den samme kodeblok mange gange blot kan "kalde" funktionen.
+Vi er nu nået til et emne, som er en gave til den dovne programmer, der ikke gider at skrive det samme sæt af instrukser mere end én gang. Heldigvis er det faktisk ofte en god idé at være doven på denne måde, fordi det er effektivt at indkapsle og genbruge sæt af instrukser, da det gør os i stand til at gøre mange ting med meget lidt kildekode. I programmering er *funktioner* et grundlæggende koncept, som er væsentligt at forstå. I SuperCollider og de fleste andre programmeringssprog er en funktion en defineret række af instrukser, der fungerer lidt ligesom de kodeblokke, vi kiggede på [ovenfor](a-eksekvering.md#flere-instrukser-ad-gangen). De er nyttige, hvis vi gerne vil gøre det samme mange gange, da vi i stedet for at skrive den samme kodeblok mange gange blot kan "kalde" funktionen.
 
 ## Hjemmelavede funktioner
 
@@ -43,7 +43,7 @@ Vi bruger ofte funktioner, fordi vi ønsker at producere "noget". Med andre ord 
 
 Fordi der kun er én kodelinje i funktionen, vil resultatet af denne kodelinje være funktionens output. I dette tilfælde er funktionen selvfølgelig ikke særligt nyttig, da den altid vil give samme resultat. Men lad os nu se på, hvordan vi kan bruge funktioner mere fleksibelt ved hjælp af det, der hedder *argumenter*.
 
-## Argumenter
+## Input til funktioner: Argumenter
 
 Funktioner kan også have en slags input, som vi kalder for *argumenter*. Lad os sige, at i stedet for at lægge de samme to tal sammen, hver gang funktionen kører, ønsker at angive de to tal og så få funktionen til at regne summen ud for os. I dette tilfælde kan vi indføre to argumenter, hvilket vi gør på den første kodelinje i funktionen ved hjælp af nøgleordet `arg`. Derefter kan vi angive værdier til argumenterne i parenteser, når vi bruger `.value`:
 
@@ -106,7 +106,7 @@ Indtil videre har vores funktioner ikke været musikalske, da de primært har sk
 
 Hidtil har funktionerne ovenfor kørt i SuperColliders [fortolker](a-brugerflade.md#brugerflade-fortolker-og-lydserver). Men den særlige funktionstype *UGen-funktioner* kører på lydserveren. Den noteres grundlæggende på samme måde som i eksemplerne ovenfor, men indeholder primært såkaldte UGens, som vi skal se nærmere på [i et senere kapitel](../04/a-ugens.md).
 
-Før vi kan lave lyd med UGen-funktioner skal vi [boote lydserveren](a-eksekvering.md#sæt-gang-i-lydserveren). Derefter noterer vi `.play` umiddelbart efter funktionens afsluttende tuborgklamme. Her et eksempel med en sinustone, der svinger ved 440Hz (stop lyden igen med Ctrl/Cmd+Punktum):
+Før vi kan lave lyd med UGen-funktioner skal vi [boote lydserveren](a-eksekvering.md#fut-i-lydserveren). Derefter noterer vi `.play` umiddelbart efter funktionens afsluttende tuborgklamme. Her et eksempel med en sinustone, der svinger ved 440Hz (stop lyden igen med Ctrl/Cmd+Punktum):
 
 ```sc title="En UGen-funktion"
 { SinOsc.ar(440) }.play;

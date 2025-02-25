@@ -87,8 +87,6 @@ Modificerer vi ovenstående med et argument til transponering, kan vi ændre afs
 ~granulator.set(\moveRate, 0.25, \transpose, 12)  // kvart tempo, en oktav op
 ```
 
-
-
 ### Tekstur og klangflade (flyttes til Art3)
 
 Hvor ovenstående giver en meget fleksibel måde at strække eller transponere lyd på, kan vi skabe mere abstrakte teksturer ved at tilføje lidt støj til pointeren og fordele grains tilfældigt over hele stereofeltet. Dette kan blandt andet gøres ved hjælp af UGen'en `TRand`, som producerer tilfældige tal mellem et minimum og maksimum, hver gang den modtager en trigger. Denne tilfældige fordeling af grain-parametre kan vi kalde for jitter:

@@ -2,43 +2,35 @@
 tags:
     - Øvelser
 ---
-# Øvelse 2A: Grundlæggende brug af Patterns
+# Øvelse: Grundlæggende brug af Patterns
 
 Med denne øvelse får du grundlæggende erfaring med brug af patterns. Opgaverne er simple i forhold til potentialet i patterns, men en god forståelse af de grundlæggende forhold er afgørende for at man kan arbejde med de mere komplicerede teknikker senere hen.
 
-## Opgave 1: Find fire fejl
+## Find fire fejl
 
 1. Find og ret fejlene i de fire eksempler herunder.
 1. Læs fejlmeddelelsen, før du retter fejlen.
 1. Forklar i en kommentar for hvert eksempel hvad du har rettet og hvad problemet bestod i.
 1. Ryd SuperColliders post window (Ctrl+Shift+p) inden du starter med et nyt eksempel.
 
-```sc title="Opgave 1: Find fire fejl"
-(
+```sc title="Find fire fejl"
 Pbind(
-	Pwhite(0, 7), \degree,
+    Pwhite(0, 7), \degree,
 ).play;
-)
 
-(
 Pbind(
-	\degree, Pseq(3, 7),
+    \degree, Pseq(3, 7),
 ).play;
-)
 
-(
 Pbind(
-	\degree, Pwhite(0, 7);
-	\dur, 0.5;
+    \degree, Pwhite(0, 7);
+    \dur, 0.5;
 ).play;
-)
 
-(
 Pbind(
-	\dur, 0.25,
-	\octave, Pseq([3. 4. 5]),
+    \dur, 0.25,
+    \octave, Pseq([3. 4. 5]),
 ).play;
-)
 ```
 
 ## Skabelon til opgave 2-6
@@ -53,7 +45,7 @@ Pbind(
 )
 ```
 
-## Opgave 2: Tonehøjde i `Pbind`
+## Pbind og tonehøjde
 
 Denne opgave fokuserer på brug af nøgler til angivelse af tonehøjde i Pbind. Der skal ikke anvendes patterns (ud over Pbind).
 
@@ -66,7 +58,7 @@ Spil følgende toner i uendelig gentagelse:
 1. En A-dur-akkord (brug `\root` og `\degree`).
 1. En f-mol-akkord (vælg selv passende nøgler).
 
-## Opgave 3: Rytmik i `Pbind`
+## Rytmik i Pbind
 
 Denne opgave fokuserer på brug af nøgler til angivelse af rytmik og frasering i Pbind samt tempoangivelse med `TempoClock`. Der skal ikke anvendes patterns (ud over Pbind).
 
@@ -80,7 +72,7 @@ Spil tonen c i uendelig gentagelse med følgende rytmik og frasering:
 1. Fjerdedele ved 40 BPM.
 1. Ottendedele ved 150 BPM.
 
-## Opgave 4: Sekvenser med `Pseq`
+## Sekvenser med Pseq
 
 Denne opgave fokuserer på brug af `Pseq` til at angive sekvenser.
 
@@ -94,7 +86,7 @@ Spil følgende ved hjælp af `Pseq`:
 1. En selvkomponeret rytme, som indeholder ottendele, fjerdedele og halvnoder (brug `\dur`).
 1. En sekvens, hvor alle toner spilles legato pånær hver 4. tone i sekvensen, som spilles staccato (brug nøglen `\legato`).
 
-## Opgave 5: Tilfældighed med `Pwhite`
+## Tilfældighed med Pwhite
 
 Afspil følgende ved hjælp af `Pwhite`:
 
@@ -103,12 +95,12 @@ Afspil følgende ved hjælp af `Pwhite`:
 1. Spil en uendelig række af akkordbrydninger med uregelmæssig rytmik og frasering.
 1. Spil tilfældige skalatrin inden for en F-mol-skala, hvor alle toner gentages én gang (brug `.stutter`).
 
-## Opgave 6: Tilfældighed med lister
+## Tilfældighed med lister
 
 1. Afspil med `Prand` 10 tilfældigt valgte elementer fra arrayet `~skalatrin`.
 1. Afspil med `Pshuf` arrayet `~skalatrin` 2 gange i en tilfældig rækkefølge.
-1. Afspil arrayet `~skalatrin` i en tilfældig rækkefølge 4 gange, gentag herefter dette med en ny tilfældig rækkefølge (dette kan gøres ved at kombinere `Pshuf` og `.repeat`).   
+1. Afspil arrayet `~skalatrin` i en tilfældig rækkefølge 4 gange, gentag herefter dette med en ny tilfældig rækkefølge (dette kan gøres ved at kombinere `Pshuf` og `.repeat`).
 
-```sc
+```sc title="En række skalatrin"
 ~skalatrin = [-2, 0, 1, 3, 4, 6];
 ```

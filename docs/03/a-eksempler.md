@@ -29,22 +29,22 @@ TempoClock.tempo = 120/60;
 ~trin = [0, 4, 3, 1, 2];
 ~nodevaerdier = [1/8, 1/8, 1/8, 1/16, 1/16];
 Pbind(
-	\octave, 5,
-	\root, 2,
-	\scale, Scale.lydian,
-	\degree, Pseq(~trin, inf),
-	\mtranspose, Pwhite(-3, 3).stutter(10),
+    \octave, 5,
+    \root, 2,
+    \scale, Scale.lydian,
+    \degree, Pseq(~trin, inf),
+    \mtranspose, Pwhite(-3, 3).stutter(10),
 
-	\dur, Pseq(~nodevaerdier, inf) * 4,
-	\legato, 1.2,
-	\lag, Pgauss(0, 0.005),
+    \dur, Pseq(~nodevaerdier, inf) * 4,
+    \legato, 1.2,
+    \lag, Pgauss(0, 0.005),
 
-	\db, Pseq([-10, Pgauss(-15, 2, 4)], inf),
+    \db, Pseq([-10, Pgauss(-15, 2, 4)], inf),
 ).play;
 )
 ```
 
-## Skala-udforskning med `Pbrown`
+## Skala-udforskning med Pbrown
 
 1. Besvar: Hvad er forskellen på `Pbrown` og `Pwhite`?
 1. Besvar: Hvilken funktion har nøglen `\ctranspose`?
@@ -58,10 +58,10 @@ Pbind(
 TempoClock.tempo = 80 / 60;
 
 Pbind(
-	\degree, Pbrown(0, 21, 2),
-	\octave, 4,
-	\ctranspose, Pbrown(-5, 4, 1).stutter(32),
-	\dur, 0.2
+    \degree, Pbrown(0, 21, 2),
+    \octave, 4,
+    \ctranspose, Pbrown(-5, 4, 1).stutter(32),
+    \dur, 0.2
 ).play;
 )
 ```
@@ -77,15 +77,15 @@ Pbind(
 (
 TempoClock.tempo = 140 / 60;
 Pbind(
-	\scale, Scale.minorPentatonic,
-	\octave, Pwhite(4, 5).stutter(4),
-	\degree, Pshuf([0, 1, 2, 3, 4, 5], 4).repeat,
-	\ctranspose, Pxrand([0, 1, 2]).repeat.stutter(32),
+    \scale, Scale.minorPentatonic,
+    \octave, Pwhite(4, 5).stutter(4),
+    \degree, Pshuf([0, 1, 2, 3, 4, 5], 4).repeat,
+    \ctranspose, Pxrand([0, 1, 2]).repeat.stutter(32),
 
-	\dur, 0.3,
-	\legato, Pseq(Array.interpolation(160, 0.1, 3.5)),
+    \dur, 0.3,
+    \legato, Pseq(Array.interpolation(160, 0.1, 3.5)),
 
-	\db, Pbrown(-20, -17, 0.6)
+    \db, Pbrown(-20, -17, 0.6)
 ).play;
 )
 ```
@@ -103,49 +103,47 @@ Pbind(
 TempoClock.tempo = 120 / 60;
 
 Pbind(
-	\degree, Pwrand([
-		[-14, 0, 2, 4, 6],
-		[-12, -1, 1, 4, 5]
-	], [0.9, 0.1]).stutter(16).repeat,
+    \degree, Pwrand([
+        [-14, 0, 2, 4, 6],
+        [-12, -1, 1, 4, 5]
+    ], [0.9, 0.1]).stutter(16).repeat,
 
-	\mtranspose, Pxrand((-5..5)).repeat.stutter(16),
+    \mtranspose, Pxrand((-5..5)).repeat.stutter(16),
 
-	\dur, 1/16 * 4,
-	\legato, 0.7,
+    \dur, 1/16 * 4,
+    \legato, 0.7,
 
-	\db, Pseq(Array.interpolation(16, -20, -10), inf),
+    \db, Pseq(Array.interpolation(16, -20, -10), inf),
 ).play;
 )
 ```
 
 ## Korte, rytmiske sekvenser
 
-1. Besvar: I dette eksempel kan man argumentere for, at der arbejdes med en kombination af tilfældighed og genkendelighed. Hvilke teknikker resulterer i skabelsen af balance mellem det tilfældige og det genkendelige? 
+1. Besvar: I dette eksempel kan man argumentere for, at der arbejdes med en kombination af tilfældighed og genkendelighed. Hvilke teknikker resulterer i skabelsen af balance mellem det tilfældige og det genkendelige?
 1. Skriv en ny komposition, som er inspireret af kildekoden her samt din besvarelse af opgaverne ovenfor.
 
 ```sc title="Øvelse: Korte, rytmiske sekvenser"
 (
 TempoClock.tempo = 85 / 60;
-
 ~melodi = Pbind(
-	\scale, Scale.dorian,
-	\degree, Pshuf((0..7), 4).repeat,
+    \scale, Scale.dorian,
+    \degree, Pshuf((0..7), 4).repeat,
 
-	\legato, 1.3,
-	\dur, Pwrand([
-		Pseq( [1/4, 1/4] ),
-		Pseq( [1/16, 1/16, 1/8] ),
-		Pseq( [1/16, 1/8, 1/16] ),
-		Pseq( [Pn(1/24, 6), 1/4] ), // 16.-dels-trioler
-		Pseq( [1/2, Rest(1/2)] ),   // Rest angiver pause
-	], [40, 40, 30, 5, 5].normalizeSum
-	).repeat * 4,
+    \legato, 1.3,
+    \dur, Pwrand([
+        Pseq( [1/4, 1/4] ),
+        Pseq( [1/16, 1/16, 1/8] ),
+        Pseq( [1/16, 1/8, 1/16] ),
+        Pseq( [Pn(1/24, 6), 1/4] ), // 16.-dels-trioler
+        Pseq( [1/2, Rest(1/2)] ),   // Rest angiver pause
+    ], [40, 40, 30, 5, 5].normalizeSum
+    ).repeat * 4,
 );
 ~komp = ~melodi.play;
 )
-~komp.stop;
-
-// Flerstemmig version med Ppar (parallelle Pbinds):
+// Flerstemmig variation med Ppar (parallelle Pbinds):
 ~komp = Ppar(~melodi ! 2).play;
+
 ~komp.stop;
 ```

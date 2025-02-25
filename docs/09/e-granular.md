@@ -3,11 +3,11 @@ tags:
     - Øvelser
 ---
 
-# Øvelse 9: Granular syntese
+# Øvelse: Granular syntese
 
 I denne øvelse arbejder du med granulering af samples ved hjælp af UGen'en `GrainBuf`.
 
-## Opgave 0: Klargøring af sample
+## Valg og indlæsning af sample
 
 Til brug i denne øvelse skal der indlæses et sample. Du kan bruge din egen lydfil, den skal blot:
 
@@ -23,8 +23,7 @@ Som forberedelse til de øvrige opgaver herunder:
 
 OBS: Til denne øvelse skal der anvendes et mono-sample.
 
-
-```sc
+```sc title="Indlæsning af sample"
 // Udfyld her med dit eget sample
 ~buffer = Buffer.read(s,      );
 
@@ -35,7 +34,7 @@ OBS: Til denne øvelse skal der anvendes et mono-sample.
 ~buffer = Buffer.read(s, Platform.resourceDir +/+ "sounds/a11wlk01.wav");
 ```
 
-## Opgave 1: Grain-produktion med GrainBuf
+## Grain-produktion med GrainBuf
 
 Justér nedenstående kodeblok, således at:
 
@@ -47,22 +46,20 @@ Justér nedenstående kodeblok, således at:
     - `pan`
 1. `Dust` anvendes som trigger i stedet for `Impulse`
 
-Hvordan påvirker disse parametre og modulationer lyden? Hvilke æstetiske muligheder kan du se i denne form for sample-manipulation?    
+Hvordan påvirker disse parametre og modulationer lyden? Hvilke æstetiske muligheder kan du se i denne form for sample-manipulation?
 
-```sc
+```sc title="Modulation af GrainBuf-parametre"
 (
 {
-	GrainBuf.ar(
-		numChannels: 2,
-		trigger: Impulse.ar(10),
-		dur: 0.025,
-		sndbuf: ~buffer,
-		rate: BufRateScale.kr(~buffer) * 1,
-		pos: MouseX.kr(0, 1),
-		pan: 0
-	)
+    GrainBuf.ar(
+        numChannels: 2,
+        trigger: Impulse.ar(10),
+        dur: 0.025,
+        sndbuf: ~buffer,
+        rate: BufRateScale.kr(~buffer) * 1,
+        pos: MouseX.kr(0, 1),
+        pan: 0
+    )
 }.play;
 )
 ```
-
-

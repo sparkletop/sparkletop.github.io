@@ -3,17 +3,16 @@ tags:
     - Øvelser
 ---
 
-# Øvelse 10: Beatslicing
+# Øvelse: Beatslicing
 
-Denne øvelse
+I denne øvelse producerer du beats ved hjælp af algoritmisk beatslicing.
 
-
-## Opgave 0: Klargøring
+## Klargøring
 
 1. Indlæs først et eller flere trommeloops under variablen `~sample`til brug i nedenstående øvelse. Det er (for denne øvelse) vigtigt, at trommeloopet er metrisk underdelt i sekstendedele og varer præcis én takt.
-1. Indlæs `SynthDef`'en `\slice` fra [artiklen om beatslicing](a-beatslicing.md).
+1. Indlæs SynthDef'en `\slice` fra [artiklen om beatslicing](a-beatslicing.md).
 
-## Opgave 1: Algoritmisk beatslicing
+## Algoritmiske beats
 
 Skab et nyt beat ud af et eksisterende beat ved hjælp af SynthDef og loop fra Opgave 0 ovenfor. Beatet skal overholde følgende krav:
 
@@ -22,7 +21,7 @@ Skab et nyt beat ud af et eksisterende beat ved hjælp af SynthDef og loop fra O
 1. Mikrotimingen skal "humaniseres" ved hjælp af `\lag`-nøglen - vælg hertil selv et passende pattern og værdier.
 1. Vælg selv yderligere parametre til justering.
 
-```sc title="Beatslicing"
+```sc title="Beatslicing med patterns"
 (
 TempoClock.tempo = 115 / 60;
 Pdef(\beat,
@@ -49,7 +48,7 @@ Pdef(\beat,
 )
 ```
 
-## Opgave 2: Synkretisme med to breakbeats
+## Synkretisme med to breakbeats
 
 Tag afsæt i samme ressourcer som ovenfor plus mindst ét ekstra sample og fremstil et nyt beat. Opgaven her går ud på at få to breakbeats til at fungere sammen klangligt, rytmisk og evt. tonalt.
 

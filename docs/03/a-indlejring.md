@@ -86,12 +86,12 @@ Pbind(
 ``` sc title="Sammenflettede sekvenser med Place"
 (
 Pbind(
-	\degree, Place([
-		[4, 3, 5, 4],
-		[2, 1],
-		-3,
-		0
-	], 4).trace
+    \degree, Place([
+        [4, 3, 5, 4],
+        [2, 1],
+        -3,
+        0
+    ], 4).trace
 ).play;
 )
 ```
@@ -101,11 +101,11 @@ Der findes også en variant, som i stedet tillader, at man erstatter sekvenserne
 ``` sc title="Sammenflettede patterns med Ppatlace"
 (
 Pbind(
-	\degree, Ppatlace([
-		Pshuf([2, 3, 4, -1], inf),
-		Pwhite(4, 7).stutter(4),
-	], inf).trace,
-	\dur, 0.25
+    \degree, Ppatlace([
+        Pshuf([2, 3, 4, -1], inf),
+        Pwhite(4, 7).stutter(4),
+    ], inf).trace,
+    \dur, 0.25
 ).play;
 )
 ```

@@ -11,15 +11,15 @@ På den ene side er granular én blandt flere metoder til at adskille frekvens- 
 
 Granular er et komplekst emne med mange muligheder og parametre. Her introduceres grundlæggende teknikker og kompositionsmuligheder. For videregående teknikker henvises nysgerrige læsere til Eli Fieldsteels video nr. [25](https://youtu.be/WBqAM_94TW4) og [26](https://youtu.be/MnD8stNB5tE).
 
-## Grundlæggende `GrainBuf`
+## Grundlæggende GrainBuf
 
 Man kan i princippet danne grains af hvilken som helst lydkilde, men samples eller live-lydsignaler anvendes ganske ofte som kildemateriale. Herunder tager vi udgangspunkt i et sample, som er [indlæst i en buffer](../08/a-samples.md). I den sammenhæng er det oplagt at anvende UGen'en `GrainBuf`, som netop læser grains fra en buffer (som skal indeholde et mono-sample).
 
-### Argumenter til `GrainBuf`
+### Argumenter til GrainBuf
 
 Her hører vi 5 grains pr. sekund, placeret i midten af et stereofelt, hver med en varighed på 25ms, læst fra midten af den buffer, hvor vores sample er indlæst:
 
-```sc
+```sc title="Brug af GrainBuf"
 // Indlæs sample i mono (husk at erstatte med sti til lydfil på din egen computer)"
 ~sample = Buffer.readChannel(s, "C:/samples/minLydFil.wav", channels: [0]);
 
@@ -92,4 +92,3 @@ Hvis vi eksempelvis styrer grainvarighed og overlap med en LFO (her simuleret me
 }.play;
 )
 ```
-

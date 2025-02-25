@@ -3,11 +3,11 @@ tags:
     - Øvelser
 ---
 
-# Øvelse 6: Anvendelse af filtre
+# Øvelse: Anvendelse af filtre
 
 Denne øvelse går ud på at anvende og modulere gængse filter-UGens.
 
-## Opgave 1: Valg og indstilling af filtre
+## Valg og indstilling af filtre
 
 Brug følgende filtre til at modificere klangen af hvid støj:
 
@@ -18,17 +18,17 @@ Brug følgende filtre til at modificere klangen af hvid støj:
 
 Du kan finde hjælp og eksempler i [filter-cheat sheetet](c-filtre.md).
 
-```sc hl_lines="4"
+```sc title="Filtreret støj" hl_lines="4"
 (
 {
-	var source = WhiteNoise.ar;
-	var sig =   ;
-	sig * 0.1;
+    var source = WhiteNoise.ar;
+    var sig =   ;
+    sig * 0.1;
 }.play;
 )
 ```
 
-## Opgave 2: Modulation af filtre
+## Modulation af filtre
 
 Brug følgende kilder til at modulere cutoff-frekvensen for et low pass-filter, så cutoff-frekvensen bevæger sig mellem 500Hz og 1000Hz (se evt. [artiklen om modulation af UGens](../04/a-skalering.md) for relevante teknikker).
 
@@ -36,21 +36,21 @@ Brug følgende kilder til at modulere cutoff-frekvensen for et low pass-filter, 
 1. En `XLine`-envelope, vælg selv tidsinterval
 1. En LFO (vælg selv bølgeform og passende frekvens)
 
-```sc hl_lines="5"
+```sc title="Modulation af cutoff-frekvens" hl_lines="5"
 (
 {
-	var source = PinkNoise.ar;
-	var env = EnvGen.ar(Env.linen(0.5, 0.5, 2), doneAction: Done.freeSelf);
-	var cutoff =     ;
-	var sig = LPF.ar(source, cutoff);
-	sig * env;
+    var source = PinkNoise.ar;
+    var env = EnvGen.ar(Env.linen(0.5, 0.5, 2), doneAction: Done.freeSelf);
+    var cutoff =     ;
+    var sig = LPF.ar(source, cutoff);
+    sig * env;
 }.play;
 )
 ```
 
-## Opgave 3: Subtraktiv SynthDef
+## Subtraktiv SynthDef
 
-Omskriv kildekoden fra Opgave 2 til en SynthDef, som gør brug af subtraktiv syntese. Du kan evt. gøre brug af en [SynthDef-skabelon](../05/c-synthdef.md) som ramme for dit arbejde.
+Omskriv kildekoden fra [ovenstående opgave](#modulation-af-filtre) til en SynthDef, som gør brug af subtraktiv syntese. Du kan evt. gøre brug af en [SynthDef-skabelon](../05/c-synthdef.md) som ramme for dit arbejde. Se også [hvordan en SynthDef adskiller sig fra UGen-funktioner](../05/a-synthdef.md#hvad-er-en-synthdef).
 
 SynthDef'en skal overholde følgende krav:
 
@@ -66,8 +66,7 @@ i takt med envelope-generatoren
 
 Skriv en Pbind-komposition, som demonstrerer SynthDef'ens forskellige klangmuligheder, dvs. hvor nøglerne i kodeblokken herunder varieres ved hjælp af pattterns (husk at erstatte SynthDef-navnet med det navn, du selv har valgt):
 
-
-```sc hl_lines="4 7 10 11 14"
+```sc title="Komposition for subktraktiv SynthDef" hl_lines="4 7 10 11 14"
 (
 Pbind(
     // Valg af SynthDef
@@ -82,7 +81,6 @@ Pbind(
     
     // Filter
     \rq,    ,
-
 ).play;
 )
 ```

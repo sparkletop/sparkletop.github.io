@@ -17,9 +17,9 @@ Med beatslicing er det afgørende, hvordan kildematerialet er organiseret. I den
 
 Vi kan beregne en startposition i bufferen ud fra hvilket nummer det ønskede slice har (her fra 0 til 15). Vi kan også fremstille en envelope med en fikseret varighed, der udregnes således at den sidste halvdel af envelopens release-segment ganske kort overlapper med begyndelsen af det efterfølgende slice.
 
-Her kan vi således afspille det første slice i en buffer på følgende vis (justér evt. hvilket slice der skal afspilles med variablen `slice`:
+Her kan vi således afspille det første slice i en buffer på følgende vis (justér evt. hvilket af de 16 slices der skal afspilles med variablen `slice`):
 
-```sc
+```sc title="Afspilning af et enkelt slice med PlayBuf"
 ~sample = Buffer.read(s, "C:/lydfiler/loop.wav");
 
 (
@@ -56,48 +56,48 @@ Ovenstående kan omskrives til en SynthDef, hvor de første variabler laves om t
 ```sc title="SynthDef til beatslicing"
 (
 SynthDef(\slice, {
-	arg buf, slice = 0, numSlices = 16,
-	attack = 0.002, release = 0.010,
-	transpose = 0, direction = 1,
-	drive = 0, cutoff = 20000, rq = 1,
-	amp = 0.1, out = 0, pan = 0;
+    arg buf, slice = 0, numSlices = 16,
+    attack = 0.002, release = 0.010,
+    transpose = 0, direction = 1,
+    drive = 0, cutoff = 20000, rq = 1,
+    amp = 0.1, out = 0, pan = 0;
 
-	// Udregn startposition ud fra det specificerede slice og samlede antal slices
-	var startPos = (slice % numSlices) / numSlices;
+    // Udregn startposition ud fra det specificerede slice og samlede antal slices
+    var startPos = (slice % numSlices) / numSlices;
 
-	// Udregn varighed baseret på varighed af hele samplet og antallet af slices
-	var duration = BufDur.kr(buf) / numSlices;
-	var sustainTime = duration - attack - (release * 0.5);
+    // Udregn varighed baseret på varighed af hele samplet og antallet af slices
+    var duration = BufDur.kr(buf) / numSlices;
+    var sustainTime = duration - attack - (release * 0.5);
 
-	// Simpel envelope med tre segmenter - attack, sustain og release
-	var env = EnvGen.kr(
-		Env.linen(attack, sustainTime, release),
-		doneAction: Done.freeSelf
-	);
+    // Simpel envelope med tre segmenter - attack, sustain og release
+    var env = EnvGen.kr(
+        Env.linen(attack, sustainTime, release),
+        doneAction: Done.freeSelf
+    );
 
-	// Afspil slice med transponering og retning (1 = forlæns, -1 = baglæns)
-	var sig = PlayBuf.ar(
-		numChannels: 2,
-		bufnum: buf,
-		rate: BufRateScale.kr(buf) * transpose.midiratio * direction.sign,
-		startPos: BufFrames.kr(buf) * startPos
-	);
+    // Afspil slice med transponering og retning (1 = forlæns, -1 = baglæns)
+    var sig = PlayBuf.ar(
+        numChannels: 2,
+        bufnum: buf,
+        rate: BufRateScale.kr(buf) * transpose.midiratio * direction.sign,
+        startPos: BufFrames.kr(buf) * startPos
+    );
 
-	// Distortion/waveshaping
-	sig = (sig * drive.linexp(0, 1, 1, 100)).tanh;
-	sig = sig * drive.lincurve(0, 1, 1, 0.1, -2);
+    // Distortion/waveshaping
+    sig = (sig * drive.linexp(0, 1, 1, 100)).tanh;
+    sig = sig * drive.lincurve(0, 1, 1, 0.1, -2);
 
-	// Filter
-	sig = RLPF.ar(sig, cutoff.clip(20, 20000), rq.clip(0.0001, 1));
+    // Filter
+    sig = RLPF.ar(sig, cutoff.clip(20, 20000), rq.clip(0.0001, 1));
 
-	// Kompressor
-	sig = Compander.ar(sig, sig, 0.1, 1.0, 0.25, 0.01, 0.01) * 10.dbamp;
+    // Kompressor
+    sig = Compander.ar(sig, sig, 0.1, 1.0, 0.25, 0.01, 0.01) * 10.dbamp;
 
-	sig = sig * env;
+    sig = sig * env;
 
-	sig = Balance2.ar(sig[0], sig[1], pan, amp);
+    sig = Balance2.ar(sig[0], sig[1], pan, amp);
 
-	Out.ar(out, sig);
+    Out.ar(out, sig);
 }).add;
 )
 
@@ -111,7 +111,7 @@ Med ovenstående SynthDef kan vi fleksibelt sammensætte slices ved hjælp af pa
 
 En enkelt overvejelse vi skal have med angår forholdet mellem to tempi: Originalsamplets tempo versus tempoet i vores nye beat. Mere specifikt kan der opstå huller i strømmen af slices, hvis vores nye tempo er langsommere end tempoet i det oprindelige, da ét slice nødvendigvis vil vare kortere end den tid, det er tænkt til at udfylde.
 
-``` sc
+``` sc title="Pattern-baseret beatslicing"
 (
 TempoClock.tempo = 130 / 60;
 Pdef(\test,

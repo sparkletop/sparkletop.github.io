@@ -56,4 +56,4 @@ Filter-UGens kan bruges på mange forskellige lydkilder, men hvid støj (`WhiteN
 { Klank.ar(`[[440, 923, 1153, 1723], nil, [1, 1, 1, 1]], Dust.ar(5, 0.5)) }.play;
 ```
 
-Der findes mange andre filtre, fx `Comb` og `Allpass`, men de anvendes typisk til specielle formål som rumklangsdesign og feedbackbaserede effekter. 
+Der findes mange andre filtre, fx `Comb` og `Allpass`, men de anvendes typisk til specielle formål som rumklangsdesign og feedbackbaserede effekter.

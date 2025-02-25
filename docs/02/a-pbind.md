@@ -22,12 +22,23 @@ Nøglen i Pbind'en ovenfor her er altså den tekstbid, der starter med \ - `\deg
 
 ## Tonehøjde i Pbind
 
-Til at notere tonehøjder bruger vi primært nøglerne
+Til at notere tonehøjder anbefaler jeg, at man (til tonal musik) anvender følgende nøgler:
 
-- `\degree` - skalatrin
-- `\scale` - skala
-- `\octave` - oktav
-- `\root` - toneart
+`\degree`
+
+:   Angiver *skalatrin*, hvor 0 er det første trin (fx tonen c i en C-dur skala).
+
+`\scale`
+
+:   Angiver *skala*, valgt med fx `Scale.minor` eller angivet som en liste bestående af intervaller. `Scale.major` er standardværdien. For skalavalgmuligheder, kør `Scale.directory;`
+
+`\octave`
+
+:   Angiver hvilken MIDI-oktav, tonen findes i.
+
+`\root`
+
+:   Skalaens grundtone, målt i antal halvtoners afstand fra c. Dvs. 0 er c, 1 er cis, 2 er d osv. Dette kan også være negative tal, dvs. -3 svarer til a.
 
 ```sc title="Skalatrin, skala, oktav og grundtone"
 ( 
@@ -41,9 +52,7 @@ Til at notere tonehøjder bruger vi primært nøglerne
 ~eksempel.stop;
 ```
 
-For skalavalgmuligheder, kør `Scale.directory;`
-
-Man kan også vælge at angive tonehøjde på andre abstraktionsniveauer - med MIDI-tal eller oscillatorfrekvens:
+Man kan også vælge at angive tonehøjde på andre abstraktionsniveauer - med MIDI-tal (nøglen `\midinote`) eller oscillatorfrekvens (nøglen `\freq`):
 
 ```sc title="Alternative nøgler til angivelse af tonehøjde"
 ~eksempel = Pbind(\midinote, 60).play;  // c
@@ -53,8 +62,13 @@ Man kan også vælge at angive tonehøjde på andre abstraktionsniveauer - med M
 
 Kromatisk og modal transponering kan angives med:
 
-- `\mtranspose` - modal transponering, dvs. parallelføring inden for skalaen
-- `\ctranspose` - kromatisk transponering, dvs. halvtonetrin uafhængigt af skala
+`\mtranspose`
+
+:   Modal transponering, dvs. parallelføring inden for skalaen.
+
+`\ctranspose`
+
+:   Kromatisk transponering, dvs. halvtonetrin uafhængigt af skala.
 
 ```sc title="Modal og kromatisk transponering"
 (
@@ -74,10 +88,15 @@ Kromatisk og modal transponering kan angives med:
 
 ## Varighed, frasering og timing
 
-Til at notere rytmik bruger vi primært nøglerne `\dur` og `\legato`
+Til at notere rytmik bruger vi primært følgende nøgler:
 
-- `\dur` - tidsinterval mellem på hinanden følgende anslag, målt i taktslag (ikke sekunder!)
-- `\legato` - hvor længe en tone klinger, målt relativt i forhold til `\dur` (>1 giver legato, <1 giver staccato)
+`\dur`
+
+:   Tidsinterval mellem på hinanden følgende anslag, målt i taktslag (ikke sekunder).
+
+`\legato`
+
+:   Hvor længe en tone klinger, målt relativt i forhold til `\dur`. Værdier større end 1 giver legato og værdier mindre end 1 giver staccato.
 
 ```sc title="Rytmik og frasering"
 ~eksempel = Pbind(\dur, 1).play;        // tidsinterval 1 taktslag, dvs. en 4.-del

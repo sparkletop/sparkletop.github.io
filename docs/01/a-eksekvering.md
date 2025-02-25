@@ -18,7 +18,7 @@ rrand(0, 100);
 "Vekseldominant".postln;
 ```
 
-## Mere end én instruks ad gangen
+## Flere instrukser ad gangen
 
 Hvis vi gerne vil gøre mere end én ting ad gangen, kan vi adskille vores instrukser ved hjælp af semikolon:
 
@@ -39,7 +39,7 @@ rrand(50, 100).postln;
 
 Læg mærke til hvordan begge linjer i kodeblokken ovenfor bliver udført så hurtigt efter hinanden, at det stort set sker samtidigt.
 
-## Sæt gang i lydserveren
+## Fut i lydserveren
 
 For at kunne bruge programmering som et redskab til musikalsk komposition og lyddesign skriver vi ofte kildekode, som genererer lyd. I de tilfælde skal vi først starte SuperColliders lydserver. Den mest enkle måde at starte lydserveren på er at køre denne linje:
 

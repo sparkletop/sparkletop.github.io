@@ -34,42 +34,42 @@ Når lydfilen er indlæst i en `Buffer` under variabelnavnet `~sample`, kan vi b
 ~sample.duration;  // længde i sekunder
 ```
 
-## Afspilning med `PlayBuf`
+## Afspilning af samples med PlayBuf
 
 Den mest enkle metode til afspilning af samples er at bruge UGen'en `PlayBuf`. Her vises hvordan vi kan styre afspilningen med argumenter til `PlayBuf.ar`:
 
 ```sc title="PlayBuf-argumenter"
 (
 {
-	PlayBuf.ar(
-		// antal kanaler
-		numChannels: 1,
+    PlayBuf.ar(
+        // antal kanaler
+        numChannels: 1,
 
-		// buffer nummer / Buffer objekt
-		bufnum: ~sample,
+        // buffer nummer / Buffer objekt
+        bufnum: ~sample,
 
-		// afspilningshastighed - BufRateScale tager højde for mismatch mellem serverens og lydfilens respektive samplerates
-		rate: 1 * BufRateScale.kr(~sample),
+        // afspilningshastighed - BufRateScale tager højde for mismatch mellem serverens og lydfilens respektive samplerates
+        rate: 1 * BufRateScale.kr(~sample),
 
-		// reset-trigger, kan bruges til at angive spring til startposition
-		trigger: 1,
+        // reset-trigger, kan bruges til at angive spring til startposition
+        trigger: 1,
 
-		// startposition, målt i sample frames - BufFrames er det samplede antal sample frames i bufferen/lydfilen 
-		startPos: 0 * BufFrames.kr(~sample),
+        // startposition, målt i sample frames - BufFrames er det samplede antal sample frames i bufferen/lydfilen 
+        startPos: 0 * BufFrames.kr(~sample),
 
-		// loop - start forfra, når vi rammer slutningen af bufferen (0 = nej, 1 = ja)
-		loop: 0,
+        // loop - start forfra, når vi rammer slutningen af bufferen (0 = nej, 1 = ja)
+        loop: 0,
 
-		// doneAction - hvad sker der, når vi rammer den sidste sample frame i bufferen?
-		doneAction: Done.freeSelf
-	)
+        // doneAction - hvad sker der, når vi rammer den sidste sample frame i bufferen?
+        doneAction: Done.freeSelf
+    )
 }.play
 )
 ```
 
-Vi kan modulere flere af parametrene, fx afspilningshastighed, ved hjælp af andre UGens:
+Vi kan modulere flere af `PlayBuf`s parametre ved hjælp af andre UGens. For eksempel afspilningshastighed:
 
-```sc
+```sc title="Modulation af sampleafspilning med LFO"
 (
 {
     PlayBuf.ar(1, ~sample,
@@ -84,32 +84,34 @@ Vi kan modulere flere af parametrene, fx afspilningshastighed, ved hjælp af and
         loop: 1
     )
 }.play;
+)
 ```
 
 Med et triggersignal, her skabt af UGen'en `Impulse`, kan vi springe hen til den position i bufferen, som er angivet med argumentet `startPos`.
 
-```sc
+```sc title="Spring til position i sample"
 (
 // Fast startposition - midt i bufferen
 {
-	PlayBuf.ar(1, ~sample,
-		trigger: Impulse.kr(5),
-		startPos: 0.5 * BufFrames.kr(~sample),
+    PlayBuf.ar(1, ~sample,
+        trigger: Impulse.kr(5),
+        startPos: 0.5 * BufFrames.kr(~sample),
     )
 }.play;
 )
 
 (
 // Dynamisk startposition, moduleret af en LFO
+{
     PlayBuf.ar(1, ~sample,
-		trigger: Impulse.kr(5),
-		startPos: BufFrames.kr(~sample) * LFTri.kr(0.05).unipolar,
-	)
+        trigger: Impulse.kr(5),
+        startPos: BufFrames.kr(~sample) * LFTri.kr(0.05).unipolar,
+    )
 }.play
 )
 ```
 
-## Ekstra fleksibilitet med `BufRd`
+## Ekstra fleksibilitet med BufRd
 
 `BufRd` er mere fleksibel end `PlayBuf`, fordi den tillader, at vi styrer læsningen af data fra bufferen direkte med en anden UGen. Det svarer lidt til, at en pickupnål aflæser den lyd, som er indpræget i en vinylplade - bortset fra at vi med et bredt udvalg af UGens kan flytte nålen rundt på meget forskellig vis. Til at styre afspilningspositionen angiver vi en UGen under `BufRead.ar`'s argument `phase`.
 
@@ -118,13 +120,13 @@ Ofte anvendes UGen'en `Phasor`, som skaber en lineær rampe fra start- til slutv
 ```sc title="Sample-afspilning med BufRd og Phasor"
 (
 {
-	BufRd.ar(
-		numChannels: 2,
-		bufnum: ~sample,
-		// phase-argumentet er afspilningspositionen, målt i sample frames
-		phase: Phasor.ar(0, BufRateScale.kr(~sample), 0, BufFrames.kr(~sample)),
-		loop: 1
-	)
+    BufRd.ar(
+        numChannels: 2,
+        bufnum: ~sample,
+        // phase-argumentet er afspilningspositionen, målt i sample frames
+        phase: Phasor.ar(0, BufRateScale.kr(~sample), 0, BufFrames.kr(~sample)),
+        loop: 1
+    )
 }.play
 )
 ```
@@ -134,17 +136,17 @@ Man kan anvende mange forskellige UGens som alternativ til `Phasor`. Her moduler
 ```sc title="Envelope og tilfældighedsgenerator som pickupnål"
 (
 {
-	// envelopes kan bruges til at gennemløbe en buffer
-	var position = EnvGen.ar(Env.perc(0.1, 2)) * BufFrames.kr(~sample);
-	BufRd.ar(1, ~sample, position, 1);
+    // envelopes kan bruges til at gennemløbe en buffer
+    var position = EnvGen.ar(Env.perc(0.1, 2)) * BufFrames.kr(~sample);
+    BufRd.ar(1, ~sample, position, 1);
 }.play;
 )
 
 (
 {
-	// interpoleringen mellem værdier i LFNoise1 (de lineære segmenter i outputtet) bliver til forskellige afspilningshastigheder
-	var position = LFNoise1.ar(6).range(0, BufFrames.kr(~sample));
-	BufRd.ar(1, ~sample, position, 1);
+    // interpoleringen mellem værdier i LFNoise1 (de lineære segmenter i outputtet) bliver til forskellige afspilningshastigheder
+    var position = LFNoise1.ar(6).range(0, BufFrames.kr(~sample));
+    BufRd.ar(1, ~sample, position, 1);
 }.play;
 )
 ```

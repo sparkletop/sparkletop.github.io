@@ -4,41 +4,43 @@ tags:
 ---
 # Cheat sheet: Centrale UGens
 
-Inden du prøver eksemplerne herunder, er det en god idé at at aktivere oscilloskop og spektrumanalyse, så du kan se en visualisering af SuperColliders lydlige output. Flyt evt. vinduerne, så du kan se både bølgeform og frekvensspektrum.
+Start med at lære disse UGens at kende[^1]! Mens du eksperimenterer, kan du bmed fordel
 
-```sc
-s.scope;
-s.freqscope;
-```
+[^1]: Se også [Eli Fieldsteels liste over "essential UGens"](https://uofi.app.box.com/s/1bfva2kan3ntmgey2345goc73snjzpwt).
 
-Start med at lære disse UGens at kende!
+## Almindelige oscillatorer og støjgeneratorer
 
-Udvalget af UGens herunder er kraftigt inspireret af [Eli Fieldsteels liste over "essential UGens"](https://uofi.app.box.com/s/1bfva2kan3ntmgey2345goc73snjzpwt).
+Fire almindelige bølgeformer[^2].
 
-## Almindelige bølgeformer
+[^2]: `SinOsc`, `Saw` og `Pulse` er (i modsætning til fx `LFTri`) "band limited". Det betyder, at de ikke skaber [aliasing (en form for digital "støj")](https://en.wikipedia.org/wiki/Aliasing), når de anvendes ved høje frekvenser.
 
-`SinOsc`, `Saw` og `Pulse` er "band limited". Det betyder, at de ikke skaber [aliasing (en form for digital "støj")](https://en.wikipedia.org/wiki/Aliasing) ved høje frekvenser.
-
-```sc title="Basale bølgeformer og støj"
+```sc title="Basale bølgeformer"
 // Sinusbølger, savtakkede og firkantede bølger:
 {SinOsc.ar(440) * 0.1}.play;
 {Saw.ar(440) * 0.1}.play;
 {Pulse.ar(440) * 0.1}.play;
+{LFTri.ar(440) * 0.1}.play;
+```
 
-// Pulse og den beslægtede UGen VarSaw kan begge indstilles med hensyn til duty cycle, dvs. symmetri/assymmetri i bølgeformen:
+`Pulse` og den beslægtede UGen `VarSaw` kan begge indstilles med hensyn til duty cycle, dvs. symmetri/assymmetri i bølgeformen.
+
+```sc title="Bølgeformer med variabel duty cycle"
 {VarSaw.ar(440, 0.1) * 0.1}.play;
 {VarSaw.ar(440, 0.5) * 0.1}.play;
 {Pulse.ar(440, 0.1) * 0.1}.play;
 {Pulse.ar(440, 0.5) * 0.1}.play;
+```
 
-// Hvid og pink støj:
+Der findes også forskellige støjgeneratorer, hvoraf vi primært bruger disse to:
+
+```sc title="Hvid og pink støj"
 {WhiteNoise.ar * 0.01}.play;
 {PinkNoise.ar * 0.1}.play;
 ```
 
-## LFO-egnede UGens 
+## LFO-egnede UGens
 
-Disse UGens (samt SinOsc) er velegnede som LFO'er. Men de kan sagtens benyttes over 20Hz.
+Disse UGens (samt `SinOsc`) er velegnede som LFO'er. Men de kan sagtens benyttes over 20Hz.
 
 ```sc title="LFO-egnede UGens"
 // Savtakket, trekantet/pyramideformet og firkantede bølgeformer. 
@@ -127,4 +129,3 @@ Triggere genererer impulser. En impuls bruges typisk til at udløse noget, fx ig
 // Out - sender signal ud af en Synth.
 {Out.ar(1, SinOsc.ar * 0.1)}.play;
 ```
-

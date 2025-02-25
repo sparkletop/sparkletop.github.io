@@ -56,7 +56,7 @@ Der kan eksempelvis gøres brug af følgende virkemidler:
     ```
 
 === "Mulighed 2: Med SuperColliders standardlyd"
-    
+
     ```sc title="En minimalistisk kompositionsopgave"
     (
      // Vælg nogle få toner og nodeværdier
@@ -76,4 +76,3 @@ Der kan eksempelvis gøres brug af følgende virkemidler:
     ).play;
     )
     ```
-

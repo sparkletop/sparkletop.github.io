@@ -16,16 +16,16 @@ En simpel "klarinet"-lyd, hvor lydkilden udgøres af en kvadratisk bølgeform, d
 ```sc title="SynthDef til syntetisk klarinet"
 (
 SynthDef(\clarinet, {
-	arg freq = 440, gate = 1;
+    arg freq = 440, gate = 1;
 
-	// lydkilde: firkantet bølgeform med mulighed for glissando via .lag
-	var oscillator = Pulse.ar(freq.lag(0.025));
-	// resonant low pass-filter anvendes til klanglig justering
-	var sig = RLPF.ar(oscillator, 1200, 0.5);
+    // lydkilde: firkantet bølgeform med mulighed for glissando via .lag
+    var oscillator = Pulse.ar(freq.lag(0.025));
+    // resonant low pass-filter anvendes til klanglig justering
+    var sig = RLPF.ar(oscillator, 1200, 0.5);
 
-	// lydstyrke styres med en envelope
-	sig = sig * EnvGen.kr(Env.asr, gate, doneAction: Done.freeSelf) * 0.1;
-	Out.ar(0, sig.dup);
+    // lydstyrke styres med en envelope
+    sig = sig * EnvGen.kr(Env.asr, gate, doneAction: Done.freeSelf) * 0.1;
+    Out.ar(0, sig.dup);
 }).add;
 )
 ```
@@ -35,9 +35,9 @@ Hvis vi skal "spille på" denne SynthDef og ønsker at fastholde idéen om en kl
 ```sc title="Et par hoppende skalaløb"
 (
 Pmono(\clarinet,
-	\degree, Pseq([0, 1, 2, 3, 4, 5, 6, 7], 2),
-	\octave, Pseq([4, 5], inf).stutter(2),
-	\dur, 0.15,
+    \degree, Pseq([0, 1, 2, 3, 4, 5, 6, 7], 2),
+    \octave, Pseq([4, 5], inf).stutter(2),
+    \dur, 0.15,
 ).play;
 )
 ```
@@ -49,36 +49,35 @@ Simpel 80'er-strings.
 ```sc title="SynthDef til firser-strings"
 (
 SynthDef(\stringz, {
-	arg freq = 440, gate = 1;
+    arg freq = 440, gate = 1;
 
-	// lydkilde: to savtakkede bølgeformer, den ene med en smule detuning
-	var oscillator = Saw.ar(freq) + Saw.ar(freq * 0.9971);
+    // lydkilde: to savtakkede bølgeformer, den ene med en smule detuning
+    var oscillator = Saw.ar(freq) + Saw.ar(freq * 0.9971);
 
-	// cutoff styres af oscillatorens frekvens samt af en envelope
-	var cutoff = freq * EnvGen.kr(
-		Env.adsr(0.2, 0.7),
-		gate,
-		levelBias: 1
-	);
-	var sig = RLPF.ar(oscillator, cutoff, 0.4);
+    // cutoff styres af oscillatorens frekvens samt af en envelope
+    var cutoff = freq * EnvGen.kr(
+        Env.adsr(0.2, 0.7),
+        gate,
+        levelBias: 1
+    );
+    var sig = RLPF.ar(oscillator, cutoff, 0.4);
 
-	// lydstyrke styres med en separat ADSR-envelope
-	sig = sig * EnvGen.kr(Env.adsr(0.2, 0.4), gate, doneAction: Done.freeSelf) * 0.1;
-	Out.ar(0, sig.dup);
+    // lydstyrke styres med en separat ADSR-envelope
+    sig = sig * EnvGen.kr(Env.adsr(0.2, 0.4), gate, doneAction: Done.freeSelf) * 0.1;
+    Out.ar(0, sig.dup);
 }).add;
 )
 ```
 
 For at få et indtryk af de fyldige lydmuligheder kan vi afspille et par akkorder med vores syntetiske strygerlyd:
 
-```sc title="En akkordrække med firser-strings" 
+```sc title="En akkordrække med firser-strings"
 (
 Pbind(
-	\instrument, \stringz,
-	\degree, [-7, 0, 2, 4, 6, 8],
-	\mtranspose, Pseq([3, 1, 0]),
-	\dur, 2,
+    \instrument, \stringz,
+    \degree, [-7, 0, 2, 4, 6, 8],
+    \mtranspose, Pseq([3, 1, 0]),
+    \dur, 2,
 ).play;
 )
 ```
-

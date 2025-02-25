@@ -34,34 +34,22 @@ TempoClock.tempo.postln;
 ## Find og ret syv fejl
 
 - Find og ret fejlene i de syv eksempler herunder
-- Ryd SuperColliders post window (Cmd/Ctrl+Shift+p) inden du starter med et nyt eksempel         
+- Ryd SuperColliders post window (Cmd/Ctrl+Shift+p) inden du starter med et nyt eksempel
 - Læs fejlmeddelelsen, før du retter fejlen
 - Forklar i en kommentar for hver fejl hvad du har rettet og hvad problemet bestod i
 
 ``` sc title="Find 7 fejl"
 ~alder = 32,5;
-
 ~skala = Scale.locrian; \\ her gemmer jeg min yndlingsskala
-
 (
 10.postln
 20.postln
 )
-
 (
-~resultat = 4 * 10;
+~Resultat = 4 * 10;
 ~Resultat.postln;
 )
-
-(
-var Rytme = [1/4, 1/8, 1/8];
-Rytme.postln;
-)
-
 "57".midicps;
-
-(
-~svar = 10 * (4 + (2);
+~svar = 10 * (4 + (2 * 1.5);
 ~svar.postln;
-)
 ```

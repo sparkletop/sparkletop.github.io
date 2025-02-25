@@ -15,7 +15,7 @@ Her i første omgang fokuserer vi på at modulere amplituden for outputtet fra e
 
 Når vi ønsker at modulere outputtet fra en UGen på denne måde, kan vi ganske enkelt gange outputtet med modulatoren. Hvis vi fx ganger outputtet fra en `SinOsc` med 0.1, nedskalerer vi amplituden:
 
-```sc
+```sc title="Modulation af UGen-output"
 (
 {[
     SinOsc.ar(440),
@@ -70,7 +70,7 @@ Ved en UGen, der generer en tone, som vi skal kunne høre, vil det typisk være 
 
 ==}
 
-### Skalering fra minimum til maksimum med `.range` og `.exprange`
+### Skalering fra minimum til maksimum med .range og .exprange
 
 Her kan vi med fordel bruge to UGen-methods, som hedder `.range` og `.exprange`. I begge tilfælde angiver man et minimum og et maksimum, og oscillatorens output skaleres så henholdsvis lineært og eksponentielt til at bevæge sig mellem disse to værdier. Bemærk her Y-aksen:
 
@@ -91,7 +91,7 @@ Det er vigtigt, at vi bruger dette på modulatoren - ikke på lydkilden:
 )
 ```
 
-### Intervaltransponering med `.midiratio`
+### Intervaltransponering med .midiratio
 
 Sitationer hvor man ønsker at modulere en tonefrekvens, så den bevæger sig op og ned på en tonalt velklingende måde, kan være lidt tricky. Vi tænker nemlig normalt toner i intercaller som sekunder, tertser, kvarter, kvinter, oktaver osv. Skal vi flytte et a, der klinger ved 440Hz, en oktav op, skal vi gange med 2 - så får vi a'et ved 880Hz. Men hvad hvis vi skal flytte en terts op? En kvarttone ned? Eller et antal [cent](https://en.wikipedia.org/wiki/Cent_(music)) op eller ned?
 
@@ -124,7 +124,7 @@ Her kommer omregnings-method'en `.midiratio` os til undsætning. Her kan vi omre
 
 Her er et eksempel, hvor vi anvender `.midiratio` sammen med `.unipolar` til at modulere en lille terts op:
 
-```sc title".midiratio kombineret med .unipolar"
+```sc title=".midiratio kombineret med .unipolar"
 (
 {
     var freq = 440;
@@ -133,5 +133,3 @@ Her er et eksempel, hvor vi anvender `.midiratio` sammen med `.unipolar` til at 
 }.play;
 )
 ```
-
-
