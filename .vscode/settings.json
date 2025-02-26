@@ -82,11 +82,13 @@
         "MD046": false,
         "MD049": { "style": "asterisk" },
         "MD050": { "style": "asterisk" },
+        "MD010": { "spaces_per_tab": 4 }
     },
     "[markdown]": {
-        "editor.insertSpaces": true,
-        "editor.tabSize": 4,
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true
     },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.markdownlint": "explicit"
+    }
 }
