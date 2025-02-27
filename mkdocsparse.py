@@ -148,7 +148,7 @@ def preprocess_mkdocs_markdown(md_content: str):
         Counter.mermaids += 1
     
     # add a label for subsections to be postprocessed
-    headers = re.finditer(r"^#{2,10}\s*(.*)$", md_content, re.MULTILINE)
+    headers = re.finditer(r"^#{1,10} +(.*)$", md_content, re.MULTILINE)
     for h in headers:
         match, name = h.group(0), h.group(1)
         label = f"\n{ET}LABEL:{section_slugify(name)}{ET}\n"
@@ -171,7 +171,7 @@ def postprocess_tex(tex: str):
     tex = re.sub(f"{ET}Cheat sheets{ET}", r'\\pagecolor{cheatsheet}', tex)
     tex = re.sub(ET + r"faHeadphones\*" + ET, r'\\faHeadphones*', tex)
     tex = re.sub(f"{ET}faLink{ET}", r'\\faLink', tex)
-    tex = re.sub(f"{ET}LABEL:(.*?){ET}", r'\\label{\1}', tex)
+    tex = re.sub(ET + r"LABEL:([-\w]+)" + ET, r'\\label{\1}', tex)
     
     # show section coloring in preface
     tex = tex.replace('\\item[Cheat sheets]', '\\item[\\colorbox{cheatsheet}{Cheat sheets}]')
@@ -232,9 +232,8 @@ def postprocess_tex(tex: str):
         else:
             label = filename
         
-        tex = tex.replace(link[0], link[1] + r" (se afsnit \ref{" + label + r"})")
+        tex = tex.replace(link[0], link[1] + r" (se \ref{" + label + r"})")
         
-            
     return tex
 
 def convert_section(md_file_path: str):
@@ -254,18 +253,19 @@ def convert_section(md_file_path: str):
 
     # add a label to each section for use in cross references
     md_filename = os.path.basename(md_file_path)
+    section_page_url = BASE_URL + md_file_path.replace('./docs/', '').replace('.md', '/')
     tex = re.sub(
         r"(\\section{.+?}\n)",
-        r"\1\\label{" + md_filename + r"}\n",
+        r"\1\\label{" + md_filename + r"}%" + section_page_url + "\n",
         tex
     )
+
     # for each code block, add a link to the web version
     code_block_captions = re.finditer(r"\\caption\{(.+?)\}\s*\\end\{listing\}", tex, re.M)
     for num, block in enumerate(code_block_captions):
         Counter.code_blocks += 1
         segment = block.group(0)
-        section_page_url = md_file_path.replace('./docs/', '').replace('.md', '/')
-        url = BASE_URL + section_page_url + r"\#__code_" + str(num)
+        url = section_page_url + r"\#__code_" + str(num)
         tex_link = '\\href{' + url + '}{\\faLink}'
         caption_text = block.group(1)
         new_caption_text = caption_text + '\\hfill' + tex_link
@@ -304,9 +304,6 @@ def make_chapter(chapter_title: str, md_files: list, current_chapter: int):
     except FileNotFoundError:
         print(f"- Creating {tex_file_path} (no previous document)")
         write_tex_file()
-
-    # return the input statement for the new TeX chapter file
-    return r"\input{" + join('chapters', tex_filename) + "}"
 
 def check_included(file_path, ignore_files, solo_files):
     filename = os.path.basename(file_path)
