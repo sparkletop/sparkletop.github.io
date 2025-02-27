@@ -111,6 +111,7 @@ def preprocess_mkdocs_markdown(md_content: str):
         md_content = md_content.replace(abstract.group(0), intro + '#')
 
     # escape audio examples
+    md_content = re.sub(r"!\[type:audio\]\(.+?\)\n\/{3} caption\n {4}attrs: \{id: (\w+?)\}\n(.*)\n\/{3}", ET + 'CAPTIONEDAUDIO:' + r"\1:\2" + ET, md_content, re.M)
     md_content = re.sub(r"!\[type:audio\]\((.+?)\)", ET + 'AUDIO:' + r"\1" + ET, md_content)
 
     # process mermaid diagrams
@@ -193,6 +194,14 @@ def postprocess_tex(tex: str):
         tex = tex.replace(escaped_string, '')
         
         Counter.audio_examples += 1
+    
+    audio_files = re.finditer(r"\\label\{.+?\.md\}%(.*)\n(?:.*\n)(?:.*\n){,50}" + ET + r"CAPTIONEDAUDIO:(.+?):(.+?)" + ET, tex, re.M)
+    for f in audio_files:
+        escaped_line = re.search(ET + r"CAPTIONEDAUDIO:(.+?):(.+?)" + ET, f[0]).group(0)
+        page_url, id, title = f[1], f[2], f[3]
+        example_url = '#'.join([page_url, id])
+        tex = tex.replace(escaped_line, title + ": \\href{" + example_url + "}{\\faHeadphones*}")
+    
 
     # Replace \mintinline with \texttt in footnotes
     fnotes = re.finditer(r"\\footnote{.+}", tex, re.MULTILINE)
