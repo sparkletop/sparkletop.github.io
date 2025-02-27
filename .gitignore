@@ -40,3 +40,4 @@ _minted*
 *.xdv
 *.lol
 *.bcf-*
+*-SAVE-ERROR
