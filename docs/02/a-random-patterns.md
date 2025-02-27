@@ -30,37 +30,37 @@ Blandt de af SuperColliders indbyggede patterns, som på forskellig vis generere
 
 :   Genererer tilfældige tal mellem et minimum (`lo`) og et maksimum (`hi`). Kendetegnet for Pwhite er, at alle tal mellem disse to grænser er lige sandsynlige. Anvendes typisk når man ønsker "helt" tilfældige værdier med mulighed for store og små spring, fx ved atonal eller arytmisk komposition.
     I `Pwhite(0, 10, 5)` er 0 den nedre grænse, 10 den øvre grænse, og 5 antallet af genererede værdier.
-    ![10.000 værdier genereret med `Pwhite(0, 100, 10000)`](../media/figures/pwhite.png){ width="80%" }
+    ![10.000 værdier genereret med Pwhite(0, 100, 10000)](../media/figures/pwhite.png){ width="80%" }
 
 `Pexprand(min, max, antal)`
 
 :   Tal tættest på den nedre grænse er mest sandsynlige, da sandsynligheden svarer til en [eksponentialfordeling](https://en.wikipedia.org/wiki/Exponential_distribution). Pexprand anvendes typisk hvor man ønsker en Pwhite-lignende fordeling, men inden for fx frekvens eller lydstyrke. Disse parametre skal følge en eksponentiel fordeling i stedet for en lineær fordeling, hvis vi skal tilnærme os, hvordan de perciperes af en menneskelig lytter.
 
-    ![10.000 værdier genereret med `Pexprand(0.01, 100, 10000)`](../media/figures/pexprand.png){ width="80%" }
+    ![10.000 værdier genereret med Pexprand(0.01, 100, 10000)](../media/figures/pexprand.png){ width="80%" }
 
 `Phprand(min, max, antal)`
 
 :   Tal tættest på en øvre grænse er mest sandsynlige.
-    ![10.000 værdier genereret med `Phprand(0, 100, 10000)`](../media/figures/phprand.png){ width="80%" }
+    ![10.000 værdier genereret med Phprand(0, 100, 10000)](../media/figures/phprand.png){ width="80%" }
 
 `Plprand(min, max, antal)`
 
 :   Tal tættest på en nedre grænse er mest sandsynlige. Anvendes, hvor man kun ønsker få værdier tæt på en øvre grænse.
-    ![10.000 værdier genereret med `Plprand(0, 100, 10000)`](../media/figures/plprand.png){ width="80%" }
+    ![10.000 værdier genereret med Plprand(0, 100, 10000)](../media/figures/plprand.png){ width="80%" }
 
 `Pgauss(mean: 0.0, dev: 1, length: inf)`
 
 :   Tal tæt på en middelværdi er mere sandsynlige end tal, der ligger længere væk. Baseret på det, man kalder [normalfordelingen/Gaussfordelingen](https://da.wikipedia.org/wiki/Normalfordeling). Vi bruger fx Pgauss hvis vi ønsker, at de fleste værdier skal ligge i omegnen af et centrum, fx midt i stereobilledet eller en skala, men hvor der kan være nogle få vildskud.
 
     Med `Pgauss(10, 3, 5)` er 10 middelværdien, 3 er standardafvigelsen, og 5 er antallet af genererede værdier.
-    ![10.000 værdier genereret med `Pgauss(50, 17, 10000)`](../media/figures/pgauss.png){ width="80%" }
+    ![10.000 værdier genereret med Pgauss(50, 17, 10000)](../media/figures/pgauss.png){ width="80%" }
 
 `Pbrown.new(lo: 0.0, hi: 1.0, step: 0.125, length: inf)`
 
 :   Genererer ligesom Pwhite tilfældige værdier mellem et minimum og et maksimum, men med en begrænset afstand mellem to på hinanden følgende værdier. Algoritmen kendes også som en [random walk/drunkard's walk](https://en.wikipedia.org/wiki/Random_walk). Pbrown bruges, når man ønsker en gradvis udvikling i en strøm af tilfældigt valgte værdier, dvs. hvor springene mellem de enkelte skridt er begrænsede. Det kunne fx være ved trinbevægelser i melodier eller ved en cutoff-frekvens, som skal bevæge sig mere organisk mellem forskellige værdier.
 
     I `Pbrown(0, 10, 3, 5)` er 0 den nedre grænse, 10 den øvre grænse, 3 det maksimale spring fra den ene værdi til den næste, og 5 antallet af genererede værdier.
-    ![10.000 værdier genereret med `Pbrown(0, 100, 2, 10000)`](../media/figures/pbrown.png){ width="80%" }
+    ![10.000 værdier genereret med Pbrown(0, 100, 2, 10000)](../media/figures/pbrown.png){ width="80%" }
 
 ## Listebaserede generatorer
 
