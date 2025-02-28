@@ -79,6 +79,7 @@ def get_matching_brackets(code: str):
 def section_slugify(url: str):
     slug = re.sub(r"\s+", '-', url)
     slug = re.sub(r"[^-\w]", '', slug)
+    slug = re.sub(r"-+", '-', slug)
     slug = slug.lower()
     return slug
 
