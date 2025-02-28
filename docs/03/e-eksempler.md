@@ -3,26 +3,27 @@ tags:
     - Øvelser
 ---
 
-# Analyse af pattern-kompositioner
+# Øvelse: Analyse og videreudvikling af kompositioner
 
-Denne øvelse handler om at *læse*, *undersøge*, *forstå* og *variere*/*eksperimentere* med eksempler på patternbaseret komposition. Du vil opleve en vis redundans i forhold til forrige kapitel, hvilket er helt med vilje; det er vigtigt at have styr på det grundlæggende, før man kan gå videre til det mere avancerede.
+I denne øvelse skal du analysere og viderudvikle en række eksempler på pattern-baseret komposition. Øvelsen skal gøre dig fortrolig med de teknikker, der er omtalt tidligere i bogen, da vi her anvender de introducerede teknikker i en kompositorisk sammenhæng.
 
-Når du besvarer spørgsmålene, kan disse tricks være en god hjælp til at forstå hvad der foregår:
+Når du undersøger, hvordan teknikkerne fungerer, kan disse tricks være en god hjælp til at forstå hvad der foregår:
 
-- Brug `.trace` til at tjekke outputtet fra forskellige patterns, fx `Pwhite(0, 5).trace`.
-- Brug SuperColliders dokumentation - sæt cursoren ved et pattern-navn og tast Ctrl/Cmd-D. Scroll herefter ned til bunden af den pågældendedokumentationsside for at se eksempler på hvordan det pågældende pattern fungerer.
+- Brug method'en `.trace` til at vise outputtet fra forskellige patterns i post window, fx `Pwhite(0, 5).trace`.
+- Brug SuperColliders dokumentation - sæt cursoren ved et pattern-navn og tast Ctrl-/Cmd-D. Scroll herefter ned til bunden af den pågældende dokumentationsside for at se eksempler på hvordan det pågældende pattern fungerer.
 - Eksperimentér med at ændre på nogle af værdierne for at få en fornemmelse af, hvordan teknikkerne fungerer.
+
+Lydeksemplerne her under er realiseret ved at bruge den angivne Pbind til at sende MIDI-meddelelser til en DAW og generere lyden med instrumentplugins. Det fremgår under hvert eksempel hvilket plugin, der er anvendt. De kodelinjer, som skal til for at realisere kompositionerne på denne måde, fremgår af [et tidligere afsnit om pattern-baseret MIDI-komposition](a-patterns-midi.md).
 
 ## Sammensætning af nøgler og patterns
 
-1. Notér for hver linje i `Pbind`'en: Hvilken funktion har de enkelte nøgler (`\octave`, `\root` osv.)? Jf. [forrige kapitel](../02/a-pbind.md).
-1. Hvilken effekt opnår man ved at kombinere `Pwhite` og `.stutter`?
-1. Variér og eksperimentér med mindst tre aspekter af kompositionen:
-    1. De valgte trin og nodeværdier
-    1. Den valgte skala
-    1. De valgte patterns
+- Undersøg følgende:
+  - Hvordan fungerer de enkelte nøgler (`\octave`, `\root`, `\mtranspose` osv.)? Slå evt. op i [forrige kapitel](../02/a-pbind.md).
+  - Hvordan kombineres tilfældighed og repetition under nøglerne `\mtranspose` og `\db`?
+- Eksperimentér med følgende:
+  - Alternative skalaer, nodeværdier, tonesekvenser og patterns
 
-```sc title="Øvelse: Nøgler"
+```sc title="Sammensætning af nøgler og patterns"
 (
 TempoClock.tempo = 120/60;
 
@@ -33,7 +34,7 @@ Pbind(
     \root, 2,
     \scale, Scale.lydian,
     \degree, Pseq(~trin, inf),
-    \mtranspose, Pwhite(-3, 3).stutter(10),
+    \mtranspose, Pwhite(-3, 3).stutter(~trin.size + 2),
 
     \dur, Pseq(~nodevaerdier, inf) * 4,
     \legato, 1.2,
@@ -46,14 +47,9 @@ Pbind(
 
 ## Skala-udforskning med Pbrown
 
-1. Besvar: Hvad er forskellen på `Pbrown` og `Pwhite`?
-1. Besvar: Hvilken funktion har nøglen `\ctranspose`?
-1. Variér og eksperimentér med mindst tre aspekter af kompositionen:
-    1. De valgte trin og nodeværdier
-    1. Den valgte skala
-    1. De valgte patterns
+Bemærk her forskellen på `Pbrown` og `Pwhite` (sidsnævnte blev anvendt ovenfor) samt anvendelsen af nøglen `\ctranspose`.
 
-```sc title="Øvelse: Skala-udforskning med Pbrown"
+```sc title="Skala-udforskning med Pbrown"
 (
 TempoClock.tempo = 80 / 60;
 
@@ -66,14 +62,17 @@ Pbind(
 )
 ```
 
+Afledte kompositioner kan eksperimentere med andre skalaer og patterns.
+
 ## Pentatone mønstre
 
-1. Beskriv forholdet mellem tilfældighed og kompositorisk struktur i denne korte komposition.
+Denne korte søger også en kombination af tilfældighed og struktur.
+
 1. Skriv to variationer af kompositionen:
     1. Én version, som har en højere grad af tilfældighed
     1. Én version, som har en højere grad af struktur og gentagelse
 
-```sc title="Øvelse: Pentatone mønstre"
+```sc title="Pentatone mønstre"
 (
 TempoClock.tempo = 140 / 60;
 Pbind(
@@ -90,7 +89,7 @@ Pbind(
 )
 ```
 
-## Rytmiserede og dynamiserede akkorder
+## Rytmiserede og dynamiske akkorder
 
 1. Besvar: Hvilken effekt har kombinationerne af `.stutter` og `.repeat` på outputtet fra de forskellige patterns?
 1. Besvar: Hvad betyder `Array.interpolation(16, -20, -10)`?
@@ -98,7 +97,7 @@ Pbind(
     1. Tilføj mindst én akkord til `Pwrand` (husk, at sandsynlighederne `[0.9, 0.1]` skal svare til antallet af valgmuligheder og tilsammen skal give 1)
     1. Erstat `Pxrand` med et [listebaseret pattern](../02/a-random-patterns.md#listebaserede-generatorer) efter eget valg, og notér hvilken forskel dette gør
 
-```sc title="Øvelse: Rytmiserede og dynamiserede akkorder"
+```sc title="Rytmiserede og dynamiske akkorder"
 (
 TempoClock.tempo = 120 / 60;
 
@@ -120,10 +119,11 @@ Pbind(
 
 ## Korte, rytmiske sekvenser
 
-1. Besvar: I dette eksempel kan man argumentere for, at der arbejdes med en kombination af tilfældighed og genkendelighed. Hvilke teknikker resulterer i skabelsen af balance mellem det tilfældige og det genkendelige?
-1. Skriv en ny komposition, som er inspireret af kildekoden her samt din besvarelse af opgaverne ovenfor.
+I dette eksempel kan man argumentere for, at der arbejdes med en kombination af tilfældighed og genkendelighed. Undersøg hvilke teknikker, der i dette tilfælde skaber balance mellem det tilfældige og det genkendelige.
 
-```sc title="Øvelse: Korte, rytmiske sekvenser"
+Skriv en ny komposition, som er inspireret af kildekoden her samt din besvarelse af opgaverne ovenfor.
+
+```sc title="Korte, rytmiske sekvenser"
 (
 TempoClock.tempo = 85 / 60;
 ~melodi = Pbind(

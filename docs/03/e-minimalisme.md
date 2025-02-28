@@ -7,7 +7,7 @@ tags:
 
 Denne øvelse går ud på at anvende patterns til at skabe en enkel, minimalistisk komposition.
 
-På dette trin i kurset kan øvelsen oplagt udføres som en komposition, der bliver realiseret over MIDI. På den måde kan man fx lade en standalone-synthesizer eller en DAW udføre klangdannelsen og koncentrere sig om de kompositionsmæssige aspekter som tonehøjde, rytmik og dynamik i SuperCollider. Se evt. [guiden til MIDI-output fra SuperCollider](../Ressourcer/art1-MIDI-output.md). Alternativt kan øvelsen sagtens udføres med standardlyden i SuperCollider. Senere i kurset designer vi egne lyde med [SynthDefs](../05/a-synthdef.md), som kan erstatte den lidt kedelige standardlyd.
+På dette trin i kurset kan øvelsen oplagt udføres som en komposition, der bliver realiseret over MIDI. På den måde kan man fx lade en standalone-synthesizer eller en DAW udføre klangdannelsen og koncentrere sig om de kompositionsmæssige aspekter som tonehøjde, rytmik og dynamik i SuperCollider. Se evt. [guiden til MIDI-output fra SuperCollider](a-patterns-midi.md). Alternativt kan øvelsen sagtens udføres med standardlyden i SuperCollider. Senere i kurset designer vi egne lyde med [SynthDefs](../05/a-synthdef.md), som kan erstatte den lidt kedelige standardlyd.
 
 Skriv en komposition ved hjælp af `Pbind`. Kompositionen skal:
 
@@ -28,7 +28,7 @@ Der kan eksempelvis gøres brug af følgende virkemidler:
 
 === "Mulighed 1: Med MIDI-output til DAW"
 
-    Følg først [vejledning til MIDI-output fra SuperCollider](../Ressourcer/art1-MIDI-output.md).
+    Følg først [vejledning til MIDI-output fra SuperCollider](a-patterns-midi.md).
 
     ```sc title="En minimalistisk kompositionsopgave"
     (

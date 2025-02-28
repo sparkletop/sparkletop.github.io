@@ -13,13 +13,27 @@ For at sende MIDI-signaler fra SuperCollider til et andet program på samme comp
 
 Når DAW eller synthesizer er klar til at modtage MIDI-signal, kører man i SuperCollider først `MIDIClient.init`. Dette får SuperCollider til at kontakte computerens MIDI-system og vise i post window hvilke MIDI-porte der er tilgængelige. Derfra noterer man navnet på den ønskede port og bus. Dem angiver man så, når man med `MIDIOut.newByName` opretter et output og gemmer dette under en global variabel.
 
-``` sc title="Opsætning af MIDI-output med MIDIClient og MIDIOut"
+``` sc title="Klargøring af MIDI med MIDIClient"
 // Start MIDI-kommunikation
 MIDIClient.init;
 
-// Opret MIDIOut til DAW/synthesizer
-~daw = MIDIOut.newByName("loopMIDI Port", "loopMIDI Port"); // Typisk portnavn på Windows
-~daw = MIDIOut.newByName("IAC Driver", "Bus 1"); // Typisk portnavn på Mac
+// I post window ses nu bl.a. to nyttige lister, MIDI Sources og MIDI Destinations
+// På Windows kan det fx se sådan ud:
+MIDI Sources:
+    MIDIEndPoint("loopMIDI Port", "loopMIDI Port")
+MIDI Destinations:
+    MIDIEndPoint("Microsoft GS Wavetable Synth", "Microsoft GS Wavetable Synth")
+    MIDIEndPoint("loopMIDI Port", "loopMIDI Port")
+```
+
+Da vi skal sende MIDI ud af SuperCollider, kigger vi på listen over MIDI Destinations i post window for at identificere den ønskede destination. Vi noterer os det, der står mellem parenteserne efter MIDIEndPoint:
+
+```sc title="Opret MIDIOut til DAW/synthesizer"
+// Typisk portnavn på Windows
+~daw = MIDIOut.newByName("loopMIDI Port", "loopMIDI Port");
+
+// Typisk portnavn på Mac
+~daw = MIDIOut.newByName("IAC Driver", "Bus 1");
 ```
 
 Så er vi klar til at sende MIDI-meddelelser fra SuperCollider. For at teste forbindelse kan vi sende en Note On- og en Note Off-meddelelse, hvorved vi kan se eller høre på modtageren, at der spilles en tone.
@@ -28,6 +42,8 @@ Så er vi klar til at sende MIDI-meddelelser fra SuperCollider. For at teste for
 ~daw.noteOn(chan: 0, note: 64, veloc: 80);
 ~daw.noteOff(chan: 0, note: 64);
 ```
+
+Hvis der ikke spiller en tone, kan du tjekke i SuperColliders post window om der skulle være nogen fejlmeddelelser, samt i den DAW/synthesizer, der skal modtage meddelelserne.
 
 ## Patterns og MIDI-begivenheder
 
@@ -52,7 +68,7 @@ Samler vi disse oplysninger, vil vi med nedenstående kildekode kunne høre en r
 ~komposition = Pbind(
     \type, \midi,
     \midiout, ~daw,
-    \chan, 0,    
+    \chan, 0,
 ).play;
 )
 ~komposition.stop;
@@ -60,13 +76,13 @@ Samler vi disse oplysninger, vil vi med nedenstående kildekode kunne høre en r
 
 ## Begrænsninger ved MIDI-protokollen
 
-Når vi komponerer med MIDI, er det væsentligt at notere sig dennes begrænsninger. Almindelige *Note On* og *Note Off*-meddeleser i MIDI indeholder blot information om hvilken MIDI-tone, det drejer sig om, samt en parameter, der kaldes *velocity*, hvilket ofte kobles med lydstyrke[^1]. Begge disse oplysninger befinder sig i intervallet 0-127. Samtidig kan vi styre, *hvornår* meddelelserne afsendes. Dermed har vi altså kontrol over følgende musikalske parametre:
+Når vi komponerer med MIDI, er det væsentligt at notere sig dennes begrænsninger. Almindelige *Note On* og *Note Off*-meddeleser i MIDI indeholder blot information om hvilken MIDI-tone, det drejer sig om, samt en parameter, der kaldes *velocity*, hvilket ofte kobles med lydstyrke[^1]. Begge disse oplysninger befinder sig i intervallet 0-127, så hvis vi manuelt skal sende disse beskeder (fx med `~daw.noteOn`), skal værdierne befinde sig inden for dette interval. Bruger vi Pbind, kan vi heldigvis anvende de fleste af de nøgler, vi kender, som `\degree`, `\octave`, `\db` osv. Samtidig kan vi styre, *hvornår* meddelelserne afsendes, og med `\legato`-nøglen hvor længe besemte toner skal "holdes". Dermed har vi altså kontrol over følgende musikalske parametre:
 
 - Tonehøjde, i form af MIDI-tonetal
 - Lydstyrke, i form af MIDI-velocity
-- Rytmik, i form af meddelelsernes timing
+- Rytmik og frasering, i form af meddelelsernes timing
 
-Vi har *ikke* kontrol over parametre som klang, envelope-parametre eller lignende. Dertil kan man alternativt anvende de såkaldte Control Change-meddelelser, som nysgerrige læsere kan undersøge nærmere [i SuperColliders dokumentation](https://doc.sccode.org/Tutorials/A-Practical-Guide/PG_08_Event_Types_and_Parameters.html#MIDI%20output).
+Vi har *ikke* kontrol over parametre som klang, envelope-parametre eller lignende. Dertil kan man evt. anvende de såkaldte Control Change-meddelelser, som nysgerrige læsere kan undersøge nærmere [i SuperColliders dokumentation](https://doc.sccode.org/Tutorials/A-Practical-Guide/PG_08_Event_Types_and_Parameters.html#MIDI%20output).
 
 [^1]: MIDI, der står for *Musical Instrument Digital Interface* blev oprindeligt udviklet af en sammenslutning af instrumentproducenter, som ønskede en fælles protokol for hvordan forskelligt musikudstyr kunne kommunikere med hinanden. Den prototypiske anvendelse af MIDI er således når man kobler et MIDI-keyboard sammen med en synthesizer for at kunne spille på denne via keyboardets tangenter. Deraf kom terminologien *velocity*, som oprindeligt vedrørte hvor hurtigt en tangent blev trykket ned og i dag stadig bruges, uagtet at der ikke altid er tale om en fysisk tangent, som trykkes ned.
 
@@ -87,4 +103,32 @@ Når vi bruger Pbind til at sende MIDI-output, sendes der automatisk Note On- og
 ).play;
 )
 ~komposition.stop;
+```
+
+Når man arbejder med patterns som MIDI-generator til at spille på et andet stykke software eller hardware, vil det hurtigt blive tydeligt, hvis vi stopper kompositionen i utide med Ctrl-/Cmd-punktum. Derved stopper vi nemlig SuperCollider i at afsende den sidste Note Off-meddelelse, hvilket betyder, at den sidste tonen vil blive hængende i DAW/synth (medmindre der er tale om et instrument, som ignorerer Note Off-meddelelser). For at undgå dette, gemmer vi `Pbind().play` under en variabel, og vi kan så efterfølgende stoppe forløbet med `.stop`, som vist ovenfor.
+
+## Automatisk opsætning af MIDI-nøgler med Pbindf
+
+Som vi har set [tidligere](a-sammensaetning.md#at-kombinere-pbinds-med-pbindf), kan vi bruge `Pbindf` til at definere en Pbind, der genbruges. Dette er bl.a. nyttigt, fordi vi på den måde kan definere vores MIDI-nøgler én gang og derefter undgå at skrive dem igen.
+
+```sc title="Genbrug af MIDI-nøgler med Pbindf"
+(
+~midi = Pbind(
+    \type, \midi,
+    \midiout, ~daw,
+    \chan, 0,
+);
+
+~klaver = Pbindf(~midi,
+    \degree, Pbrown(-2, 4, 3),
+    \dur, Prand([0.5, 1], inf),
+).play;
+~bas = Pbindf(~midi,
+    // Vi sender her på en anden MIDI-kanal
+    // ved at overskrive \chan-nøglen 
+    \chan, 1,
+    \octave, 3,
+    \degree, Pseq([1, -3], inf),
+).play;
+)
 ```
