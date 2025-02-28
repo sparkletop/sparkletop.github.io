@@ -4,7 +4,7 @@ tags:
 ---
 # Cheat sheet: Patterns
 
-## 11 primære patterns
+## 12 primære patterns
 
 ```sc title="6 listebaserede patterns"
 // Pseq - en fleksibel sequencer
@@ -41,6 +41,11 @@ Pbind(\degree, Pbrown(-7, 7, 2), \dur, 0.2).play;
 
 // Pseries - en trinvis udvikling med startværdi, interval og antal
 Pbind(\degree, Pseries(7, -2, 8)).play;
+```
+
+```sc title="1 catch-all pattern"
+// Pfunc - når vi vil bruge en funktion til at udregne værdier
+Pbind(\freq, Pfunc({ 220 + (220 * [0, 1.5, 2, 2.5, 3].choose) }), \dur, 0.2).play;
 ```
 
 ## 3 vigtige Pattern-methods

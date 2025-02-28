@@ -103,16 +103,16 @@ Her kommer omregnings-method'en `.midiratio` os til undsætning. Her kan vi omre
 0.midiratio.postln;     // --> 1
 
 // Oktav op
-12.midiratio.postln;    // --> næsten 2
+12.midiratio.postln;    // --> cirka 2
 
 // Oktav ned
-(-12).midiratio.postln; // --> næsten 0.5
+(-12).midiratio.postln; // --> cirka 0.5
 
 // Lille terts op
 3.midiratio.postln;     // --> 1.189207...
 
 // Kvint op
-7.midiratio.postln;     // --> næsten 1.5
+7.midiratio.postln;     // --> cirka 1.5
 
 // Kvarttone op
 0.5.midiratio.postln;   // --> 1.02902...
