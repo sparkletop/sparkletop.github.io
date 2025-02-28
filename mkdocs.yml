@@ -99,7 +99,7 @@ nav:
     - 03/a-eksempler.md
     - 03/e-minimalisme.md
   - 4. Oscillatorer og modulation:
-    - Oscillatorer i form af UGens: 04/a-ugens.md
+    - UGens og signalflow: 04/a-ugens.md
     - 04/a-skalering.md
     - 04/c-ugens.md
     - 04/c-ugen-methods.md
