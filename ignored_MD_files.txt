@@ -1,2 +1,5 @@
 lydeksempler.md
 gratis-samples.md
+oversigt.md
+a-beatslicing.md
+e-beatslicing.md
