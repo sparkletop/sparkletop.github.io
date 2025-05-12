@@ -36,11 +36,13 @@ Ekspansionen videreføres til UGens, som ligger senere i signalkæden. I eksempl
 )
 ```
 
+![type:audio](eksempel.ogg)
+
 Brug af multikanalslyd kan være en særdeles effektiv teknik inden for lyddesign. Den mest "håndholdte" tilgang kan være at notere arrays direkte, som i eksemplerne ovenfor.
 
 ## Detuning
 
-Oscillatorbanke er fx særdeles velegnede til at skabe "tykkere" klange gennem detuning. Her opretter vi fire forskellige oscillatorer, der klinger med næsten samme frekvens:
+Oscillatorbanke er fx særdeles velegnede til at skabe "tykkere" klange gennem detuning. Her opretter vi med multichannel expansion fire forskellige oscillatorer, der klinger med næsten samme frekvens:
 
 ```sc title="Detuning med .midiratio"
 (
@@ -89,4 +91,6 @@ Vi kan omsætte dette til et klingende eksempel ved at lade tonerne fremstille s
 )
 ```
 
-Denne teknik ligger sammen med den beslægtede multichannel expansion-effekt til grund for [additiv syntese](a-additiv.md).
+![type:audio](eksempel.ogg)
+
+Denne teknik ligger sammen med den beslægtede multichannel expansion-teknik til grund for [additiv syntese](a-additiv.md).

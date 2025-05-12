@@ -30,6 +30,8 @@ Den savtakkede bølgeform indeholder alle overtoner i overtonerækken. Her blot 
 )
 ```
 
+![type:audio](eksempel.ogg)
+
 ### Firkantet bølgeform
 
 Den firkantede bølgeform kan skabes med overtonerne med ulige numre, dvs. nr. 1 (grundtonen), nr. 3, nr. 5, nr. 7 osv. Overtonerne falder i amplitude, jo højere vi kommer op. Her blot de første 30 overtoner.
@@ -47,6 +49,8 @@ Den firkantede bølgeform kan skabes med overtonerne med ulige numre, dvs. nr. 1
 )
 ```
 
+![type:audio](eksempel.ogg)
+
 ### Trekantet bølgeform
 
 Den trekantede bølgeform kan ligesom den firkantede skabes med overtonerne med ulige numre, dvs. nr. 1 grundtonen, nr. 3, nr. 5, nr. 7 osv. Overtonerne falder i amplitude, jo højere vi kommer op, men med en lidt anden formel end ved den firkantede. Her blot de første 30 overtoner.
@@ -63,6 +67,8 @@ Den trekantede bølgeform kan ligesom den firkantede skabes med overtonerne med 
 }.play;
 )
 ```
+
+![type:audio](eksempel.ogg)
 
 ## Andre eksempler
 
@@ -85,6 +91,8 @@ En ikke-standard bølgeform, som består af hver tredje overtone:
 )
 ```
 
+![type:audio](eksempel.ogg)
+
 ### En klokkelyd
 
 Dette eksempel på en klokkelyd er løseligt baseret på et eksempel fra Curtis Roads[@roads2023, p. 123]. Lyden indeholder følgende sinustoner:
@@ -105,6 +113,8 @@ Dette eksempel på en klokkelyd er løseligt baseret på et eksempel fra Curtis 
 }.play;
 )
 ```
+
+![type:audio](eksempel.ogg)
 
 ### En mere kaotisk klokkelyd
 
@@ -128,5 +138,7 @@ Kør blokken flere gange for at høre variationsmulighederne. Justér evt. på p
 }.play;
 )
 ```
+
+![type:audio](eksempel.ogg)
 
 Se i øvrigt også afsnittet om [Rissets klokke](a-risset.md).

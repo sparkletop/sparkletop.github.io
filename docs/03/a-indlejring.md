@@ -35,6 +35,8 @@ Pbind(
 )
 ```
 
+![type:audio](../media/audio/pattern-sekvens.ogg)
+
 For overskuelighedens skyld kan vi opnå præcis det samme som ovenfor med variabler til de enkelte underpatterns. Nedenstående er umiddelbart lettere at læse:
 
 ```sc title="Omskrivning med variabler"
@@ -80,6 +82,8 @@ Pbind(
 ).play;
 )
 ```
+
+![type:audio](place.ogg)
 
 ## Patterns som variererende argumenter
 
@@ -129,3 +133,5 @@ Pbind(
 ).play;
 )
 ```
+
+![type:audio](plprand-frase.ogg)

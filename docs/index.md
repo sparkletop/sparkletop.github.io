@@ -1,4 +1,4 @@
-# Musik- og lydprogrammering
+# Komposition og lydproduktion med SuperCollider
 
 Dette website indeholder supplerende materialer til et grundlæggende kursus i musik- og lydprogrammering. Redskabet i kurset, [SuperCollider](https://supercollider.github.io), er gratis og open source. Websitet her er ikke en enkeltstående introduktion og bør suppleres med anden litteratur, fx Bruno Ruviaros udmærkede *[A Gentle Introduction to SuperCollider](https://ccrma.stanford.edu/~ruviaro/texts/A_Gentle_Introduction_To_SuperCollider.pdf)* og Eli Fieldsteels udmærkede videoserie *[SuperCollider Tutorials](https://www.youtube.com/playlist?list=PLPYzvS8A_rTaNDweXe6PX4CXSGq4iEWYC)*.
 
@@ -22,4 +22,4 @@ Blokke af kildekode her på siden kan let kopieres og indsættes i SuperCollider
 
 ## Licens
 
-Indholdet på disse sider er fremstillet af [Anders Eskildsen](https://vbn.aau.dk/en/persons/146493) og gjort tilgængelig for offentligheden under Creative Commons-licensen [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Indholdet på disse sider er fremstillet af [Anders Eskildsen](https://vbn.aau.dk/en/persons/146493) og gjort tilgængelig for offentligheden under Creative Commons-licensen [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).

@@ -9,7 +9,7 @@ tags:
 
     I SuperCollider udgør de såkaldte patterns et centralt redskab til generativ komposition. Dette kapitel introducerer først til patterns på et grundlæggende niveau, med særligt fokus på hvordan det centrale redskab `Pbind` knytter generative patterns til musikalske parametre som tonehøjde og rytmik. I [næste kapitel](../03/a-indlejring.md) går vi mere i dybden med hvordan patterns blandt andet ved hjælp af en teknik kaldet *indlejring* kan kombineres til at danne komplekse, generative systemer. 
 
-# Introduktion til patterns
+# Introduktion til Pattern-baseret komposition
 
 SuperCollider indeholder et yderst righoldigt bibliotek af patterns, som vi kan kombinere på utallige, kreative måder. Men hvad er patterns egentlig? Patterns er *opskrifter på strømme af værdier*. Det lyder måske abstrakt, men det er egentlig ikke så galt: `Pseq` definerer en sekvens af værdier (ligesom en sequencer), `Pwhite` definerer en strøm af tilfældigt genererede værdier, `Pseries` definerer en lineær række af værdier (fx 1, 2, 3), osv. Og ja, du har nok allerede gættet hvordan man kan spotte et pattern - navnene på SuperColliders pattern-klasser starter belejligt nok altid med `P`. Det første pattern vi skal forstå er det såkaldte `Pbind`, som udgør rammen for de øvrige patterns, vi anvender.
 

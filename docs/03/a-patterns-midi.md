@@ -105,6 +105,8 @@ Når vi bruger Pbind til at sende MIDI-output, sendes der automatisk Note On- og
 ~komposition.stop;
 ```
 
+![type:audio](pbind-midi.ogg)
+
 Når man arbejder med patterns som MIDI-generator til at spille på et andet stykke software eller hardware, vil det hurtigt blive tydeligt, hvis vi stopper kompositionen i utide med Ctrl-/Cmd-punktum. Derved stopper vi nemlig SuperCollider i at afsende den sidste Note Off-meddelelse, hvilket betyder, at den sidste tonen vil blive hængende i DAW/synth (medmindre der er tale om et instrument, som ignorerer Note Off-meddelelser). For at undgå dette, gemmer vi `Pbind().play` under en variabel, og vi kan så efterfølgende stoppe forløbet med `.stop`, som vist ovenfor.
 
 ## Automatisk opsætning af MIDI-nøgler med Pbindf

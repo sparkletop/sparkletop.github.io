@@ -3,7 +3,7 @@ tags:
     - Artikler
 ---
 
-# Algoritmisk beatslicing
+# Beatslicing med patterns
 
 Beatslicing er en teknik, som kan udvide det kreative potentiale i loop-biblioteker. Teknikken indebærer at skære et beat eller en lydsekvens op i mindre dele, som derefter kan arrangeres på nye måder.
 

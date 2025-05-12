@@ -46,6 +46,8 @@ frekvensEnvelope.plot;
 )
 ```
 
+![type:audio](eksempel.ogg)
+
 ## Envelope som LFO
 
 En af de spændende muligheder med envelopes er, at de kan anvendes som LFO'er! Med `Env.circle`, har vi mulighed for at loope envelopes, så de fungerer som en slags oscillatorer.
@@ -66,6 +68,8 @@ En af de spændende muligheder med envelopes er, at de kan anvendes som LFO'er! 
 )
 ```
 
+![type:audio](eksempel.ogg)
+
 Vi kan endda modulere segment-varighederne med en LFO eller en anden envelope. Dertil bruger vi timeScale-argumentet i `EnvGen` - her blot moduleret af en simpel `Line`, hvor varighederne bliver skaleret med først en faktor 6 og til sidst en faktor 0.2:
 
 ```sc title="Modulation af segmentvarigheder"
@@ -81,3 +85,5 @@ Vi kan endda modulere segment-varighederne med en LFO eller en anden envelope. D
 }.play;
 )
 ```
+
+![type:audio](eksempel.ogg)

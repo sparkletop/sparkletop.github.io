@@ -3,15 +3,19 @@ tags:
     - Artikler
 ---
 
-# Samples
+??? abstract "Introduktion til kapitlet"
 
-Vi har indtil nu arbejdet med rent syntetisk dannede klange i SuperCollider. Men der er også gode muligheder for at arbejde med præindspillet lyd eller for den sags skyld live-lyd fra en mikrofon eller andet musikudstyr. Her koncentrerer vi os i første omgang om at arbejde med samples i form af lydfiler.
+    Vi har indtil nu arbejdet med rent syntetisk dannede klange i SuperCollider. Men der er også gode muligheder for at arbejde med præindspillet lyd eller for den sags skyld live-lyd fra en mikrofon eller andet musikudstyr. Her koncentrerer vi os i første omgang om at arbejde med samples i form af præeksisterende lydfiler, som vi først indlæser og derefter kan bearbejde i SuperCollider. Sample-manipulation er ganske fleksibelt i SuperCollider, men kræver en lille smule teknisk forberedelse, som gennemgås herunder. Derefter introducerer kapitlet til to kompositionsstrategier: Produktion af varierende og dynamiske trommebeats med "humaniseret" mikrorytmiske forskydninger samt abstrakt lydcollage.
 
-## Indlæsning af samples
+# Afspilning af samples
+
+Når vi arbejder med samples i SuperCollider, skal vi indlæse disse på lydserveren. Dette gør vi ved hjælp af `Buffer`-klassen, og vi kan derefter afspille vores samples med UGens som `PlayBuf` og den lidt mere avancerede `BufRd`. Dette introduceres herunder.
+
+## Indlæsning af sample i Buffer
 
 For at arbejde med et sample/en lydfil, skal samplet indlæses i en såkaldt `Buffer`, som udgør et afgrænset område i lydserverens hukommelse. Det gør vi med `Buffer.read`, hvor første argument er lydserveren (i vores tilfælde `s`), og andet argument er stien til den lydfil, vi ønsker.
 
-Til at starte med kan vi bruge et sample, der følger med SuperCollider (linje 3). Men man kan nemt arbejde med egne samples (se linje 6 herunder) - erstat blot `C:/lydfiler/minlydfil.wav` med stien til din egen lydfil. Stien kan genereres automatisk ved at trække filen ind i SuperCollider med musen, eller ved at copy-paste filen fra en mappe på din computer.
+Til at starte med kan vi bruge et sample, der følger med SuperCollider (linje 3). Men man kan nemt arbejde med egne samples (se linje 6 herunder) - erstat blot `C:/lydfiler/minlydfil.wav` med stien til din egen lydfil. Stien kan genereres automatisk ved at trække filen ind i SuperCollider med musen, eller ved at copy-paste filen fra en mappe på din computer. Når du slipper en fil med musen eller taster Cmd-/Ctrl-V på tastaturet for at sætte filen ind, vil SuperColliders IDE skrive filens sti, der hvor musemarkøren eller cursoren befinder sig.
 
 ```sc title="Indlæsning af lydfil i Buffer"
 (
@@ -23,20 +27,34 @@ Til at starte med kan vi bruge et sample, der følger med SuperCollider (linje 3
 )
 ```
 
+Ønsker vi blot at indlæse én af flere kanaler i en lydfil, kan vi i stedet for `Buffer.read` bruge `Buffer.readChannel` og under argumentet `channels` angive en liste med et tal for hver af de kanaler, vi ønsker at indlæse. Her er 0 typisk den venstre og 1 typisk den højre kanal.
+
+```sc title="Indlæsning af lydfil i mono-buffer"
+(
+// En ekstern lydfil indlæses i mono-buffer
+~sample = Buffer.readChannel(s, "C:/lydfiler/minlydfil.wav", channels: [0]);
+)
+```
+
 Når lydfilen er indlæst i en `Buffer` under variabelnavnet `~sample`, kan vi bruge de forskellige instance methods, som knytter sig til buffere, til at vise noget grundlæggende information om samplet:
 
-```sc title="Nyttige methods til buffere"
+```sc title="Nyttige info-methods til buffere"
 ~sample.play;      // afspilning, anvendes kun til test
 
 ~sample.query;     // info om bufferens indhold
 ~sample.plot;      // visuel repræsentation
-~sample.path;      // oprindelig sti
+~sample.path;      // samplets oprindelig sti i filsystemet
 ~sample.duration;  // længde i sekunder
 ```
 
-## Afspilning af samples med PlayBuf
+## Sample-afspilning med PlayBuf
 
-Den mest enkle metode til afspilning af samples er at bruge UGen'en `PlayBuf`. Her vises hvordan vi kan styre afspilningen med argumenter til `PlayBuf.ar`:
+Den mest enkle metode til afspilning af samples er at bruge UGen'en `PlayBuf`. Her er der to tekniske forhold, det er værd at huske på:
+
+- **Sampleraten** i en given lydfil matcher ikke nødvendigvis lydserverens samplerate. Hvis lydserverens samplerate er 44.1 kHz, men lydfilen er produceret ved 48 kHz, vil afspilningen ske for langsomt, og tonehøjde, tempo osv. vil ikke passe. Derfor har vi en særlig UGen, der kan tage højde for sådanne mismatch, nemlig `BufRateScale`.
+- **Antal samples:** Et lydsample eller en lydfil består af et bestemt antal "målinger", der med et lidt uheldigt terminologisk sammenfald også kaldes *samples* på engelsk (deraf betegnelsen "samplerate"). Med `PlayBuf` måler vi samplets varighed ud fra antallet af disse samples, sammenholdt med samplerate, dvs. hvor hurtigt vi skal læse disse samples. Vi kan imidlertid ikke gå ud fra antallet af samples i en Buffer, da en buffer kan indeholde data fra lydfiler med et variabelt antal kanaler (oftest arbejder vi dog med mono- eller stereofiler). For at finde varigheden af en indlæst lydfil, målt i enkeltsamples, kan vi i stedet bruge UGen'en `BufFrames`. Den giver os antallet af såkaldte sample frames, der er fast, uanset hvor mange kanaler, bufferen indeholder.
+
+Her kan du se, hvordan man indstiller argumenterne til `PlayBuf` og bruger `BufRateScale` samt `BufFrames`:
 
 ```sc title="PlayBuf-argumenter"
 (
@@ -87,6 +105,8 @@ Vi kan modulere flere af `PlayBuf`s parametre ved hjælp af andre UGens. For eks
 )
 ```
 
+![type:audio](eksempel.ogg)
+
 Med et triggersignal, her skabt af UGen'en `Impulse`, kan vi springe hen til den position i bufferen, som er angivet med argumentet `startPos`.
 
 ```sc title="Spring til position i sample"
@@ -111,9 +131,11 @@ Med et triggersignal, her skabt af UGen'en `Impulse`, kan vi springe hen til den
 )
 ```
 
+![type:audio](eksempel.ogg)
+
 ## Ekstra fleksibilitet med BufRd
 
-`BufRd` er mere fleksibel end `PlayBuf`, fordi den tillader, at vi styrer læsningen af data fra bufferen direkte med en anden UGen. Det svarer lidt til, at en pickupnål aflæser den lyd, som er indpræget i en vinylplade - bortset fra at vi med et bredt udvalg af UGens kan flytte nålen rundt på meget forskellig vis. Til at styre afspilningspositionen angiver vi en UGen under `BufRead.ar`'s argument `phase`.
+`BufRd` er mere fleksibel end `PlayBuf`, fordi den tillader, at vi styrer læsningen af data fra bufferen direkte med en anden UGen. Det svarer lidt til, at en pickupnål aflæser den lyd, som er indpræget i en vinylplade - bortset fra at vi med et bredt udvalg af UGens kan flytte nålen rundt på meget forskellig vis. Til at styre afspilningspositionen angiver vi en UGen under `BufRd.ar`'s argument `phase`.
 
 Ofte anvendes UGen'en `Phasor`, som skaber en lineær rampe fra start- til slutværdi (det er generelt sådan samples afspilles i digitale lydsystemer).
 
@@ -136,7 +158,6 @@ Man kan anvende mange forskellige UGens som alternativ til `Phasor`. Her moduler
 ```sc title="Envelope og tilfældighedsgenerator som pickupnål"
 (
 {
-    // envelopes kan bruges til at gennemløbe en buffer
     var position = EnvGen.ar(Env.perc(0.1, 2)) * BufFrames.kr(~sample);
     BufRd.ar(1, ~sample, position, 1);
 }.play;
@@ -144,9 +165,10 @@ Man kan anvende mange forskellige UGens som alternativ til `Phasor`. Her moduler
 
 (
 {
-    // interpoleringen mellem værdier i LFNoise1 (de lineære segmenter i outputtet) bliver til forskellige afspilningshastigheder
     var position = LFNoise1.ar(6).range(0, BufFrames.kr(~sample));
     BufRd.ar(1, ~sample, position, 1);
 }.play;
 )
 ```
+
+![type:audio](eksempel.ogg)

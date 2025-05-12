@@ -3,9 +3,11 @@ tags:
     - Artikler
 ---
 
-Lydens forandring over tid er en vigtig del af lyddesign. Et af de vigtigste redskaber til at arbejde med lydlig forandring over tid er envelopes. Envelopes anvendes i elektronisk klangdannelse typisk til at styre en tone eller en lyds volumen over tid, men envelopes kan med fordel bruges på mange andre måder.
+??? abstract "Introduktion til kapitlet"
 
-# Envelopes
+    Lydens forandring over tid er en vigtig del af lyddesign. Et af de vigtigste redskaber til at arbejde med lydlig forandring over tid er envelopes. Envelopes anvendes i elektronisk klangdannelse typisk til at styre en tone eller en lyds volumen over tid, men envelopes kan med fordel bruges på mange andre måder.
+
+# Brug af envelopes
 
 Hvor mange synthesizere kun har en ADSR-envelope, har SuperCollider en række forskellige, indbyggede envelopes. Man kan også definere sine egne envelopes. Det er endda muligt at loope envelopes, så de kommer til at udgøre LFO'er. Dermed kan envelopes potentielt være et særdeles kreativt virkemiddel.
 
@@ -27,6 +29,8 @@ Vi bruger `Line` og `XLine` ligesom andre UGens, fx til at styre frekvensen for 
 {SinOsc.ar(XLine.kr(100, 800, 5)) * 0.1}.play;     // eksponentiel udvikling over 5 sekunder
 {SinOsc.ar(XLine.kr(100, 800, 0.050)) * 0.1}.play; // eksponentiel udvikling over 50 milisekunder
 ```
+
+![type:audio](eksempel.ogg)
 
 ## Env og EnvGen - envelopes for enhver smag
 
@@ -108,6 +112,8 @@ Lad os tage et eksempel:
 }.play;
 )
 ```
+
+![type:audio](eksempel.ogg)
 
 ## Standardenvelopes
 

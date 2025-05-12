@@ -17,7 +17,7 @@ Som pointer er det oplagt at bruge UGen'en `Phasor`, der generer en lineær bev�
 
 ```sc title="Fleksibelt tempo med Phasor som pointer"
 (
-{
+~granulator = {
     arg moveRate = 1;
 
     // ~sample er en Buffer, der indeholder et indlæst mono-sample
@@ -47,6 +47,8 @@ Som pointer er det oplagt at bruge UGen'en `Phasor`, der generer en lineær bev�
 ~granulator.set(\moveRate, 0.5)   // halvering af tempo
 ~granulator.set(\moveRate, 3)     // tredobling af tempo
 ```
+
+![type:audio](eksempel.ogg)
 
 ## Fleksibel tonehøjde
 
@@ -87,50 +89,4 @@ Modificerer vi ovenstående med et argument til transponering, kan vi ændre afs
 ~granulator.set(\moveRate, 0.25, \transpose, 12)  // kvart tempo, en oktav op
 ```
 
-### Tekstur og klangflade (flyttes til Art3)
-
-Hvor ovenstående giver en meget fleksibel måde at strække eller transponere lyd på, kan vi skabe mere abstrakte teksturer ved at tilføje lidt støj til pointeren og fordele grains tilfældigt over hele stereofeltet. Dette kan blandt andet gøres ved hjælp af UGen'en `TRand`, som producerer tilfældige tal mellem et minimum og maksimum, hver gang den modtager en trigger. Denne tilfældige fordeling af grain-parametre kan vi kalde for jitter:
-
-```sc title="Tekstur og klangflade med TRand" hl_lines="4 16 18 26 27"
-(
-~sprinkler = {
-    arg transpose = 0, moveRate = 1,
-    jitter = 0.01, spread = 0.1;
-
-    var buf = ~sample;
-    var numFrames = BufFrames.kr(buf);
-    var pointer = Phasor.ar(
-        rate: rateScale * moveRate,
-        start: 0,
-        end: numFrames
-    ) / numFrames;
-
-    var trigger = Dust.kr(200);
-
-    var jit = TRand.kr(jitter.neg, jitter, trigger) / BufDur.kr(buf);
-
-    var pan = TRand.kr(spread.neg, spread, trigger);
-
-    GrainBuf.ar(
-        numChannels: 2,
-        trigger: trigger,
-        dur: 0.1,
-        sndbuf: buf,
-        rate: BufRateScale.kr(buf) * transpose.midiratio,
-        pos: pointer + jit,
-        pan: pan
-    ) * 0.1;
-}.play;
-)
-
-// Fordeling af grains i stereofelt (høres bedst i hovedtelefoner)
-~sprinkler.set(\spread, 0)
-~sprinkler.set(\spread, 1)
-
-// Spring i grainposition
-~sprinkler.set(\jitter, 0.1)
-~sprinkler.set(\jitter, 1.5)
-
-// Stillestående pointer, med spredning i grainposition
-~sprinkler.set(\jitter, 1, \moveRate, 0)
-```
+![type:audio](eksempel.ogg)

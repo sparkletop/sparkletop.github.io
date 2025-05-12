@@ -86,7 +86,7 @@ nav:
     - 01/e-basics.md
     - 01/e-lyd.md
   - 2. At generere en strøm af lyde:
-    - Introduktion til Patterns: 02/a-patterns-intro.md
+    - Introduktion til Pattern-baseret komposition: 02/a-patterns-intro.md
     - 02/a-random-patterns.md
     - 02/a-pbind.md
     - 02/c-patterns.md
@@ -104,25 +104,30 @@ nav:
     - 04/c-ugens.md
     - 04/c-ugen-methods.md
     - 04/e-ugens.md
-  - 5. Envelopes:
+  - 5. Envelopes og SynthDefs:
     - Brug af envelopes: 05/a-envelopes.md
     - 05/a-synthdef.md
     - 05/a-nye-envelopes.md
     - 05/c-synthdef.md
     - 05/e-envelopes.md
   - 6. Klangdannelse med filtre:
-    - Eksempler på subtraktiv syntese: 06/a-subtraktiv.md
+    - Filterbaseret klangdannelse: 06/a-filterbaseret-klangdannelse.md
+    - 06/a-opskrifter.md
     - 06/a-lilletromme.md
+    - 06/a-strenge.md
     - 06/c-filtre.md
     - 06/e-subtraktiv.md
   - 7. Klangdannelse med oscillatorbanke:
-    - Oscillatorbanke: 07/a-oscillatorbanke.md
+    - Oscillatorbanke og multikanalslyd: 07/a-oscillatorbanke.md
     - 07/a-additiv.md
     - 07/a-risset.md
     - 07/a-orgel.md
+    - 07/a-vocoder.md
     - 07/e-oscillatorbanke.md
-  - 8. Samplemanipulation:
-    - Anvendelse af samples: 08/a-samples.md
+  - 8. Samplebaseret komposition:
+    - Afspilning af samples: 08/a-samples.md
+    - 08/a-beat.md
+    - 08/a-lydcollage.md
     - 08/e-samples.md
   - 9. Klangdannelse med granular syntese:
     - Granular syntese: 09/a-granular.md
@@ -133,6 +138,7 @@ nav:
     - Beatslicing med patterns: 10/a-beatslicing.md
     - 10/e-beatslicing.md
   - Diverse ressourcer:
-    - Optage lyden fra SuperCollider: Ressourcer/art2-optag_supercollider.md
+    - Optag lyd fra SuperCollider: Ressourcer/art2-optag_supercollider.md
+    - Ressourcer/a-readings.md
     - Ressourcer/gratis-samples.md
   - Oversigt: oversigt.md

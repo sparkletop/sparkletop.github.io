@@ -54,6 +54,8 @@ Lad os først modulere sinustonens amplitude (lydstyrke). Det gør vi ganske enk
 {SinOsc.ar(440) * LFPulse.kr(2) * 0.1}.play;
 ```
 
+![type:audio](eksempel.ogg)
+
 Dette ligger til grund for de klangdannelsesteknikker, som kaldes amplitude modulation (AM) og ring modulation (RM).
 
 ### Frekensmodulation
@@ -63,6 +65,8 @@ Vi kan også modulere frekvensen. Her erstatter vi den fast angivne frekvens på
 ```sc title="Frekvensmodulation"
 {SinOsc.ar( SinOsc.kr(5).range(200, 400) ) * 0.1}.play;
 ```
+
+![type:audio](eksempel.ogg)
 
 Dette ligger til grund for den klangdannelsesteknik som kaldes frequency modulation (FM).
 
@@ -94,6 +98,8 @@ Vi kan oprette lige så mange lokale variabler, som vi har lyst til, de skal blo
 }.play;
 )
 ```
+
+![type:audio](eksempel.ogg)
 
 ```mermaid
 flowchart LR

@@ -26,6 +26,8 @@ Den mest åbenlyse måde at sammensætte Pbinds er at afvikle dem sekventielt, a
 );
 ```
 
+![type:audio](pbind-kombination.ogg)
+
 Med ovenstående tre Pbinds gemt under variabelnavne kan vi afspille dem i en sekvens med velkendte, listebaserede patterns som `Pseq`, `Prand` m.fl.:
 
 ```sc title="Sekvensering af Pbinds"
@@ -107,6 +109,8 @@ Vi bruger `Pbindf` ved at angive en eksisterende Pbind som det første argument.
 )
 ```
 
+![type:audio](overstemme.ogg)
+
 Bemærk her, at vi i stedet for at omdefinere `\degree`-nøglen i Pbindf'en anvender `\mtranspose`. Havde vi brugt `\degree`, ville den eksisterende information om skalatrin fra `~melodi`-Pbind'en blive overskrevet. I stedet fungerer den oprindelige `Pseq` og den nye `Prand` sammen, så "stemmerne" kan følges ad.
 
 ## En minimalistisk kompositionsidé
@@ -133,5 +137,7 @@ TempoClock.tempo = 115/60;
 )
 ~left.stop; ~right.stop;
 ```
+
+![type:audio](piano-phase.ogg)
 
 Dette er blot en forsimplet illustration af, hvordan *Piano Phase* fungerer. I slutningen af dette kapitel kan man øve sig i at skrive egne minimalistiske kompositioner, hvor lignende processer med gradvis udvikling gør sig gældende.

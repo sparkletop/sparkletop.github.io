@@ -1,6 +1,6 @@
 ---
 tags:
-    - Eksempler
+    - Artikler
 ---
 
 # Additiv orgellyd
@@ -65,3 +65,5 @@ Pbind(
 ).play;
 )
 ```
+
+![type:audio](eksempel.ogg)

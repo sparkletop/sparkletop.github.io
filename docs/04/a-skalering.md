@@ -24,7 +24,7 @@ Når vi ønsker at modulere outputtet fra en UGen på denne måde, kan vi ganske
 )
 ```
 
-![En umodificeret sinusbølge og en sinusbølge med nedskaleret amplitude](../media/figures/to_amplituder.png){ width="80%" }
+![En umodificeret sinusbølge og en sinusbølge med nedskaleret amplitude](../media/figures/to_amplituder.png){ width="65%" }
 
 Det er værd at bemærke, at outputtet maksimalt kan være -1 til 1. Værdier derover risikerer at overstyre. Når vi modulerer amplitude for hørbare UGens, skalerer vi derfor oftest amplituden **ned** ved at gange med en faktor mellem 0 og 1:
 
@@ -133,3 +133,5 @@ Her er et eksempel, hvor vi anvender `.midiratio` sammen med `.unipolar` til at 
 }.play;
 )
 ```
+
+![type:audio](eksempel.ogg)

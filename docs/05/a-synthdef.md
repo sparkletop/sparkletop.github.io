@@ -166,6 +166,8 @@ Pbind(
 )
 ```
 
+![type:audio](eksempel.ogg)
+
 ## Legato og staccato med vedvarende envelopes
 
 `Pbind` kan også afslutte vedvarende envelopes for os, og vi kan dermed få adgang til at komponere med legato- og staccatofrasering. Det kræver dog, at SynthDef'en indrettes på følgende måde:
@@ -206,6 +208,8 @@ Pbind(
 ).play;
 )
 ```
+
+![type:audio](eksempel.ogg)
 
 ### Vedvarende Synth med Pmono og PmonoArtic
 
@@ -266,6 +270,8 @@ PmonoArtic(\glissando,
 ).play;
 )
 ```
+
+![type:audio](eksempel.ogg)
 
 ## Argumentnavne i SynthDef
 

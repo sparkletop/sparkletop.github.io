@@ -45,6 +45,8 @@ Pbind(
 )
 ```
 
+![type:audio](eksempel.ogg)
+
 ## Skala-udforskning med Pbrown
 
 Bemærk her forskellen på `Pbrown` og `Pwhite` (sidsnævnte blev anvendt ovenfor) samt anvendelsen af nøglen `\ctranspose`.
@@ -61,6 +63,8 @@ Pbind(
 ).play;
 )
 ```
+
+![type:audio](eksempel.ogg)
 
 Afledte kompositioner kan eksperimentere med andre skalaer og patterns.
 
@@ -89,6 +93,8 @@ Pbind(
 )
 ```
 
+![type:audio](eksempel.ogg)
+
 ## Rytmiserede og dynamiske akkorder
 
 1. Besvar: Hvilken effekt har kombinationerne af `.stutter` og `.repeat` på outputtet fra de forskellige patterns?
@@ -116,6 +122,8 @@ Pbind(
 ).play;
 )
 ```
+
+![type:audio](eksempel.ogg)
 
 ## Korte, rytmiske sekvenser
 
@@ -147,3 +155,5 @@ TempoClock.tempo = 85 / 60;
 
 ~komp.stop;
 ```
+
+![type:audio](eksempel.ogg)

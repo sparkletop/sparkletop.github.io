@@ -42,9 +42,11 @@ Pmono(\clarinet,
 )
 ```
 
-## Firser-strings
+![type:audio](eksempel.ogg)
 
-Simpel 80'er-strings.
+## 1980'er-strings
+
+Her udnytter vi to saw-osciallatorer, der er stemt meget tæt på hinanden, hvilket giver en slags chorus-effekt, til at skabe en  simpel 80'er-strings-lyd.
 
 ```sc title="SynthDef til firser-strings"
 (
@@ -81,3 +83,5 @@ Pbind(
 ).play;
 )
 ```
+
+![type:audio](eksempel.ogg)

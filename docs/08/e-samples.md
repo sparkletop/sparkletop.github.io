@@ -84,7 +84,7 @@ Som forberedelse til de øvrige opgaver herunder:
 
 ## Lydcollage-komposition
 
-Fremstil en abstrakt lydcollage med minimalistiske træk. Kompositionen skal baseres på ét sample og realiseres ved at bruge patterns sammen med nedenstående `SynthDef`.
+Fremstil en abstrakt lydcollage. Kompositionen skal baseres på ét sample og realiseres ved at bruge patterns sammen med SynthDef'en fra [tidligere afsnit om lydcollage](a-lydcollage.md).
 
 1. Vælg og indlæs et sample, som...
     1. indeholder en vedvarende lyd (dvs. uden lange pauser i lyden)
@@ -92,39 +92,6 @@ Fremstil en abstrakt lydcollage med minimalistiske træk. Kompositionen skal bas
     1. tonalt set er relativt enkel og stabil
     1. indeholder én monokanal (brug evt. `Buffer.readChannel` som ved opgave 1, hvis din ønskede fil er stereo-format)
 1. Modificér `Pbind`'en herunder ved at erstatte faste værdier med patterns, således at vi hører en klangligt varieret lydcollage baseret på det valgte sample.
-
-```sc title="SynthDef til sampleafspilning"
-(
-SynthDef(\sampleM, {
-    arg amp = 0.1, out = 0, pan = 0,
-    transpose = 0, startPos = 0, direction = 0,
-    buffer, loop = 0, t_reset = 1,
-    drive = 0, cutoff = 20000, rq = 0.1,
-    atk = 0.005, sus = 1, rel = 0.2, gate = 1;
-
-    var sig, env;
-
-    env = EnvGen.kr(
-        Env.asr(atk, sus, rel),
-        gate,
-        doneAction: Done.freeSelf
-    );
-    sig = PlayBuf.ar(
-        numChannels: 1,
-        bufnum: buffer,
-        rate: transpose.midiratio * BufRateScale.kr(buffer) * direction.sign,
-        trigger: t_reset,
-        startPos: startPos.linlin(0, 1, 0, BufFrames.kr(buffer) - 2),
-        loop: loop
-    );
-    sig = (sig * drive.linexp(0, 1, 1, 100)).tanh; // drive/distortion
-    sig = RLPF.ar(sig, cutoff, rq);
-    sig = sig * env;
-    sig = Pan2.ar(sig, pan, amp);
-    Out.ar(out, sig);
-}).add;
-)
-```
 
 Pbind til modifikation findes herunder.
 

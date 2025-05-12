@@ -23,7 +23,7 @@ Help browser'en og SuperColliders Post window kan flyttes, lukkes eller rykkes t
 
 ## Brugerflade, fortolker og lydserver
 
-Rent teknisk består SuperCollider faktisk af tre forskellige programmer/processer. Det er ikke nødvendigt at kende alle detaljer om, hvordan de fungerer og samarbejder, men det er nyttigt at vide, at de findes, så man kan følge med, når vi taler om at arbejde med fortolkeren eller lydserveren
+Rent teknisk består SuperCollider faktisk af tre forskellige programmer/processer. Det er ikke nødvendigt at kende alle detaljer om, hvordan de fungerer og samarbejder, men det er nyttigt at vide, at de findes, så man kan følge med, når vi taler om at arbejde med fortolkeren eller lydserveren.
 
 *scide*, aka. brugerfladen
 

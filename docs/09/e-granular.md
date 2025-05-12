@@ -19,12 +19,12 @@ Som forberedelse til de øvrige opgaver herunder:
 
 1. Indlæs et sample i en buffer gemt under variablen `~buffer`
 1. Hvis din lydfil er i stereo, kan du indlæse den første kanal med `.readChannel` - se kodeblokken herunder
-1. Hvis du ikke har en lydfil klar selv, kan du bruge den nederste linje herunder i stedet med et indbygget sample fra SuperCollider
+1. Hvis du ikke har en lydfil klar selv, kan du bruge den nederste linje herunder, som indlæser et indbygget sample fra SuperCollider
 
 OBS: Til denne øvelse skal der anvendes et mono-sample.
 
 ```sc title="Indlæsning af sample"
-// Udfyld her med dit eget sample
+// Udfyld her med dit eget mono-sample
 ~buffer = Buffer.read(s,      );
 
 // Brug .readChannel, hvis dit sample er i stereo

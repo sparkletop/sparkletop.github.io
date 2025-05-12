@@ -5,7 +5,7 @@ tags:
 
 # Funktioner for den dovne programmør
 
-Vi er nu nået til et emne, som er en gave til den dovne programmer, der ikke gider at skrive det samme sæt af instrukser mere end én gang. Heldigvis er det faktisk ofte en god idé at være doven på denne måde, fordi det er effektivt at indkapsle og genbruge sæt af instrukser, da det gør os i stand til at gøre mange ting med meget lidt kildekode. I programmering er *funktioner* et grundlæggende koncept, som er væsentligt at forstå. I SuperCollider og de fleste andre programmeringssprog er en funktion en defineret række af instrukser, der fungerer lidt ligesom de kodeblokke, vi kiggede på [ovenfor](a-eksekvering.md#flere-instrukser-ad-gangen). De er nyttige, hvis vi gerne vil gøre det samme mange gange, da vi i stedet for at skrive den samme kodeblok mange gange blot kan "kalde" funktionen.
+Vi er nu nået til et emne, som er en gave til den dovne programmør, der ikke gider at skrive det samme sæt af instrukser mere end én gang. Heldigvis er det faktisk ofte en god idé at være doven på denne måde, fordi det er effektivt at indkapsle og genbruge sæt af instrukser, da det gør os i stand til at gøre mange ting med meget lidt kildekode. I programmering er *funktioner* et grundlæggende koncept, som er væsentligt at forstå. I SuperCollider og de fleste andre programmeringssprog er en funktion en defineret række af instrukser, der fungerer lidt ligesom de kodeblokke, vi kiggede på [ovenfor](a-eksekvering.md#flere-instrukser-ad-gangen). De er nyttige, hvis vi gerne vil gøre det samme mange gange, da vi i stedet for at skrive den samme kodeblok mange gange blot kan "kalde" funktionen.
 
 ## Hjemmelavede funktioner
 
@@ -27,7 +27,7 @@ Funktioner fungerer som sagt næsten ligesom de kodeblokke vi har set, hvor fler
 // -> se i post window, at instruksen bliver udført
 ```
 
-### Output fra funktioner
+## Output fra funktioner
 
 Vi bruger ofte funktioner, fordi vi ønsker at producere "noget". Med andre ord er vi ofte interesserede i at opfange og bruge en funktions output. Outputtet fra en funktion er altid det, der fremgår i den sidste instruks/kodelinje i funktionen. Som eksempel kan vi lave en funktion, der trækker et tal fra et andet tal. Når vi eksekverer funktionen med `.value` vil vi derfor få resultatet af udregningen, som vi så kan bruge til det formål vi ønsker - herunder bliver den blot gemt under et andet variabelnavn og derefter vist i SuperColliders post window.
 
@@ -41,7 +41,7 @@ Vi bruger ofte funktioner, fordi vi ønsker at producere "noget". Med andre ord 
 // -> 5
 ```
 
-Fordi der kun er én kodelinje i funktionen, vil resultatet af denne kodelinje være funktionens output. I dette tilfælde er funktionen selvfølgelig ikke særligt nyttig, da den altid vil give samme resultat. Men lad os nu se på, hvordan vi kan bruge funktioner mere fleksibelt ved hjælp af det, der hedder *argumenter*.
+Fordi der kun er én kodelinje i funktionen, vil resultatet af denne kodelinje være funktionens output. I dette tilfælde er funktionen selvfølgelig ikke særligt nyttig, da den altid vil give samme resultat. Lad os derfor se på, hvordan vi kan bruge funktioner mere fleksibelt ved hjælp af det, der hedder *argumenter*.
 
 ## Input til funktioner: Argumenter
 
@@ -155,4 +155,4 @@ midicps(57);
 midicps(rrand(0, 127));
 ```
 
-I det sidste eksempel her bliver den "inderste" funktion udført først, dvs. `rrand` vælger først sit tal, og derefter omregner `midicps` dette tal til en frekvens. Dette kaldes med et fancy udtryk "order of execution", og det betyder, at SuperCollider udregner de "inderste" værdier først, når vores kode eksekveres.
+I det sidste eksempel her bliver den "inderste" funktion udført først, dvs. `rrand` vælger først sit tal, og derefter omregner `midicps` dette tal til en frekvens. Dette kaldes med et fancy udtryk "order of execution", hvilket såmænd blot betyder, at SuperCollider udregner de "inderste" funktionskald og matematiske operationer først, når vores kode eksekveres.
