@@ -1,4 +1,4 @@
-site_name: Musik- og lydprogrammering 
+site_name: Komposition og lydproduktion med SuperCollider
 
 theme:
   name: material
@@ -85,7 +85,7 @@ nav:
     - 01/a-lister.md
     - 01/e-basics.md
     - 01/e-lyd.md
-  - 2. At generere en strøm af lyde:
+  - 2. En strøm af lyde:
     - Introduktion til Pattern-baseret komposition: 02/a-patterns-intro.md
     - 02/a-random-patterns.md
     - 02/a-pbind.md
