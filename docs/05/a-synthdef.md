@@ -65,15 +65,15 @@ Synth(\minSynthDef);
 
 Sammenhængen mellem `Synth`, `SynthDef` og `Pbind` er helt central i SuperCollider.
 
-- `SynthDef` kan forstås som et instrument, der bestemmer klang og variationsmuligheder.
+- `SynthDef` kan forstås som et instrument, der bestemmer tonernes klanglige form over tid (spektromorfologi).
 - `Synth`s kan forstås som de konkrete lyde, man skaber med instrumentet.
-- `Pbind` udgør således kompositionen eller partituret[^1].
+- `Pbind` udgør således kompositionen eller partituret.
 
-[^1:]Hvis man i denne analogi synes, at der mangler en musiker til at udføre kompositionen, kan man tænke på den `EventStreamPlayer`, som opstår, når vi bruger `Pbind().play` - det er dette objekt, som faktisk udfører partituret og starter/stopper Synths på lydserveren ud fra de instrukser, vi har angivet med `Pbind`.
+Hvis man i denne analogi synes, at der mangler en musiker til at udføre kompositionen, kan man tænke på den `EventStreamPlayer`, som opstår, når vi bruger `Pbind().play` - det er dette objekt, som faktisk udfører partituret og starter/stopper Synths på lydserveren ud fra de instrukser, vi har angivet med `Pbind`. Vi bruger sjældent denne klasse direkte, bortset fra når vi gemmer resultatet af `Pbind.play();` under en variabel og efterfølgende interagerer med denne variabel.
 
 ### SynthDef og Synth
 
-Lad os se på hvordan samspillet mellem `Synth` og `SynthDef` og `Pbind` fungerer i praksis.
+Lad os se på hvordan samspillet mellem `Synth` og `SynthDef` fungerer i praksis.
 
 SynthDef'en `\minSynthDef` ovenfor fungerer, men er ikke særligt fleksibel. Vi kan fx kun spille én tone med den, og vi er nødt til at stoppe den manuelt med Ctrl-/Cmd-punktum. For at kunne spille forskellige toner kan vi indføre et argument. Her vælger jeg at indføre argumentet `freq` ved hjælp af nøgleordet `arg`, og jeg angiver også en standardværdi på `440`:
 
@@ -103,10 +103,11 @@ I mange SynthDefs er det nyttigt at bruge en [envelope](a-envelopes.md) til at s
 
 ### SynthDef og Pbind
 
-Når vores SynthDef er sat op på denne måde, kan vi bruge `Pbind` til at generere sekvenser af Synths, helt automatisk. Vi fortæller Pbind, hvilken SynthDef, der skal anvendes, ved at bruge nøglen `\instrument`. Det betyder, at `Pbind(\instrument, \cool)` vil starte Synths baseret på en SynthDef med navnet `\cool`. Hvis ikke en sådan SynthDef er registreret på lydserveren, vil vi modtage en fejlmeddelelse.
+Når vores SynthDef er sat op på denne måde, kan vi bruge `Pbind` til at generere sekvenser af Synths, helt automatisk. Vi fortæller Pbind, hvilken SynthDef, der skal anvendes, ved at bruge nøglen `\instrument`. Det betyder, at `Pbind(\instrument, \simpel)` vil starte Synths baseret på en SynthDef med navnet `\simpel`. Hvis ikke en sådan SynthDef er registreret på lydserveren, vil vi modtage en fejlmeddelelse.
 
 ```sc title="SynthDef og Pbind"
 (
+// Først registrerer vi SynthDef'en på lydserveren
 SynthDef(\simpel, {
     arg freq = 440;
     Out.ar(0, SinOsc.ar(freq) * 0.1

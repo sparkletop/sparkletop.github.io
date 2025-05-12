@@ -4,15 +4,15 @@ tags:
 ---
 # Cheat sheet: Centrale UGens
 
-Start med at lære disse UGens at kende[^1]! Mens du eksperimenterer, kan du bmed fordel
+Start med at lære UGens fra dette cheat sheet at kende. Brug SuperColliders dokumentation samt [oscilloskop og spektrogram](./a-ugens.md#ugens-og-signalflow) til at nærstudere de forskellige UGens.
 
-[^1]: Se også [Eli Fieldsteels liste over "essential UGens"](https://uofi.app.box.com/s/1bfva2kan3ntmgey2345goc73snjzpwt).
+Se eventuelt også [Eli Fieldsteels liste med "essential UGens"](https://uofi.app.box.com/s/1bfva2kan3ntmgey2345goc73snjzpwt) samt dokumentet [*Tour of UGens* fra SuperColliders dokumentation](https://doc.sccode.org/Guides/Tour_of_UGens.html), der begge har tjent som inspiration til nedenstående.
 
 ## Almindelige oscillatorer og støjgeneratorer
 
-Fire almindelige bølgeformer[^2].
+Fire almindelige bølgeformer: Sinusbølge, savtakket, firkantet og trekantet[^2].
 
-[^2]: `SinOsc`, `Saw` og `Pulse` er (i modsætning til fx `LFTri`) "band limited". Det betyder, at de ikke skaber [aliasing (en form for digital "støj")](https://en.wikipedia.org/wiki/Aliasing), når de anvendes ved høje frekvenser.
+[^2]: `SinOsc`, `Saw` og `Pulse` er (i modsætning til fx `LFTri`) "band limited". Det betyder, at de ikke skaber "aliasing" (en form for digital støj), når de anvendes ved høje frekvenser.
 
 ```sc title="Basale bølgeformer"
 // Sinusbølger, savtakkede og firkantede bølger:

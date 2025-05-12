@@ -7,7 +7,7 @@ tags:
 
     Generativ komposition kan være kernen i den kreative proces, når man komponerer, hvilket ofte er tilfældet inden for computermusikken. Men i bredere forstand kan vi også bruge generative processer til at skabe samples, sekvenser, variationer mm. til brug i mere traditionel komposition og lydproduktion.
 
-    I SuperCollider udgør de såkaldte patterns et centralt redskab til generativ komposition. Dette kapitel introducerer først til patterns på et grundlæggende niveau, med særligt fokus på hvordan det centrale redskab `Pbind` knytter generative patterns til musikalske parametre som tonehøjde og rytmik. I [næste kapitel](../03/a-indlejring.md) går vi mere i dybden med hvordan patterns blandt andet ved hjælp af en teknik kaldet *indlejring* kan kombineres til at danne komplekse, generative systemer. 
+    I SuperCollider udgør de såkaldte patterns et centralt redskab til generativ komposition. Dette kapitel introducerer først til patterns på et grundlæggende niveau, med særligt fokus på hvordan det centrale redskab `Pbind` knytter generative patterns til musikalske parametre som tonehøjde og rytmik. I næste kapitel går vi mere i dybden med hvordan patterns blandt andet ved hjælp af en teknik kaldet *indlejring* kan kombineres til at danne komplekse, generative systemer. 
 
 # Introduktion til Pattern-baseret komposition
 
@@ -25,13 +25,14 @@ Som udgangspunkt for generativ komposition laver vi en instans af klassen `Pbind
 ~eksempel.stop;
 ```
 
-`Pbind` har den funktion, at den "binder" musikalske parametre sammen til en strøm af begivenheder. I Pbind bruger vi på den ene side *nøgler*, angivet med `\degree`, `\dur`, `\scale` og andre betegnelser til at angive kompositionsmæssige parametre, og vi bruger *patterns* eller *faste værdier* til at styre disse parametre.
+`Pbind` har den funktion, at den "binder" musikalske parametre sammen til en strøm af begivenheder. I Pbind bruger vi på den ene side *nøgler*, angivet med fx `\degree`, `\dur` og `\scale`, til at angive kompositionsmæssige parametre, og vi bruger *patterns* eller *faste værdier* til at angive eller generere disse parametre. Dette kapitel gennemgår de mest almindelige [nøgler](./a-pbind.md#pbind-nøgler) og [patterns](./c-patterns.md).
 
 Her er et enkelt eksempel, hvor vi med nøglen `\degree` vælger at knytte den musikalske parameter *skalatrin* sammen med en fast værdi, nemlig værdien 2, som angiver *tredje* skalatrin. Hvorfor betyder 2 ikke *andet* skalatrin her? Det skyldes, at *første* skalatrin har værdien 0, hvilket afspejler en konvention inden for de fleste programmeringssprog, som går ud på, at man ofte starter med at tælle ved tallet 0. Ønsker vi *andet* skalatrin, skal vi angive værdien 1, og så fremdeles.
 
 ``` sc title="Pbind og skalatrin"
 (
 Pbind(
+    // Vi vælger 3. skalatrin, i C-dur tonen e
     \degree, 2,
 ).play;
 )
@@ -72,7 +73,7 @@ Pbind(
 
 ## Pseq - en fleksibel sequencer
 
-I `Pseq` noterer vi først en liste med de elementer, som skal indgå i vores sekvens. Det gør vi med kantede parenteser, adskilt af kommaer, fx sådan her: `[a, b, c]`
+Når vi bruger `Pseq` til at skabe en sekvens, noterer vi først en liste med de elementer, som skal indgå i vores sekvens. Det gør vi med kantede parenteser, adskilt af kommaer, fx sådan her: `[a, b, c]`
 
 ``` sc title="En sekvens med Pseq"
 (
@@ -156,7 +157,7 @@ Pbind(
 
 Vi ser nærmere på forskellige teknikker til indlejring af patterns [i næste kapitel](../03/a-indlejring.md).
 
-## Introduktion til Pwhite, en tilfældighedsgenerator
+## Pwhite - en tilfældighedsgenerator
 
 `Pwhite` genererer tilfældige tal inden for et minimum og et maksimum.
 
@@ -222,7 +223,7 @@ Pbind(\degree, Pbrown(-7, 7, 5, 8).trace).play; // større spring
 
 Vi kigger nærmere på disse forskellige tilfældighedsgenerator i [næste afsnit](a-random-patterns.md) samt i [cheat sheetet vedr. patterns](c-patterns.md).
 
-## Nyttige teknikker til at arbjede med patterns
+## Nyttige teknikker til at bearbejde output fra patterns
 
 Når vi arbejder med patterns som kompositionsredskaber, er det typisk relevante at justere eller transformere output fra patterns. Det kan fx gøres med almindelige matematiske operationer:
 
@@ -240,7 +241,7 @@ Pbind(\degree, Pseq([0, 1, 2]) * Pseq([1, 3], inf)).play;
 // -> 0, 3, 2
 ```
 
-Afrunding er også muligt - fx kan vi afrunde tilfældigt genererede tal mellem -12 og +12 til nærmeste tal i 3-tabellen og derved få en skala, der er bygget op af små tertser:
+Afrunding er også muligt med method'en `.round()`. For eksempel kan vi afrunde tilfældigt genererede tal mellem -12 og +12 til nærmeste tal i 3-tabellen og derved få en melodi, der kun springer i intervaller, som er opbygget af små tertser:
 
 ```sc title="Afrunding med .round"
 (
@@ -251,7 +252,7 @@ Pbind(
 )
 ```
 
-Vi kan også bruge nogle specifikke pattern-methods til at gentage outputtet fra patterns på forskellig vis. Kør nedenstående kode og gæt selv hvad `.repeat`, `.stutter` og `.clump` gør:
+Vi kan også bruge nogle specifikke pattern-methods til at gentage eller sammenklumpe outputtet fra patterns på forskellig vis. Kør nedenstående kode og gæt selv hvad `.repeat`, `.stutter` og `.clump` gør:
 
 ```sc title="Pattern-methods: .repeat, .stutter og .clump"
 Pbind(\degree, Pseq([0, 1, 2]).repeat(3)).play;

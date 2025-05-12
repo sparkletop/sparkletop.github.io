@@ -62,7 +62,7 @@ Nogle gange er det mere relevant at definere Pbinds, som ikke har en begrænset 
 );
 )```
 
-Hvis vi kun ønsker tre events fra en af ovenstående Pbinds, kan vi bruge et pattern, der hedder `Pfin`. Vi kan også sekvensere `Pfin` med fx `Pseq`:
+Hvis vi kun ønsker 10 events fra en af ovenstående Pbinds, kan vi bruge et pattern, der hedder `Pfin`. Man kan også sekvensere `Pfin` med fx `Pseq`, så man kan sammensætte sekvenser fra forskellige Pbinds:
 
 ```sc title="Begrænsning af event-antal med Pfin"
 TempoClock.tempo = 115/60;

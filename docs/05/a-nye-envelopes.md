@@ -5,9 +5,11 @@ tags:
 
 # Specialdesignede envelopes og LFO'er
 
+Ud over de indbyggede envelopes tilbyder SuperCollider rig mulighed for at opfinde nye envelopes. Hvis vi looper en envelope, kan vi endda defineres vores helt egne former til specialdesignede LFO'er!
+
 ## Design dine egne envelopes med Env.new
 
-Ud over de indbyggede envelopes tilbyder SuperCollider rig mulighed for at opfinde nye envelopes. Vi kan definere vores egne envelopes med `Env.new`, og argumenterne er som følger:
+Vi definerer vores egne envelopes med `Env.new`. Argumenterne er som følger:
 
 - En liste med start- og slutniveauer for de enkelte segmenter
 - Dernæst angiver vi en liste med varigheder af de enkelte segmenter

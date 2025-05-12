@@ -5,7 +5,7 @@ tags:
 
 # Eksekvering af kildekode
 
-Et program består af nedskrevne *instrukser* (på engelsk *statements*), som computeren skal udføre. I SuperCollider kan få computeren til at udføre instrukser ved at *eksekvere* udvalgte dele af kildekoden. Man eksekverer kildekode ved at taste Ctrl+Enter på Windows/Linux eller Cmd+Enter på Mac. Prøv det selv:
+Et program består af nedskrevne *instrukser* (på engelsk *statements*), som computeren skal udføre. I SuperCollider kan vi få computeren til at udføre instrukser ved at *eksekvere* udvalgte dele af kildekoden. Man eksekverer kildekode ved at taste Ctrl+Enter på Windows/Linux eller Cmd+Enter på Mac. Prøv det selv:
 
 - Indtast linjerne herunder i et SuperCollider-dokument.
 - Sæt cursoren på en af linjerne og tast Ctrl+Enter (PC) eller Cmd+Enter (Mac).
@@ -37,17 +37,17 @@ rrand(50, 100).postln;
 )
 ```
 
-Læg mærke til hvordan begge linjer i kodeblokken ovenfor bliver udført så hurtigt efter hinanden, at det stort set sker samtidigt.
+Læg mærke til hvordan begge linjer i kodeblokken ovenfor bliver udført så hurtigt efter hinanden, at det i praksis sker samtidigt (men dog i den noterede rækkefølge).
 
 ## Fut i lydserveren
 
 For at kunne bruge programmering som et redskab til musikalsk komposition og lyddesign skriver vi ofte kildekode, som genererer lyd. I de tilfælde skal vi først starte SuperColliders lydserver. Den mest enkle måde at starte lydserveren på er at køre denne linje:
 
-``` sc title="Start og stop af SuperColliders lydserver"
+``` sc title="Start af SuperColliders lydserver"
 s.boot;
 ```
 
-Alternativt kan man taste Ctrl/Cmd-B, gå via menuen "Server" øverst i vinduet, eller højreklikke på tallene i nederste højre hjørne ud for "Server". Bemærk, at når lydserveren er bootet, bliver disse tal grønne. Når serveren bootes ser vi desuden en del tekstbeskeder til højre i SuperColliders "Post window", herunder hvilket lydkort, lydserveren er forbundet med.
+Alternativt kan man starte lydserveren ved at taste Ctrl/Cmd-B, gå via menuen "Server" øverst i vinduet, eller højreklikke på tallene i nederste højre hjørne ud for "Server". Bemærk, at når lydserveren er bootet, bliver disse tal grønne. Når serveren bootes ser vi desuden en del tekstbeskeder til højre i SuperColliders "Post window", herunder hvilket lydkort, lydserveren er forbundet med.
 
 ![Boot af SuperColliders lydserver](../media/figures/serverboot.png){ width="70%" }
 

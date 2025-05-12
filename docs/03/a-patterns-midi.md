@@ -5,7 +5,7 @@ tags:
 
 # Pattern-komposition med MIDI-output
 
-Når vi lærer at arbejde patterns som kompositionsredskab, er det oplagt at anvende en mere interessant lydkilde end den indbyggede standardlyd i SuperColliders lydserver. Vi kommer senere til at [designe vores egne lyde med SuperColliders lydserver](../05/a-synthdef.md), men for nuværende kan det give nogle lydligt interessante resultater at bruge vores patterns til MIDI-komposition.
+Når vi lærer at arbejde med patterns som kompositionsredskab, er det oplagt at anvende en mere interessant lydkilde end den indbyggede standardlyd i SuperColliders lydserver. Vi kommer senere til at [designe vores egne lyde med SuperColliders lydserver](../05/a-synthdef.md), men for nuværende kan det give nogle lydligt interessante resultater at bruge vores patterns til MIDI-komposition.
 
 ## Opsætning og test af MIDI-kommunikation
 

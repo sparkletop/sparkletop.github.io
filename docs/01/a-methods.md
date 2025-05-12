@@ -95,7 +95,7 @@ Pbind.play
 
 ## Argumenter
 
-I mange tilfælde kan vi styre hvordan en given method fungerer. Det gør vi ved hjælp af *argumenter*. Men argumenter - hvad er nu det for noget? Vi har ovenfor set en række tilfælde, hvor en method er blevet efterfulgt af et sæt parenteser, nogle gange med nogle tal eller anden tekst noteret mellem parenteserne. Det, der står mellem parenteserne, kalder vi for argumenter. Med vores fiktive eksempel ovenfor kunne man forestille sig, at `~car.drive(50)` og `~car.drive(100)` ville få en bil til at køre med henholdsvis 50 km/t og 100 km/t. Her er nogle reelle eksempler på
+I mange tilfælde kan vi styre hvordan en given method fungerer. Det gør vi ved hjælp af *argumenter* - [præcis ligesom ved funktioner](./a-funktioner.md#input-til-funktioner-argumenter). Vi har ovenfor set en række tilfælde, hvor en method er blevet efterfulgt af et sæt parenteser, nogle gange med nogle tal eller anden tekst noteret mellem parenteserne. Det, der står mellem parenteserne, kalder vi for argumenter. Med vores fiktive eksempel ovenfor kunne man forestille sig, at `~car.drive(50)` og `~car.drive(100)` ville få en bil til at køre med henholdsvis 50 km/t og 100 km/t. Her er nogle reelle eksempler på argumenter til methods:
 
 ``` sc title="Styring af methods med argumenter"
 // vi beder om en sinustone-oscillator, som svinger ved 220 Hertz audio rate
@@ -117,7 +117,7 @@ Pwhite.new(0, 7)
 I SuperColliders dokumentation kan man se hvilke methods, der passer til forskellige klasser.
 
 - Slår man en klasse op (fx `Array`, `Pwhite`, `SinOsc` etc.), vil man kunne se hvordan de forskellige class og instance methods fungerer og anvendes.
-- Slår man en method op (fx `.new`, `.play`, `.reverse` etc.), vil man kunne se de forskellige klasser, som har denne method tilknyttet (klik på klassenavnet for at se hvordan dokumentationen for den pågældende method inden for den specifikke klasse).
+- Slår man en method op (fx `.new`, `.play`, `.reverse` etc.), vil man kunne se de forskellige klasser, som har denne method tilknyttet. Klik på klassenavnet for at se dokumentationen for den pågældende methods rolle i forhold til den specifikke klasse af objekter.
 
 Placér cursoren sammen med et af kodeudtrykkene herunder og tast Ctrl/Cmd-D for at åbne dokumentationen. Læs selv nærmere om de forskellige methods, og bemærk hvilke resultater, der dukker op.
 

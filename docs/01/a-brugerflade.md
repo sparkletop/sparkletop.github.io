@@ -5,16 +5,18 @@ tags:
 
 ??? abstract "Introduktion til kapitlet"
 
-    Dette kapitel introducerer til grundlæggende programmering i SuperCollider. Ud over at introducere brugerfladen, kigger vi nærmer på syntaksen i programmeringssproget SuperCollider, så vi kan skrive og eksekvere kildekode. Derudover introduceres nogle grundlæggende begreber og teknikker, som det er vigtigt at have styr på, inden vi går videre. Det drejer sig om brug af såkaldte [variabler](a-variabler.md), [methods](a-methods.md) og argumenter. I slutningen af kapitlet indgår nogle [grundlæggende programmeringsøvelser](e-basics.md) og [øvelser med lyd](e-lyd.md), men vores hovedprioritet er altså her i første kapitel at forstå, skrive og eksekvere kildekode, da det er fundamentet for at kunne arbejde med de musikalske emner i de efterfølgende kapitler.
+    Dette kapitel introducerer til grundlæggende programmering i SuperCollider. Ud over at introducere brugerfladen, kigger vi nærmer på syntaksen i programmeringssproget SuperCollider, så vi kan skrive og eksekvere kildekode. Derudover introduceres nogle grundlæggende begreber og teknikker, som det er vigtigt at have styr på, inden vi går videre. Det drejer sig om brug af såkaldte variabler, methods og argumenter. I slutningen af kapitlet indgår nogle grundlæggende programmeringsøvelser med og uden lyd. Men vores hovedprioritet her i første kapitel er altså at forstå, skrive og eksekvere kildekode, da det er fundamentet for at kunne arbejde med de musikalske emner i de efterfølgende kapitler.
 
 # SuperColliders brugerflade
 
-Første gang man åbner SuperCollider, mødes man af en umiddelbart noget minimalistisk brugerflade. Med mindre man har arbejdet med programmering før, vil det i begyndelsen være lidt uvant, at brugerfladen først og fremmest består i et tekstdokument, hvor man noterer og eksekverer kildekode. Men det ændrer sig hurtigt, når man kommer i gang, og inden længe kommer man til at sætte pris på den enkelhed, brugerfladen også repræsenterer. Lad os danne os et overblik for at komme i gang: Når man åbner SuperCollider første gang efter en frisk installation, vil brugerfladen typisk indeholde følgende elementer:
+Første gang man åbner SuperCollider, mødes man af en umiddelbart noget minimalistisk brugerflade. Med mindre man har arbejdet med programmering før, vil det i begyndelsen være lidt uvant, at brugerfladen først og fremmest består af et tekstdokument, hvor man noterer og eksekverer kildekode. Men det ændrer sig hurtigt, når man kommer i gang, og inden længe kommer man til at sætte pris på den enkelhed, brugerfladen også repræsenterer.
+
+Lad os danne os et overblik for at komme i gang. Når man åbner SuperCollider første gang efter en frisk installation, vil brugerfladen typisk indeholde følgende elementer:
 
 1. Den tomme kasse til venstre indeholder dokumenter. Det er her, vi skriver og eksekverer kildekode.
 1. Kassen øverst til højre med navnet *Help browser* giver adgang til SuperColliders dokumentation. Det er denne boks, der henvises til, når vi i denne bog taler om at slå noget op i SuperColliders dokumentation.
 1. Kassen nederst til højre med navent *Post window* er et vindue, hvor SuperCollider viser nyttige informationer og fejlmeddelelser.
-1. Menuen øverst giver adgang til forskellige almindelige funktioner som "save" og "load" samt nogle SuperCollider-specifikke indstillinger og funktioner.
+1. Menuen øverst giver adgang til forskellige almindelige funktioner for tekstdokumenter som "Save", "Open...", "Cut", "Paste" samt en række SuperCollider-specifikke indstillinger og funktioner.
 1. Talrækken nederst til højre giver forskellige informationer om SuperColliders tilstand, primært i forhold til lydserveren. Her kan man højreklikke for at få vist en menu med forskellige funktioner.
 
 ![Forskellige dele af SuperColliders brugerflade](../media/figures/ide.png){ width="90%" }
