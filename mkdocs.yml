@@ -128,8 +128,8 @@ nav:
     - Afspilning af samples: 08/a-samples.md
     - 08/a-beat.md
     - 08/a-lydcollage.md
-    - 08/e-samples.md
     - 08/a-beatslicing.md
+    - 08/e-samples.md
     - 08/e-beatslicing.md
   - 9. Klangdannelse med granular syntese:
     - Granular syntese: 09/a-granular.md
@@ -137,7 +137,7 @@ nav:
     - 09/a-tekstur-klangflade.md
     - 09/e-granular.md
   - Diverse ressourcer:
-    - Optag lyd fra SuperCollider: Ressourcer/art2-optag_supercollider.md
-    - Ressourcer/a-readings.md
-    - Ressourcer/gratis-samples.md
+    - Optag lyd fra SuperCollider: 10/a-optag-supercollider.md
+    - 10/a-readings.md
+    - 10/gratis-samples.md
   - Oversigt: oversigt.md
