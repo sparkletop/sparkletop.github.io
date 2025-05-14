@@ -53,7 +53,7 @@ Med ovenstående SynthDef indlæst, kan vi nu koncentrere os om at skabe en samp
 
 ![type:audio](../media/audio/guit_em9.ogg)
 
-Med dette sample [indlæst i en buffer](a-samples.md#indlæsning-af-sample-i-buffer) under variabelnavnet `~guitar` kan vi med nøje udvalgte patterns og indstillinger fremstille en komposition, der udnytter SynthDef'en til at skabe en algoritmisk genereret lydcollage. Undersøg selv effekten af de forskellige patterns herunder - bemærk, at det samlede antal sampleafspilninger afhænger af den sekvensen, som defineres under `\drive`-nøglen.
+Med dette sample [indlæst i en buffer](a-samples.md#indlsning-af-sample-i-buffer) under variabelnavnet `~guitar` kan vi med nøje udvalgte patterns og indstillinger fremstille en komposition, der udnytter SynthDef'en til at skabe en algoritmisk genereret lydcollage. Undersøg selv effekten af de forskellige patterns herunder - bemærk, at det samlede antal sampleafspilninger afhænger af den sekvensen, som defineres under `\drive`-nøglen.
 
 ```sc title="Lydcollage med patterns"
 ( TempoClock.tempo = 60/60;

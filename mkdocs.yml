@@ -129,14 +129,13 @@ nav:
     - 08/a-beat.md
     - 08/a-lydcollage.md
     - 08/e-samples.md
+    - 08/a-beatslicing.md
+    - 08/e-beatslicing.md
   - 9. Klangdannelse med granular syntese:
     - Granular syntese: 09/a-granular.md
     - 09/a-tempo-pitch.md
     - 09/a-tekstur-klangflade.md
     - 09/e-granular.md
-  - 10. Algoritmisk beatslicing:
-    - Beatslicing med patterns: 10/a-beatslicing.md
-    - 10/e-beatslicing.md
   - Diverse ressourcer:
     - Optag lyd fra SuperCollider: Ressourcer/art2-optag_supercollider.md
     - Ressourcer/a-readings.md
