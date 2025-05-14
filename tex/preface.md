@@ -4,20 +4,20 @@ Inden for computermusikken er programmering for nogle musikere og komponister de
 
 Den tekniske platform er [SuperCollider](https://supercollider.github.io), som er et fantastisk redskab til musik- og lydprogrammering. Det er tilmed gratis og open source.
 
-Sidst men ikke mindst: Bogen her udgør et *supplerende* læringsmateriale. Det betyder, at man med fordel også kan studere andre materialer (hvoraf stort set alle dog er på engelsk). Her kan jeg særligt anbefale to glimrende ressourcer, som henvender sig til begyndere:
+Denne bog kan med fordel suppleres med andre udmærkede undervisningsmaterialer. Der findes glimrende introduktioner til SuperCollider, som dog alle er på engelsk. Her kan jeg særligt anbefale to ressourcer, som henvender sig til begyndere:
 
 - Bruno Ruviaros e-bog *[A Gentle Introduction to SuperCollider](https://ccrma.stanford.edu/~ruviaro/texts/A_Gentle_Introduction_To_SuperCollider.pdf)*
-- Eli Fieldsteels videoserie [SuperCollider Tutorials](https://www.youtube.com/playlist?list=PLPYzvS8A_rTaNDweXe6PX4CXSGq4iEWYC) 
+- Eli Fieldsteels videoserie *[SuperCollider Tutorials](https://www.youtube.com/playlist?list=PLPYzvS8A_rTaNDweXe6PX4CXSGq4iEWYC)*
 
 I slutningen af bogen kommer jeg med yderligere anbefalinger til videre studier udi computermusik med SuperCollider.
 
 # Sådan bruger du denne bog
 
-Bogen er skrevet med henblik på studerende på de videregående uddannelser men kan bruges af alle, der har en forståelse af musikteori og musikteknologi på grundlæggende niveau. Det forudsættes eksempelvis, at man har et elementært kendskab til musikalske skalaer, intervaller og rytmelære samt bølgelære, filtre og oscillatorer.
+Bogen er skrevet med henblik på studerende på de videregående uddannelser men kan bruges af alle, der har en forståelse af musikteori og musikteknologi på grundlæggende niveau. Det forudsættes eksempelvis, at man har et elementært kendskab til musikalske skalaer, intervaller og rytmelære samt bølgelære, filtre, oscillatorer og MIDI.
 
-Hvis man er begynder, er det en god idé at starte fra kapitel 1 og arbejde sig fremad. Man skal, som det gode gamle ordsprog lyder, kravle, før man kan gå. Al erfaring viser, at det er sjovest at tage fat på de mere avancerede emner, når man har godt styr på de grundlæggende færdigheder. Er man mere erfaren inden for programmering og computermusik, kan man i stedet bruge bogen som et opslagsværk.
+Hvis man er begynder, er det en god idé at starte fra kapitel 1 og arbejde sig fremad. Man skal, som det gode gamle ordsprog lyder, kravle, før man kan gå. Al erfaring viser, at det er sjovest at tage fat på de mere avancerede emner, når man har godt styr på de grundlæggende færdigheder. Er man mere erfaren inden for både programmering og computermusik, kan man i stedet bruge bogen som et opslagsværk.
 
-Uanset hvilken baggrund man har, vil jeg anbefale, at man undervejs i læsningen selv indtaster og afprøver eksemplerne med kildekode.
+Uanset hvilken baggrund man har, vil jeg anbefale, at man undervejs i læsningen selv indtaster og afprøver eksemplerne med kildekode. Det er der flere gode grunde til:
 
 - Man forstår og husker bedre hvordan koden fungerer, når man selv har indtastet den.
 - Man lærer et nyt sprog bedst, når man bruger det i praksis.
@@ -36,6 +36,7 @@ s.waitForBoot({
 })
 )
 ```
+
 ![type:audio](../docs/media/audio/sinus-random.ogg)
 
 Prøv selv at [installere SuperCollider](https://supercollider.github.io/downloads), åbne programmet og indtaste nedenstående kildekode i tekst-editoren. Placer derefter cursoren på én af de midterste linjer og tast Ctrl-Enter eller Cmd-Enter for at høre lyden. Koden ovenfor producerer to sinustoner; en tone i hver stereo-kanal, som begge springer tilfældigt op og ned mellem 220Hz og 880Hz, 10 gange i sekundet. Stop lyden igen med Ctrl-Punktum (på Windows/Linux) eller Cmd-Punktum (på Mac).
@@ -56,9 +57,8 @@ Cheat sheets
 
 :   Praktiske opgaver, som giver mulighed for at øve sig i de forskellige teknikker.
 
-
 Bogen kan også læses i en webudgave på [sparkletop.github.io](https://sparkletop.github.io), hvor også bogens lydeksempler findes.
 
 ## Licens
 
-Bogen er skrevet af [Anders Eskildsen](https://vbn.aau.dk/en/persons/146493) og gjort tilgængelig for offentligheden under Creative Commons-licensen **CC BY 4.0**. Det betyder, at bogen må deles og bearbejdes, så længe licensbetingelserne overholdes (herunder tydelig henvisning til forfatteren). Læs nærmere herom hos [Creative Commons](https://creativecommons.org/licenses/by/4.0/).
+Bogen er skrevet af [Anders Eskildsen](https://vbn.aau.dk/en/persons/146493) og gjort tilgængelig for offentligheden under Creative Commons-licensen **CC BY-SA 4.0**. Det betyder, at bogens indhold må deles og bearbejdes, så længe licensbetingelserne overholdes (herunder tydelig henvisning til forfatteren samt anvendelse af samme licens ved distribution af afledt materiale). Læs nærmere herom hos [Creative Commons](https://creativecommons.org/licenses/by-sa/4.0/).
