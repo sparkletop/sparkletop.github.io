@@ -1,0 +1,2336 @@
+
+<!doctype html>
+<html lang="da" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../a-random-patterns/">
+      
+      
+        <link rel="next" href="../c-patterns/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Pbind-nøgler - Komposition og lydproduktion med SuperCollider</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="../../assets/external/fonts.googleapis.com/css.c3479dc1.css">
+        <style>:root{--md-text-font:"Source Sans Pro";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pbind-ngler" class="md-skip">
+          Gå til indholdet
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Sidehoved">
+    <a href="../.." title="Komposition og lydproduktion med SuperCollider" class="md-header__button md-logo" aria-label="Komposition og lydproduktion med SuperCollider" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m22 12-2 1-1 1-1-1-1 3-1-3-1 8-1-8-1 2-1-2-1 4-1-4-1 9-1-9-1 6-1-6-1 1-1-1-2-1 2-1 1-1 1 1 1-6 1 6 1-9 1 9 1-4 1 4 1-2 1 2 1-8 1 8 1-3 1 3 1-1 1 1z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Komposition og lydproduktion med SuperCollider
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pbind-nøgler
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Søg" placeholder="Søg" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Søg">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Nulstil søgning" aria-label="Nulstil søgning" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Start søgning
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Komposition og lydproduktion med SuperCollider" class="md-nav__button md-logo" aria-label="Komposition og lydproduktion med SuperCollider" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m22 12-2 1-1 1-1-1-1 3-1-3-1 8-1-8-1 2-1-2-1 4-1-4-1 9-1-9-1 6-1-6-1 1-1-1-2-1 2-1 1-1 1 1 1-6 1 6 1-9 1 9 1-4 1 4 1-2 1 2 1-8 1 8 1-3 1 3 1-1 1 1z"/></svg>
+
+    </a>
+    Komposition og lydproduktion med SuperCollider
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Forside
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00/a-indledning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Indledning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. Grundlæggende programmering
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            1. Grundlæggende programmering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01/a-brugerflade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SuperColliders brugerflade
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01/a-eksekvering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Eksekvering af kildekode
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01/a-variabler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Brug af variabler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01/a-funktioner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funktioner for den dovne programmør
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01/a-methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Indbygget funktionalitet i methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01/a-lister/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Organisering med lister
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01/e-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Øvelse: Grundlæggende programmering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01/e-lyd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Øvelse: De første bip
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. En strøm af lyde
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            2. En strøm af lyde
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../a-patterns-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduktion til Pattern-baseret komposition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../a-random-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Patterns som aleatoriske og stokastiske redskaber
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Pbind-nøgler
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pbind-nøgler
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Indholdsfortegnelse">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Indholdsfortegnelse
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tonehjde-i-pbind" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tonehøjde i Pbind
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#varighed-frasering-og-timing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Varighed, frasering og timing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Varighed, frasering og timing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#en-note-om-rytmenotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      En note om rytmenotation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lydstyrke" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lydstyrke
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../c-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cheat sheet: Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../e-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Øvelse: Grundlæggende brug af Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../e-generativ-komposition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Øvelse: Generativ komposition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    3. Komposition med patterns
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            3. Komposition med patterns
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03/a-indlejring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Indlejrede patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03/a-sammensaetning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sammensætning af event patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03/a-patterns-midi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pattern-komposition med MIDI-output
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03/e-eksempler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Øvelse: Analyse og videreudvikling af kompositioner
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03/e-minimalisme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Øvelse: Minimalistisk komposition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    4. Oscillatorer og modulation
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            4. Oscillatorer og modulation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04/a-ugens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UGens og signalflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04/a-skalering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modulation af UGens
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04/c-ugens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cheat sheet: Centrale UGens
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04/c-ugen-methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cheat sheet: UGen-methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04/e-ugens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Øvelse: Brug af UGens
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    5. Envelopes og SynthDefs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            5. Envelopes og SynthDefs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05/a-envelopes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Brug af envelopes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05/a-synthdef/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Synth og SynthDef
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05/a-nye-envelopes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Specialdesignede envelopes og LFO'er
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05/c-synthdef/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cheat sheet: SynthDef-skabeloner
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05/e-envelopes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Øvelse: Envelopes og SynthDefs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    6. Klangdannelse med filtre
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            6. Klangdannelse med filtre
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06/a-filterbaseret-klangdannelse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filterbaseret klangdannelse
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06/a-opskrifter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simple blæser- og strygerlyde
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06/a-lilletromme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Syntetisk lilletromme
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06/a-strenge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulering af strenge
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06/c-filtre/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cheat sheet: Filter-UGens
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06/e-subtraktiv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Øvelse: Anvendelse af filtre
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    7. Klangdannelse med oscillatorbanke
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            7. Klangdannelse med oscillatorbanke
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07/a-oscillatorbanke/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Oscillatorbanke og multikanalslyd
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07/a-additiv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Additiv syntese
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07/a-risset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rissets klokke
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07/a-orgel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Additiv orgellyd
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07/a-vocoder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Old school vocoder
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07/e-oscillatorbanke/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Øvelse: Multikanalslyd og additiv syntese
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    8. Samplebaseret komposition
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            8. Samplebaseret komposition
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08/a-samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Afspilning af samples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08/a-beat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Beatproduktion med patterns og samples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08/a-lydcollage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lydcollage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08/e-samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Øvelse: Samples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08/a-beatslicing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Beatslicing med patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08/e-beatslicing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Øvelse: Beatslicing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    9. Klangdannelse med granular syntese
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            9. Klangdannelse med granular syntese
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09/a-granular/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Granular syntese
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09/a-tempo-pitch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Adskil tempo og tonehøjde
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09/a-tekstur-klangflade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rytmik og tekstur
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09/e-granular/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Øvelse: Granular syntese
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Diverse ressourcer
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Diverse ressourcer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ressourcer/art2-optag_supercollider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Optag lyd fra SuperCollider
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ressourcer/a-readings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hvad så nu?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ressourcer/gratis-samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kilder til gratis samples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oversigt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Oversigt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <a href="../../oversigt/#tag:artikler" class="md-tag">Artikler</a>
+      
+    
+  </nav>
+
+
+
+<div><h1 id="pbind-ngler">Pbind-nøgler</h1>
+<p>I SuperCollider kan man sammensætte længere forløb af musikalske "begivenheder" ved hjælp af <code>Pbind</code>. Det er ofte inden for Pbind, at vi specificerer musikalske parametre som tonehøjde, dynamik, rytmik og frasering. Det gør vi ved at sammensætte nøgler og værdier i formen <code>\nøgle, værdi</code>:</p>
+<div class="language-sc highlight"><span class="filename">Nøgler og værdier i Pbind</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="ss">\degree</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="c1">// 5. skalatrin, et g (fordi udgangspunktet er C-dur)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="ss">\dur</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span>  <span class="c1">// varighed på et halvt taktslag (dvs. en ottendedel i almindelig musikterminologi)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="ss">\db</span><span class="p">,</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span>   <span class="c1">// -25 decibel lydstyrke</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">).</span><span class="nx">play</span><span class="p">;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="o">~</span><span class="nx">eksempel</span><span class="p">.</span><span class="nx">stop</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Nøglen i Pbind'en ovenfor her er altså den tekstbid, der starter med \ - <code>\degree</code>, <code>\dur</code> eller <code>\db</code>, og de tilhørende værdier er henholdvis <code>4</code>, <code>0.5</code> og <code>-25</code>. Herunder gennemgås de mest almindelige standardnøgler, som det er værd at kende til <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+<h2 id="tonehjde-i-pbind">Tonehøjde i Pbind</h2>
+<p>Til at notere tonehøjder anbefaler jeg, at man (til tonal musik) anvender følgende nøgler:</p>
+<dl>
+<dt><code>\degree</code></dt>
+<dd>
+<p>Angiver <em>skalatrin</em>, hvor 0 er det første trin (fx tonen c i en C-dur skala).</p>
+</dd>
+<dt><code>\scale</code></dt>
+<dd>
+<p>Angiver <em>skala</em>, valgt med fx <code>Scale.minor</code> eller angivet som en liste bestående af intervaller. <code>Scale.major</code> er standardværdien. For skalavalgmuligheder, kør <code>Scale.directory;</code></p>
+</dd>
+<dt><code>\octave</code></dt>
+<dd>
+<p>Angiver hvilken MIDI-oktav, tonen findes i.</p>
+</dd>
+<dt><code>\root</code></dt>
+<dd>
+<p>Skalaens grundtone, målt i antal halvtoners afstand fra c. Dvs. 0 er c, 1 er cis, 2 er d osv. Dette kan også være negative tal, dvs. -3 svarer til a.</p>
+</dd>
+</dl>
+<div class="language-sc highlight"><span class="filename">Skalatrin, skala, oktav og grundtone</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">(</span> 
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="ss">\degree</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>   <span class="c1">// en diatonisk firklang</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="ss">\scale</span><span class="p">,</span> <span class="nx">Scale</span><span class="p">.</span><span class="nx">minor</span><span class="p">,</span>     <span class="c1">// mol-skala</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="ss">\octave</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>              <span class="c1">// oktav 5 er den oktav, som starter ved noglehuls-c</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="ss">\root</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span>                <span class="c1">// 3 halvtoner under nøglehuls-c (i dette tilfælde a)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">).</span><span class="nx">play</span><span class="p">;</span>                         <span class="c1">// tilsammen en A-mol7</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">)</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="o">~</span><span class="nx">eksempel</span><span class="p">.</span><span class="nx">stop</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Man kan også vælge at angive tonehøjde på andre abstraktionsniveauer - med MIDI-tal (nøglen <code>\midinote</code>) eller oscillatorfrekvens (nøglen <code>\freq</code>):</p>
+<div class="language-sc highlight"><span class="filename">Alternative nøgler til angivelse af tonehøjde</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span><span class="ss">\midinote</span><span class="p">,</span> <span class="mi">60</span><span class="p">).</span><span class="nx">play</span><span class="p">;</span>  <span class="c1">// c</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span><span class="ss">\freq</span><span class="p">,</span> <span class="mi">440</span><span class="p">).</span><span class="nx">play</span><span class="p">;</span>     <span class="c1">// a, kammertonen</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">~</span><span class="nx">eksempel</span><span class="p">.</span><span class="nx">stop</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Kromatisk og modal transponering kan angives med:</p>
+<dl>
+<dt><code>\mtranspose</code></dt>
+<dd>
+<p>Modal transponering, dvs. parallelføring inden for skalaen.</p>
+</dd>
+<dt><code>\ctranspose</code></dt>
+<dd>
+<p>Kromatisk transponering, dvs. halvtonetrin uafhængigt af skala.</p>
+</dd>
+</dl>
+<div class="language-sc highlight"><span class="filename">Modal og kromatisk transponering</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">(</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="ss">\degree</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="ss">\mtranspose</span><span class="p">,</span> <span class="nx">Pseq</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">).</span><span class="nx">play</span><span class="p">;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">(</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="ss">\degree</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="ss">\ctranspose</span><span class="p">,</span> <span class="nx">Pseq</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">).</span><span class="nx">play</span><span class="p">;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">)</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="o">~</span><span class="nx">eksempel</span><span class="p">.</span><span class="nx">stop</span><span class="p">;</span>
+</span></code></pre></div>
+<h2 id="varighed-frasering-og-timing">Varighed, frasering og timing</h2>
+<p>Til at notere rytmik bruger vi primært følgende nøgler:</p>
+<dl>
+<dt><code>\dur</code></dt>
+<dd>
+<p>Tidsinterval mellem på hinanden følgende anslag, målt i taktslag (ikke sekunder).</p>
+</dd>
+<dt><code>\legato</code></dt>
+<dd>
+<p>Hvor længe en tone klinger, målt relativt i forhold til <code>\dur</code>. Værdier større end 1 giver legato og værdier mindre end 1 giver staccato.</p>
+</dd>
+</dl>
+<div class="language-sc highlight"><span class="filename">Rytmik og frasering</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span><span class="ss">\dur</span><span class="p">,</span> <span class="mi">1</span><span class="p">).</span><span class="nx">play</span><span class="p">;</span>        <span class="c1">// tidsinterval 1 taktslag, dvs. en 4.-del</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span><span class="ss">\dur</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">).</span><span class="nx">play</span><span class="p">;</span>     <span class="c1">// tidsinterval 0.25 taktslag, dvs. en 16.-del</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span><span class="ss">\legato</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">).</span><span class="nx">play</span><span class="p">;</span>   <span class="c1">// staccato</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span><span class="ss">\legato</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">).</span><span class="nx">play</span><span class="p">;</span>   <span class="c1">// legato</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="o">~</span><span class="nx">eksempel</span><span class="p">.</span><span class="nx">stop</span><span class="p">;</span>
+</span></code></pre></div>
+<p>For at justere timing relativt til beatet kan man bruge nøglen <code>\lag</code> (fx for at "humanisere" en ellers meget maskinel timing). For at forskyde timingen relativt til andre ellers samtidigt klingende toner kan vi bruge <code>\strum</code>-nøglen, som forskyder toneanslag i akkorder ligesom et guitar-strum.</p>
+<div class="language-sc highlight"><span class="filename">Rytmisk Forskydning</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span><span class="ss">\lag</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">).</span><span class="nx">play</span> <span class="c1">// giver kun mening relativt til fx et beat</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">(</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="ss">\degree</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="ss">\strum</span><span class="p">,</span> <span class="mf">0.05</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">).</span><span class="nx">play</span><span class="p">;</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">)</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="o">~</span><span class="nx">eksempel</span><span class="p">.</span><span class="nx">stop</span><span class="p">;</span>
+</span></code></pre></div>
+<h3 id="en-note-om-rytmenotation">En note om rytmenotation</h3>
+<p>For at notere nodeværdier som vi kender dem fra almindelig musikteori, skal vi tage højde for, at SuperCollider tæller varigheder i <em>taktslag</em>. Når vi almindeligvis taler om et "taktslag" taler vi typisk om en fjerdedel (1/4) - og det vi mener er en fjerdedel af en takt. I SuperCollider tæller vi med <code>\dur</code>-nøglen ikke i takter, men i taktslag. Derfor skriver vi 1 og ikke 1/4, når vi ønsker en varighed på ét taktslag.</p>
+<p>Hvad nu, hvis vi gerne vil bruge almindelige rytmeangivelser i SuperCollider? Jo, vi kan for det meste ganske enkelt gange med 4 for at omregne fra "varighed målt i andele af takt" til "varighed målt i taktslag". For at notere sekstendedele, ottendedele, fjerdele, halvnoder og helnoder kan vi således skrive:</p>
+<div class="language-sc highlight"><span class="filename">Traditionelle nodeværdier</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span><span class="ss">\dur</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">16</span> <span class="o">*</span> <span class="mi">4</span><span class="p">).</span><span class="nx">play</span><span class="p">;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span><span class="ss">\dur</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span> <span class="o">*</span> <span class="mi">4</span><span class="p">).</span><span class="nx">play</span><span class="p">;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span><span class="ss">\dur</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span> <span class="o">*</span> <span class="mi">4</span><span class="p">).</span><span class="nx">play</span><span class="p">;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span><span class="ss">\dur</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">4</span><span class="p">).</span><span class="nx">play</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span><span class="ss">\dur</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="o">*</span> <span class="mi">4</span><span class="p">).</span><span class="nx">play</span><span class="p">;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="o">~</span><span class="nx">eksempel</span><span class="p">.</span><span class="nx">stop</span><span class="p">;</span>
+</span></code></pre></div>
+<h2 id="lydstyrke">Lydstyrke</h2>
+<p>Til at notere volumen kan man vælge mellem nøglerne <code>\db</code> eller <code>\amp</code>. Med <code>\db</code> omregner SuperCollider automatisk fra decibel, hvor <code>0</code> er den maksimale værdi, <code>-20</code> svarer til, at lyden bliver opfattet halvt så kraftigt som ved maksimal lydstyrke, og så fremdeles. Med nøglen <code>\amp</code> angiver vi i stedet amplituden direkte, typisk som en værdi mellem 0 og 1.</p>
+<div class="language-sc highlight"><span class="filename">Lydstyrke</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span><span class="ss">\db</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">).</span><span class="nx">play</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="o">~</span><span class="nx">eksempel</span> <span class="o">=</span> <span class="nx">Pbind</span><span class="p">(</span><span class="ss">\amp</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">).</span><span class="nx">play</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="o">~</span><span class="nx">eksempel</span><span class="p">.</span><span class="nx">stop</span><span class="p">;</span>
+</span></code></pre></div>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Når man senere i kurset skriver sine egne SynthDefs, fungerer ovennævnte nøgler kun, når man anvender argumenterne <code>freq</code>, <code>amp</code> og <code>gate</code> korrekt i sin SynthDef. Se hertil afsnittet om <a href="../../05/a-synthdef/#argumentnavne-i-synthdef">argumentnavne i SynthDef</a>. <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+</ol>
+</div></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Tilbage til start
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Sidefod" >
+        
+          
+          <a href="../a-random-patterns/" class="md-footer__link md-footer__link--prev" aria-label="Forrige: Patterns som aleatoriske og stokastiske redskaber">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Forrige
+              </span>
+              <div class="md-ellipsis">
+                Patterns som aleatoriske og stokastiske redskaber
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../c-patterns/" class="md-footer__link md-footer__link--next" aria-label="Næste: Cheat sheet: Patterns">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Næste
+              </span>
+              <div class="md-ellipsis">
+                Cheat sheet: Patterns
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022-2025 Anders Eskildsen
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "header.autohide", "navigation.instant", "toc.follow", "toc.integrate", "search.suggest", "navigation.footer", "navigation.top"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Kopieret til udklipsholderen", "clipboard.copy": "Kopi\u00e9r til udklipsholderen", "search.result.more.one": "1 resultat mere p\u00e5 denne side", "search.result.more.other": "# resultater mere p\u00e5 denne side", "search.result.none": "Ingen resultater fundet", "search.result.one": "1 resultat", "search.result.other": "# resultater", "search.result.placeholder": "Indtast s\u00f8geord", "search.result.term.missing": "Mangler", "select.version": "V\u00e6lg version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../assets/external/unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
