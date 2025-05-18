@@ -6,6 +6,7 @@ site
 node_modules
 
 sync_media.sh
+custom_scripts
 
 ## aux TeX files
 _minted*
