@@ -10,7 +10,7 @@ I denne øvelse producerer du beats ved hjælp af algoritmisk beatslicing.
 ## Klargøring
 
 1. Indlæs først et eller flere trommeloops under variablen `~sample`til brug i nedenstående øvelse. Det er (for denne øvelse) vigtigt, at trommeloopet er metrisk underdelt i sekstendedele og varer præcis én takt.
-1. Indlæs SynthDef'en `\slice` fra [artiklen om beatslicing](a-beatslicing.md).
+1. Indlæs SynthDef'en `\slice` fra [afsnittet om beatslicing](a-beatslicing.md#en-synthdef).
 
 ## Algoritmiske beats
 

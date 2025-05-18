@@ -3,7 +3,7 @@ tags:
   - Artikler
 ---
 
-??? abstract "Kapitelabstrakt"
+??? abstract "Introduktion til kapitlet"
 
     Denne bog introducerer til programmering som et kreativt redskab for musikstuderende på de videregående uddannelser. Med afsæt i platformen SuperCollider introducerer bogen på grundlæggende niveau til unikke tilgange til komposition og lydproduktion fra computermusikkens verden. Bogen er henvendt til studerende eller særligt interesserede som ikke nødvendigvis har erfaring med programmering, men som har kendskab til musikteori og -teknologi på grundlæggende niveau.
 

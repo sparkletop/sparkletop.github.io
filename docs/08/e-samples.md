@@ -9,11 +9,11 @@ I denne øvelse arbejder du med sample-afspilning ved hjælp af `PlayBuf`.
 
 ## Klargøring af sample
 
-Til brug i denne øvelse skal der indlæses et sample. Du kan bruge din egen lydfil, den skal blot:
+Til brug i denne øvelse skal der indlæses et sample. Du kan bruge din egen lydfil, den skal blot have disse egenskaber:
 
-- Vare maksimalt 10 sekunder
-- Være trimmet, så der ikke er stilhed i begyndelsen eller slutningen af samplet
-- Indlæses i mono
+- Samplet skal vare maksimalt 10 sekunder
+- Samplet skal være trimmet (brug hertil evt. [Audacity](https://www.audacityteam.org/)), så der ikke er stilhed i begyndelsen eller slutningen af samplet
+- Samplet skal indlæses i mono
 
 Som forberedelse til de øvrige opgaver herunder:
 

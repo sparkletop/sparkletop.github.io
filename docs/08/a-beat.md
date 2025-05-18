@@ -11,7 +11,7 @@ Beatproduktion spiller en central rolle i megen nyere populærmusik. Vi kigger h
 
 Variation med patterns. Evt. euklidisk rytmik med `Pbjorklund2`.
 
-## Mikrotiming i patterns
+## Mikrotiming i patterns med nøglen \lag
 
 Til trods for `\lag`-nøglens navn kan den anvendes både til at rykke events frem og tilbage i tid.
 

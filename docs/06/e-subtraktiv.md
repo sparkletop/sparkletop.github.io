@@ -50,7 +50,7 @@ Brug følgende kilder til at modulere cutoff-frekvensen for et low pass-filter, 
 
 ## Subtraktiv SynthDef
 
-Omskriv kildekoden fra [ovenstående opgave](#modulation-af-filtre) til en SynthDef, som gør brug af subtraktiv syntese. Du kan evt. gøre brug af en [SynthDef-skabelon](../05/c-synthdef.md) som ramme for dit arbejde. Se også [hvordan en SynthDef adskiller sig fra UGen-funktioner](../05/a-synthdef.md#hvad-er-en-synthdef).
+Omskriv kildekoden fra ovenstående opgave til en SynthDef, som gør brug af subtraktiv syntese. Du kan evt. gøre brug af en [SynthDef-skabelon](../05/c-synthdef.md) som ramme for dit arbejde. Se også [hvordan en SynthDef adskiller sig fra UGen-funktioner](../05/a-synthdef.md#hvad-er-en-synthdef).
 
 SynthDef'en skal overholde følgende krav:
 

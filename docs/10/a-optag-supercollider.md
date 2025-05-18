@@ -1,3 +1,13 @@
+---
+tags:
+    - Artikler
+---
+
+
+??? abstract "Introduktion til kapitlet"
+
+    Dette sidste kapitel indeholder nogle nyttige ressourcer, som dels uddyber hvordan man kan få lyden ud af SuperCollider og ind i andre programmer (typisk en DAW), dels introducerer til gode kilder til videre studier udi SuperCollider og computermusik.
+
 # Optag lyd fra SuperCollider
 
 På et tidspunkt i din rejse med musik- og lydprogrammering ved hjælp af SuperCollider bliver det relevant at kunne bruge lyd fra SuperCollider i andre programmer. Det kan fx være vi vil eksportere en atmosfærisk lydtekstur skabt med granular syntese eller en melodi, vi har genereret ved hjælp af subtraktiv syntese og patterns. Hertil findes der i SuperCollider flere metoder, som passer til forskellige scenarier. Den interne optagelse er mest enkel og anbefales til begyndere, men at route signalet fra SuperCollider til en DAW er en fleksibel og nyttig metode.

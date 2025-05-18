@@ -25,7 +25,7 @@ Som udgangspunkt for generativ komposition laver vi en instans af klassen `Pbind
 ~eksempel.stop;
 ```
 
-`Pbind` har den funktion, at den "binder" musikalske parametre sammen til en strøm af begivenheder. I Pbind bruger vi på den ene side *nøgler*, angivet med fx `\degree`, `\dur` og `\scale`, til at angive kompositionsmæssige parametre, og vi bruger *patterns* eller *faste værdier* til at angive eller generere disse parametre. Dette kapitel gennemgår de mest almindelige [nøgler](./a-pbind.md#pbind-nøgler) og [patterns](./c-patterns.md).
+`Pbind` har den funktion, at den "binder" musikalske parametre sammen til en strøm af begivenheder. I Pbind bruger vi på den ene side *nøgler*, angivet med fx `\degree`, `\dur` og `\scale`, til at angive kompositionsmæssige parametre, og vi bruger *patterns* eller *faste værdier* til at angive eller generere disse parametre. Dette kapitel gennemgår de mest almindelige [nøgler](a-pbind.md) og [patterns](c-patterns.md).
 
 Her er et enkelt eksempel, hvor vi med nøglen `\degree` vælger at knytte den musikalske parameter *skalatrin* sammen med en fast værdi, nemlig værdien 2, som angiver *tredje* skalatrin. Hvorfor betyder 2 ikke *andet* skalatrin her? Det skyldes, at *første* skalatrin har værdien 0, hvilket afspejler en konvention inden for de fleste programmeringssprog, som går ud på, at man ofte starter med at tælle ved tallet 0. Ønsker vi *andet* skalatrin, skal vi angive værdien 1, og så fremdeles.
 
