@@ -78,7 +78,8 @@ def get_matching_brackets(code: str):
 
 def section_slugify(url: str):
     slug = re.sub(r"\s+", '-', url)
-    slug = re.sub(r"[^-\w]", '', slug)
+    #slug = re.sub(r"[^-\x00-\x7F]", '', slug)
+    slug = re.sub(r"[^a-zA-Z-]+", '', slug)
     slug = re.sub(r"-+", '-', slug)
     slug = slug.lower()
     return slug
@@ -229,7 +230,7 @@ def postprocess_tex(tex: str):
         
         section_name = re.search(r"\\#(.+)$", clean_destination)
         if section_name:
-            label = section_name.group(1)
+            label = section_slugify(section_name.group(1))
         else:
             label = filename
         
@@ -340,7 +341,7 @@ def process_nav(nav, docs_folder, ignore_files, solo_files):
 
 if __name__ == "__main__":
     """
-    Convert the sources for an mkdocs site to a LaTeX file
+    Convert the sources for an mkdocs site to LaTeX chapter files
     """
     parser = argparse.ArgumentParser(description="Convert mkdocs site into a LaTeX document using the md2tex engine + some custom pre- and postprocessing to deal specifically with mkdocs content.")
     parser.add_argument("--mkdocs_folder", type=str, default="./", help="Path to the mkdocs root directory (where 'docs/' is a subdirectory)")
