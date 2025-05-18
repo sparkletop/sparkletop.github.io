@@ -10,11 +10,11 @@ Når vi arbejder med musik, har vi ofte brug for at organisere musikalske parame
 
 En liste/et array er teknisk set en såkaldt [datastruktur](https://www.britannica.com/technology/data-structure), som kendetegnes ved, at den indeholder en samling af **elementer**, der er sat i en bestemt **rækkefølge**. Hvert element har en plads i rækkefølgen, som betegnes elementets **indeks**. Det første element har indeks 0, det næste indeks 1, og så fremdeles.
 
-![Arrayets elementer og indeks](../media/figures/array.png){ width="50%" }
+![Arrayets elementer og indekser](../media/figures/array.png){ width="50%" }
 
 ## Notation og brug af lister
 
-Hvis vi ønsker at notere de tre skalatrin i en akkord uden lister, kan vi gøre ved hjælp af [variabler](a-variabler.md). Det kunne eksempelvis være på denne måde: `~tone1 = 0; ~tone2 = 2; ~tone3 = 4;` - men det er typisk ikke særligt effektivt i længden. Når man ser et mønster som dette, er det typisk på tide at overveje at bruge en liste. For at notere vores akkord som en liste bruger vi kantede parenteser til afgrænse listen, og så noterer vi elementerne, adskilt med komma. Hvis vi gemmer vores liste som en variabel, kan vi tilgå elementerne enkeltvis ved at angive deres indeks, omkranset af kantede parenteser, efter variabelnavnet.
+Hvis vi ønsker at notere de tre skalatrin i en akkord uden lister, kan vi gøre det ved hjælp af [variabler](a-variabler.md). Det kunne eksempelvis være på denne måde: `~tone1 = 0; ~tone2 = 2; ~tone3 = 4;` - men det er typisk ikke særligt effektivt i længden. Når man ser et mønster som dette, er det typisk på tide at overveje at bruge en liste. For at notere vores akkord som en liste bruger vi kantede parenteser til afgrænse listen, og så noterer vi elementerne, adskilt med komma. Hvis vi gemmer vores liste som en variabel, kan vi tilgå elementerne enkeltvis ved at angive deres indeks, omkranset af kantede parenteser, efter variabelnavnet.
 
 ```sc title="Listenotation"
 ~akkord = [0, 2, 4];

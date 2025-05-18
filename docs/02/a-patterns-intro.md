@@ -38,6 +38,8 @@ Pbind(
 )
 ```
 
+![type:audio](../media/audio/pattern-sekvens.ogg)
+
 Men ovenstående bliver hurtigt lidt ensformigt at lytte til. I stedet for faste værdier kan vi bruge et pattern til at generere forskellige værdier. Vi starter med `Pseq`, som vi kan bruge til at generere en sekvens af værdier - stadig skalatrin, fordi vi bruger `\degree`-nøglen.
 
 ``` sc title="Enkel tonesekvens med Pseq"

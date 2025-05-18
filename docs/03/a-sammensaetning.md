@@ -26,8 +26,6 @@ Den mest åbenlyse måde at sammensætte Pbinds er at afvikle dem sekventielt, a
 );
 ```
 
-![type:audio](pbind-kombination.ogg)
-
 Med ovenstående tre Pbinds gemt under variabelnavne kan vi afspille dem i en sekvens med velkendte, listebaserede patterns som `Pseq`, `Prand` m.fl.:
 
 ```sc title="Sekvensering af Pbinds"
@@ -38,6 +36,8 @@ Prand(~sekvenser, 4).play;
 Pxrand(~sekvenser, 4).play;
 Pshuf(~sekvenser, 4).play;
 ```
+
+![type:audio](pbind-kombination.ogg)
 
 ## Begrænsning af Pbind-output med Pfin og Pfindur
 
