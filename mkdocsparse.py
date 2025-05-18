@@ -362,7 +362,7 @@ if __name__ == "__main__":
 
     # Process preface first
     if check_included(PREFACE_MD_FILE, ignore_files, solo_files):
-        make_chapter('Forord', [PREFACE_MD_FILE], 0)
+        make_chapter('Forord', [PREFACE_MD_FILE], 99)
 
     # Get the navigation from mkdocs.yml
     mkdocs_config_file = join(args.mkdocs_folder, 'mkdocs.yml')
@@ -386,7 +386,7 @@ if __name__ == "__main__":
             if md_files:
                 chapters[chapter_dir] = sorted(md_files)
         
-    current_chapter = 1
+    current_chapter = 0
     for chapter_title, md_files in chapters.items():
         make_chapter(chapter_title, md_files, current_chapter)
         current_chapter += 1

@@ -75,7 +75,7 @@ markdown_extensions:
 
 nav:
   - Forside: index.md
-  - Indledning: 00/a-indledning.md
+  - 0. Indledning: 00/a-indledning.md
   - 1. Grundlæggende programmering:
     - SuperColliders brugerflade: 01/a-brugerflade.md
     - 01/a-eksekvering.md
@@ -136,7 +136,7 @@ nav:
     - 09/a-tempo-pitch.md
     - 09/a-tekstur-klangflade.md
     - 09/e-granular.md
-  - Diverse ressourcer:
+  - 10. Næste skridt:
     - Optag lyd fra SuperCollider: 10/a-optag-supercollider.md
     - 10/a-readings.md
     - 10/gratis-samples.md
