@@ -18,10 +18,10 @@ Lydeksemplerne her under er realiseret ved at bruge den angivne Pbind til at sen
 ## Sammensætning af nøgler og patterns
 
 - Undersøg følgende:
-  - Hvordan fungerer de enkelte nøgler (`\octave`, `\root`, `\mtranspose` osv.)? Slå evt. op i [forrige kapitel](../02/a-pbind.md).
-  - Hvordan kombineres tilfældighed og repetition under nøglerne `\mtranspose` og `\db`?
+    - Hvordan fungerer de enkelte nøgler (`\octave`, `\root`, `\mtranspose` osv.)? Slå evt. op i [forrige kapitel](../02/a-pbind.md).
+    - Hvordan kombineres tilfældighed og repetition under nøglerne `\mtranspose` og `\db`?
 - Eksperimentér med følgende:
-  - Alternative skalaer, nodeværdier, tonesekvenser og patterns
+    - Alternative skalaer, nodeværdier, tonesekvenser og patterns
 
 ```sc title="Sammensætning af nøgler og patterns"
 (
@@ -101,7 +101,7 @@ Pbind(
 1. Besvar: Hvad betyder `Array.interpolation(16, -20, -10)`?
 1. Justér kildekoden på følgende vis:
     1. Tilføj mindst én akkord til `Pwrand` (husk, at sandsynlighederne `[0.9, 0.1]` skal svare til antallet af valgmuligheder og tilsammen skal give 1)
-    1. Erstat `Pxrand` med et [listebaseret pattern](../02/a-random-patterns.md#listebaserede-generatorer) efter eget valg, og notér hvilken forskel dette gør
+    1. Erstat `Pxrand` med et [listebaseret pattern](../02/a-random-patterns.md#listebaserede-stokastiske-patterns) efter eget valg, og notér hvilken forskel dette gør
 
 ```sc title="Rytmiserede og dynamiske akkorder"
 (

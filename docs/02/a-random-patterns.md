@@ -4,9 +4,9 @@ tags:
 ---
 # Patterns som aleatoriske og stokastiske redskaber
 
- I midten af det 20. århundrede inkorporerede vigtige strømninger i kompositionsmusikken statistik og tilfældighed i deres kompositionsteknikker. Musikken gik under betegnelser som *aleatorik*, *stokastisk musik*, *indeterminacy* og *chance music*.
+ I midten af det 20. århundrede inkorporerede vigtige strømninger i kompositionsmusikken statistik og tilfældighed i deres kompositionsteknikker. Musikken gik under betegnelser som *aleatorik*, *stokastisk musik*, *indeterminacy* og *chance music*. Ordet *alea* er latin for terning, og man bruger jo som bekendt terninger til at skabe tilfældige udfald inden for et nøje defineret udfaldsrum. Aleatorik er som musikalsk tradition netop baseret på inkorporering af tilfældighed i kompositionsarbejdet.
 
-Er tilfældighed ikke bare tilfældighed? Man kan måske fra et psykologisk perspektiv lidt pragmatisk sige, at det tilfældige er det, vi opfatter som værende uorganiseret, eller hvor vi ikke kan finde nogen mønstre eller repetition i det, vi observerer. I matematikken og statistikken arbejder man med en lidt anden forståelse, hvor der i stedet er tale om *sandsynligheden* for, at bestemte hændelser sker. Det er denne tanke, som ligger bag ideen om stokastisk komposition, hvor de tilfældige elementer ikke er helt uforudsigelige men kan beskrives med statistiske redskaber.
+Men hvad er egentlig tilfældighed? Man kan måske fra et psykologisk perspektiv lidt pragmatisk sige, at det tilfældige er det, vi opfatter som værende uorganiseret, eller hvor vi ikke kan finde nogen mønstre eller repetition i det, vi observerer. I matematikken og statistikken arbejder man med en lidt anden forståelse, hvor der i stedet er tale om *sandsynligheden* for, at bestemte hændelser sker. Det er denne tanke, som ligger bag ideen om stokastisk komposition, hvor de tilfældige udfald ikke er helt uforudsigelige men kan beskrives med statistiske redskaber.
 
 I SuperCollider findes der mange forskellige patterns, som genererer tilfældige værdier. Herunder sammenlignes de mest almindelige af disse, idet der også gives eksempler på hvornår de forskellige redskaber meningsfuldt kan anvendes. Dog er der ikke nogen endegyldig facitliste for hvilke patterns man skal bruge i hvilke situationer, da de kan anvendes og kombineres frit.
 
@@ -14,13 +14,13 @@ Man kan groft skelne mellem to typer af patterns, som inkorporerer tilfældighed
 
 Tilfældighedsgeneratorer
 
-:   Genererer værdier ud fra 2-3 parametre såsom øvre/nedre grænser, grænser for spring, middelværdi og spredning.
+:   Genererer ligesom `Pwhite` værdier ud fra 2-3 parametre såsom øvre/nedre grænser eller grænser for spring, middelværdier eller spredning.
 
 Listebaserede generatorer
 
-:   Genererer output baseret på specificerede lister af værdier (eller patterns).
+:   Genererer ligesom `Pseq` output baseret på specificerede lister af værdier (eller patterns).
 
-## Tilfældighedsgeneratorer
+## Tilfældighedsbaserede patterns
 
 Blandt de af SuperColliders indbyggede patterns, som på forskellig vis genererer tilfældige værdier, vil jeg fremhæve følgende som et nyttigt udvalg at kende til. De præsenteres herunder med deres standardargumenter (som vist i [SuperColliders dokumentation](https://doc.sccode.org/Browse.html#Streams-Patterns-Events%3EPatterns%3ERandom)).
 
@@ -60,7 +60,7 @@ Blandt de af SuperColliders indbyggede patterns, som på forskellig vis generere
     I `Pbrown(0, 10, 3, 5)` er 0 den nedre grænse, 10 den øvre grænse, 3 det maksimale spring fra den ene værdi til den næste, og 5 antallet af genererede værdier.
     ![10.000 værdier genereret med Pbrown(0, 100, 2, 10000)](../media/figures/pbrown.png){ width="80%" }
 
-## Listebaserede generatorer
+## Listebaserede, stokastiske patterns
 
 Disse patterns anvender vi, hvis vi gerne vil definere en række mulige udfald, men vil lade algoritmen bestemme hvordan der vælges mellem valgmulighederne eller hvilken rækkefølge en foruddefineret sekvens afspilles i. Genopfrisk gerne emnet [lister](../01/a-lister.md).
 
