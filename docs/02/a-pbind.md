@@ -52,6 +52,8 @@ Til at notere tonehøjder anbefaler jeg, at man (til tonal musik) anvender følg
 ~eksempel.stop;
 ```
 
+![type:audio](../media/audio/02-pbind-pitch-keys.ogg)
+
 Man kan også vælge at angive tonehøjde på andre abstraktionsniveauer - med MIDI-tal (nøglen `\midinote`) eller oscillatorfrekvens (nøglen `\freq`):
 
 ```sc title="Alternative nøgler til angivelse af tonehøjde"
@@ -118,6 +120,8 @@ For at justere timing relativt til beatet kan man bruge nøglen `\lag` (fx for a
 )
 ~eksempel.stop;
 ```
+
+![type:audio](../media/audio/02-strum.ogg)
 
 ### En note om rytmenotation
 

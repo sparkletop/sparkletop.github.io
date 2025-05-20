@@ -199,18 +199,21 @@ Ligesom med `Pseq` kan vi bruge `Pwhite` til at styre en række forskellige andr
 Pbind(
     // En fast sekvens af tonehøjder
     \degree, Pseq([0, 2, 4, 5], inf),
-    
+
     // \db angiver lydstyrke, målt i decibel
-    \db, Pwhite(-30, -20),
-    
+    \db, Pwhite(-40, -20),
+
     // \dur angiver tonevarigheder, målt i antal taktslag
-    \dur, Pwhite(0.1, 0.2),
+    \dur, Pwhite(0.1, 0.3),
 
     // \pan angiver panorering, hvor -1 er venstre og 1 er højre
-    \pan, Pwhite(-1.0, 1.0),
+    \pan, Pwhite(-1.0, 1.0, 16),
+    // 16 toner
 ).play;
 )
 ```
+
+![type:audio](../media/audio/02-pwhite-overalt.ogg)
 
 Med `Pwhite` er alle tal mellem minimum og maksimum lige sandsynlige. Dette er dog ikke altid den mest interessante statistiske fordeling - fx kan det være mere oplagt, at værdierne tættere på en bestemt grænse er mest sandsynlige, eller at udfaldene følger en såkaldt normalfordeling omkring en middelværdi. Det kan vi gøre med `Pexprand` og `Pgauss`:
 
