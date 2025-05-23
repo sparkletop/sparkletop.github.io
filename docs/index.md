@@ -18,7 +18,7 @@ Blokke af kildekode her på siden kan let kopieres og indsættes i SuperCollider
 )
 ```
 
-![type:audio](media/audio/sinus-random.ogg)
+![type:audio](media/audio/00-sinus-random.ogg)
 
 ## Licens
 

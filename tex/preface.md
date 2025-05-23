@@ -37,9 +37,9 @@ s.waitForBoot({
 )
 ```
 
-![type:audio](../docs/media/audio/sinus-random.ogg)
+![type:audio](../docs/media/audio/00-sinus-random.ogg)
 
-Prøv selv at [installere SuperCollider](https://supercollider.github.io/downloads), åbne programmet og indtaste nedenstående kildekode i tekst-editoren. Placer derefter cursoren på én af de midterste linjer og tast Ctrl-Enter eller Cmd-Enter for at høre lyden. Koden ovenfor producerer to sinustoner; en tone i hver stereo-kanal, som begge springer tilfældigt op og ned mellem 220Hz og 880Hz, 10 gange i sekundet. Stop lyden igen med Ctrl-Punktum (på Windows/Linux) eller Cmd-Punktum (på Mac).
+Prøv selv at [installere SuperCollider](https://supercollider.github.io/downloads), åbne programmet og indtaste nedenstående kildekode i tekst-editoren. Placer derefter cursoren på én af de midterste linjer og tast Ctrl-Enter eller Cmd-Enter for at høre lyden. Koden ovenfor starter SuperColliders lydserver og producerer to sinustoner; en tone i hver stereo-kanal, som begge springer tilfældigt op og ned mellem 220Hz og 880Hz, 10 gange i sekundet. Stop lyden igen med Ctrl-Punktum (på Windows/Linux) eller Cmd-Punktum (på Mac).
 
 ## Om bogens indhold
 
