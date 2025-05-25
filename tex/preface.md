@@ -57,7 +57,7 @@ Cheat sheets
 
 :   Praktiske opgaver, som giver mulighed for at øve sig i de forskellige teknikker.
 
-Bogen kan også læses i en webudgave på [sparkletop.github.io](https://sparkletop.github.io), hvor også bogens lydeksempler findes.
+Bogen kan også læses i en webudgave på [sparkletop.github.io](https://sparkletop.github.io). Bogens lydeksempler kan ligeledes tilgås via denne webside.
 
 ## Licens
 
