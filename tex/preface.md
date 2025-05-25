@@ -4,12 +4,13 @@ Inden for computermusikken er programmering for nogle musikere og komponister de
 
 Den tekniske platform er [SuperCollider](https://supercollider.github.io), som er et fantastisk redskab til musik- og lydprogrammering. Det er tilmed gratis og open source.
 
-Denne bog kan med fordel suppleres med andre udmærkede undervisningsmaterialer. Der findes glimrende introduktioner til SuperCollider, som dog alle er på engelsk. Her kan jeg særligt anbefale to ressourcer, som henvender sig til begyndere:
+Denne bog kan med fordel suppleres med andre udmærkede undervisningsmaterialer. Der findes glimrende introduktioner til SuperCollider, som dog alle er på engelsk. Her kan jeg særligt anbefale følgende ressourcer, som henvender sig til begyndere:
 
-- Bruno Ruviaros e-bog *[A Gentle Introduction to SuperCollider](https://ccrma.stanford.edu/~ruviaro/texts/A_Gentle_Introduction_To_SuperCollider.pdf)*
-- Eli Fieldsteels videoserie *[SuperCollider Tutorials](https://www.youtube.com/playlist?list=PLPYzvS8A_rTaNDweXe6PX4CXSGq4iEWYC)*
+- Bruno Ruviaros e-bog *[A Gentle Introduction to SuperCollider](https://ccrma.stanford.edu/~ruviaro/texts/A_Gentle_Introduction_To_SuperCollider.pdf)* [@ruviaro2015]
+- Eli Fieldsteels videoserie *[SuperCollider Tutorials](https://www.youtube.com/playlist?list=PLPYzvS8A_rTaNDweXe6PX4CXSGq4iEWYC)* [@fieldsteel2024]
+- Eli Fieldsteels bog *SuperCollider for the Creative Musician: A Practical Guide* [@fieldsteel2024a]
 
-I slutningen af bogen kommer jeg med yderligere anbefalinger til videre studier udi computermusik med SuperCollider.
+Når du har studeret denne bog og eventuelt ovenstående ressourcer, vil du have et solidt fundament for at kunne arbejde med komposition og lydproduktion i SuperCollider. Heldigvis er der meget mere at komme efter, og en ny verden af muligheder vil udfolde sig for dig. I slutningen af denne bog udpeger jeg derfor nogle  ressourcer til videregående studier.
 
 # Sådan bruger du denne bog
 
