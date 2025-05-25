@@ -4,7 +4,7 @@ Dette website indeholder supplerende materialer til et grundlæggende kursus i m
 
 ## Brug af dette site
 
-Denne side er opbygget i 11 moduler, som tilgås via menuen. Det anbefales, at begyndere starter fra modul 1 og arbejder sig fremad. Det anbefales kraftigt, at man undervejs i læsningen selv indtaster og afprøver eksemplerne med kildekode, da dette giver den bedst mulige erfaring og indlæring.
+Denne side er opbygget i 11 moduler, som tilgås via menuen. Det anbefales, at begyndere starter fra modul 0 og arbejder sig fremad. Det anbefales kraftigt, at man undervejs i læsningen selv indtaster og afprøver eksemplerne med kildekode, da dette giver den bedst mulige erfaring og indlæring.
 
 Blokke af kildekode her på siden kan let kopieres og indsættes i SuperColliders tekst-editor - prøv selv med nedenstående kildekode. Placer cursoren på én af de midterste linjer og tast Ctrl-Enter eller Cmd-Enter for at høre lyden. Stop lyden igen med Ctrl-Punktum eller Cmd-Punktum.
 
@@ -20,6 +20,8 @@ Blokke af kildekode her på siden kan let kopieres og indsættes i SuperCollider
 
 ![type:audio](media/audio/00-sinus-random.ogg)
 
+Dette website fungerer bedst i browseren [Firefox](https://www.mozilla.org/en-US/firefox/new/).
+
 ## Licens
 
-Indholdet på disse sider er fremstillet af [Anders Eskildsen](https://vbn.aau.dk/en/persons/146493) og gjort tilgængelig for offentligheden under Creative Commons-licensen [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+Indholdet på disse sider er produceret af [Anders Eskildsen](https://vbn.aau.dk/en/persons/146493) og gjort tilgængelig for offentligheden under Creative Commons-licensen [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
