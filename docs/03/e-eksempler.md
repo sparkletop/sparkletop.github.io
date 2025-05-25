@@ -3,29 +3,29 @@ tags:
     - Øvelser
 ---
 
-# Øvelse: Analyse og videreudvikling af kompositioner
+# Øvelse: Analyse og videreudvikling af kompositionseksempler
 
-I denne øvelse skal du analysere og viderudvikle en række eksempler på pattern-baseret komposition. Øvelsen skal gøre dig fortrolig med de teknikker, der er omtalt tidligere i bogen, da vi her anvender de introducerede teknikker i en kompositorisk sammenhæng.
+I denne øvelse skal du analysere udvalgte aspekter af fem eksempler på pattern-baseret komposition. Øvelsen skal gøre dig fortrolig med de teknikker, der er omtalt tidligere i bogen, da vi her anvender de introducerede teknikker i en kompositorisk sammenhæng. Du skal nemlig også videreudvikle kompositionerne med dit eget kreative bidrag.
 
-Når du undersøger, hvordan teknikkerne fungerer, kan disse tricks være en god hjælp til at forstå hvad der foregår:
+**Redskaber til analyse:** Når du undersøger, hvordan teknikkerne fungerer, kan disse tricks være en god hjælp til at forstå hvad der foregår:
 
 - Brug method'en `.trace` til at vise outputtet fra forskellige patterns i post window, fx `Pwhite(0, 5).trace`.
 - Brug SuperColliders dokumentation - sæt cursoren ved et pattern-navn og tast Ctrl-/Cmd-D. Scroll herefter ned til bunden af den pågældende dokumentationsside for at se eksempler på hvordan det pågældende pattern fungerer.
 - Eksperimentér med at ændre på nogle af værdierne for at få en fornemmelse af, hvordan teknikkerne fungerer.
 
-Lydeksemplerne her under er realiseret ved at bruge den angivne Pbind til at sende MIDI-meddelelser til en DAW og generere lyden med instrumentplugins. Det fremgår under hvert eksempel hvilket plugin, der er anvendt. De kodelinjer, som skal til for at realisere kompositionerne på denne måde, fremgår af [et tidligere afsnit om pattern-baseret MIDI-komposition](a-patterns-midi.md).
+**Lydeksempler:** Lydeksemplerne herunder er realiseret ved at sende MIDI-meddelelser til en DAW og generere lyden med instrumentplugins, som vist i [det foregående afsnit om pattern-baseret MIDI-komposition](a-patterns-midi.md). Det fremgår under hvert eksempel hvilket konkret plugin, der er anvendt.
 
 ## Sammensætning af nøgler og patterns
 
-- Undersøg følgende:
-    - Hvordan fungerer de enkelte nøgler (`\octave`, `\root`, `\mtranspose` osv.)? Slå evt. op i [forrige kapitel](../02/a-pbind.md).
-    - Hvordan kombineres tilfældighed og repetition under nøglerne `\mtranspose` og `\db`?
-- Eksperimentér med følgende:
-    - Alternative skalaer, nodeværdier, tonesekvenser og patterns
+- Analyse
+    - Hvordan fungerer de enkelte nøgler (`\octave`, `\root`, `\mtranspose`, `\lag` osv.)? Slå evt. op i [forrige kapitel](../02/a-pbind.md).
+    - Hvordan kombineres tilfældighed og repetition under nøglerne `\mtranspose` og `\db`? Se evt. [afsnittet om sekvenser af patterns](./a-indlejring.md#sekvenser-af-patterns).
+- Kreativ opgave
+    - Eksperimentér med alternative skalaer, nodeværdier og trinsekvenser
 
 ```sc title="Sammensætning af nøgler og patterns"
 (
-TempoClock.tempo = 120/60;
+TempoClock.tempo = 120 / 60;
 
 ~trin = [0, 4, 3, 1, 2];
 ~nodevaerdier = [1/8, 1/8, 1/8, 1/16, 1/16];
@@ -33,7 +33,7 @@ Pbind(
     \octave, 5,
     \root, 2,
     \scale, Scale.lydian,
-    \degree, Pseq(~trin, inf),
+    \degree, Pseq(~trin, 16),
     \mtranspose, Pwhite(-3, 3).stutter(~trin.size + 2),
 
     \dur, Pseq(~nodevaerdier, inf) * 4,
@@ -45,63 +45,77 @@ Pbind(
 )
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/03-komposition-keys.ogg)
+
+Lydeksemplet er realiseret med instrument-plugin'et [Helm](https://tytel.org/helm/) og preset'et "Old Factory Presets > CM Pluck Time" med portamento slået til.
 
 ## Skala-udforskning med Pbrown
 
-Bemærk her forskellen på `Pbrown` og `Pwhite` (sidsnævnte blev anvendt ovenfor) samt anvendelsen af nøglen `\ctranspose`.
+- Analyse
+    - Hvilken funktion har nøglen `\ctranspose`?
+    - Hvad sker der, hvis du ændrer nøglen `\ctranspose` til `\mtranspose`?
+    - Hvad er forskellen på `Pbrown` og `Pwhite`?
+- Kreativ opgave
+    - Skab en mere interessant rytmik ved at erstatte den faste værdi 0.2 ved `\dur`-nøglen med et pattern efter eget valg
 
 ```sc title="Skala-udforskning med Pbrown"
 (
-TempoClock.tempo = 80 / 60;
+TempoClock.tempo = 85 / 60;
 
 Pbind(
-    \degree, Pbrown(0, 21, 2),
+    \degree, Pbrown(0, 21, 3),
     \octave, 4,
-    \ctranspose, Pbrown(-5, 4, 1).stutter(32),
-    \dur, 0.2
+    \ctranspose, Pbrown(-5, 4, 1, 4).stutter(32),
+    \db, Pbrown(-15, -5, 2).trace,
+    \dur, 0.25,
 ).play;
 )
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/03-komposition-pbrown.ogg)
 
-Afledte kompositioner kan eksperimentere med andre skalaer og patterns.
+Lydeksemplet er realiseret med instrument-plugin'et [sforzando](https://www.plogue.com/products/sforzando.html) og sfz-instrumentet "Marimba" fra [Versilian Studios Chamber Orchestra 2 Community Edition](https://versilian-studios.com/vsco-community/).
 
 ## Pentatone mønstre
 
-Denne korte søger også en kombination af tilfældighed og struktur.
-
-1. Skriv to variationer af kompositionen:
-    1. Én version, som har en højere grad af tilfældighed
-    1. Én version, som har en højere grad af struktur og gentagelse
+- Analyse
+    - Hvilke teknikker anvendes her til at opnå en balance mellem struktur/repetition og tilfældighed?
+    - Hvilket pattern styrer kompositionens storform, altså hvor mange toner vi samlet hører?
+    - Hvilken funktion har `Array.interpolation`? Se evt. [afsnittet om lister](../01/a-lister.md#automatiske-talrkker).
+- Kreativ opgave
+    - Skriv to variationer af kompositionen:
+        - Én version, som har en højere grad af tilfældighed
+        - Én version, som har en højere grad af struktur og gentagelse
 
 ```sc title="Pentatone mønstre"
 (
-TempoClock.tempo = 140 / 60;
+TempoClock.tempo = 130 / 60;
 Pbind(
     \scale, Scale.minorPentatonic,
     \octave, Pwhite(4, 5).stutter(4),
     \degree, Pshuf([0, 1, 2, 3, 4, 5], 4).repeat,
-    \ctranspose, Pxrand([0, 1, 2]).repeat.stutter(32),
+    \root, Pxrand([0, 2, 3]).repeat.stutter(24),
 
-    \dur, 0.3,
-    \legato, Pseq(Array.interpolation(160, 0.1, 3.5)),
+    \dur, 0.25,
+    \legato, Pseq(Array.interpolation(24, 0.1, 3), 8),
 
-    \db, Pbrown(-20, -17, 0.6)
+    \db, Pbrown(-20, -12, 0.5)
 ).play;
 )
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/03-komposition-pentaton.ogg)
+
+Lydeksemplet er realiseret med instrument-plugin'et [Vital](https://vital.audio/) med en let justeret udgave af preset'et "Super Pluck".
 
 ## Rytmiserede og dynamiske akkorder
 
-1. Besvar: Hvilken effekt har kombinationerne af `.stutter` og `.repeat` på outputtet fra de forskellige patterns?
-1. Besvar: Hvad betyder `Array.interpolation(16, -20, -10)`?
-1. Justér kildekoden på følgende vis:
-    1. Tilføj mindst én akkord til `Pwrand` (husk, at sandsynlighederne `[0.9, 0.1]` skal svare til antallet af valgmuligheder og tilsammen skal give 1)
-    1. Erstat `Pxrand` med et [listebaseret pattern](../02/a-random-patterns.md#listebaserede-stokastiske-patterns) efter eget valg, og notér hvilken forskel dette gør
+- Analyse
+    - Hvilken effekt har kombinationerne af `.stutter` og `.repeat` på outputtet fra de forskellige patterns?
+    - Hvad betyder `Array.interpolation(16, -20, -10)`?
+- Kreativ opgave
+    - Tilføj mindst én akkord til `Pwrand` (husk, at sandsynlighederne `[0.9, 0.1]` skal svare til antallet af valgmuligheder og tilsammen skal give 1).
+    - Erstat `Pxrand` med et andet [listebaseret tilfældighedspattern](../02/a-random-patterns.md#listebaserede-stokastiske-patterns) efter eget valg, og notér hvilken forskel dette gør.
 
 ```sc title="Rytmiserede og dynamiske akkorder"
 (
@@ -123,17 +137,22 @@ Pbind(
 )
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/03-komposition-akkorder.ogg)
 
-## Korte, rytmiske sekvenser
+Lydeksemplet er realiseret med instrument-plugin'et [sforzando](https://www.plogue.com/products/sforzando.html) og sfz-instrumentet "Uprigt Piano" fra [Versilian Studios Chamber Orchestra 2 Community Edition](https://versilian-studios.com/vsco-community/).
 
-I dette eksempel kan man argumentere for, at der arbejdes med en kombination af tilfældighed og genkendelighed. Undersøg hvilke teknikker, der i dette tilfælde skaber balance mellem det tilfældige og det genkendelige.
+## Rytmiske motiver
 
-Skriv en ny komposition, som er inspireret af kildekoden her samt din besvarelse af opgaverne ovenfor.
+- Analyse
+    - Undersøg hvilke teknikker, der i dette tilfælde skaber balance mellem det tilfældige og det genkendelige.
+    - Undersøg hvad method'en `.normalizeSum` gør.
+- Kreativ opgave
+    - Skriv en ny komposition, som er inspireret af kildekoden herunder samt opgaverne ovenfor.
 
 ```sc title="Korte, rytmiske sekvenser"
 (
 TempoClock.tempo = 85 / 60;
+
 ~melodi = Pbind(
     \scale, Scale.dorian,
     \degree, Pshuf((0..7), 4).repeat,
@@ -151,9 +170,11 @@ TempoClock.tempo = 85 / 60;
 ~komp = ~melodi.play;
 )
 // Flerstemmig variation med Ppar (parallelle Pbinds):
-~komp = Ppar(~melodi ! 2).play;
+~komp = Ppar(~melodi ! 3).play;
 
 ~komp.stop;
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/03-komposition-pwrand.ogg)
+
+Lydeksemplet er realiseret med instrument-plugin'et [Spitfire LABS](https://labs.spitfireaudio.com/) og [sample pack'en "Charango - Charango Ensemble"](https://labs.spitfireaudio.com/packs/charango).

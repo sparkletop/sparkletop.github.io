@@ -5,11 +5,11 @@ tags:
 
 # Sammensætning af event patterns
 
-Hidtil har vi betragtet patterns som opskrifter på strømme af værdier. Men hvis vi ser på `Pbind`, er det tydeligt, at den ikke producerer strømme af enkeltværdier, men i stedet producerer såkaldte *events* ud fra de nøgler og værdier/patterns, den knytter sammen. I denne terminologi svarer én event til én tone. `Pbind` er dermed et *event pattern*, i modsætning til *value patterns* som `Pwhite` og `Pbrown`, der producerer enkeltværdier. Man kan bruge event patterns som moduler, der kan sættes sammen og varieres på forskellig vis, og et par teknikker hertil demonstreres herunder.
+Hidtil har vi betragtet patterns som opskrifter på strømme af værdier. Men hvis vi ser på `Pbind`, er det tydeligt, at den ikke producerer strømme af enkeltværdier, men i stedet producerer såkaldte *events* ud fra de nøgler og værdier/patterns, den knytter sammen. I denne terminologi svarer én event til én tone. `Pbind` er dermed et *event pattern*, i modsætning til *value patterns* som `Pwhite` og `Pbrown`, der producerer *værdier*. Man kan bruge event patterns som moduler, der kan sættes sammen og varieres på forskellig vis, hvilket vi skal kigge nærmere på herunder.
 
 ## Sekvenser af Pbinds
 
-Den mest åbenlyse måde at sammensætte Pbinds er at afvikle dem sekventielt, altså den ene efter den anden. Lad os eksempelvis definere to Pbinds, den ene med et rodet udtryk og den anden med et mere roligt udtryk. Bemærk, at vi ikke afspiller disse Pbinds med `.play` men i stedet gemmer dem under deskriptive variabelnavne.
+Den mest åbenlyse måde at sammensætte Pbinds på er at afvikle dem sekventielt, altså den ene efter den anden. Lad os eksempelvis definere to Pbinds, den ene med et rodet udtryk og den anden med et mere roligt udtryk. Bemærk, at vi ikke afspiller disse Pbinds med `.play` men i stedet gemmer dem under deskriptive variabelnavne.
 
 ```sc title="Tre simple Pbinds"
 ~op = Pbind(
@@ -17,7 +17,7 @@ Den mest åbenlyse måde at sammensætte Pbinds er at afvikle dem sekventielt, a
     \db, Pseries(-20, 2, 4)
 );
 ~ned = Pbind(
-    \degree, Pseries(1, -2, 4),
+    \degree, Pseries(1, -2, -4),
     \db, Pseries(-14, -2, 4)
 );
 ~rundt = Pbind(
@@ -37,14 +37,11 @@ Pxrand(~sekvenser, 4).play;
 Pshuf(~sekvenser, 4).play;
 ```
 
-![type:audio](pbind-kombination.ogg)
-
 ## Begrænsning af Pbind-output med Pfin og Pfindur
 
 Nogle gange er det mere relevant at definere Pbinds, som ikke har en begrænset varighed (dvs. hvor ingen af de anvendte value patterns har et endeligt antal output), og derefter begrænse, hvor mange events, de producerer. På den måde kan den samme Pbind anvendes i forskellige sammenhænge. Lad os eksempelvis definere to forskellige Pbinds, hvor den ene er lidt rodet i sin timing, dynamik og rytmik, mens den anden er mere regulært opbygget.
 
 ```sc title="To forskellige Pbinds"
-(
 ~drunk = Pbind(
     \degree, Pbrown(-3, 7, 7),
     \ctranspose, Pwrand([0, -1], [0.9, 0.1], inf),
@@ -60,35 +57,36 @@ Nogle gange er det mere relevant at definere Pbinds, som ikke har en begrænset 
     \legato, Pexprand(1.3, 1.5),
     \db, Pgauss(-20, 2),
 );
-)```
+```
 
 Hvis vi kun ønsker 10 events fra en af ovenstående Pbinds, kan vi bruge et pattern, der hedder `Pfin`. Man kan også sekvensere `Pfin` med fx `Pseq`, så man kan sammensætte sekvenser fra forskellige Pbinds:
 
 ```sc title="Begrænsning af event-antal med Pfin"
 TempoClock.tempo = 115/60;
+
 Pfin(10, ~drunk).play;
 Pfin(10, ~sober).play;
-
 Pseq([ Pfin(8, ~drunk), Pfin(8, ~sober) ], 4).play;
 ```
+
+![type:audio](../media/audio/03-pfin.ogg)
 
 Da disse to pbinds har varierende `\dur`-værdier, er det umuligt at forudsige hvor mange events vi skal vælge med `Pfin` for eksempelvis at spille én takt med den ene Pbind, én takt med den anden, og så fremdeles. Hertil kan vi i stedet bruge et nært beslægtet pattern, der hedder `Pfindur(varighedsgrænse, pattern, tolerance)`, som kan begrænse *varigheden* af en Pbind.
 
 ```sc title="Begrænsning af Pbind-varighed med Pfindur"
 TempoClock.tempo = 115/60;
-Pfindur(8.01, ~sober, 0.01).play;
 
-(
 Pseq([
     Pfindur(4.01, ~drunk, 0.01),
     Pfindur(4.01, ~sober, 0.01),
 ], 4).play;
-)
 ```
+
+![type:audio](../media/audio/03-pfindur.ogg)
 
 ## At kombinere Pbinds med Pbindf
 
-Som [tidligere nævnt](../01/a-funktioner.md) kan det i programmering være fornuftigt med en vis portion strategisk dovenhed - forstået således, at det ofte er nyttigt at undgå at skulle skrive den samme kildekode flere gange. Dette princip kan også bruges i forbindelse med patterns, og det viser sig at være meget nyttigt til at skabe variationer og sammensætninger, hvis vi som nævnt ovenfor bygger vores patterns op i mindre moduler, der så kan sammensættes på nye måder.
+Som [tidligere nævnt](../01/a-funktioner.md) kan det i programmering være fornuftigt med en vis portion strategisk dovenhed. Det skal forstås således, at det ofte er ønskeligt at undgå at skulle skrive den samme kildekode flere gange. Dette princip kan også bruges i forbindelse med patterns, og det viser sig at være meget nyttigt til at skabe variationer og sammensætninger, hvis vi som nævnt ovenfor bygger vores patterns op i mindre moduler, der så kan sammensættes på nye måder.
 
 Hertil kan vi bruge `Pbindf` (bemærk f'et til sidst i klassenavnet), som skaber en nye Pbind baseret på en anden, foruddefineret Pbind. Det betyder, at vi kan definere én Pbind, som kan varieres og lægges til grund for en række andre Pbinds, hvilket åbner mange muligheder for at arbejde med variation og musikalsk elaborering.
 
@@ -109,7 +107,7 @@ Vi bruger `Pbindf` ved at angive en eksisterende Pbind som det første argument.
 )
 ```
 
-![type:audio](overstemme.ogg)
+![type:audio](../media/audio/03-pbindf-overstemme.ogg)
 
 Bemærk her, at vi i stedet for at omdefinere `\degree`-nøglen i Pbindf'en anvender `\mtranspose`. Havde vi brugt `\degree`, ville den eksisterende information om skalatrin fra `~melodi`-Pbind'en blive overskrevet. I stedet fungerer den oprindelige `Pseq` og den nye `Prand` sammen, så "stemmerne" kan følges ad.
 
@@ -138,6 +136,6 @@ TempoClock.tempo = 115/60;
 ~left.stop; ~right.stop;
 ```
 
-![type:audio](piano-phase.ogg)
+![type:audio](../media/audio/03-piano-phase.ogg)
 
-Dette er blot en forsimplet illustration af, hvordan *Piano Phase* fungerer. I slutningen af dette kapitel kan man øve sig i at skrive egne minimalistiske kompositioner, hvor lignende processer med gradvis udvikling gør sig gældende.
+Dette er blot en forsimplet illustration af, hvordan *Piano Phase* fungerer. I [slutningen af dette kapitel](e-minimalisme.md) kan man øve sig i at skrive egne minimalistiske kompositioner, hvor lignende processer med gradvis udvikling gør sig gældende.

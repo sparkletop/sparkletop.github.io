@@ -5,17 +5,17 @@ tags:
 
 ??? abstract "Introduktion til kapitlet"
 
-    Dette kapitel introducerer til nogle mere avancerede teknikker inden for pattern-baseret komposition. Først ser vi på, hvordan man indlejrer patterns som input til andre patterns, altså en form for "pattern-inception". Vi kigger også på, hvordan man kan sammensætte patterns og skabe variationer over de mønstre, vi definerer med `Pbind`. Med disse mere avancerede anvendelser af patterns kan vi skabe komplekse og varierede kompositionsmønstre. Derefter introduceres brugen af SuperColliders patterns til komposition via MIDI-output, dvs. med en ekstern synthesizer eller sampler som lydgenerator, så vi (uden at bruge SuperColliders lydserver) kan skabe mere interessant klingende kompositioner. Til sidst ser vi på, hvordan man i sammenhæng kan bruge de introducerede teknikker til at arbejde med minimalistisk inspireret komposition.
+    Dette kapitel introducerer til nogle mere avancerede teknikker inden for pattern-baseret komposition. Dernæst ser vi på, hvordan man indlejrer patterns som input til andre patterns, altså en form for "pattern-inception". Vi kigger også på, hvordan man kan sammensætte patterns og skabe variationer over de mønstre, vi definerer med `Pbind`. Derefter introduceres brugen af SuperColliders patterns til komposition via MIDI-output, således at vi i stedet for SuperColliders lydserver bruger en ekstern synthesizer eller sampler som lydgenerator til at skabe mere interessant klingende kompositioner. Med disse mere avancerede anvendelser af patterns kan vi skabe komplekse og varierede kompositionsmønstre. Til sidst ser vi i en øvelse på, hvordan man i sammenhæng kan bruge de introducerede teknikker til at arbejde med minimalistisk inspireret komposition.
 
 # Indlejrede patterns
 
-Det er relativt let at lave en simpel, algoritmisk komposition ved hjælp af patterns. Men det kan være mere vanskeligt at bevæge sig videre fra det meget simple eller meget tilfældighedsprægede udtryk. Her kan en teknik, som kaldes indlejring af patterns, være med til at give et mere nuanceret og subtilt udtryk.
+Det er relativt let at lave en simpel, algoritmisk komposition ved hjælp af patterns. Men det kan være mere vanskeligt at bevæge sig videre fra det meget simple eller meget tilfældighedsprægede udtryk. Her kan såkaldt indlejring af patterns være med til at give et mere nuanceret og subtilt udtryk.
 
-Generativ eller algoritmisk komposition indebærer, at man i et vist omfang overlader dele af det kompositoriske arbejde til et system eller en algoritme. Her spiller [tilfældighedsgeneratorer](../02/a-random-patterns.md) ofte en betydelig rolle. Total tilfældighed er imidlertid sjældent specielt interessant. Derfor kan man med fordel indlejre tilfældighed som et begrænset element i en ellers fastlagt struktur, eller filtrere/afgrænse/gentage tilfældigt genererede data, så der skabes orden ud af en ellers kaotisk datastrøm.
+Generativ eller algoritmisk komposition indebærer, at man i et vist omfang overlader dele af det kompositoriske arbejde til et system eller en algoritme. Her spiller [tilfældighedsgeneratorer](../02/a-random-patterns.md) ofte en betydelig rolle. Total tilfældighed er imidlertid sjældent specielt interessant. Derfor kan man med fordel indlejre tilfældighed som et begrænset element i en ellers fastlagt struktur, eller filtrere/afgrænse/gentage tilfældigt genererede data, så der skabes orden ud af en ellers kaotisk strøm af output.
 
 ## Sekvenser af patterns
 
-Vi har tidligere set, [hvordan vi kan generere sekvenser af værdier](../02/a-patterns-intro.md#pseq-en-fleksibel-sequencer). Men `Pseq` er fleksibel og kan lige så vel bruges til sekvenser af patterns. Det betyder, at vi som elementer i vores sekvens kan angive patterns i stedet for værdier. Når `Pseq` når til et pattern, gennemløber den nemlig alle de værdier, som det pågældende pattern genererer, før den går videre. Her er eksempelvis en sekvens med en blanding af faste og tilfældigt genererede skalatrin:
+Vi har tidligere set, [hvordan vi kan generere sekvenser af værdier](../02/a-patterns-intro.md#pseq-en-fleksibel-sequencer). Men `Pseq` er fleksibel og kan lige så vel bruges til sekvenser bestående af patterns. Det betyder, at vi som elementer i vores sekvens kan angive patterns i stedet for værdier. Når `Pseq` når til et pattern, gennemløber den nemlig alle de værdier, som det pågældende pattern genererer, før den går videre. Her er eksempelvis en sekvens med en blanding af faste og tilfældigt genererede skalatrin:
 
 ```sc title="Patterns som undersekvenser"
 (
@@ -35,7 +35,7 @@ Pbind(
 )
 ```
 
-![type:audio](../media/audio/pattern-sekvens.ogg)
+![type:audio](../media/audio/03-pattern-sekvens.ogg)
 
 For overskuelighedens skyld kan vi opnå præcis det samme som ovenfor med variabler til de enkelte underpatterns. Nedenstående er umiddelbart lettere at læse:
 
@@ -67,6 +67,8 @@ Pbind(
     ], 4).trace
 ).play;
 )
+// -> 4, 2, -3, 0, 3, 1, -3, 0, 5, 2, -3, 0, 4, 1, -3, 0
+
 ```
 
 Der findes også en variant, som er endnu mere relevant i forhold til sammensætning af patterns, fordi den tillader, at man erstatter listerne i `Place` med patterns. `Ppatlace`, som denne variant hedder, er meget oplagt som ramme for indlejrede patterns og filtreret tilfældighed:
@@ -83,7 +85,7 @@ Pbind(
 )
 ```
 
-![type:audio](place.ogg)
+![type:audio](../media/audio/03-ppatlace.ogg)
 
 ## Patterns som variererende argumenter
 
@@ -115,23 +117,24 @@ Det vil føre for vidt at uddybe den tekniske forskel mellem patterns og streams
 
 For at vende tilbage til vores `Pseries` ovenfor: Hvis vi ønsker at variere trinstørrelsen fra tone til tone, kan vi eksempelvis vælge et tilfældigt tal mellem -1 og 1 på disse to måder:
 
-```sc title="Pseries med varierende trin-argument"
+```sc title="Varierende spring med indlejret Pwhite"
 Pseries(0, Pwhite(-1, 1).asStream, 10);
 // -> 0, -2, -1, 0, 1, -1, 1, 3, 2, 2
 ```
 
-Her er et musikalsk eksempel, hvor vi bruger `Plprand` til at variere antallet af toner i fraser.
+Her er et andet musikalsk eksempel, hvor vi bruger `Pseries` til at styre hvor mange tilfældige toner fra Pwhite, der bliver flettet ind i sekvensen - med flere og flere for hvert gennemløbg.
 
-```sc title="Varieret fraselængde med indlejret Plprand"
+```sc title="Varieret fraselængde med indlejret Pseries"
 (
 Pbind(
-    \degree, Pwhite(0, 4),
-    \dur, Pseq([
-        Prand([1/8, 1/4], Plprand(2, 8).asStream),
-        Rest(1)
-    ], inf),
+    \degree, Pseq([
+        -7,
+        -7,
+        Pwhite(0, 4, length: Pseries(0, 1).asStream)
+    ], 8),
+    \dur, 0.25,
 ).play;
 )
 ```
 
-![type:audio](plprand-frase.ogg)
+![type:audio](../media/audio/03-pseries-indlejret.ogg)
