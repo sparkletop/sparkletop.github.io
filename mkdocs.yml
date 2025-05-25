@@ -39,7 +39,8 @@ copyright: Copyright &copy; 2022-2025 Anders Eskildsen
 plugins:
   - tags
   - search
-  - mkdocs-audio
+  - mkdocs-audio:
+      audio_type: "ogg"
   - bibtex:
       bib_file: "tex/mlprefs.bib"
       csl_file: "docs/stylesheets/apa.csl"
