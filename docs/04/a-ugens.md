@@ -26,11 +26,11 @@ I spektralanalyse-vinduet viser den vandrette akse frekvenser, målt i hertz, me
 
 ![Spektrogram og oscilloskop](../media/figures/server-scopes.png){ width="70%" }
 
-## Oscillatorer
+## Oscillator-UGens
 
 Lad os skabe vores første UGen-funktion. Den noteres [ligesom andre funktioner](../01/a-funktioner.md) med tuborg-parenteser.
 
-Den mest enkle UGen er nok `SinOsc`, en sinustone-generator. Ønsker vi savtakkede eller firkantede bølgeformer, kan vi i stedet bruge `Saw` eller `Pulse`. Der er også mulighed for at afspille forskellige former for støj med fx `WhiteNoise` eller `PinkNoise`, samples med `PlayBuf` og `BufRd` eller live-lyd fra en mikrofon med UGen'en `SoundIn`. Du kan se en oversigt over de vigtigste UGens i [det dertilhørende cheat sheet](./c-ugens.md), og brug af samples i SuperCollider dykker vi ned i [senere i bogen](../08/a-samples.md).
+Den mest enkle UGen vi kan vælge til vores UGen-funktion er nok `SinOsc`, en sinustone-generator. Ønsker vi savtakkede eller firkantede bølgeformer, kan vi i stedet bruge `Saw` eller `Pulse`. Der er også mulighed for at afspille forskellige former for støj med fx `WhiteNoise` eller `PinkNoise`, samples med `PlayBuf` og `BufRd` eller live-lyd fra en mikrofon med UGen'en `SoundIn`. Du kan se en oversigt over de vigtigste UGens i [det dertilhørende cheat sheet](c-ugens.md), og brug af samples i SuperCollider dykker vi ned i [senere i bogen](../08/a-samples.md).
 
 For at oprette en simpel oscillator bruger vi den relevante UGen's klassenavn sammen med method'en `.ar`. Den omsluttende UGen-funktion startes med method'en `.play`:
 
@@ -65,9 +65,9 @@ Hvis vi ønsker at se et fastfrosset billede af signalet fra en UGen-funktion, k
 
 ## Modulation
 
-Sinustonen ovenfor bliver hurtigt lidt monoton, så lad os skabe lidt udvikling ved hjælp af modulation. Der findes grundlæggende to parametre, man kan manipulere ved en oscillator: *Tonehøjde* (oscillatorens frekvens) og *lydstyrke* (oscillatorens amplitude). Der findes også en tredje parameter, nemlig (initial)fase, men den udelader vi her for enkelhedens skyld.
+Sinustonen ovenfor bliver hurtigt lidt monoton, så lad os skabe lidt bevægelse i lyden ved at modulere nogle af de lydlige parametre. Der findes grundlæggende to parametre, man kan manipulere ved en oscillator: *Tonehøjde* (der bestemmes af oscillatorens frekvens) og *lydstyrke* (der bestemmes af oscillatorens amplitude). Der findes også en tredje parameter, nemlig (initial)fase, men den udelader vi her for enkelhedens skyld.
 
-### Modulation af ampltitude
+### Ampltitude
 
 Lad os først modulere sinustonens amplitude (lydstyrke). Det gør vi ganske enkelt ved *at gange med en anden UGen*. I dette eksempel bruger vi UGen'en `LFPulse`, som blot bevæger sig mellem 0 og 1 og dermed regelmæssigt tænder og slukker for lyden.
 
@@ -79,7 +79,7 @@ Lad os først modulere sinustonens amplitude (lydstyrke). Det gør vi ganske enk
 
 Dette ligger til grund for de klangdannelsesteknikker, som kaldes amplitude modulation (AM) og ring modulation (RM).
 
-### Modulation af frekvens
+### Frekvens
 
 Vi kan også modulere frekvensen. Her erstatter vi den fast angivne frekvens på 440hz med en anden SinOsc. Det er her nødvendigt at skalere outputtet fra den anden SinOsc, så vi får hørbare frekvenser (over 20hz) - det gør vi med .range, her fra 200hz til 400hz.
 
