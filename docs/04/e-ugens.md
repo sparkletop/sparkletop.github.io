@@ -101,5 +101,7 @@ Vælg selv en passende frekvens mellem 0Hz og 20Hz til modulatoren.
 
 ## Bonusopgave: FM, AM, RM
 
-1. Eksperimentér med eksemplerne på AM (Amplitude Modulation), RM (Ring Modulation) og FM (Frequency Modulation) i Thor Magnussons [*Scoring Sound*, kapitel 7](https://leanpub.com/ScoringSound/read#leanpub-auto-chapter-7---modulation).
+Har du ekstra tid, kan du med fordel dykke ned i nogle mere avancerede teknikker, hvor modulation på forskellig vis udgør kernen i klangdannelsen. Her er grundidéen, at modulationen bevæger sig fra det lavfrekvente (under 20Hz) til det hørbare frekvensbånd.
+
+1. Eksperimentér med eksemplerne på AM (Amplitude Modulation), RM (Ring Modulation) og FM (Frequency Modulation) fra kapitel 7 i Thor Magnussons [*Scoring Sound*](https://leanpub.com/ScoringSound/read#leanpub-auto-chapter-7---modulation) [@magnusson2021].
 1. Eksperimentér med eksemplerne på FM fra [Eli Fieldsteels glimrende video om emnet](https://www.youtube.com/watch?v=UoXMUQIqFk4&list=PLPYzvS8A_rTaNDweXe6PX4CXSGq4iEWYC&index=22). Kildekoden fra videoen findes på [github](https://github.com/elifieldsteel/SuperCollider-Tutorials/blob/master/full%20video%20scripts/21_script.scd).
