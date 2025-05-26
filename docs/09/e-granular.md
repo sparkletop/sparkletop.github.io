@@ -40,10 +40,10 @@ Justér nedenstående kodeblok, således at:
 
 1. Der kommer overlap mellem de enkelte grains
 1. Følgende parametre moduleres af LFO'er, fx `SinOsc`, `XLine`, `EnvGen`, `LFNoise`, `LFTri` etc.:
-    - `dur`
-    - `rate`
-    - `pos`
-    - `pan`
+    1. `dur`
+    1. `rate`
+    1. `pos`
+    1. `pan`
 1. `Dust` anvendes som trigger i stedet for `Impulse`
 
 Hvordan påvirker disse parametre og modulationer lyden? Hvilke æstetiske muligheder kan du se i denne form for sample-manipulation?

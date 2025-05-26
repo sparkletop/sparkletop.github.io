@@ -61,8 +61,8 @@ SynthDef'en skal overholde følgende krav:
 i takt med envelope-generatoren
 1. Filterets rq-værdi styres af et SynthDef-argument med default-værdi 0.5
 1. Følgende envelope-parametre kan styres ved hjælp af SynthDef-argumenter:
-    - `attackTime`, default-værdi 0.1
-    - `curve`, default-værdi 0
+    1. `attackTime`, default-værdi 0.1
+    1. `curve`, default-værdi 0
 
 Skriv en Pbind-komposition, som demonstrerer SynthDef'ens forskellige klangmuligheder, dvs. hvor nøglerne i kodeblokken herunder varieres ved hjælp af pattterns (husk at erstatte SynthDef-navnet med det navn, du selv har valgt):
 
