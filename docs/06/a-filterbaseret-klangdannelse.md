@@ -45,7 +45,7 @@ Cutoff-frekvensen, som er argument nr. 2 til `LPF.ar`, kan [moduleres](../04/a-u
 
 ## Filterets resonans og argumentet 'rq'
 
-Ved nogle filtre kan man angive et argument for at styre filterets såkaldte "kvalitet". Det gælder bl.a. for `RLPF` og `RHPF`. Kvalitet er i denne sammenhæng et lidt mærkeligt begreb, da denne indstilling ikke har noget direkte at gøre med en æstetisk kvalitet. I praksis påvirker kvalitetsindstilling både hvor hårdt der dæmpes i det behandlede signal og hvor meget resonans, der opstår ved cutoff-frekvensen. I SuperCollider angives filterkvalitet typisk i en reciprok form, altså "1/q". Det lyder kompliceret men betyder blot, at når vi er på 1, er resonansen skruet helt ned, hvorimod den er skruet højt op, når vi nærmer os 0. Indstil aldrig `rq` til 0 (hvilket ville svare til en uendelig mængde resonans).
+Ved filtre som `RLPF` og `RHPF` kan man angive et argument for at styre filterets såkaldte "kvalitet". Kvalitet er i denne sammenhæng et lidt mærkeligt begreb, da denne indstilling ikke har noget direkte at gøre med en æstetisk kvalitet. I praksis påvirker kvalitetsindstilling både hvor hårdt der dæmpes i det behandlede signal og hvor meget resonans, der opstår ved cutoff-frekvensen. I SuperCollider angives filterkvalitet typisk i en reciprok form, altså "1/q". Det lyder kompliceret men betyder blot, at når vi er på 1, er resonansen skruet helt ned, hvorimod den er skruet højt op, når vi nærmer os 0. Indstil aldrig `rq` til 0 (hvilket ville svare til en uendelig mængde resonans).
 
 ```sc title="Variationer i rq"
 {RLPF.ar(PinkNoise.ar, rq: 1) * 0.1}.play;

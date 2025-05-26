@@ -32,7 +32,7 @@ Når DAW er klar til at modtage MIDI-signal via en virtuel MIDI-port, starter ma
 // Start MIDI-kommunikation
 MIDIClient.init;
 
-// I post window ses nu bl.a. to nyttige lister, MIDI Sources og MIDI Destinations
+// I post window ses nu to nyttige lister, MIDI Sources og MIDI Destinations
 // På Windows kan det fx se sådan ud:
 MIDI Sources:
     MIDIEndPoint("loopMIDI Port", "loopMIDI Port")

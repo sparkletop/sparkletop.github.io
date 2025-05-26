@@ -127,7 +127,7 @@ SynthDef(\snare,{
 }).add;
 ```
 
-Med denne SynthDef kan vi producere forskelligt klingende lyde, bl.a. en version, hvor seidingen er slået fra.
+Med denne SynthDef kan vi producere forskelligt klingende lyde, blandt andet en version, hvor seidingen er slået fra.
 
 ```sc title="To forskellige lilletrommelyde"
 // Standardindstillinger
