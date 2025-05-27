@@ -30,6 +30,8 @@ Lad os definere en ny envelope med tre segmenter, som vi vil bruge til at styre 
 - Først går vi fra 200 til 800, derefter til 100, og til sidst til 50.
 - Første segment varer 10 milisekunder, de sidste to segmenter varer 250 milisekunder hver.
 
+![Tre hjemmestrikkede envelopes](../media/figures/hjemmestrikket-envelope.png){ width="80%" }
+
 ```sc title="En envelope til at modulere oscillatorfrekvens"
 ( // Definér envelopen og gem den under en variabel
 ~frekvensEnvelope = Env.new(
@@ -37,7 +39,7 @@ Lad os definere en ny envelope med tre segmenter, som vi vil bruge til at styre 
     [0.010, 0.250, 0.250]   // segment-varigheder
 );
 // Vis en grafisk repræsentation af envelopen
-frekvensEnvelope.plot;
+~frekvensEnvelope.plot;
 )
 
 ( // Brug envelopen til at styre frekvens for en oscillator
@@ -48,7 +50,9 @@ frekvensEnvelope.plot;
 )
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/05-hjemmestrikket-envelope.ogg)
+
+Lydeksemplet her fungerer bedst med højttalere eller hovedtelefoner, som kan gengive dybe frekvenser med en vis styrke (dvs. ikke laptophøjttalere eller ear buds).
 
 ## Envelope som LFO
 
@@ -70,9 +74,9 @@ En af de spændende muligheder med envelopes er, at de kan anvendes som LFO'er! 
 )
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/05-envelope-som-lfo.ogg)
 
-Vi kan endda modulere segment-varighederne med en LFO eller en anden envelope. Dertil bruger vi timeScale-argumentet i `EnvGen` - her blot moduleret af en simpel `Line`, hvor varighederne bliver skaleret med først en faktor 6 og til sidst en faktor 0.2:
+Vi kan endda modulere segment-varighederne med en LFO eller en anden envelope ved hjælp af timeScale-argumentet i `EnvGen`. Som eksempel kan vi bruge en simpel `Line` til at skalere varighederne over 10 sekunder fra en faktor 6 til en faktor 0.2:
 
 ```sc title="Modulation af segmentvarigheder"
 (
@@ -88,4 +92,4 @@ Vi kan endda modulere segment-varighederne med en LFO eller en anden envelope. D
 )
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/05-modulation-segmenter.ogg)

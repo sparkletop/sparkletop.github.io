@@ -5,13 +5,13 @@ tags:
 
 ??? abstract "Introduktion til kapitlet"
 
-    Lydens forandring over tid er en vigtig del af lyddesign. Et af de vigtigste redskaber til at arbejde med lydlig forandring over tid er envelopes. Envelopes anvendes i elektronisk klangdannelse typisk til at styre en tone eller en lyds volumen over tid, men envelopes kan med fordel bruges på mange andre måder.
+    Lydens forandring over tid er en vigtig del af lyddesign. Et af de vigtigste redskaber til at arbejde med lydlig forandring over tid er envelopes. Envelopes anvendes i elektronisk klangdannelse typisk til at styre en tone eller en lyds volumen over tid, men envelopes kan med fordel bruges på mange andre måder til at skabe forandring i lyden over tid. Dette kapitel introducerer til brug og design af envelopes i SuperCollider. Der introduceres også til SynthDefs, som er et centralt redskab til at lave UGen-funktioner til fleksible opskrifter på lyddesign, der kan anvendes sammen med patterns.
 
 # Brug af envelopes
 
-Hvor mange synthesizere kun har en ADSR-envelope, har SuperCollider en række forskellige, indbyggede envelopes. Man kan også definere sine egne envelopes. Det er endda muligt at loope envelopes, så de kommer til at udgøre LFO'er. Dermed kan envelopes potentielt være et særdeles kreativt virkemiddel.
+Hvor mange synthesizere kun har én envelope, typisk af typen ADSR (attack-decay-sustain-release), har SuperCollider en række forskellige, indbyggede envelopes. Man kan også definere sine egne envelopes. Det er endda muligt at loope envelopes, så de kommer til at udgøre LFO'er. Dermed kan envelopes potentielt være et særdeles kreativt virkemiddel.
 
-## Line og XLine - enkle envelope-generatorer
+## Simple linjer
 
 De mest enkle envelope-generatorer er `Line` og `XLine` - UGens, som genererer en henholdsvis lineær og eksponentiel udvikling fra ét punkt til et andet over et specificeret tidsrum. Her er et eksempel, hvor envelopen bevæger sig fra 100 til 2000 i løbet af 1 sekund:
 
@@ -30,11 +30,11 @@ Vi bruger `Line` og `XLine` ligesom andre UGens, fx til at styre frekvensen for 
 {SinOsc.ar(XLine.kr(100, 800, 0.050)) * 0.1}.play; // eksponentiel udvikling over 50 milisekunder
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/05-line-xline.ogg)
 
-## Env og EnvGen - envelopes for enhver smag
+## Envelopes for enhver smag
 
-`Line` og `XLine` genererer envelopes med ét segment (dvs. ét tidsinterval med ét start- og slutpunkt). Envelopes har imidlertid meget ofte mere end ét segment. Og de forskellige segmenter kan have meget forskellige former/"krumninger".
+`Line` og `XLine` genererer envelopes med ét segment (dvs. ét tidsinterval med ét start- og ét slutpunkt). Envelopes har imidlertid typisk mere end ét segment. Og de forskellige segmenter kan have meget forskellige former/"krumninger".
 
 Vi bruger `Env`-klassen til at definere disse mere sammensatte envelopes. Her er fx nogle forskellige indbyggede envelopes:
 
@@ -47,25 +47,27 @@ Env.linen
 Env.sine
 ```
 
-Vi kan vise en grafisk repræsentation med `.plot` - fx `Env.perc.plot`. Her er de ovennævnte envelopes plottet på denne måde:
+Vi kan vise en grafisk repræsentation med `.plot` - fx `Env.perc.plot`. Her er et plot af de ovennævnte envelopes:
 
 ![Forskellige standardenvelopes](../media/figures/standardenvelopes.png){ width="80%" }
 
-### Et eksempel: Env.perc
+### Specifikation af segmentvarigheder og krumning
 
-Hvordan bruger vi envelopes? Lad os kigge på et eksempel - `Env.perc`.
-
-De to segmenter i `Env.perc` hedder attack og release, og vi kan specificere deres varighed med argumenter - her en attack-tid på 1 sekund og en release-tid på 4 sekunder:
+Lad os kigge nærmere på et eksempel - den simple envelope `Env.perc`.Den har to segmenter kaldet attack og release, og vi kan specificere deres varighed med argumenter. Her angiver vi en attack-tid på 1 sekund og en release-tid på 4 sekunder:
 
 ```sc title="Env.perc"
 Env.perc(1, 4)
 
-// Vi kan også vælge blot at justere release-segmentet:
+// Vi kan også vælge blot at justere fx release-segmentet:
 Env.perc(releaseTime: 10)
 
 // Segmenternes krumning kan justeres med argumentet curve:
 [Env.perc(curve: 5), Env.perc(curve: 0), Env.perc(curve: -5)].plot;
 ```
+
+![Forskellige krumningsværdier til envelopesegmenter: 5, 0 og -5](../media/figures/env-perc-krumning.png){ width="80%" }
+
+### Brug af envelope
 
 Når vi skal bruge en envelope som `Env.perc` i vores lyddesign, skal vi tage højde for, at `Env` blot specificerer en envelope-form - en `Env` er ikke en UGen. For at bruge `Env`-baserede envelopes skal vi  anvende `EnvGen`, som er en envelope-generator-UGen. Vi fortæller `EnvGen`, at vi ønsker en `Env.perc` ved at angive den som første argument: `EnvGen.kr(Env.perc)`.
 
@@ -74,6 +76,8 @@ Vi kan nu bruge `EnvGen` ligesom `Line` og `XLine` ovenfor - fx til at modulere 
 ```sc title="EnvGen og Env.perc"
 {PinkNoise.ar * EnvGen.kr(Env.perc) * 0.1}.play;
 ```
+
+![type:audio](../media/audio/05-env-perc-pinknoise.ogg)
 
 Inden vi går videre, er det vigtigt at skrive sig bag øret, at `EnvGen` ofte noteres implicit (skjult). Følgende to linjer har præcis samme resultat, og man kan selv vælge hvilken form man foretrækker:
 
@@ -113,7 +117,7 @@ Lad os tage et eksempel:
 )
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/05-env-perc-pulse.ogg)
 
 ## Standardenvelopes
 
@@ -137,7 +141,7 @@ Vedvarende (sustaining) envelopes bliver hængende på et bestemt punkt imellem 
 - `Env.cutoff`
 - `Env.dadsr`
 
-Når vi bruger `Pbind` og patterns til at styre artikulationen af toner, styres åbning og lukning af gates til envelopes automatisk. Vi kan dog sagtens anvende vedvarende envelopes med gates manuelt på følgende måde:
+Når vi bruger `Pbind` og patterns til at styre artikulationen af toner, styres åbning og lukning af gates til envelopes automatisk. Vi kan dog sagtens anvende vedvarende envelopes med gates manuelt ved at indføre et gate-argument til vores UGen-funktion og angive det som argument nr. 2 til `EnvGen`. Derefter kan vi bruge method'en `.set` til at justere på indstillingen på et vilkårligt tidspunkt:
 
 ```sc title="Simpel ASR-envelope med gate"
 // Start en tone med åben gate (gate = 1)
@@ -148,27 +152,33 @@ Når vi bruger `Pbind` og patterns til at styre artikulationen af toner, styres 
 
 ## Automatisk oprydning med doneAction
 
-Envelopes er forbundet med noget, der hedder `doneAction`, som angår hvad SuperColliders lydserver skal gøre med netværket af UGens, når envelope-generatoren har gennemløbet alle envelopens segmenter. I eksemplerne ovenfor har vi ikke bedt SuperCollider om at gøre noget særligt, når envelopen er slut, men det er ofte yderst relevant at fjerne vores UGen-netværk (også kaldet en `Synth`) fra serveren igen. Dette bliver særligt tydeligt, når vi gennemgår [Synth, SynthDef og Pbind](a-synthdef.md).
+Envelopes er forbundet med noget, der hedder `doneAction`, som angår hvad SuperColliders lydserver skal gøre med vores UGen-funktion, når envelope-generatoren har gennemløbet alle envelopens segmenter. I eksemplerne ovenfor har vi ikke bedt SuperCollider om at gøre noget særligt, når envelopen er slut. Men hvis vores UGen-funktion stopper med at producere lyd, når envelopegeneratoren har gennemløbet alle envelopens segmenter, bør vi faktisk fjerne klyngen af UGens i vores UGen-funktion (der betegnes en `Synth`) fra serveren igen.
 
-Hvis du kan se, at du har en række gamle Synths liggende på lydserveren fra eksemplerne ovenfor (kør `s.queryAllNodes` og tjek post window), kan du fjerne dem med Ctrl-Punktum/Cmd-Punktum.
+Vi kan fjerne alle kørende `Synth`s fra lydserveren ved at taste Ctrl/Cmd-punktum. Men det er ikke praktisk at gøre manuelt, så hvordan indretter vi en UGen-funktion, så den kan fjerne sig selv automatisk, når en envelope er færdiggjort? Det gør vi ved hjælp af envelope-generatorens såkaldte `doneAction`-argument.
 
-Vi beder ofte SuperCollider om at rydde op, når en envelope er færdiggjort. Det kan vi gøre ved hjælp af envelope-generatorens `doneAction`-argument. Sammenlign disse to eksempler (hold øje med Node Tree-vinduet og bemærk hvilken forskel `doneAction: Done.freeSelf` gør):
+Vi kan få vist aktive `Synth`s på lydserveren ved at åbne et vindue, der viser serverens "Node Tree". Det kan vi gøre ved at køre `s.plotTree;` eller ved at klikke på de grønne tal nederst til højre i SuperColliders IDE og vælge "Show Node Tree". Sammenlign med et vågent øje på Node Tree-vinduet disse to eksempler og bemærk hvilken forskel `doneAction: Done.freeSelf` gør:
 
 ```sc title="Visning af Synths på lydserveren"
-s.nodeTree;  // vis en liste med alle Synths på lydserveren
+// Åben først Node Tree-vinduet
+s.plotTree;
+
 {PinkNoise.ar * EnvGen.kr(Env.perc) * 0.1}.play;
 {PinkNoise.ar * EnvGen.kr(Env.perc, doneAction: Done.freeSelf) * 0.1}.play;
 ```
 
-Hvornår skal man så bruge `doneAction: Done.freeSelf`? Jo, hvis man har gang i flere envelopes på én gang (hvilket man sagtens kan have i SuperCollider), så er det som tommelfingerregel en god idé at bruge `doneAction: Done.freeSelf` til den envelope, som styrer tonens lydstyrke over tid. Så undgår vi at få ophobet gamle Synths på lydserveren.
+Hvornår skal man så bruge `doneAction: Done.freeSelf`? Jo, hvis man har gang i flere forskellige envelopes inden for den samme UGen-funktion (hvilket man sagtens kan have i SuperCollider), er det som tommelfingerregel en god idé *at bruge `doneAction: Done.freeSelf` til den envelope, som styrer tonens lydstyrke over tid*. Så undgår vi at få ophobet gamle `Synth`-nodes på lydserveren.
+
+Hvis du er forvirret over forholdet mellem UGens, `Synth` osv., så er det helt i orden på nuværende tidspunkt. Det væsentlige her er blot at du forstår hvad `doneAction` betyder. Resten uddybes senere i dette kapitel i forbindelse med [interfacet mellem Synth, SynthDef og Pbind](a-synthdef.md#interfacet-mellem-synth-synthdef-og-pbind).
 
 ### Hvad er doneAction?
 
-`doneAction: 2` og `doneAction: Done.freeSelf` betyder det samme - at Synth'en skal fjernes fra lydserveren, når envelopen er slut.
+`doneAction: 2` og `doneAction: Done.freeSelf` betyder det samme - at Synth'en skal fjernes fra lydserveren, når envelopen er slut. Når vi noterer `EnvGen` er `doneAction` argument nr. 2, så man behøver ikke ekspicitere argumentets navn. Derfor giver alle fire kodelinjer herunder præcis samme resultat:
 
 ```sc title="Varianter over doneAction: 2"
 {PinkNoise.ar * EnvGen.kr(Env.perc, doneAction: Done.freeSelf) * 0.1}.play;
+{PinkNoise.ar * EnvGen.kr(Env.perc, Done.freeSelf) * 0.1}.play;
 {PinkNoise.ar * EnvGen.kr(Env.perc, doneAction: 2) * 0.1}.play;
+{PinkNoise.ar * EnvGen.kr(Env.perc, 2) * 0.1}.play;
 ```
 
 Om man bruger `doneAction: 2` eller `doneAction: Done.freeSelf` er helt valgfrit. Førstnævnte er kortest at skrive, men sidstnævnte er umiddelbart lettest at forstå, når man man læser koden.

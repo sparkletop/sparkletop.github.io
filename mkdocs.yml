@@ -109,8 +109,8 @@ nav:
     - 04/e-ugens.md
   - 5. Envelopes og SynthDefs:
     - Brug af envelopes: 05/a-envelopes.md
-    - 05/a-synthdef.md
     - 05/a-nye-envelopes.md
+    - 05/a-synthdef.md
     - 05/c-synthdef.md
     - 05/e-envelopes.md
   - 6. Klangdannelse med filtre:
