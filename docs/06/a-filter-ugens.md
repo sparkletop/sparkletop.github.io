@@ -5,7 +5,7 @@ tags:
 
 ??? abstract "Introduktion til kapitlet"
 
-    Filteret er et allestedsnærværende redskab i elektronisk musikproduktion, lige fra de filtre, der udgør en equaliser, til de berømte filterkredsløb, som indgik i de tidlige Moog-synthesizere. Der findes en hel gruppe af klangdannelsesteknikker, som baseres på filtre, kaldet *subtraktiv syntese*. I dette kapitel ser vi nærmere på brugen af filtre i SuperCollider, og vi arbejder med en række eksempler på subtraktiv klangdannelse fra simple blæser- og strygerlyde til lilletromme og streng-simulering med den såkaldte Karplus-Strong-algoritme.
+    Filteret er et allestedsnærværende redskab i elektronisk musikproduktion, lige fra de filtre, der udgør en equaliser, til de berømte filterkredsløb, som indgik i de tidlige Moog-synthesizere. Der findes en hel gruppe af klangdannelsesteknikker, som baseres på filtre, kaldet *subtraktiv klangdannelse*. I dette kapitel ser vi nærmere på brugen af filtre i SuperCollider, og vi arbejder med en række eksempler på subtraktiv klangdannelse fra simple blæser- og strygerlyde til lilletromme og streng-simulering med den såkaldte Karplus-Strong-algoritme.
 
 # Filterbaseret klangdannelse
 
@@ -20,16 +20,17 @@ SuperCollider har en række indbyggede filter-UGens, der implementerer forskelli
 
 Ved de fleste filter-UGens kan vi angive cutoff-frekvensen som argument nr. 2. For god ordens skyld bør det nævnes, at cutoff-frekvenser bør holdes mellem 20Hz og 20kHz:
 
-```sc title="Cutoff-frekvens for lavpasfilter"
+```sc title="Specifikation af cutoff-frekvens"
 // Cutoff ved 500Hz
 {LPF.ar(PinkNoise.ar, 500) * 0.1}.play;
+
 // Cutoff ved 2000Hz
 {LPF.ar(PinkNoise.ar, 2000) * 0.1}.play;
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/06-cutoff-frekvens.ogg)
 
-Cutoff-frekvensen, som er argument nr. 2 til `LPF.ar`, kan [moduleres](../04/a-ugens.md#modulation) af andre UGens, fx en LFO. Her [skalerer](../04/a-skalering.md) vi outputtet fra LFO'en `LFTri` med `.exprange`:
+Cutoff-frekvensen kan [moduleres](../04/a-ugens.md#modulation) af andre UGens, fx en LFO. Her [skalerer](../04/a-skalering.md) vi outputtet fra LFO'en `LFTri` med `.exprange`:
 
 ```sc title="Modulation af cutoff-frekvens"
 (
@@ -41,7 +42,7 @@ Cutoff-frekvensen, som er argument nr. 2 til `LPF.ar`, kan [moduleres](../04/a-u
 )
 ```
 
-![type:audio](../media/audio/lpf-modulation.ogg)
+![type:audio](../media/audio/06-lpf-modulation.ogg)
 
 ## Filterets resonans og argumentet 'rq'
 
@@ -52,6 +53,12 @@ Ved filtre som `RLPF` og `RHPF` kan man angive et argument for at styre filteret
 {RLPF.ar(PinkNoise.ar, rq: 0.1) * 0.1}.play;
 {RLPF.ar(PinkNoise.ar, rq: 0.01) * 0.1}.play;
 ```
+
+![type:audio](../media/audio/06-variation-rq.ogg)
+
+På et spektrogram kan vi se, hvordan de tre forskellige `rq`-værdier påvirker den bredspektrede støj fra `PinkNoise`. Bemærk, hvordan intensiteten skabt af resonans ved cutoff-frekvensen (440Hz) adskiller sig på de tre klip.
+
+![Variation i rq-argumentet til RLPF](../media/figures/rq-variation.png){ width="90%" }
 
 ## Filtrering af lydkilde med tonehøjde
 
@@ -102,7 +109,7 @@ Pbind(
 )
 ```
 
-![type:audio](../media/audio/autocutoff1.ogg)
+![type:audio](../media/audio/06-automatisk-cutoff.ogg)
 
 Vi kan også fremstille variable klange ved at indstille cutoffOktav-argument med dets tilhørende nøgle i Pbind:
 
@@ -116,38 +123,30 @@ Pbind(
 )
 ```
 
-![type:audio](../media/audio/autocutoff2.ogg)
+![type:audio](../media/audio/06-automatisk-cutoff-oktav.ogg)
+
+Her kan man bemærke, at den perciperede intensitet fremstår kraftigere, når cutoff-frekvensen øges, da øret rammes af et bredere spektrum af overtoner. Dette blot for at minde om de psykoakustiske forhold som spiller ind på opfattelsen af intensitet - amplitude er ikke nødvendigvis den afgørende faktor.
 
 ## Cutoff moduleret af envelope
 
 En meget udbredt klangdannelsesteknik angår en sammenkobling af envelope og cutoff-frekvens, således at cutoff-frekvensen moduleres af envelopen. Her kan vi på samme måde som ovenfor udregne en cutoff-frekvens baseret på envelope. Nedenstående SynthDef overdriver effekten med en `Env.triangle`, således at resultatet er tydeligt hørbart både i envelopens attack- og releasesegment.
 
-```sc title="Automatisk tilpasset cutoff-frekvens"
+```sc title="Cutoff-frekvens knyttet til envelope"
 (
 SynthDef(\envCutoff, {
     arg freq = 440, pan = 0,
-    amp = 0.1, out = 0, dur = 1;
+    amp = 0.1, out = 0, duration = 5;
     var sig = Saw.ar(freq);
-    var env = EnvGen.kr(Env.triangle(dur), doneAction: 2);
+    var env = EnvGen.kr(Env.triangle(duration), doneAction: 2);
     var cutoff = freq * env.range(2, 8);
     sig = RLPF.ar(sig, cutoff, 0.1);
     sig = sig * env;
     Out.ar(out, Pan2.ar(sig, pan, amp));
 }).add;
 )
+Synth(\envCutoff);
 ```
 
-Her eksemplificeret med en simpel Pbind:
-
-```sc title="Cutoff følger envelope"
-(
-Pbind(
-    \instrument, \envCutoff,
-    \degree, Pseries(0, 1, 8),
-).play;
-)
-```
-
-![type:audio](../media/audio/cutoffenvelope.ogg)
+![type:audio](../media/audio/06-envelope-cutoff.ogg)
 
 Dette afspejler hvad der også kendetegner lyden af akustiske instrumenter, nemlig at klangen forandrer sig over en tones levetid.

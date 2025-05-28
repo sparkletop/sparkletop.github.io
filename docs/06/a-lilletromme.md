@@ -145,4 +145,4 @@ Synth(\snare, [
 )
 ```
 
-![type:audio](../media/audio/snare.ogg)
+![type:audio](../media/audio/06-snare.ogg)

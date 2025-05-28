@@ -9,7 +9,7 @@ En kerne af teknikker inden for subtraktiv syntese går ud på at sende en støj
 
 ## Karplus-Strong
 
-Et centralt eksempel er her den berømte Karplus-Strong-algoritme, som har til formål at generere en klang, der minder om lyden af en streng, der bliver slået an [@karplus1983]. Der findes i SuperCollider en særlig UGen, der implementerer Karplus-Strong kaldet `Pluck`, som vi kigger på om lidt. Men det kan være interessant at se, hvordan algoritmen fungerer, så et eksempel er inkluderet herunder. Hertil bruger vi et par UGens, som vi ikke har set hidtil, blandt andet `LocalIn` og `LocalOut`, som definerer feedbackløkken, og `DelayC`, som forsinker lydsignalet (med feedback). Decay-tiden og `OnePole`-filterets koefficient er afgørende for tonehøjde og klang.
+Et centralt eksempel er her den berømte Karplus-Strong-algoritme, som har til formål at generere en klang, der minder om lyden af en streng, der bliver slået an [@karplus1983]. Der findes i SuperCollider en særlig UGen, der implementerer Karplus-Strong kaldet `Pluck`, som vi kigger på om lidt. Men det kan være interessant at se, hvordan algoritmen fungerer, hvorfor et mere håndholdt eksempel er inkluderet herunder. Hertil bruger vi et par UGens, som vi ikke har set hidtil, blandt andet `LocalIn` og `LocalOut`, som definerer en feedbackløkke, samt `DelayC`, som forsinker lydsignalet (med feedback). Decay-tiden og `OnePole`-filterets koefficient er afgørende for tonehøjde og klang.
 
 ```sc title="Manuel Karplus-Strong"
 (
@@ -49,7 +49,7 @@ En tilsvarende lyd kan opnås mere effektivt med `Pluck`, som vi anvender hereft
 )
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/06-pluck.ogg)
 
 ## Inkorporering i SynthDef
 
@@ -90,11 +90,11 @@ Synth(\karplus, [\coef, 0.7, \decay, 1])
 Synth(\karplus, [\freq, 110, \coef, 0.005, \decay, 10, \vibrato, 0.25])
 ```
 
-![type:audio](../media/audio/karplus-variation.ogg)
+![type:audio](../media/audio/06-karplus-strong-variation.ogg)
 
 ## Kompositionseksempel
 
-Vi kan selvfølgelig også skrive en lille komposition med patterns:
+Vi kan selvfølgelig også skrive en lille komposition med patterns, hvor ovenstående SynthDef benyttes:
 
 ```sc title="Komposition med Karplus-Strong"
 (
@@ -134,4 +134,4 @@ TempoClock.tempo = 110/60;
 ~komp.stop;
 ```
 
-![type:audio](../media/audio/karplus-komp.ogg)
+![type:audio](../media/audio/06-komposition-karplus-strong.ogg)
