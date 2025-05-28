@@ -2,19 +2,19 @@
 tags:
     - Artikler
 ---
-# Synth og SynthDef
+# Klangdannelsesopskrifter
 
-Hidtil har vores lyddesign været enkle og midlertidige - med `{}.play` kan vi hurtigt teste UGens og idéer. Men vi kan gøre vores lyddesign meget mere fleksibelt og anvendeligt til længere kompositionsforløb ved at samle vores UGens i en såkaldt `SynthDef`.
+Hidtil har vores lyddesign været enkle og midlertidige - med `{}.play` kan vi hurtigt teste UGens og idéer. Men vi kan gøre vores lyddesign meget mere fleksibelt og anvendeligt til længere patternbaserede kompositionsforløb ved at samle vores UGens i en såkaldt `SynthDef`.
 
 ## Hvad er en Synth?
 
-Bemærk først, hvad der bliver vist i SuperColliders post window, når vi kører nedenstående linje:
+Bemærk hvad der bliver vist i SuperColliders post window, når vi kører nedenstående linje:
 
 ```sc title="En simpel Synth"
 {SinOsc.ar * 0.1}.play;
 ```
 
-Vi får at vide, at vi har startet en såkaldt `Synth`. Hver gang vi producerer lyd på lydserveren, har vi gang i en eller flere Synths. Når vi fx afspiller toner med en `Pbind`, genererer vi en ny Synth for hver tone, der spiller. Kør fx nedenstående blok og se listen over Synths i plotTree-vinduet:  
+Vi får at vide, at vi har startet en såkaldt `Synth`. Teknisk set er en Synth en klynge af sammenhængende UGens, som defineres af en [UGen-funktion](../04/a-ugens.md) og kører på lydserveren som en "node". Hver gang vi producerer lyd på lydserveren, har vi altså gang i en eller flere Synths. Når vi fx afspiller toner med en `Pbind`, genererer vi en ny Synth for hver tone, der spiller. Kør fx nedenstående blok og se listen over Synths i Node Tree-vinduet:  
 
 ```sc title="Pbind producerer Synths"
 (
@@ -26,15 +26,15 @@ Pbind(
 )
 ```
 
-Vi kan alternativt starte en Synth direkte ved at bruge `Synth.new`:
+Vi kan også starte Synths direkte ved at bruge `Synth.new`:
 
-```sc title="Brug af Synth.new"
+```sc title="Start en Synth med Synth.new"
 Synth.new(\default);
 Synth(\default);
 // Samme resultat: .new er implicit
 ```
 
-Men hvad er mon `\default`? Jo, det er navnet på en bestemt `SynthDef`.
+Men hov, hvad er mon `\default`? Jo, det er navnet på en bestemt `SynthDef`.
 
 ## Hvad er en SynthDef?
 
@@ -42,10 +42,12 @@ Ordet SynthDef står, ikke overraskende, for **Synth-definition**. Med SynthDefs
 
 En SynthDef adskiller sig fra den mere primitive form `{}.play` på følgende måder:
 
-- En ny SynthDef (`SynthDef.new`) skal registreres på lydserveren med `.add;`
+- En ny SynthDef (`SynthDef.new`) skal registreres på lydserveren med `.add;`[^1]
 - En SynthDef skal have et navn, så vi kan henvise til den senere, fx `\minSynthDef`
 - Vores UGen-funktion angives lige efter navnet, som argument nr. 2 til `SynthDef.new()`
 - For at høre lyd-outputtet skal vi inde i UGen-funktionen route det ønskede signal ud med den særlige UGen `Out`
+
+[^1:]Teknisk set kan SynthDefs også gemmes i et særligt filformat, hvilket dog kun er nødvendigt i særlige tilfælde. Læs nærmere herom i [dokumentationen for SynthDefs](https://doc.sccode.org/Classes/SynthDef.html).
 
 Det kan eksempelvis se således ud:
 
