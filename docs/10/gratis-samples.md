@@ -12,9 +12,9 @@ indhold.
 
 Links herunder er generelt udvalgt efter sidernes indholdsmæssige kvalitet og tilgængelighed. Dette betyder:
 
-- Indholdet skal overordnet set have en rimelig lydkvalitet
-- Indholdet skal være overskueligt at tilgå og anvende
-- Indholdet skal være udgivet under tilladelige licenstyper som public domain- eller creative commons-licenser
+- Indholdet skal overordnet set have en rimelig lydkvalitet.
+- Indholdet skal være overskueligt at tilgå og anvende.
+- Indholdet skal være udgivet under licenstyper som public domain- eller creative commons-licenser.
 
 Store arkiver med samples kan naturligvis have svingende kvalitet og være vanskelige at navigere i. I nogle tilfælde kræver download af ressourcerne endvidere, at man registrerer sig med emailadresse. Dette er en af de priser man betaler for "gratis" materialer.
 

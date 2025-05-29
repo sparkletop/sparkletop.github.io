@@ -84,6 +84,6 @@ Pbind(
 
 Arbejd videre med SynthDef'en fra forrige opgave.
 
-1. Tilføj et element af filtreret støj med egen amplitude-envelope, helt i begyndelsen af anslaget
-1. Tilføj en sub-oktav, dvs. en tone, som klinger en oktav under freq
-1. Gør mængden (lydstyrke) af anslagsstøj og sub-oktav justerbar ved at tilføje argumenter og varier disse ved at tilføje patterns og nøgler til Pbind-kompositionen
+1. Tilføj et element af filtreret støj med egen amplitude-envelope, helt i begyndelsen af anslaget.
+1. Tilføj en sub-oktav, dvs. en tone, som klinger en oktav under freq.
+1. Gør mængden (lydstyrke) af anslagsstøj og sub-oktav justerbar ved at tilføje argumenter og varier disse ved at tilføje patterns og nøgler til Pbind-kompositionen.

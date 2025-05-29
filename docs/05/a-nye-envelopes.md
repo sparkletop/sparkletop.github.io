@@ -11,9 +11,9 @@ Ud over de indbyggede envelopes tilbyder SuperCollider rig mulighed for at opfin
 
 Vi definerer vores egne envelopes med `Env.new`. Argumenterne er som følger:
 
-- En liste med start- og slutniveauer for de enkelte segmenter
-- Dernæst angiver vi en liste med varigheder af de enkelte segmenter
-- Valgfrit: Til sidst kan vi bestemme segmenternes krumning ved at angive en eller flere såkaldte curve-værdier
+- Først angiver vi en liste med start- og slutniveauer for de enkelte segmenter.
+- Dernæst angiver vi en liste med varigheder af de enkelte segmenter.
+- Valgfrit: Til sidst kan vi bestemme segmenternes krumning ved at angive en eller flere såkaldte curve-værdier.
 
 Her er et par eksempler:
 

@@ -103,9 +103,9 @@ En ikke-standard bølgeform, som består af hver tredje overtone:
 
 Dette eksempel på en klokkelyd er løseligt baseret på et eksempel fra Curtis Roads[-@roads2023, p. 123]. Lyden indeholder følgende sinustoner:
 
-- En *grundtone*, som klinger ved 200Hz
-- En *overtone*, som klinger ved 2000Hz
-- To *partialtoner* (dvs. ikke-harmoniske overtoner), som klinger ved henholdsvis 347,5Hz og 9921,8Hz
+- En *grundtone*, som klinger ved 200Hz.
+- En *overtone*, som klinger ved 2000Hz.
+- To *partialtoner* (dvs. ikke-harmoniske overtoner), som klinger ved henholdsvis 347,5Hz og 9921,8Hz.
 
 ```sc title="Klokkelyd beskrevet af Curtis Roads"
 (

@@ -26,17 +26,17 @@ TempoClock.tempo.postln;
 
 ## Yndlingstal og variabler
 
-- Post dit yndlingstal i SuperColliders post window
-- Gem dit yndlingstal under en global variabel, fx `~mitYndlingstal`
-- Post indholdet af din variabel
-- Post indholdet af din variabel ganget med 200
+1. Post dit yndlingstal i SuperColliders post window.
+1. Gem dit yndlingstal under en global variabel, fx `~mitYndlingstal`.
+1. Post indholdet af din variabel.
+1. Post indholdet af din variabel ganget med 200.
 
 ## Find og ret syv fejl
 
-- Find og ret fejlene i de syv eksempler herunder
-- Ryd SuperColliders post window (Cmd/Ctrl+Shift+p) inden du starter med et nyt eksempel
-- Læs fejlmeddelelsen, før du retter fejlen
-- Forklar i en kommentar for hver fejl hvad du har rettet og hvad problemet bestod i
+1. Find og ret fejlene i de syv eksempler herunder.
+1. Ryd SuperColliders post window (Cmd/Ctrl+Shift+p) inden du starter med et nyt eksempel.
+1. Læs fejlmeddelelsen, før du retter fejlen.
+1. Forklar i en kommentar for hver fejl hvad du har rettet og hvad problemet bestod i.
 
 ``` sc title="Find 7 fejl"
 ~alder = 32,5;

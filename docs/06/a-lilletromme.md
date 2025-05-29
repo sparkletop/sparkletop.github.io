@@ -84,6 +84,7 @@ Trommen kan også have en dybere støjlyd, som simuleres på en lignende måde, 
 ## En lilletromme-SynthDef
 
 Herunder sættes de ovenfor omtalte komponenter sammen i en liste, som summeres til sidst. Vi indfører desuden nogle argumenter, så vi kan styre lydstyrken for de enkelte komponenter og på den måde fintune vores lilletromme. Hertil anvendes method'en `.dbamp`, som omregner fra dB-skalaen til en skaleringsfaktor, vi kan bruge til at styre lydstyrke. For at have en balance i lydniveauerne mellem de enkelte lydkilder indeholder SynthDef'en nogle forudprogrammerede lydniveauer, som sammen med argumenterne styrer lydstyrkerne. Sidst men ikke mindst foretages der lidt distortion/komprimering med `.tanh`, som er en form for *waveshaping*[^1].
+
 [^1]: Waveshaping er en digital form for klanglig manipulation med distortion, som det vil føre for vidt at introducere her. Se evt. Curtis Roads' udmærkede introduktion til emnet [-@roads2023, p. 273].
 
 ```sc title="En SynthDef til syntetisk emuleret lilletrommelyd"

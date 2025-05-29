@@ -17,7 +17,7 @@ I denne øvelse producerer du beats ved hjælp af algoritmisk beatslicing.
 Skab et nyt beat ud af et eksisterende beat ved hjælp af SynthDef og loop fra Opgave 0 ovenfor. Beatet skal overholde følgende krav:
 
 1. Slices skal vælge tilfældigt.
-1. Klang skal varieres ved hjælp af `\drive` og de to filterparametre (`\cutoff` og `\rq`)
+1. Klang skal varieres ved hjælp af `\drive` og de to filterparametre (`\cutoff` og `\rq`).
 1. Mikrotimingen skal "humaniseres" ved hjælp af `\lag`-nøglen - vælg hertil selv et passende pattern og værdier.
 1. Vælg selv yderligere parametre til justering.
 

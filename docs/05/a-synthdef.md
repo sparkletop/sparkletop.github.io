@@ -42,10 +42,10 @@ Ordet SynthDef står, ikke overraskende, for **Synth-definition**. Med SynthDefs
 
 En SynthDef adskiller sig fra den mere primitive form `{}.play` på følgende måder:
 
-- En ny SynthDef (`SynthDef.new`) skal registreres på lydserveren med `.add;`[^1]
-- En SynthDef skal have et navn, så vi kan henvise til den senere, fx `\minSynthDef`
-- Vores UGen-funktion angives lige efter navnet, som argument nr. 2 til `SynthDef.new()`
-- For at høre lyd-outputtet skal vi inde i UGen-funktionen route det ønskede signal ud med den særlige UGen `Out`
+- En ny SynthDef (`SynthDef.new`) skal registreres på lydserveren med `.add;`[^1].
+- En SynthDef skal have et navn, så vi kan henvise til den senere, fx `\minSynthDef`.
+- Vores UGen-funktion angives lige efter navnet, som argument nr. 2 til `SynthDef.new()`.
+- For at høre lyd-outputtet skal vi inde i UGen-funktionen route det ønskede signal ud med den særlige UGen `Out`.
 
 [^1:]Teknisk set kan SynthDefs også gemmes i et særligt filformat, hvilket dog kun er nødvendigt i særlige tilfælde. Læs nærmere herom i [dokumentationen for SynthDefs](https://doc.sccode.org/Classes/SynthDef.html).
 
@@ -67,7 +67,7 @@ Synth(\minSynthDef);
 
 Sammenhængen mellem `Synth`, `SynthDef` og `Pbind` er helt central i SuperCollider.
 
-- `SynthDef` kan forstås som et instrument, der bestemmer tonernes klanglige form over tid (spektromorfologi).
+- `SynthDef` kan forstås som et instrument, der bestemmer mulighederne for tonernes klangdannelse over tid (spektromorfologi).
 - `Synth`s kan forstås som de konkrete lyde, man skaber med instrumentet.
 - `Pbind` udgør således kompositionen eller partituret.
 
@@ -188,9 +188,9 @@ Hvis ovenstående pattern-komposition er vanskelig at følge, bør du genopfrisk
 
 `Pbind` kan også afslutte [vedvarende envelopes](a-envelopes.md#vedvarende-envelopes-med-gate) for os. Vi kan dermed få adgang til at komponere med legato- og staccatofrasering. Det kræver dog, at `SynthDef`'en indrettes på følgende måde:
 
-- Vi indfører et argument kaldet `gate` med standardværdi 1
-- Vi bruger en vedvarende envelope, fx `Env.asr`
-- Vi angiver `gate` som argument nr. 2 til `EnvGen`
+- Vi indfører et argument kaldet `gate` med standardværdi 1.
+- Vi bruger en vedvarende envelope, fx `Env.asr`.
+- Vi angiver `gate` som argument nr. 2 til `EnvGen`.
 
 ```sc title="SynthDef med vedvarende envelope" hl_lines="3 5"
 (

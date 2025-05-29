@@ -5,22 +5,22 @@ tags:
 
 # Pattern-komposition med MIDI-output
 
-Når vi lærer at arbejde med patterns som kompositionsredskab, er det oplagt at anvende en mere interessant lydkilde end den indbyggede standardlyd i SuperColliders lydserver. Vi kommer senere til at [designe vores egne lyde med SuperColliders lydserver](../05/a-synthdef.md), men for nuværende kan det være mere inspirerende at bruge vores patterns til MIDI-komposition. Det gøres på følgende måde:
+Når vi lærer at arbejde med patterns som kompositionsredskab, er det oplagt at anvende en mere interessant lydkilde end den indbyggede standardlyd i SuperColliders lydserver. Vi kommer senere til at [designe vores egne lyde med SuperColliders lydserver](../05/a-synthdef.md), men for nuværende kan det være mere inspirerende at bruge vores patterns til MIDI-komposition. Det gøres i grove træk på følgende måde:
 
-- Opret en virtuel MIDI-port til kommunikation mellem SuperCollider og DAW
-- Indstil DAW til at modtage MIDI-meddelelser på et spor med et virtuelt instrument
-- Indstil SuperCollider til at sende MIDI-meddelelser med `MIDIClient.init` og `MIDIOut.newByName`
-- Spil på instrument-plugin'et i DAW'en ved hjælp af `Pbind`
+1. Opret en virtuel MIDI-port til kommunikation mellem SuperCollider og DAW.
+1. Indstil DAW til at modtage MIDI-meddelelser på et spor med et virtuelt instrument.
+1. Indstil SuperCollider til at sende MIDI-meddelelser med `MIDIClient.init` og `MIDIOut.newByName`.
+1. Spil på instrument-plugin'et i DAW'en ved hjælp af `Pbind`.
 
-Herunder kigger vi nærmere på disse trin.
+Herunder kigger vi nærmere på disse trin, med særligt fokus på SuperCollider-delen (idet de øvrige trin er velbeskrevne andetsteds).
 
 ## Opsætning og test af MIDI-kommunikation
 
 ### Virtuel MIDI-port og opsætning af DAW
 
-For at sende MIDI-signaler fra SuperCollider til en DAW på samme computer, skal man sætte en virtuel MIDI-port op til at skabe forbindelse mellem de to programmer. Dette er heldigvis enkelt - på Windows kan man bruge programmet *loopMIDI* og på Mac kan man opsætte en virtuel port med den såkaldte *IAC Driver*. Dette forklares ganske fint i [en guide fra Ableton](https://help.ableton.com/hc/en-us/articles/209774225-Setting-up-a-virtual-MIDI-bus).
+For at sende MIDI-signaler fra SuperCollider til en DAW på samme computer, skal man sætte en virtuel MIDI-port op til at skabe forbindelse mellem de to programmer. Dette er heldigvis enkelt: På Windows kan man bruge programmet *loopMIDI*, og på Mac kan man opsætte en virtuel port med den såkaldte *IAC Driver*. Dette forklares ganske fint i [en guide fra Ableton](https://help.ableton.com/hc/en-us/articles/209774225-Setting-up-a-virtual-MIDI-bus).
 
-Man sætter derefter DAW'en op, så den modtager MIDI-meddelelser fra den virtuelle MIDI-port på et spor, hvor man har sat et instrument-plugin op. Det vil føre for vidt at introducere til dette for alle tænkelige DAW-programmer her. Men1 denne funktionalitet er heldigvis dokumenteret grundigt andre steder, da det svarer til hvordan man tilslutter et MIDI-keyboard. Se eksempelvis instrukserne for [Reaper](https://youtu.be/LmEy49PH9p8?feature=shared&t=225), [Ableton Live](https://help.ableton.com/hc/en-us/articles/360011853159-MIDI-controllers-FAQ), [Logic Pro](https://support.apple.com/guide/logicpro/connect-midi-keyboards-and-modules-lgcpebe6b756/10.7/mac/11.0), [Ardour](https://youtu.be/ACJ1suTVouw?feature=shared&t=778) og så videre.
+Man sætter derefter DAW'en op, så den modtager MIDI-meddelelser fra den virtuelle MIDI-port på et spor, hvor man har sat et instrument-plugin op. Det vil føre for vidt at introducere til dette for alle tænkelige DAW-programmer her. Men denne funktionalitet er heldigvis dokumenteret grundigt andre steder, da vores foretagende på DAW-siden svarer til, hvordan man tilslutter et MIDI-keyboard. Se eksempelvis instrukserne for [Reaper](https://youtu.be/LmEy49PH9p8?feature=shared&t=225), [Ableton Live](https://help.ableton.com/hc/en-us/articles/360011853159-MIDI-controllers-FAQ), [Logic Pro](https://support.apple.com/guide/logicpro/connect-midi-keyboards-and-modules-lgcpebe6b756/10.7/mac/11.0), [Ardour](https://youtu.be/ACJ1suTVouw?feature=shared&t=778) og så videre. Her gælder det blot om at sørge for, at DAW'en er indstillet til at modtage MIDI-meddelelser via den føromtalte, virtuelle MIDI-port.
 
 Alternativt kan man sende MIDI-meddelelser fra SuperCollider til et stykke hardware som er tilsluttet computeren via MIDI, fx en ekstern synthesizer. For enkelhedens skyld omtaler vi dog her modtageren af MIDI-meddelelser som en [DAW](https://en.wikipedia.org/wiki/Digital_audio_workstation). Jeg forudsætter herunder, at den virtuelle eller fysiske forbindelse er etableret, og at modtageren af vores MIDI-signal er klar til at modtage meddelelser.
 
@@ -28,11 +28,11 @@ Alternativt kan man sende MIDI-meddelelser fra SuperCollider til et stykke hardw
 
 Når DAW er klar til at modtage MIDI-signal via en virtuel MIDI-port, starter man i SuperCollider med at køre linjen `MIDIClient.init`. Dette får SuperCollider til at kontakte computerens MIDI-system og vise i post window hvilke MIDI-porte der er tilgængelige. Derfra noterer man navnet på den ønskede port og bus. Dem angiver man så, når man med klassen `MIDIOut` og method'en `.newByName` opretter en forbindelse til  output og gemmer dette under en global variabel.
 
-``` sc title="Klargøring af MIDI med MIDIClient"
+```sc title="Klargøring af MIDI med MIDIClient"
 // Start MIDI-kommunikation
 MIDIClient.init;
 
-// I post window ses nu to nyttige lister, MIDI Sources og MIDI Destinations
+// I post window ses nu to nyttige lister
 // På Windows kan det fx se sådan ud:
 MIDI Sources:
     MIDIEndPoint("loopMIDI Port", "loopMIDI Port")
@@ -41,7 +41,7 @@ MIDI Destinations:
     MIDIEndPoint("loopMIDI Port", "loopMIDI Port")
 ```
 
-Da vi skal sende MIDI ud af SuperCollider, kigger vi på listen over `MIDI Destinations` i post window for at identificere den ønskede destination. Vi noterer os det, der står mellem parenteserne efter `MIDIEndPoint`:
+Da vi skal sende MIDI ud af SuperCollider, kigger vi på listen over `MIDI Destinations` i post window for at identificere den virtuelle MIDI-port. Vi noterer os her hvilket `MIDIEndPoint`, vi ønsker at kommunikere med. På Windows vil det typisk være `MIDIEndPoint("loopMIDI Port", "loopMIDI Port")`, når vi bruger *loopMIDI*. Her kan vi kopiere den tekst, der står mellem parenteserne efter MIDIEndPoint og sætte den ind som argumenter til `MIDIOut.newByName`:
 
 ```sc title="Opret MIDIOut til DAW/synthesizer"
 // Typisk portnavn på Windows
@@ -53,7 +53,7 @@ Da vi skal sende MIDI ud af SuperCollider, kigger vi på listen over `MIDI Desti
 
 ### Test forbindelsen
 
-Så er vi klar til at sende MIDI-meddelelser fra SuperCollider. For at teste forbindelse kan vi sende en Note On- og en Note Off-meddelelse, hvorved vi kan se eller høre på modtageren, at der spilles en tone.
+Når vi har oprettet en `MIDIOut`, er vi klar til at sende MIDI-meddelelser fra SuperCollider. For at teste forbindelsen, kan vi sende en Note On- og en Note Off-meddelelse, hvorved vi kan se eller høre i vores DAW, at der spilles en tone.
 
 ```sc title="Test MIDI-forbindelsen med toneanslag og -afslag"
 ~daw.noteOn(chan: 0, note: 64, veloc: 80);
@@ -144,10 +144,10 @@ Som vi har set [tidligere](a-sammensaetning.md#at-kombinere-pbinds-med-pbindf), 
 
 Når vi komponerer med MIDI, er det væsentligt at notere sig dennes begrænsninger. Almindelige *Note On* og *Note Off*-meddeleser i MIDI indeholder blot information om hvilken MIDI-tone, det drejer sig om, samt en parameter, der kaldes *velocity*, hvilket ofte kobles med lydstyrke[^1]. Begge disse oplysninger befinder sig i intervallet 0-127, så hvis vi manuelt skal sende disse beskeder (fx med `~daw.noteOn`), skal værdierne befinde sig inden for dette interval. Bruger vi Pbind, kan vi heldigvis anvende de fleste af de nøgler, vi kender, som `\degree`, `\octave`, `\db` osv. Samtidig kan vi styre, *hvornår* meddelelserne afsendes, og med `\legato`-nøglen hvor længe besemte toner skal "holdes". Dermed har vi altså kontrol over følgende musikalske parametre:
 
-- Tonehøjde, i form af MIDI-tonetal
-- Lydstyrke, i form af MIDI-velocity
+- Tonehøjde via MIDI-tonetal
+- Lydstyrke via MIDI-velocity
 - Rytmik og frasering, i form af meddelelsernes timing
 
-Vi har *ikke* kontrol over parametre som klang, envelope-parametre eller lignende. Dertil kan man evt. anvende de såkaldte Control Change-meddelelser, som nysgerrige læsere kan undersøge nærmere [i SuperColliders dokumentation](https://doc.sccode.org/Tutorials/A-Practical-Guide/PG_08_Event_Types_and_Parameters.html#MIDI%20output).
+Vi har *ikke* kontrol over parametre som klang, envelope-parametre eller lignende. Dertil kan man evt. anvende de såkaldte *Control Change*-meddelelser, som nysgerrige læsere kan undersøge nærmere [i SuperColliders dokumentation](https://doc.sccode.org/Tutorials/A-Practical-Guide/PG_08_Event_Types_and_Parameters.html#MIDI%20output).
 
 [^1]: MIDI, der står for *Musical Instrument Digital Interface* blev oprindeligt udviklet af en sammenslutning af instrumentproducenter, som ønskede en fælles protokol for hvordan forskelligt musikudstyr kunne kommunikere med hinanden. Den prototypiske anvendelse af MIDI er således når man kobler et MIDI-keyboard sammen med en synthesizer for at kunne spille på denne via keyboardets tangenter. Deraf kom terminologien *velocity*, som oprindeligt vedrørte hvor hurtigt en tangent blev trykket ned og i dag stadig bruges, uagtet at der ikke altid er tale om en fysisk tangent, som trykkes ned.

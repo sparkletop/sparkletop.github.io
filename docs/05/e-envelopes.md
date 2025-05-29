@@ -41,9 +41,9 @@ Du skal her fremstille en simpel lilletrommelyd. De centrale lydlige egenskaber 
 
 Skriv tre envelopes:
 
-1. *body:* En `XLine`, som bevæger sig fra 220 til 110 over 275ms
-1. *sweep:* En `XLine`, som bevæger sig fra 8000 til 2500 over 10ms
-1. *vol:* En `Env.perc`, hvor attack-segmentet varer 0.5ms(!) og release-segmentet varer 150ms
+1. *body:* En `XLine`, som bevæger sig fra 220 til 110 over 275ms.
+1. *sweep:* En `XLine`, som bevæger sig fra 8000 til 2500 over 10ms.
+1. *vol:* En `Env.perc`, hvor attack-segmentet varer 0.5ms(!) og release-segmentet varer 150ms.
 
 Prøv efterfølgende at justere på parametrene i de forskellige envelopes og bemærk hvordan selv mindre ændringer påvirker det lydlige resultat.
 
@@ -81,9 +81,9 @@ I næste kapitel gennemgås [et mere elaboreret bud på dannelse af lilletrommel
 
 Definér din egen envelope, som overholder følgende krav:
 
-1. Envelopen skal bestå af mindst to segmenter
-1. Værdierne i envelopen (linje 3 i kodeblokken herunder) skal ligge mellem 220 og 880
-1. Tidsintervallerne (linje 4 i kodeblokken herunder) vælges frit (husk, at der skal være ét tidsinterval færre end antallet af trin)
+1. Envelopen skal bestå af mindst to segmenter.
+1. Værdierne i envelopen (linje 3 i kodeblokken herunder) skal ligge mellem 220 og 880.
+1. Tidsintervallerne (linje 4 i kodeblokken herunder) vælges frit (husk, at der skal være ét tidsinterval færre end antallet af trin).
 
 Justér kun på de markerede linjer i kodeblokken herunder.
 

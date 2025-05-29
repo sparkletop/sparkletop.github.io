@@ -17,11 +17,11 @@ I denne øvelse skal du analysere udvalgte aspekter af fem eksempler på pattern
 
 ## Sammensætning af nøgler og patterns
 
-- Analyse
-    - Hvordan fungerer de enkelte nøgler (`\octave`, `\root`, `\mtranspose`, `\lag` osv.)? Slå evt. op i [forrige kapitel](../02/a-pbind.md).
-    - Hvordan kombineres tilfældighed og repetition under nøglerne `\mtranspose` og `\db`? Se evt. [afsnittet om sekvenser af patterns](./a-indlejring.md#sekvenser-af-patterns).
-- Kreativ opgave
-    - Eksperimentér med alternative skalaer, nodeværdier og trinsekvenser
+1. Analyse
+    1. Hvordan fungerer de enkelte nøgler (`\octave`, `\root`, `\mtranspose`, `\lag` osv.)? Slå evt. op i [forrige kapitel](../02/a-pbind.md).
+    1. Hvordan kombineres tilfældighed og repetition under nøglerne `\mtranspose` og `\db`? Se evt. [afsnittet om sekvenser af patterns](./a-indlejring.md#sekvenser-af-patterns).
+1. Kreativ opgave
+    1. Eksperimentér med alternative skalaer, nodeværdier og trinsekvenser
 
 ```sc title="Sammensætning af nøgler og patterns"
 (
@@ -47,16 +47,16 @@ Pbind(
 
 ![type:audio](../media/audio/03-komposition-keys.ogg)
 
-Lydeksemplet er realiseret med instrument-plugin'et [Helm](https://tytel.org/helm/) og preset'et "Old Factory Presets > CM Pluck Time" med portamento slået til.
+Lydeksemplet er realiseret med instrument-plugin'et [Helm](https://tytel.org/helm/) og preset'et *Old Factory Presets > CM Pluck Time* med portamento slået til.
 
 ## Skala-udforskning med Pbrown
 
-- Analyse
-    - Hvilken funktion har nøglen `\ctranspose`?
-    - Hvad sker der, hvis du ændrer nøglen `\ctranspose` til `\mtranspose`?
-    - Hvad er forskellen på `Pbrown` og `Pwhite`?
-- Kreativ opgave
-    - Skab en mere interessant rytmik ved at erstatte den faste værdi 0.2 ved `\dur`-nøglen med et pattern efter eget valg
+1. Analyse
+    1. Hvilken funktion har nøglen `\ctranspose`?
+    1. Hvad sker der, hvis du ændrer nøglen `\ctranspose` til `\mtranspose`?
+    1. Hvad er forskellen på `Pbrown` og `Pwhite`?
+1. Kreativ opgave
+    1. Skab en mere interessant rytmik ved at erstatte den faste værdi 0.2 ved `\dur`-nøglen med et pattern efter eget valg
 
 ```sc title="Skala-udforskning med Pbrown"
 (
@@ -74,18 +74,18 @@ Pbind(
 
 ![type:audio](../media/audio/03-komposition-pbrown.ogg)
 
-Lydeksemplet er realiseret med instrument-plugin'et [sforzando](https://www.plogue.com/products/sforzando.html) og sfz-instrumentet "Marimba" fra [Versilian Studios Chamber Orchestra 2 Community Edition](https://versilian-studios.com/vsco-community/).
+Lydeksemplet er realiseret med instrument-plugin'et [sforzando](https://www.plogue.com/products/sforzando.html) og sfz-instrumentet *Marimba* fra [Versilian Studios Chamber Orchestra 2 Community Edition](https://versilian-studios.com/vsco-community/).
 
 ## Pentatone mønstre
 
-- Analyse
-    - Hvilke teknikker anvendes her til at opnå en balance mellem struktur/repetition og tilfældighed?
-    - Hvilket pattern styrer kompositionens storform, altså hvor mange toner vi samlet hører?
-    - Hvilken funktion har `Array.interpolation`? Se evt. [afsnittet om lister](../01/a-lister.md#automatiske-talrkker).
-- Kreativ opgave
-    - Skriv to variationer af kompositionen:
-        - Én version, som har en højere grad af tilfældighed
-        - Én version, som har en højere grad af struktur og gentagelse
+1. Analyse
+    1. Hvilke teknikker anvendes her til at opnå en balance mellem struktur/repetition og tilfældighed?
+    1. Hvilket pattern styrer kompositionens storform, altså hvor mange toner vi samlet hører?
+    1. Hvilken funktion har `Array.interpolation`? Se evt. [afsnittet om lister](../01/a-lister.md#automatiske-talrkker).
+1. Kreativ opgave
+    1. Skriv to variationer af kompositionen:
+        1. Én version, som har en højere grad af tilfældighed
+        1. Én version, som har en højere grad af struktur og gentagelse
 
 ```sc title="Pentatone mønstre"
 (
@@ -106,16 +106,16 @@ Pbind(
 
 ![type:audio](../media/audio/03-komposition-pentaton.ogg)
 
-Lydeksemplet er realiseret med instrument-plugin'et [Vital](https://vital.audio/) med en let justeret udgave af preset'et "Super Pluck".
+Lydeksemplet er realiseret med instrument-plugin'et [Vital](https://vital.audio/) med en let justeret udgave af preset'et *Super Pluck*.
 
 ## Rytmiserede og dynamiske akkorder
 
-- Analyse
-    - Hvilken effekt har kombinationerne af `.stutter` og `.repeat` på outputtet fra de forskellige patterns?
-    - Hvad betyder `Array.interpolation(16, -20, -10)`?
-- Kreativ opgave
-    - Tilføj mindst én akkord til `Pwrand` (husk, at sandsynlighederne `[0.9, 0.1]` skal svare til antallet af valgmuligheder og tilsammen skal give 1).
-    - Erstat `Pxrand` med et andet [listebaseret tilfældighedspattern](../02/a-random-patterns.md#listebaserede-stokastiske-patterns) efter eget valg, og notér hvilken forskel dette gør.
+1. Analyse
+    1. Hvilken effekt har kombinationerne af `.stutter` og `.repeat` på outputtet fra de forskellige patterns?
+    1. Hvad betyder `Array.interpolation(16, -20, -10)`?
+1. Kreativ opgave
+    1. Tilføj mindst én akkord til `Pwrand` (husk, at sandsynlighederne `[0.9, 0.1]` skal svare til antallet af valgmuligheder og tilsammen skal give 1).
+    1. Erstat `Pxrand` med et andet [listebaseret tilfældighedspattern](../02/a-random-patterns.md#listebaserede-stokastiske-patterns) efter eget valg, og notér hvilken forskel dette gør.
 
 ```sc title="Rytmiserede og dynamiske akkorder"
 (
@@ -139,15 +139,15 @@ Pbind(
 
 ![type:audio](../media/audio/03-komposition-akkorder.ogg)
 
-Lydeksemplet er realiseret med instrument-plugin'et [sforzando](https://www.plogue.com/products/sforzando.html) og sfz-instrumentet "Uprigt Piano" fra [Versilian Studios Chamber Orchestra 2 Community Edition](https://versilian-studios.com/vsco-community/).
+Lydeksemplet er realiseret med instrument-plugin'et [sforzando](https://www.plogue.com/products/sforzando.html) og sfz-instrumentet *Uprigt Piano* fra [Versilian Studios Chamber Orchestra 2 Community Edition](https://versilian-studios.com/vsco-community/).
 
 ## Rytmiske motiver
 
-- Analyse
-    - Undersøg hvilke teknikker, der i dette tilfælde skaber balance mellem det tilfældige og det genkendelige.
-    - Undersøg hvad method'en `.normalizeSum` gør.
-- Kreativ opgave
-    - Skriv en ny komposition, som er inspireret af kildekoden herunder samt opgaverne ovenfor.
+1. Analyse
+    1. Undersøg hvilke teknikker, der i dette tilfælde skaber balance mellem det tilfældige og det genkendelige.
+    1. Undersøg hvad method'en `.normalizeSum` gør.
+1. Kreativ opgave
+    1. Skriv en ny komposition, som er inspireret af kildekoden herunder samt opgaverne ovenfor.
 
 ```sc title="Korte, rytmiske sekvenser"
 (
@@ -177,4 +177,4 @@ TempoClock.tempo = 85 / 60;
 
 ![type:audio](../media/audio/03-komposition-pwrand.ogg)
 
-Lydeksemplet er realiseret med instrument-plugin'et [Spitfire LABS](https://labs.spitfireaudio.com/) og [sample pack'en "Charango - Charango Ensemble"](https://labs.spitfireaudio.com/packs/charango).
+Lydeksemplet er realiseret med instrument-plugin'et [Spitfire LABS](https://labs.spitfireaudio.com/) og [sample pack'en *Charango - Charango Ensemble*](https://labs.spitfireaudio.com/packs/charango).

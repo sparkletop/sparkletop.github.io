@@ -79,23 +79,24 @@ Analog og digital *loopback* beror på, at der sendes lyd ud af et lydkorts udga
 
 Virtuel audio routing kan udføres uden særlig hardware (eksternt lydkort) og er derfor en meget anvendt tilgang. Det udføres som regel med tredjepartssoftware, der figurerer i styresystemet som en ekstra lydkortdriver. Denne kan så både bruges som in- og output i programmer som SuperCollider og DAWs. I [vejledningen fra Ableton](https://help.ableton.com/hc/en-us/articles/360010526359-How-to-route-audio-between-applications) fremgår en række redskaber til Mac og Windows. På Linux findes der udmærkede redskaber som [jack](https://jackaudio.org/) og [pipewire](https://www.pipewire.org/) til avanceret, intern audio-routing.
 
-### Eksempel - Windows: SuperCollider til Reaper via ReaRoute
+### Eksempel: SuperCollider til Reaper via ReaRoute
 
-Som eksempel på virtuel audio routing kan vi tage det scenarie, at en Windows-bruger vil sende lyd fra SuperColliders lydserver til DAW'en Reaper. Dette kan gøres ved hjælp af systemet [ReaRoute](https://www.youtube.com/watch?v=OnfTq8EtluU), der følger med Reaper, hvis man vinger det af under installationen. Fremgangsmåden er som følger:
+Som eksempel på virtuel audio routing kan vi tage det scenarie, at en Windows-bruger ønsker at sende lyd fra SuperColliders lydserver til DAW'en Reaper. Dette kan gøres ved hjælp af systemet [ReaRoute](https://www.youtube.com/watch?v=OnfTq8EtluU), der følger med Reaper, hvis man vinger det af under installationen. Fremgangsmåden er som følger:
 
-1. Start den virtuelle lyddriver
-    1. Når vi har installeret ReaRoute, starter den automatisk, når vi starter Reaper.
-1. Forberedelse i Reaper
-    1. Start Reaper.
-    1. Aktivér derefter et spor til optagelse og vælg ReaRoute som audio-input.
-    ![Vælg ReaRoute som input i Reaper](../media/figures/rearoute.png){ width="80%" }
-    1. Du er nu klar til at se og høre outputtet fra SuperCollider i Reaper.
-1. Indstil SuperCollider
-    1. I SuperCollider kan vi indstille lydserveren til at sende lyden til et bestemt output ved hjælp af `s.options.device = "Mit lydkort";`. Men hvordan ved man, hvad man skal skrive i stedet for "Mit lydkort"?
-        1. Når man booter lydserveren med `s.boot`, vises en liste med mulighederne under `Device options:`.
-        1. Her vil der fremgå en linje, der minder om denne: `- ASIO : ReaRoute ASIO (x64)   (device #9 with 16 ins 16 outs)`.
-        1. ReaRoutes navn i SuperCollider er altså `"ASIO : ReaRoute ASIO (x64)"`.
-        1. Vi angiver derfor `s.options.device = "ASIO : ReaRoute ASIO (x64)";`.
-    1. Valget af ReaRoute træder først i kraft, næste gang vi booter serveren. Derfor kører vi `s.reboot;` (eller `s.boot`, hvis serveren ikke er bootet allerede).
-        1. Herefter kan vi se, hvilken port SuperCollider sender lyd til under `Booting with:` i post window.
-    1. Test at lyden går igennem til Reaper: `{PinkNoise.ar * Env.perc.kr(2)}.play;`
+#### Forberedelse i Reaper
+
+1. Start Reaper.
+1. Aktivér derefter et spor til optagelse og vælg ReaRoute som audio-input.
+![Vælg ReaRoute som input i Reaper](../media/figures/rearoute.png){ width="80%" }
+1. Du er nu klar til at se og høre outputtet fra SuperCollider i Reaper.
+
+#### Fremgangsmåde i SuperCollider
+
+1. I SuperCollider kan vi indstille lydserveren til at sende lyden til et bestemt output ved hjælp af `s.options.device = "Mit lydkort";`. Men hvordan ved man, hvad man skal skrive i stedet for "Mit lydkort"?
+    1. Når man booter lydserveren med `s.boot`, vises en liste med mulighederne under `Device options:`.
+    1. Her vil der fremgå en linje, der minder om denne: `- ASIO : ReaRoute ASIO (x64)   (device #9 with 16 ins 16 outs)`.
+    1. ReaRoutes navn i SuperCollider er altså `"ASIO : ReaRoute ASIO (x64)"`.
+    1. Vi angiver derfor `s.options.device = "ASIO : ReaRoute ASIO (x64)";`.
+1. Valget af ReaRoute træder først i kraft, næste gang vi booter serveren. Derfor kører vi `s.reboot;` (eller `s.boot`, hvis serveren ikke er bootet allerede).
+    1. Herefter kan vi se, hvilken port SuperCollider sender lyd til under `Booting with:` i post window.
+1. Test at lyden går igennem til Reaper: `{PinkNoise.ar * Env.perc.kr(2)}.play;`.

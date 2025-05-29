@@ -11,15 +11,15 @@ I denne øvelse arbejder du med sample-afspilning ved hjælp af `PlayBuf`.
 
 Til brug i denne øvelse skal der indlæses et sample. Du kan bruge din egen lydfil, den skal blot have disse egenskaber:
 
-- Samplet skal vare maksimalt 10 sekunder
-- Samplet skal være trimmet (brug hertil evt. [Audacity](https://www.audacityteam.org/)), så der ikke er stilhed i begyndelsen eller slutningen af samplet
-- Samplet skal indlæses i mono
+- Samplet skal vare maksimalt 10 sekunder.
+- Samplet skal være trimmet (brug hertil evt. [Audacity](https://www.audacityteam.org/)), så der ikke er stilhed i begyndelsen eller slutningen af samplet.
+- Samplet skal indlæses i mono.
 
 Som forberedelse til de øvrige opgaver herunder:
 
-1. Indlæs et sample i en buffer gemt under variablen `~buffer`
-1. Hvis din lydfil er i stereo, kan du indlæse den første kanal med `.readChannel` - se kodeblokken herunder
-1. Hvis du ikke har en lydfil klar selv, kan du bruge den nederste linje herunder i stedet med et indbygget sample fra SuperCollider
+1. Indlæs et sample i en buffer gemt under variablen `~buffer`.
+1. Hvis din lydfil er i stereo, kan du indlæse den første kanal med `.readChannel` (se kodeblokken herunder).
+1. Hvis du ikke har en lydfil klar selv, kan du bruge den nederste linje herunder i stedet med et indbygget sample fra SuperCollider.
 
 ```sc title="Indlæsning af sample"
 // Udfyld her med dit eget sample
@@ -34,10 +34,10 @@ Som forberedelse til de øvrige opgaver herunder:
 
 ## Afspilning med PlayBuf
 
-1. Afspil dit sample ved dobbelt hastighed
-1. Afspil dit sample ved halv hastighed
-1. Afspil den sidste halvdel af dit sample
-1. Afspil dit sample baglæns (bemærk, kræver justering af enten `startPos` eller `loop` og `doneAction`)
+1. Afspil dit sample ved dobbelt hastighed.
+1. Afspil dit sample ved halv hastighed.
+1. Afspil den sidste halvdel af dit sample.
+1. Afspil dit sample baglæns (bemærk, at dette kræver justering af enten `startPos` eller `loop` og `doneAction`).
 
 ```sc title="Sampleafspilning med PlayBuf" hl_lines="6 8 9"
 (
@@ -87,10 +87,10 @@ Som forberedelse til de øvrige opgaver herunder:
 Fremstil en abstrakt lydcollage. Kompositionen skal baseres på ét sample og realiseres ved at bruge patterns sammen med SynthDef'en fra [tidligere afsnit om lydcollage](a-lydcollage.md).
 
 1. Vælg og indlæs et sample, som...
-    1. indeholder en vedvarende lyd (dvs. uden lange pauser i lyden)
-    1. varer mellem 2 og 10 sekunder
-    1. tonalt set er relativt enkel og stabil
-    1. indeholder én monokanal (brug evt. `Buffer.readChannel` som ved opgave 1, hvis din ønskede fil er stereo-format)
+    1. ... indeholder en vedvarende lyd (dvs. uden lange pauser i lyden).
+    1. ... varer mellem 2 og 10 sekunder.
+    1. ... tonalt set er relativt enkel og stabil.
+    1. ... indeholder én monokanal (brug evt. `Buffer.readChannel` som ved opgave 1, hvis din ønskede fil er stereo-format)´.
 1. Modificér `Pbind`'en herunder ved at erstatte faste værdier med patterns, således at vi hører en klangligt varieret lydcollage baseret på det valgte sample.
 
 Pbind til modifikation findes herunder.
