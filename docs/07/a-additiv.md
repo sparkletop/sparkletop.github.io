@@ -9,7 +9,7 @@ Klassisk additiv syntese baseres på ideen om, at komplekse bølgeformer og derm
 
 ## Standardbølgeformer
 
-Som eksempel på additiv syntese kan vi starte med at generere tre standardbølgeformer. Kilden til algoritmerne er Thor Magnussons[-@magnusson2021] udmærkede introduktion til additiv syntese. Sørg for at [visualisere lydserverens output](../04/a-ugens.md#ugens-og-signalflow).
+Som eksempel på additiv syntese kan vi starte med at generere tre standardbølgeformer. Kilden til algoritmerne er Thor Magnussons [-@magnusson2021] udmærkede introduktion til additiv syntese. Sørg for at [visualisere lydserverens output](../04/a-ugens.md#ugens-og-signalflow).
 
 Disse bølgeformer udnytter den såkaldt naturlige [overtonerække](https://www.musikipedia.dk/overtoner), som består af en række overtoner med frekvenser, der ligger et helt antal gange over en grundtones frekvens. Hvis grundtonen svinger ved 100Hz, vil den første tone i den naturlige overtonerække svinge ved 200Hz, den næste ved 300Hz, derefter 400Hz og så fremdeles.
 
@@ -30,7 +30,9 @@ Den savtakkede bølgeform indeholder alle overtoner i overtonerækken. Her blot 
 )
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/07-additiv-syntese-savtakket.ogg)
+
+![Savtakket bølgeform fra ovenstående lydeksempel](../media/figures/additiv-syntese-savtakket.png){ width="80%" }
 
 ### Firkantet bølgeform
 
@@ -49,7 +51,9 @@ Den firkantede bølgeform kan skabes med overtonerne med ulige numre, dvs. nr. 1
 )
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/07-additiv-syntese-firkantet.ogg)
+
+![Firkantet bølgeform fra ovenstående lydeksempel](../media/figures/additiv-syntese-firkantet.png){ width="80%" }
 
 ### Trekantet bølgeform
 
@@ -68,7 +72,9 @@ Den trekantede bølgeform kan ligesom den firkantede skabes med overtonerne med 
 )
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/07-additiv-syntese-trekantet.ogg)
+
+![Trekantet bølgeform fra ovenstående lydeksempel](../media/figures/additiv-syntese-trekantet.png){ width="80%" }
 
 ## Andre eksempler
 
@@ -91,17 +97,17 @@ En ikke-standard bølgeform, som består af hver tredje overtone:
 )
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/07-additiv-syntese-nonstandard.ogg)
 
 ### En klokkelyd
 
-Dette eksempel på en klokkelyd er løseligt baseret på et eksempel fra Curtis Roads[@roads2023, p. 123]. Lyden indeholder følgende sinustoner:
+Dette eksempel på en klokkelyd er løseligt baseret på et eksempel fra Curtis Roads[-@roads2023, p. 123]. Lyden indeholder følgende sinustoner:
 
-- En grundtone, som klinger ved 200Hz
-- En overtone, som klinger ved 2000Hz
-- To partialtoner (ikke-harmoniske overtoner), som klinger ved henholdsvis 347,5Hz og 9921,8Hz
+- En *grundtone*, som klinger ved 200Hz
+- En *overtone*, som klinger ved 2000Hz
+- To *partialtoner* (dvs. ikke-harmoniske overtoner), som klinger ved henholdsvis 347,5Hz og 9921,8Hz
 
-```sc title="Klokkelyd fra Curtis Roads"
+```sc title="Klokkelyd beskrevet af Curtis Roads"
 (
 {
     var freqs = [200, 347.5, 2000, 9921.8];
@@ -114,13 +120,13 @@ Dette eksempel på en klokkelyd er løseligt baseret på et eksempel fra Curtis 
 )
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/07-additiv-syntese-klokke.ogg)
 
 ### En mere kaotisk klokkelyd
 
-Klokkelyde er generelt kendetegnet ved et højt indhold af partialtoner. For at skabe unikke lyde kan vi give hver partialtone en tilfældig frekvens, amplitude og envelope. Dertil udnytter vi de to generatorer `Rand` og `ExpRand`, som genererer en tilfældig værdi mellem et minimum og et maksimum, når Synth'en startes.
+Klokkelyde er generelt kendetegnet ved et højt indhold af partialtoner. For at skabe unikke lyde kan vi give hver partialtone en tilfældig frekvens, amplitude og envelope. Dertil udnytter vi de to generatorer `Rand` og `ExpRand`, som genererer en tilfældig værdi mellem et minimum og et maksimum, når Synth'en startes. Da vi ikke har én envelope, som styrer lydstyrken, kan vi heller ikke vide hvilken af de 16 envelopes, der skal afslutte Synth'en med `doneAction`. Derfor anvender vi en særlig UGen kalder `DetectSilence`, som kan stoppe Synth'en, når den har detekteret stilhed i et givet tidsrum.
 
-Kør blokken flere gange for at høre variationsmulighederne. Justér evt. på parametrene for at skabe andre klangmuligheder.
+Kør blokken flere gange for at høre variationsmulighederne. Bemærk hvor længe de forskellige partialtoner klinger på grund af forskellige længder af release-segmenter.
 
 ```sc title="Kaotisk klokkelyd"
 (
@@ -139,6 +145,6 @@ Kør blokken flere gange for at høre variationsmulighederne. Justér evt. på p
 )
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/07-additiv-syntese-kaotisk-klokke.ogg)
 
 Se i øvrigt også afsnittet om [Rissets klokke](a-risset.md).

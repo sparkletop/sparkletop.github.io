@@ -9,7 +9,7 @@ I denne øvelse arbejdes der med multikanalslyd og additiv syntese. Det er i den
 
 ## Monofoni i to kanaler
 
-Fremstil den samme sinustone i begge lydkanaler ved hjælp af `.dup`
+1. Fremstil den samme sinustone i begge lydkanaler ved hjælp af [duplikering](a-oscillatorbanke.md#duplikering).
 
 ```sc title="Monofoni i to kanaler" hl_lines="4"
 (
@@ -22,12 +22,12 @@ Fremstil den samme sinustone i begge lydkanaler ved hjælp af `.dup`
 
 ## Stereofoni
 
-Løs følgende opgaver ved hjælp af `Pan2`:
+Løs følgende opgaver ved hjælp af `pan`-argumentet til `Pan2.ar`:
 
-1. Fremstil en sinustone i venste side af stereofeltet
-1. Fremstil en sinustone i højre side af stereofeltet
-1. Fremstil en sinustone midt i stereofeltet
-1. Fremstil en sinustone, der ved hjælp af modulation bevæger sig mellem højre og venstre side af stereofeltet
+1. Fremstil en sinustone i venste side af stereofeltet.
+1. Fremstil en sinustone i højre side af stereofeltet.
+1. Fremstil en sinustone midt i stereofeltet.
+1. Fremstil en sinustone, der ved hjælp af modulation bevæger sig mellem højre og venstre side af stereofeltet.
 
 ```sc title="Stereofoni med Pan2" hl_lines="4"
 (
@@ -40,15 +40,14 @@ Løs følgende opgaver ved hjælp af `Pan2`:
 
 ## Klangdannelse med additive elementer
 
-Fremstil i nedenstående SynthDef en kompleks klang ved hjælp af additiv syntese med sinustoner (eksempler herpå kan findes i artiklen om [additiv syntese](a-additiv.md)). Klangen skal overholde følgende krav:
+1. Fremstil i nedenstående SynthDef en kompleks klang ved hjælp af additiv syntese med sinustoner (eksempler herpå kan findes i afsnittet om [additiv syntese](a-additiv.md)). Klangen skal overholde følgende krav:
+    1. Klangen skal ud over grundtonen (`freq`) indeholde mindst tre forskellige *overtoner* (dvs. med et harmonisk forhold til `freq`).
+    1. Klangen skal derudover indeholde mindst to forskellige *partialtoner* (dvs. med et inharmonisk forhold til `freq`).
+    1. Hver tone har en unik *amplitude*, eventuelt [genereret tilfældigt](a-additiv.md#en-mere-kaotisk-klokkelyd).
+    1. Kanalerne med de forskellige toner skal summeres før linje 10 herunder (som starter med `env = EnvGen...`).
+1. Test din SynthDef med nedenstående Pbind.
 
-1. Klangen skal ud over grundtonen (`freq`) indeholde mindst tre forskellige overtoner (dvs. med et harmonisk forhold til `freq`)
-1. Klangen skal derudover indeholde mindst to forskellige partialtoner (dvs. med et inharmonisk forhold til `freq`)
-1. Hver tone har en unik amplitude, eventuelt tilfældigt genererede
-1. Tonerne skal summeres før linjen, som starter med "env = ..."
-
-```sc title="Additiv syntese" hl_lines="7-9"
-(
+```sc title="Additiv syntese" hl_lines="6-8"
 SynthDef(\additivo, {
     arg freq = 440, pan = 0, amp = 0.1,
     attack = 0.01, release = 1, gate = 1;
@@ -62,10 +61,9 @@ SynthDef(\additivo, {
     sig = Pan2.ar(sig * env, pan, amp);
     Out.ar(0, sig);
 }).add;
-)
 ```
 
-Afprøv din SynthDef med denne enkle komposition:
+SynthDef'en kan testes med denne enkle komposition:
 
 ```sc title="Komposition til additiv SynthDef"
 (

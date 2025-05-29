@@ -49,25 +49,25 @@ Når vi nu har disse amplituder, kan vi bruge dem til at styre amplituden af til
 
 ## Sammensætning i SynthDef
 
-For at udnytte ovenstående teknik til at fremstille den klassiske vocoder-lyd, kan vi anvende et vokalsample som kilde A. Derudover skal vi fremstille en liste med centerfrekvenser til vores frekvensbånd.
+For at udnytte ovenstående teknik til at fremstille den klassiske lyd vocoder, kan vi anvende et vokalsample som kilde A. Brug af samples gennemgås senere, hvorfor vi for nuværende blot kan betragte `Buffer` som den variabel, hvor samplet er indlæst. UGen'en `PlayBuf` kan vi betragte som en lydkilde på linje med oscillatorer og støjgeneratorer. Vi indlæser her blot et sample, der følger med SuperCollider.
 
-```sc title="Forberedelse til vocoder"
-(
-// Først indlæser vi et sample med noget tale
+```sc title="Indlæsning af sample til vocoder"
 ~speak = Buffer.readChannel(s, Platform.resourceDir +/+ "sounds/a11wlk01.wav");
+```
 
-// Centerfrekvenser
+Derudover skal vi fremstille en liste med centerfrekvenser til vores frekvensbånd, hvilket vi nemt kan gøre ved hjælp af [iteration](../01/a-lister.md#iteration-over-lister). Her har jeg valgt at inddele spektret mellem 50Hz og 12kHz i 12 bånd.
+
+```sc title="Beregning af centerfrekvenser"
 ~bandFrequencies = 12.collect({
     arg num;
     num.linexp(0, 11, 50, 12000);
 });
-)
+// -> [ 50, 82.291095610801, 135.43648833652, 222.90434021783, 366.86084745856, 603.78762148144, 993.72689775894, 1635.4975030901, 2691.7376279603, 4430.1207700334, 7291.1898370843, 12000 ]
 ```
 
-Når ovenstående kode er eksekveret, kan vi registrere nedenstående SynthDef.
+Når ovenstående frekvenser er beregnet og gemt under variablen `~bandFrequencies`, kan vi registrere nedenstående SynthDef, som er baseret på teknikkerne ovenfor. På linje 15 er der inkluderet en primitiv noise gate, da det valgte sample indeholder en del baggrundsstøj. Man kan fjerne denne linje, hvis man arbejder med et mere "clean" sample eller live-vokallyd.
 
 ```sc title="En old school vocoder-SynthDef"
-(
 SynthDef(\vocoder, {
     arg freq = 440, gate = 1, pan = 0, amp = 0.5, rq = 0.15, noiseThreshold = 0.1;
     var kildeA, kildeB, sig;
@@ -82,31 +82,34 @@ SynthDef(\vocoder, {
 
     sig = sig * Env.asr(0.01, 1, 0.2).kr(2, gate);
     // En simpel noise gate
-    sig = sig * (DetectSilence.ar(kildeA + Impulse.ar(0), amp: noiseThreshold, time: 0.05) - 0.7).fold(0, 1).round;
+    sig = sig * (DetectSilence.ar(kildeA + Impulse.ar(0), amp: noiseThreshold, time: 0.05) - 0.9).fold(0, 1).round;
     sig = Pan2.ar(sig, pan, amp);
     Out.ar(0, sig);
 }).add;
-)
 ```
 
 Når SynthDef'en er indlæst, kan vi bruge den til at spille et robotstemme-mønster i skiftende akkorder ved hjælp af patterns.
 
 ```sc title="Vi spiller på vocoderen med patterns"
-(
-TempoClock.tempo = 1;
 Pbind(
     \instrument, \vocoder,
     \degree, [-7, 0, 2, 4],
     \octave, 5,
-    \mtranspose, Pseq([0, 1, 2, -3], inf),
+    \mtranspose, Pseq([0, 1, 2, -3]),
     \dur, ~speak.duration,
     \pan, Pgauss(0, 0.1),
     \db, 0,
     \legato, 1,
 ).play;
-)
 ```
 
-![type:audio](../media/audio/vocoder.ogg)
+![type:audio](../media/audio/07-vocoder-columbia-houston.ogg)
 
-Det overlades til den nysgerrige læser at implementere en "keyboard og mikrofon"-udgave. Det kræver nogle få justeringer: Dels skal man anvende UGen'en `SoundIn` i stedet for `PlayBuf` som kilde A, dels skal man starte og slukke for enkelte `Synth`-instanser med `MIDIdef`. Der findes et udmærket eksempel herpå [i SuperColliders dokumentation](https://doc.sccode.org/Guides/UsingMIDI.html#Playing%20notes%20on%20your%20MIDI%20keyboard).
+### Keyboardudgave?
+
+Det overlades til den nysgerrige læser på egen hånd at implementere en "keyboard og mikrofon"-udgave af den vocoder, som er beskrevet ovenfor. Det er ikke vanskeligt, men det kræver nogle få justeringer:
+
+- UGen'en `SoundIn` kan anvendes i stedet for `PlayBuf` for at bruge lyden fra en fysisk input-kanal som kilde A.
+- Man starter og slukke for enkelte toner/`Synth`-instanser med `MIDIdef` baseret på input fra et MIDI-keyboard (i stedet for at spille med patterns).
+
+I forhold til den sidstnævnte justering findes der et udmærket eksempel til inspiration i [SuperColliders dokumentation](https://doc.sccode.org/Guides/UsingMIDI.html#Playing%20notes%20on%20your%20MIDI%20keyboard).

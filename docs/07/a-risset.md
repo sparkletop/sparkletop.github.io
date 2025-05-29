@@ -7,7 +7,7 @@ tags:
 
 Jean-Claude Risset var en fransk komponist, der blandt andet arbejdede med additiv syntese og som en pioner inden for computermusikken var en af de første, der eksperimenterede med de store klanglige muligheder man kan opnå med mikrovariationer i overtoners amplitude over tid[@roads2023, p. 123].
 
-Nedenstående SynthDef er en SuperCollider-implementering af en berømt klokkelyd, som Risset skabte. Værdierne er baseret på Miller Puckettes[-@puckette2007, pp. 107-108] gennemgang af teknikken. Der gøres flittig brug af oscillatorbanke skabt med [multichannel expansion](a-oscillatorbanke.md#multikanalslyd-med-multichannel-expansion).
+Nedenstående SynthDef er en SuperCollider-implementering af en berømt klokkelyd, som Risset skabte. Værdierne er baseret på Miller Puckettes [-@puckette2007, pp. 107-108] gennemgang af teknikken. Der gøres flittig brug af oscillatorbanke skabt med [multichannel expansion](a-oscillatorbanke.md#multikanalslyd-med-multichannel-expansion).
 
 ```sc title="SynthDef til Rissets klokke"
 (
@@ -40,17 +40,16 @@ SynthDef(\risset,{
 
 Med patterns kan vi blandt andet variere på envelopesegmenterne og strække de varigheder, som oprindeligt er angivet:
 
-``` sc title="En simpel, generativ komposition for Rissets klokke"
-(
+``` sc title="En generativ komposition for Rissets klokke"
 Pbind(
     \instrument, \risset,
     \scale, Scale.minorPentatonic,
-    \degree, Pwhite(0, 10),
+    \degree, Pwhite(0, 10, 10),
+    \db, Pgauss(-20, 2),
     \rel, Pexprand(4, 12),
-    \dur, Pexprand(0.2, 3),
+    \dur, Pexprand(0.15, 2.5),
     \pan, Pgauss(0, 0.3),
 ).play;
-)
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/07-komposition-risset.ogg)
