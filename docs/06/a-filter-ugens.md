@@ -16,6 +16,8 @@ SuperCollider har en række indbyggede filter-UGens, der implementerer forskelli
 {HPF.ar(PinkNoise.ar) * 0.1}.play;
 ```
 
+De mest almindelige filtre gennemgås herunder, og du kan finde en oversigt over filter-UGens i [dette kapitels cheat sheet](c-filtre.md).
+
 ## Cutoff-frekvens
 
 Ved de fleste filter-UGens kan vi angive cutoff-frekvensen som argument nr. 2. For god ordens skyld bør det nævnes, at cutoff-frekvenser bør holdes mellem 20Hz og 20kHz:
@@ -149,4 +151,4 @@ Synth(\envCutoff);
 
 ![type:audio](../media/audio/06-envelope-cutoff.ogg)
 
-Dette afspejler hvad der også kendetegner lyden af akustiske instrumenter, nemlig at klangen forandrer sig over en tones levetid.
+Denne teknik, hvor klangen modificeres over en enkelt tones levetid, kendetegner også lyden af akustiske instrumenter.
