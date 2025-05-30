@@ -37,7 +37,11 @@ rrand(50, 100).postln;
 )
 ```
 
-Læg mærke til hvordan begge linjer i kodeblokken ovenfor bliver udført så hurtigt efter hinanden, at det i praksis sker samtidigt (men dog i den noterede rækkefølge).
+**I denne bogs kodeeksempler sættes der, i modsætning til kodeblokken ovenfor, kun i få tilfælde parenteser omkring kodeblokke. Læseren skal altså selv sætte parenteser[^1].**
+
+[^1]:SuperColliders IDE kan let indstilles til automatisk at indsætte matchende parenteser. Dette gøres ved at sætte flueben ud for *Edit > Preferences > Editor > Behavior > Auto insert matching parentheses, brackets, quotes*.
+
+Læg i øvrigt mærke til hvordan begge linjer i kodeblokken ovenfor bliver udført så hurtigt efter hinanden, at det i praksis sker samtidigt, men dog i den noterede rækkefølge.
 
 ## Fut i lydserveren
 

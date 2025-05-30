@@ -57,13 +57,11 @@ Vi har hidtil typisk arbejdet med monofone signaler. Ved hjælp af UGen'en `Pan2
 Panoreringensargumentet kan selvfølgelig moduleres af en anden UGen. Her er det væsentligt at sikre sig, at modulatoren er [korrekt skaleret](../04/a-skalering.md), da panoreringsværdier skal ligge mellem -1 og 1. `LFTri` bevæger sig, som de fleste andre oscillatorer, netop i dette interval:
 
 ```sc title="Modulation af panorering"
-(
 {
     var pan = LFTri.kr(0.5);
     var sig = Pulse.ar;
     Pan2.ar(sig, pan, 0.1)
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/07-pan2-lfo.ogg)
@@ -97,12 +95,10 @@ Det tricky her er den subtile notation: Selvom vi kun noterer én `SinOsc`, bliv
 Ekspansionen videreføres til UGens, som ligger senere i signalkæden. I eksemplet herunder opretter vi først to tilfældighedsgeneratorer, den ene genererer 5 tilfældige værdier pr. sekund, den anden 10. Når `SinOsc` på næste linje modtager dette signal med to kanaler, ekspanderes der videre, så vi får to tilsvarende sinusbølge-oscillatorer.
 
 ```sc title="Stereosignal med arrays"
-(
 {
     var freqs = LFNoise0.kr([5, 10]).exprange(200, 800);
     SinOsc.ar(freqs); // skaber to sinusbølge-oscillatorer
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/07-stereo-array.ogg)
@@ -110,14 +106,12 @@ Ekspansionen videreføres til UGens, som ligger senere i signalkæden. I eksempl
 Dette betyder også, at vi med en ganske begrænset mængde kildekode kan oprette et væld af oscillatorer og, fx ved hjælp af `Splay`, samle dem igen til et meget fyldigt lydbillede. Her kan vi eksempelvis bruge duplikering [som vist ovenfor](a-oscillatorbanke.md#duplikering) til at generere et signal med 30 oscillatorer:
 
 ```sc title="Mange oscillatorer med duplikering og multichannel expansion"
-(
 {
     var freqs = LFNoise2.kr(0.25.dup(30)).exprange(110, 1760);
     var amps = LFNoise1.kr(2.dup(30)).exprange(0.01, 0.1);
     var sig = SinOsc.ar(freqs) * amps;
     Splay.ar(sig);
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/07-30-oscillatorer-scifi.ogg)
@@ -129,7 +123,6 @@ Dette kan vi også kalde en *oscillatorbank*. Her kan vi forhåbentlig begynde a
 Oscillatorbanke er fx særdeles velegnede til at skabe "tykkere" klange gennem detuning. Her opretter vi med multichannel expansion fire forskellige oscillatorer, der klinger med næsten samme frekvens, lægger dem sammen med `.sum` og panorerer til sidst med `Pan2`:
 
 ```sc title="Detuning med .midiratio"
-(
 {
     var freq = 220;
     var transposeFactors = [0, 0.10, -0.07, -0.08].midiratio;
@@ -137,7 +130,6 @@ Oscillatorbanke er fx særdeles velegnede til at skabe "tykkere" klange gennem d
     sig = sig.sum * 0.1;
     Pan2.ar(sig);
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/07-detuning.ogg)
@@ -162,7 +154,6 @@ Hvis vi eksempelvis vil skabe en klang med de første toner i den naturlige over
 Vi kan omsætte dette til et klingende eksempel ved at lade tonerne fremstille sinusbølge-oscillatorer og blive fordelt jævnt i et stereofelt med `Splay`:
 
 ```sc title="Fordeling af overtoner i stereofeltet"
-(
 {
     var freq = 110;
     var sig = 5.collect({
@@ -172,7 +163,6 @@ Vi kan omsætte dette til et klingende eksempel ved at lade tonerne fremstille s
     });
     Splay.ar(sig);
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/07-simpel-oscillatorbank.ogg)

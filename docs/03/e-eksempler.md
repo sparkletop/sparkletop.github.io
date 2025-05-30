@@ -24,7 +24,6 @@ I denne øvelse skal du analysere udvalgte aspekter af fem eksempler på pattern
     1. Eksperimentér med alternative skalaer, nodeværdier og trinsekvenser
 
 ```sc title="Sammensætning af nøgler og patterns"
-(
 TempoClock.tempo = 120 / 60;
 
 ~trin = [0, 4, 3, 1, 2];
@@ -42,7 +41,6 @@ Pbind(
 
     \db, Pseq([-10, Pgauss(-15, 2, 4)], inf),
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/03-komposition-keys.ogg)
@@ -59,7 +57,6 @@ Lydeksemplet er realiseret med instrument-plugin'et [Helm](https://tytel.org/hel
     1. Skab en mere interessant rytmik ved at erstatte den faste værdi 0.2 ved `\dur`-nøglen med et pattern efter eget valg
 
 ```sc title="Skala-udforskning med Pbrown"
-(
 TempoClock.tempo = 85 / 60;
 
 Pbind(
@@ -69,7 +66,6 @@ Pbind(
     \db, Pbrown(-15, -5, 2).trace,
     \dur, 0.25,
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/03-komposition-pbrown.ogg)
@@ -88,8 +84,8 @@ Lydeksemplet er realiseret med instrument-plugin'et [sforzando](https://www.plog
         1. Én version, som har en højere grad af struktur og gentagelse
 
 ```sc title="Pentatone mønstre"
-(
 TempoClock.tempo = 130 / 60;
+
 Pbind(
     \scale, Scale.minorPentatonic,
     \octave, Pwhite(4, 5).stutter(4),
@@ -101,7 +97,6 @@ Pbind(
 
     \db, Pbrown(-20, -12, 0.5)
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/03-komposition-pentaton.ogg)
@@ -118,7 +113,6 @@ Lydeksemplet er realiseret med instrument-plugin'et [Vital](https://vital.audio/
     1. Erstat `Pxrand` med et andet [listebaseret tilfældighedspattern](../02/a-random-patterns.md#listebaserede-stokastiske-patterns) efter eget valg, og notér hvilken forskel dette gør.
 
 ```sc title="Rytmiserede og dynamiske akkorder"
-(
 TempoClock.tempo = 120 / 60;
 
 Pbind(
@@ -134,7 +128,6 @@ Pbind(
 
     \db, Pseq(Array.interpolation(16, -20, -10), inf),
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/03-komposition-akkorder.ogg)

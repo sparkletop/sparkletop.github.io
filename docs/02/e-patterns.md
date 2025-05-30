@@ -39,11 +39,9 @@ Pbind(
 I opgave 2-6 skal du skrive dine egne Pbind-kompositioner. Du kan blot kopiere nedenstående skabelon for at gå i gang:
 
 ```sc title="Skabelon"
-(
 Pbind(
 
 ).play;
-)
 ```
 
 ## Pbind og tonehøjde

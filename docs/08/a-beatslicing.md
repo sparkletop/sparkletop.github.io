@@ -13,16 +13,26 @@ Beatslicing kan implementeres på forskellige måder, blandt andet ved hjælp af
 
 ## Kildemateriale og slice-varighed
 
-Med beatslicing er det afgørende, hvordan kildematerialet er organiseret. I denne artikel bruger vi som eksempel et sample, der indeholder et trommebeat af præcis én takts varighed. Beatet er metrisk velorganiseret og underdelt i sekstendedele. Det giver således mening at dele beatet op i 16 lige lange slices.
+Med beatslicing er det afgørende, hvordan kildematerialet er organiseret. I denne artikel bruger vi som eksempel et sample, der indeholder et metrisk organiseret trommebeat af præcis én takts varighed. Der findes ganske mange af disse samples på nettet under kategorier som "drum loops", "instrumental beats", etc.
+
+Til eksemplerne i dette afsnit anvendes et kort udsnit af *funky drum loops.84 bpm.mp3* af Freesound-brugeren *ajubamusic*, som kan findes via [freesound.org](https://freesound.org/s/320803/). Samplet er anvendt under hensyntagen til *Creative Commons*-licensen [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/), og det fremgår herunder, hvordan samplet er behandlet. Trommebeatet er metrisk velorganiseret og underdelt i sekstendedele. Det giver således mening at dele det op i 16 lige lange slices.
+
+```sc title=""
+~sample = Buffer.read(s, "C:/lydfiler/loop.wav");
+~sample.play;
+```
+
+![type:audio](../media/audio/08-funky-drum-loop.ogg)
+/// caption
+    attrs: {id: sample}
+Sample til eksemplerne herunder. Kilde: Freesound user...
+///
 
 Vi kan beregne en startposition i bufferen ud fra hvilket nummer det ønskede slice har (her fra 0 til 15). Vi kan også fremstille en envelope med en fikseret varighed, der udregnes således at den sidste halvdel af envelopens release-segment ganske kort overlapper med begyndelsen af det efterfølgende slice.
 
 Her kan vi således afspille det første slice i en buffer på følgende vis (justér evt. hvilket af de 16 slices der skal afspilles med variablen `slice`):
 
 ```sc title="Afspilning af et enkelt slice med PlayBuf"
-~sample = Buffer.read(s, "C:/lydfiler/loop.wav");
-
-(
 {
     var buf = ~sample, slice = 0, numSlices = 16,
     attack = 0.002, release 0.010;
@@ -46,15 +56,15 @@ Her kan vi således afspille det første slice i en buffer på følgende vis (ju
         startPos: BufFrames.kr(buf) * startPos
     ) * env;
 }.play;
-)
 ```
+
+![type:audio](../media/audio/08-sample-slice.ogg)
 
 ### En SynthDef
 
 Ovenstående kan omskrives til en SynthDef, hvor de første variabler laves om til argumenter, så vi kan styre dem med patterns. Hvis vi tilføjer transponering og afspilningsretning, klanglig manipulation med drive og low pass-filter samt panorering, amplitude og output-routing (alt sammen med tilhørende argumenter), får vi nedenstående resultat.
 
 ```sc title="SynthDef til beatslicing"
-(
 SynthDef(\slice, {
     arg buf, slice = 0, numSlices = 16,
     attack = 0.002, release = 0.010,
@@ -83,27 +93,24 @@ SynthDef(\slice, {
         startPos: BufFrames.kr(buf) * startPos
     );
 
-    // Distortion/waveshaping
+    // Distortion/waveshaping, filter og kompressor
     sig = (sig * drive.linexp(0, 1, 1, 100)).tanh;
     sig = sig * drive.lincurve(0, 1, 1, 0.1, -2);
-
-    // Filter
     sig = RLPF.ar(sig, cutoff.clip(20, 20000), rq.clip(0.0001, 1));
-
-    // Kompressor
     sig = Compander.ar(sig, sig, 0.1, 1.0, 0.25, 0.01, 0.01) * 10.dbamp;
 
-    sig = sig * env;
-
-    sig = Balance2.ar(sig[0], sig[1], pan, amp);
-
+    sig = Balance2.ar(sig[0], sig[1], pan, amp) * env;
     Out.ar(out, sig);
 }).add;
-)
+```
 
-// Tilfældige slices
+Vi kan teste SynthDef'en ved at afspille tilfældigt valgte slices:
+
+```sc title="Tilfældigt valgte slices"
 Synth(\slice, [\buf, ~sample, \slice, rrand(0, 15)]);
 ```
+
+![type:audio](../media/audio/08-random-slices.ogg)
 
 ## Algoritmisk sammensætning af slices
 
@@ -111,10 +118,11 @@ Med ovenstående SynthDef kan vi fleksibelt sammensætte slices ved hjælp af pa
 
 En enkelt overvejelse vi skal have med angår forholdet mellem to tempi: Originalsamplets tempo versus tempoet i vores nye beat. Mere specifikt kan der opstå huller i strømmen af slices, hvis vores nye tempo er langsommere end tempoet i det oprindelige, da ét slice nødvendigvis vil vare kortere end den tid, det er tænkt til at udfylde.
 
+Nedenstående Pbind er indlejret i en `Pdef`, hvilket blot har den funktion, at vi kan eksekvere den omsluttende kodeblok løbende uden at skulle stoppe den først. Dette er nyttigt, hvis vi vil eksperimentere med beatet i løbende flow.
+
 ``` sc title="Pattern-baseret beatslicing"
-(
 TempoClock.tempo = 130 / 60;
-Pdef(\test,
+Pdef(\algobeat,
     Pbind(
         \instrument, \slice,
         \buf, ~sample,
@@ -141,5 +149,6 @@ Pdef(\test,
         \pan, Pgauss(0, 0.2),
     )
 ).play;
-)
 ```
+
+![type:audio](../media/audio/08-stokastisk-beat.ogg)

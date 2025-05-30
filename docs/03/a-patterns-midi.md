@@ -119,7 +119,6 @@ Når man arbejder med patterns som MIDI-generator til at spille på et andet sty
 Som vi har set [tidligere](a-sammensaetning.md#at-kombinere-pbinds-med-pbindf), kan vi bruge `Pbindf` til at genbruge en tidligere defineret `Pbind`. På den måde kan vi definere vores MIDI-nøgler én gang for alle og derefter undgå at skrive dem igen.
 
 ```sc title="Genbrug af MIDI-nøgler med Pbindf"
-(
 ~midi = Pbind(
     \type, \midi,
     \midiout, ~daw,
@@ -137,7 +136,6 @@ Som vi har set [tidligere](a-sammensaetning.md#at-kombinere-pbinds-med-pbindf), 
     \octave, 3,
     \degree, Pseq([1, -3], inf),
 ).play;
-)
 ```
 
 ## Begrænsninger ved MIDI-protokollen

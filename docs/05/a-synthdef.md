@@ -17,13 +17,11 @@ Bemærk hvad der bliver vist i SuperColliders post window, når vi kører nedens
 Vi får at vide, at vi har startet en såkaldt `Synth`. Teknisk set er en Synth en klynge af sammenhængende UGens, som defineres af en [UGen-funktion](../04/a-ugens.md) og kører på lydserveren som en "node". Hver gang vi producerer lyd på lydserveren, har vi altså gang i en eller flere Synths. Når vi fx afspiller toner med en `Pbind`, genererer vi en ny Synth for hver tone, der spiller. Kør fx nedenstående blok og se listen over Synths i Node Tree-vinduet:  
 
 ```sc title="Pbind producerer Synths"
-(
 s.plotTree;
 Pbind(
     \degree, Pwhite(0, 4),
     \legato, Pwhite(2.0, 4.0)
 ).play;
-)
 ```
 
 Vi kan også starte Synths direkte ved at bruge `Synth.new`:
@@ -80,12 +78,10 @@ Lad os se på hvordan samspillet mellem `Synth` og `SynthDef` fungerer i praksis
 SynthDef'en `\minSynthDef` ovenfor fungerer, men er ikke særligt fleksibel. Vi kan fx kun spille én tone med den, og vi er nødt til at stoppe den manuelt med Ctrl-/Cmd-punktum. For at kunne spille forskellige toner kan vi indføre et argument. Her vælger jeg at indføre argumentet `freq` ved hjælp af nøgleordet `arg`, og jeg angiver også en standardværdi på `440`:
 
 ```sc title="SynthDef og Synth"
-(
 SynthDef(\tone, {
     arg freq = 440;  // <--- her erklærer vi argumentet og angiver standardværdien
     Out.ar(0, SinOsc.ar(freq) * 0.1); // <--- her bruger vi argumentet, ligesom en variabel
 }).add;
-)
 ```
 
 Når vi har tilføjet vores SynthDef til lydserveren, kan vi starte nye Synths baseret på definitionen:
@@ -108,7 +104,6 @@ I mange SynthDefs er det nyttigt at bruge en [envelope](a-envelopes.md) til at s
 Vi behøver imidlertid ikke starte vores Synths manuelt. Når SynthDef er indlæst korrekt på lydserveren, kan vi bruge `Pbind` til at generere sekvenser af Synths helt automatisk. Vi fortæller Pbind, hvilken SynthDef, der skal anvendes, ved at bruge nøglen `\instrument`. Det betyder, at `Pbind(\instrument, \simpel)` vil starte Synths baseret på en SynthDef med navnet `\simpel`. Hvis ikke en sådan SynthDef er registreret på lydserveren, vil vi modtage en fejlmeddelelse.
 
 ```sc title="En simpel SynthDef"
-(
 // Først registrerer vi SynthDef'en på lydserveren
 SynthDef(\simpel, {
     arg freq = 440;
@@ -116,19 +111,16 @@ SynthDef(\simpel, {
         * EnvGen.kr(Env.perc, doneAction: Done.freeSelf)
     );
 }).add;
-)
 ```
 
 Nu kan vi bruge Pbind til at "spille på" vores SynthDef, som om den er et instrument.
 
 ```sc title="Pbind bruger den simple SynthDef"
-(
 Pbind(
     // SynthDef-navnet angives under nøglen \instrument
     \instrument, \simpel,
-    \degree, Pwhite(-7, 7),
+    \degree, Pwhite(-7, 7).trace,
 ).play;
-)
 // -> 6, 0, -4, 6, 1, 1, -7, -4, -5, 4, 1, -7, -7 , 5, 4, 7
 ```
 
@@ -137,7 +129,6 @@ Pbind(
 SynthDefs bliver i øvrigt meget lettere at læse, hvis vi bruger [lokale variabler](../01/a-variabler.md#lokale-variabler). Koden herunder fungerer præcis som ovenfor, men er markant mere læsbar, da vi kan følge signalflowet gennem de lokale variabler (hvis ellers variabelnavnene er tilstrækkeligt deskriptive):
 
 ```sc title="Signalflow i SynthDef med lokale variabler"
-(
 SynthDef(\simpel, {
     arg freq = 440;
     // 'sig' er variabelnavnet for vores hovedsignal
@@ -147,13 +138,11 @@ SynthDef(\simpel, {
     sig = sig * env * 0.1;
     Out.ar(0, sig);
 }).add;
-)
 ```
 
 Med et par ekstra argumenter og en `Pan2`-UGen kan vi styre parametre som lydstyrke, release-tid og stereo-panorering. De argumenter, vi angiver i begyndelsen af en SynthDef, kan vi nemlig anvende som nøgler i `Pbind`. Dette interface mellem `SynthDef`/`Synth` og `Pbind`, danner grundlag for de utroligt righoldige, generative muligheder i SuperCollider.
 
-```sc title="SynthDef med variabel tonehøjde, panorering og volumen" hl_lines="3 7"
-(
+```sc title="SynthDef med variabel tonehøjde, panorering og volumen" hl_lines="2 6"
 SynthDef(\fleksibel, {
     arg freq = 440, pan = 0, amp = 0.1, release = 1;
     var sig = SinOsc.ar(freq);
@@ -162,13 +151,11 @@ SynthDef(\fleksibel, {
     sig = Pan2.ar(sig, pan, amp);
     Out.ar(0, sig);
 }).add;
-)
 ```
 
 Nu kan vi bruge vores viden om patterns til at skabe en, algoritmisk komposition, hvor også klanglige forhold styres af patterns.
 
 ```sc title="Pattern-komposition med SynthDef-argumenter"
-(
 Pbind(
     \instrument, \fleksibel,
     \degree, Pwhite(-7, 7).stutter(4),
@@ -177,7 +164,6 @@ Pbind(
     \dur, Pseries(0.100, 0.010, 35),
     \release, Prand([0.100, 0.300, 2], inf)
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/05-fleksibel-synthdef.ogg)
@@ -192,8 +178,7 @@ Hvis ovenstående pattern-komposition er vanskelig at følge, bør du genopfrisk
 - Vi bruger en vedvarende envelope, fx `Env.asr`.
 - Vi angiver `gate` som argument nr. 2 til `EnvGen`.
 
-```sc title="SynthDef med vedvarende envelope" hl_lines="3 5"
-(
+```sc title="SynthDef med vedvarende envelope" hl_lines="2 4"
 SynthDef(\vedvarende, {
     arg freq = 440, pan = 0, amp = 0.1, gate = 1;
     var sig = SinOsc.ar(freq);
@@ -202,7 +187,6 @@ SynthDef(\vedvarende, {
     sig = Pan2.ar(sig, pan, amp);
     Out.ar(0, sig);
 }).add;
-)
 ```
 
 Med ovenstående SynthDef indlæst på lydserveren kan vi spille legato og staccato ved hjælp af `\sustain`-nøglen i `Pbind`.
@@ -238,10 +222,11 @@ Som vi har set, er Pbind god til sekvenser, der starter mange Synths. Men til ge
 ~tone.set(\freq, 500);
 ```
 
-Hvis vi med vores egne SynthDefs vil skabe glissandi frem for spring i tonehøjde, kan vi bruge method'en `.lag` på frekvens-argumentet, hvilket vil interpolere mellem værdier frem for at springe imellem dem. Vi kan med et argument styre, hvor lang tid det tager at nå til den nye værdi.
+Hvis vi med vores egne SynthDefs vil skabe glissandi frem for spring i tonehøjde, kan vi bruge method'en `.lag` på frekvens-argumentet, hvilket vil interpolere mellem værdier frem for at springe imellem dem.
 
-```sc title="Glissandi med .lag" hl_lines="4"
-(
+`.lag` er blot en syntaktisk genvej, der sender et signal gennem UGen'en `Lag`. Dette er ganske nyttigt, hvis man vil "blødgøre" pludselige spring i værdier. Vi kan med et argument styre, hvor lang tid det tager at glide hen til den nye værdi.
+
+```sc title="Glissandi med .lag" hl_lines="3"
 SynthDef(\glissando, {
     arg freq = 440, pan = 0, amp = 0.1, gate = 1;
     // .lag giver en glidende overgang mellem skiftende værdier (her glissando)
@@ -254,13 +239,11 @@ SynthDef(\glissando, {
 
 ~tone = Synth(\glissando);
 ~tone.set(\freq, exprand(200, 2000));
-)
 ```
 
 Hvis vi vil skabe en komposition med patterns, hvor vi bruger denne glissando-egenskab ved vores SynthDef, kan vi i stedet for Pbind bruge `Pmono` eller `PmonoArtic`. Begge disse kusiner til Pbind starter blot én Synth ad gangen og justerer efterfølgende parametrene ved hjælp af de sædvanlige koblinger af nøgler og patterns, som vi kender fra Pbind. SynthDef-navnet angives som første argument, dvs. uden `\instrument`-nøglen:
 
 ```sc title="Pmono og glissando"
-(
 Pmono(\glissando,
     \degree, Pseq([0, 2, 4, 6], inf),
     \mtranspose, Pwhite(0, 7).stutter(4),
@@ -269,22 +252,19 @@ Pmono(\glissando,
 
 // vis Synths på serveren - Pmono starter kun én Synth
 s.plotTree;
-)
 ```
 
 Hvis vi har brug for at lave pauser i lyden mellem de strømme af værdier, der bliver skiftet imellem ved hjælp af `Pmono`, kan vi bruge `PmonoArtic`.
 
 På patterns-iden styres artikulationen med `\sustain`- eller `\legato`-nøglen; når `\sustain` er mindre end `\dur`, afsluttes Synthen, og der startes en ny ved næste event. Den mest praktiske tilgang er at bruge nøglen `legato`, hvor vi angiver en værdi, som er mindre end 1, når vi ønsker at lave ophold, og en værdi der er højere end eller lig med 1, når vi ønsker en sammenhængende tone.
 
-```sc title="Glidende arpeggio med luft mellem fraserne - med PmonoArtic" hl_lines="2 7"
-(
+```sc title="Glidende arpeggio med luft mellem fraserne - med PmonoArtic" hl_lines="1 6"
 PmonoArtic(\glissando,
     \degree, Pseq([0, 2, 4, 6], inf),
     \mtranspose, Pwhite(0, 7).stutter(4),
     \dur, 0.4,
     \legato, Pseq([1, 1, 1, 0.1], inf),
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/05-glissando.ogg)

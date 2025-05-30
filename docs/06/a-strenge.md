@@ -12,7 +12,6 @@ En kerne af teknikker inden for subtraktiv syntese går ud på at sende en støj
 Et centralt eksempel er her den berømte Karplus-Strong-algoritme, som har til formål at generere en klang, der minder om lyden af en streng, der bliver slået an [@karplus1983]. Der findes i SuperCollider en særlig UGen, der implementerer Karplus-Strong kaldet `Pluck`, som vi kigger på om lidt. Men det kan være interessant at se, hvordan algoritmen fungerer, hvorfor et mere håndholdt eksempel er inkluderet herunder. Hertil bruger vi et par UGens, som vi ikke har set hidtil, blandt andet `LocalIn` og `LocalOut`, som definerer en feedbackløkke, samt `DelayC`, som forsinker lydsignalet (med feedback). Decay-tiden og `OnePole`-filterets koefficient er afgørende for tonehøjde og klang.
 
 ```sc title="Manuel Karplus-Strong"
-(
 {
     var freq = 440, coef = 0.2;
     var sig = LocalIn.ar(1); // Feedback-løkke starter
@@ -28,13 +27,11 @@ Et centralt eksempel er her den berømte Karplus-Strong-algoritme, som har til f
     LocalOut.ar(sound); // Feedback-løkke slutter
     sig;
 }.play
-)
 ```
 
 En tilsvarende lyd kan opnås mere effektivt med `Pluck`, som vi anvender herefter:
 
 ```sc title="Karplus-Strong med Pluck"
-(
 {
     var freq = 440, coef = 0.2;
     Pluck.ar(
@@ -46,7 +43,6 @@ En tilsvarende lyd kan opnås mere effektivt med `Pluck`, som vi anvender hereft
         coef: coef
     );
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/06-pluck.ogg)
@@ -56,7 +52,6 @@ En tilsvarende lyd kan opnås mere effektivt med `Pluck`, som vi anvender hereft
 Vi kan inkorporere ovenstående i en SynthDef med argumenter for frekvens, decay-tid og filter-koefficient. Herunder er der også inkluderet et argument til simulering af vibrato. Derudover anvendes UGen'en `DetectSilence` til at fjerne Synth'en fra lydserveren, når lyden har klinget ud (hvilket er nødvendigt, da vi ikke styrer lydstyrken med en envelope, som ellers ville kunne udføre denne funktion).
 
 ```sc title="Karplus-Strong SynthDef"
-(
 SynthDef(\karplus, {
     arg freq = 440, decay = 1, coef = 0.1,
     pan = 0, amp = 0.1, out = 0, vibrato = 0.05;
@@ -78,7 +73,6 @@ SynthDef(\karplus, {
     sig = Pan2.ar(sig, pan, amp);
     Out.ar(out, sig);
 }).add;
-)
 ```
 
 Med ovenstående SynthDef indlæst kan vi prøve klangmulighederne af:
@@ -97,10 +91,9 @@ Synth(\karplus, [\freq, 110, \coef, 0.005, \decay, 10, \vibrato, 0.25])
 Vi kan selvfølgelig også skrive en lille komposition med patterns, hvor ovenstående SynthDef benyttes:
 
 ```sc title="Komposition med Karplus-Strong"
-(
 TempoClock.tempo = 110/60;
 
-~komp = Pbind(
+Pbind(
     \instrument, \karplus,
     
     // Streng-indstillinger
@@ -130,8 +123,6 @@ TempoClock.tempo = 110/60;
     \pan, Pbrown(-0.3, 0.3, 0.2),
     \db, Pgauss(-20, 1),
 ).play;
-)
-~komp.stop;
 ```
 
 ![type:audio](../media/audio/06-komposition-karplus-strong.ogg)

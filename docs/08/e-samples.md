@@ -40,7 +40,6 @@ Som forberedelse til de øvrige opgaver herunder:
 1. Afspil dit sample baglæns (bemærk, at dette kræver justering af enten `startPos` eller `loop` og `doneAction`).
 
 ```sc title="Sampleafspilning med PlayBuf" hl_lines="6 8 9"
-(
 {
     PlayBuf.ar(
         numChannels: 1,
@@ -52,7 +51,6 @@ Som forberedelse til de øvrige opgaver herunder:
         doneAction: Done.freeSelf
     )
 }.play;
-)
 ```
 
 ## Afspilningshastighed
@@ -61,7 +59,6 @@ Som forberedelse til de øvrige opgaver herunder:
 1. Notér i kommentarer, hvilken effekt de forskellige modulatorer har på den æstetiske oplevelse.
 
 ```sc title="Modulation af afspilningshastighed"
-(
 {
     var rate = 1; // afkommentér linjerne herunder for eksempler
     // rate = LFPulse.kr(1).range(0.5, 2);
@@ -79,7 +76,6 @@ Som forberedelse til de øvrige opgaver herunder:
         doneAction: Done.none
     );
 }.play;
-)
 ```
 
 ## Lydcollage-komposition
@@ -90,16 +86,15 @@ Fremstil en abstrakt lydcollage. Kompositionen skal baseres på ét sample og re
     1. ... indeholder en vedvarende lyd (dvs. uden lange pauser i lyden).
     1. ... varer mellem 2 og 10 sekunder.
     1. ... tonalt set er relativt enkel og stabil.
-    1. ... indeholder én monokanal (brug evt. `Buffer.readChannel` som ved opgave 1, hvis din ønskede fil er stereo-format)´.
+    1. ... indeholder én monokanal (brug evt. `Buffer.readChannel` som ved opgave 1, hvis din ønskede fil er stereo-format).
 1. Modificér `Pbind`'en herunder ved at erstatte faste værdier med patterns, således at vi hører en klangligt varieret lydcollage baseret på det valgte sample.
 
-Pbind til modifikation findes herunder.
-
-```sc title="Samplecollage genereret med patterns" hl_lines="7 12-21"
+```sc title="Indlæs sample"
 // Erstat stien med en sti til din egen lydfil
 ~vedvarendeLyd = Buffer.readChannel(s, "C:/lydfiler/minSejeLydfil.wav", [0]);
+```
 
-(
+```sc title="Samplecollage genereret med patterns" hl_lines="7 12-21"
 TempoClock.tempo = 60/60;
 Pdef(\collage,
     Pbind(
@@ -127,5 +122,4 @@ Pdef(\collage,
         \atk, 0.1, \rel, 1,
     )
 ).play;
-)
 ```

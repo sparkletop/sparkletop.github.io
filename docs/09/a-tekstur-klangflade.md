@@ -9,7 +9,7 @@ Granular syntese udgør en meget fleksibel måde at strække eller transponere l
 
 I det følgende bruger vi følgende sample, som er indlæst i en buffer under variablen `~sample`.
 
-![type:audio](guit_em9.ogg)
+![type:audio](../media/audio/09-guit_em9.ogg)
 /// caption
     attrs: {id: sample}
 Sample til eksemplerne herunder. Kilde: Freesound user...
@@ -20,7 +20,6 @@ Sample til eksemplerne herunder. Kilde: Freesound user...
 Ved hjælp af LFO'er kan vi skabe rytme og gentagelse, så resultatet bliver et abstrkt groove.
 
 ``` sc title="Modulation af GrainBuf-parametre med LFO"
-(
 var trin = Env.new([0, 4, 7, 2], [1, 1, 1, 2], curve: \step);
 {
     var overlap = LFTri.kr(1).exprange(0.2, 25);
@@ -36,7 +35,6 @@ var trin = Env.new([0, 4, 7, 2], [1, 1, 1, 2], curve: \step);
         pan: SinOsc.kr(10).bipolar(0.5)
     ) * 0.1;
 }.play;
-)
 ```
 
 ![type:audio](eksempel.ogg)
@@ -47,7 +45,6 @@ kan vi skabe mere abstrakte teksturer ved at tilføje lidt støj til pointeren o
 Med tilfældighedsgeneratorer som `TRand` eller `TIRand` kan vi generere tilfældige værdier for hvert enkelt grain. Derved opnår vi en form for lydlig tekstur, der er helt unik for granular klangdannelse. Dette kan blandt andet gøres ved hjælp af UGen'en `TRand`, som producerer tilfældige tal mellem et minimum og maksimum, hver gang den modtager en trigger. Denne tilfældige fordeling af grain-parametre kan vi kalde for jitter:
 
 ``` sc title="Tilfældige værdier for hvert grain"
-(
 {
     var overlap = 5;
     var grainDur = 0.100;
@@ -65,15 +62,13 @@ Med tilfældighedsgeneratorer som `TRand` eller `TIRand` kan vi generere tilfæl
         pan: TRand.ar(-1, 1, trigger)
     )
 }.play
-)
 ```
 
 ![type:audio](eksempel.ogg)
 
 En anden tilgang...
 
-```sc title="Tekstur og klangflade med TRand" hl_lines="4 16 18 26 27"
-(
+```sc title="Tekstur og klangflade med TRand" hl_lines="15 17"
 ~sprinkler = {
     arg transpose = 0, moveRate = 1,
     jitter = 0.01, spread = 0.1;
@@ -102,8 +97,11 @@ En anden tilgang...
         pan: pan
     ) * 0.1;
 }.play;
-)
+```
 
+Når Synth'en er startet, kan vi justere på indstillingerne med `.set`-method'en.
+
+```sc title=""
 // Fordeling af grains i stereofelt (høres bedst i hovedtelefoner)
 ~sprinkler.set(\spread, 0)
 ~sprinkler.set(\spread, 1)

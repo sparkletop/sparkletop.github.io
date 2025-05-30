@@ -23,14 +23,12 @@ I denne øvelse arbejder du med at anvende og designe dine egne envelopes og LFO
 
 Justér kun på de markerede linjer i kodeblokken herunder.
 
-```sc title="Øvelse med indbyggede envelopes" hl_lines="3"
-(
+```sc title="Øvelse med indbyggede envelopes" hl_lines="2"
 {
     var env = EnvGen.kr(     , doneAction: Done.freeSelf);
     var freq = 440;
     Pulse.ar(freq) * env * 0.1;
 }.play;
-)
 ```
 
 Husk, at `.plot` kan være en nyttig hjælp: `Env.perc(1, 3).plot`
@@ -47,8 +45,7 @@ Skriv tre envelopes:
 
 Prøv efterfølgende at justere på parametrene i de forskellige envelopes og bemærk hvordan selv mindre ændringer påvirker det lydlige resultat.
 
-```sc title="Simpel lilletrommelyd" hl_lines="3-5"
-(
+```sc title="Simpel lilletrommelyd" hl_lines="2-4"
 {
     var body =     ;
     var sweep =     ;
@@ -56,17 +53,12 @@ Prøv efterfølgende at justere på parametrene i de forskellige envelopes og be
 
     // justér ikke herunder
     var resonance = VarSaw.ar(body);
-
     var seiding = WhiteNoise.ar;
-
     var sig = resonance + seiding;
-
     sig = LPF.ar(sig, sweep);
-
     sig = sig * EnvGen.ar(vol, doneAction: Done.freeSelf);
     Out.ar(0, sig.dup);
 }.play;
-)
 ```
 
 Lilletrommen dannes på følgende måde [@pejrolo2017, p. 121-122]:
@@ -87,19 +79,17 @@ Definér din egen envelope, som overholder følgende krav:
 
 Justér kun på de markerede linjer i kodeblokken herunder.
 
-```sc title="Unikke envelopes" hl_lines="3 4"
-(
+```sc title="Unikke envelopes" hl_lines="2 3"
 ~frekvensEnvelope = Env(
     [   ],
     [   ],
     \exp
 );
-)
-// Plot envelopen;
+
+// Vis envelopen grafisk
 ~frekvensEnvelope.plot;
 
 // Test envelopen med lyd
-(
 {
     var freq = EnvGen.kr(~frekvensEnvelope);
     var vol = EnvGen.kr(
@@ -108,7 +98,6 @@ Justér kun på de markerede linjer i kodeblokken herunder.
     );
     SinOsc.ar(freq) * vol * 0.1;
 }.play;
-)
 ```
 
 ## Hjemmestrikket LFO
@@ -117,8 +106,7 @@ Justér kun på de markerede linjer i kodeblokken herunder.
 1. Design din egen LFO ved hjælp af `Env.circle`. Du kan finde et eksempel herpå i [artiklen vedr. nye envelopes og LFO'er](a-nye-envelopes.md#envelope-som-lfo).
 1. Skriv på egen hånd en komposition ved hjælp af `Pbind` eller `Pmono`, hvor du demonstrerer mulighederne i SynthDef'en.
 
-```sc title="SynthDef med hjemmelavet LFO" hl_lines="7-8"
-(
+```sc title="SynthDef med hjemmelavet LFO" hl_lines="6-7"
 SynthDef(\lfo, {
     arg freq = 440, pan = 0, amp = 0.1, out = 0, gate = 1;
 
@@ -138,5 +126,4 @@ SynthDef(\lfo, {
     sig = Pan2.ar(sig, pan, amp) * env;
     Out.ar(out, sig);
 }).add;
-)
 ```

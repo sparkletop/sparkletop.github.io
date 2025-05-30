@@ -18,14 +18,12 @@ Brug følgende filtre til at modificere klangen af hvid støj:
 
 Du kan finde hjælp og eksempler i [cheat sheetet om filtre](c-filtre.md).
 
-```sc title="Filtreret støj" hl_lines="4"
-(
+```sc title="Filtreret støj" hl_lines="3"
 {
     var source = WhiteNoise.ar;
     var sig =   ;
     sig * 0.1;
 }.play;
-)
 ```
 
 ## Modulation af filtre
@@ -36,8 +34,7 @@ Brug følgende kilder til at modulere cutoff-frekvensen for et low pass-filter, 
 1. En `XLine`-envelope, vælg selv tidsinterval.
 1. En LFO-UGen - vælg selv bølgeform og passende frekvens.
 
-```sc title="Modulation af cutoff-frekvens" hl_lines="5"
-(
+```sc title="Modulation af cutoff-frekvens" hl_lines="4"
 {
     var source = PinkNoise.ar;
     var env = EnvGen.ar(Env.linen(0.5, 0.5, 2), doneAction: Done.freeSelf);
@@ -45,7 +42,6 @@ Brug følgende kilder til at modulere cutoff-frekvensen for et low pass-filter, 
     var sig = LPF.ar(source, cutoff);
     sig * env;
 }.play;
-)
 ```
 
 ## Subtraktiv SynthDef
@@ -65,8 +61,7 @@ SynthDef'en skal overholde følgende krav:
 
 Skriv en Pbind-komposition, som demonstrerer SynthDef'ens forskellige klangmuligheder, dvs. hvor nøglerne i kodeblokken herunder varieres ved hjælp af pattterns (husk at erstatte SynthDef-navnet med det navn, du selv har valgt):
 
-```sc title="Komposition for subktraktiv SynthDef" hl_lines="4 7 10 11 14"
-(
+```sc title="Komposition for subktraktiv SynthDef" hl_lines="3 6 9 10 13"
 Pbind(
     // Valg af SynthDef
     \instrument, \navnetPåMinFantastiskeSynthDef,
@@ -81,5 +76,4 @@ Pbind(
     // Filter
     \rq,    ,
 ).play;
-)
 ```

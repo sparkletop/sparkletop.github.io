@@ -12,18 +12,15 @@ Her udvikler vi en lilletrommelyd, som er inspireret af Gordon Reids [artikel](h
 Resonansrummet inde i en lilletromme kan vi simulere med to sinustoner ved hhv. 180 Hz og 330 Hz, der klinger ud efter godt 200 millisekunder.
 
 ```sc title="Primært resonansrum"
-(
 {
     SinOsc.ar([180, 330]).sum
     * EnvGen.ar(Env.perc(0.03, 0.2))
 }.play;
-)
 ```
 
 Der vil typisk også være en række overtoner, hvis frekvens bevæger sig op og ned over de første 10 millisekunder. Disse simuleres herunder af et par `LFTri`-UGens, hvor både amplitude og frekvens moduleres af envelopes. Når man spiller på en fysisk tromme, vil der altid være en smule variation i klangen, og dette simuleres blandt andet ved, at varigheden af overtonernes volumen-envelope gøre tilfældig (100-120ms).
 
 ```sc title="Overtoner"
-(
 {
     LFTri.ar(
       [286, 335] *
@@ -32,13 +29,11 @@ Der vil typisk også være en række overtoner, hvis frekvens bevæger sig op og
       Env.perc(0.01, Rand(0.09, 0.11))
     ),
 }.play;
-)
 ```
 
 Når en trommestik rammer trommeskindet, genereres en støjimpuls, som både sætter hele trommen i svingninger og genererer en kort, støjende lyd, som ofte omtales som et "klik".
 
 ```sc title="Klik"
-(
 {
     LPF.ar(
       HPF.ar(WhiteNoise.ar, 300),
@@ -47,13 +42,11 @@ Når en trommestik rammer trommeskindet, genereres en støjimpuls, som både sæ
       Env.linen(0.001, 0.01, 0.001)
     )
 }.play;
-)
 ```
 
 Derudover er der på undersiden af lilletrommen monteret en såkaldt "seiding" - et metalbånd med små tråde, som vibrerer og skaber en karakteristisk raslende lyd, som er essentiel i lilletrommens klang. Her filtrerer vi den spektralt righoldige hvide støj, og volumen-envelopen er den længste, som derfor styrer, hvornår Synth'en fjernes fra lydserveren igen. Dette simulerer, at lyden fra seidingen er den sidste, der klinger ud i det korte forløb, en lilletrommelyd er.
 
 ```sc title="Lilletrommens seiding"
-(
 {
 HPF.ar(
     BPeakEQ.ar(WhiteNoise.ar, 4000, 0.5, 3),
@@ -63,13 +56,11 @@ HPF.ar(
       doneAction: Done.freeSelf
     )
 }.play;
-)
 ```
 
 Trommen kan også have en dybere støjlyd, som simuleres på en lignende måde, blot med dybere cutoff-frekvenser.
 
 ```sc title="Dyb støj"
-(
 {
     LPF.ar(
       HPF.ar(WhiteNoise.ar, 230),
@@ -78,7 +69,6 @@ Trommen kan også have en dybere støjlyd, som simuleres på en lignende måde, 
       Env.perc(0.1, Rand(0.09, 0.11))
     )
 }.play;
-)
 ```
 
 ## En lilletromme-SynthDef

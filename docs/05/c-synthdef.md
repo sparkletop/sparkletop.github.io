@@ -15,7 +15,6 @@ SynthDefs kan indrettes på mange forskellige måder. Men til mono- eller stereo
 - Linje 10 med `Out.ar` er oftest den sidste linje i en SynthDef, som sørger for, at signalet panoreres og volumenjusteres som ønsket, inden det sendes til de ønskede output-kanaler.
 
 ```sc title="SynthDef-skabelon til monofone lydkilder"
-(
 SynthDef(\navn, {
     arg freq = 440, pan = 0,
     amp = 0.1, out = 0;
@@ -26,13 +25,11 @@ SynthDef(\navn, {
     // sig er et monofont signal
     Out.ar(out, Pan2.ar(sig, pan, amp));
 }).add;
-)
 ```
 
 I SynthDef'en herunder er lydkilden, en sinustone, blot dupliceret med `.dup`, så den klinger i to kanaler. Det er oplagt at foretage ændringer og tilføjelser her for at opnå et mere interessant steroe-lyddesign. Med `Balance2.ar` balanceres der til sidst mellem de to kanaler. Læs eventuelt nærmere om stereofoni og *multichannel expansion* i [kapitlet om oscillatorbanke](../07/a-oscillatorbanke.md).
 
 ```sc title="SynthDef-skabelon til stereofone lydkilder"
-(
 SynthDef(\navn, {
     arg freq = 440, pan = 0,
     amp = 0.1, out = 0;
@@ -43,5 +40,4 @@ SynthDef(\navn, {
     // sig er et stereofont signal
     Out.ar(out, Balance2.ar(sig[0], sig[1], pan, amp));
 }).add;
-)
 ```

@@ -12,12 +12,10 @@ Ofte ønsker vi, at forskellige parametre ved UGens forandrer sig over tid. Som 
 Vi kan behandle outputtet fra en UGen på forskellige måder, blandt andet med filtre, delay-effekter, distortion med mere. I første omgang fokuserer vi her på at styre amplituden for outputtet fra en oscillator-UGen. Når vi ønsker at justere outputtet fra en UGen på denne måde, kan vi ganske enkelt gange outputtet med modulatoren. Hvis vi eksempelvis ganger outputtet fra en `SinOsc` med 0.1, nedskalerer vi amplituden:
 
 ```sc title="Modulation af UGen-output"
-(
 {[
     SinOsc.ar(440),
     SinOsc.ar(440) * 0.1
 ]}.plot;
-)
 ```
 
 ![En umodificeret sinusbølge og en sinusbølge med nedskaleret amplitude](../media/figures/to_amplituder.png){ width="60%" }
@@ -43,13 +41,11 @@ Som eksempel kan vi tage UGen'en `LFTri`, der giver en trekantet bølgeform og e
 Bemærk hvor outputtet befinder sig på Y-aksen:
 
 ```sc title="En trekantet bølgeform udsat for .unipolar"
-(
 {[
     LFTri.ar,
     LFTri.ar.unipolar
     LFTri.ar.unipolar(0.5)
 ]}.plot;
-)
 ```
 
 ![Brug af UGen-method'en .unipolar](../media/figures/unipolar.png){ width="80%" }
@@ -89,12 +85,10 @@ Her kan vi med fordel bruge to UGen-methods, som hedder `.range` og `.exprange`.
 Det er vigtigt, at vi bruger disse methods på frekvensmodulatoren (i modsætning til lydkildens amplitude). Hertil kan vi med fordel anvende [lokale variabler](../01/a-variabler.md#lokale-variabler) til at organisere kildekoden, så det er tydeligt, hvad der modulerer hvad:
 
 ```sc title="Skalering af output med .exprange"
-(
 {
     var freq = SinOsc.ar(3).exprange(100, 400);
     Pulse.ar(freq);
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/04-skalering-exprange.ogg)
@@ -106,40 +100,36 @@ Sitationer hvor man ønsker at modulere en tonefrekvens, så den bevæger sig op
 Her kommer omregnings-method'en `.midiratio` os til undsætning. Her kan vi omregne et interval målt i halvtoner til den faktor, vi skal gange en frekvens med, for at modulere det antal halvtoner op eller ned:
 
 ```sc title="Intervaltransponering med .midiratio"
-(
 // Prim, ingen skalering
-0.midiratio.postln;     // --> 1
+0.midiratio;     // --> 1
 
 // Oktav op
-12.midiratio.postln;    // --> cirka 2
+12.midiratio;    // --> cirka 2
 
 // Oktav ned
-(-12).midiratio.postln; // --> cirka 0.5
+(-12).midiratio; // --> cirka 0.5
 
 // Lille terts op
-3.midiratio.postln;     // --> 1.189207...
+3.midiratio;     // --> 1.189207...
 
 // Kvint op
-7.midiratio.postln;     // --> cirka 1.5
+7.midiratio;     // --> cirka 1.5
 
 // Kvarttone op
-0.5.midiratio.postln;   // --> 1.02902...
+0.5.midiratio;   // --> 1.02902...
 
 // 15 cent op
-0.15.midiratio.postln;  // --> 1.008702...
-)
+0.15.midiratio;  // --> 1.008702...
 ```
 
 Her er et eksempel, hvor vi anvender `.midiratio` sammen med `.unipolar` til at modulere en lille terts op:
 
 ```sc title=".midiratio kombineret med .unipolar"
-(
 {
     var freq = 440;
     var modulator = LFSaw.kr(1).unipolar(3).midiratio;
     Pulse.ar(freq * modulator);
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/04-unipolar-midiratio.ogg)

@@ -93,7 +93,6 @@ Hertil kan vi bruge `Pbindf` (bemærk f'et til sidst i klassenavnet), som skaber
 Vi bruger `Pbindf` ved at angive en eksisterende Pbind som det første argument. De efterfølgende argumenter fungerer præcis som ved Pbind. Her kan vi eksempelvis definere et enkelt melodisk motiv i én Pbind og i en anden lave en "overstemme" gennem modal transponering, dvs. parallelføring inden for skala.
 
 ```sc title="Overstemme med Pbindf"
-(
 ~melodi = Pbind(
     \degree, Pseq([2, 1, 3, 2], 4),
     \dur, 0.5
@@ -104,7 +103,6 @@ Vi bruger `Pbindf` ved at angive en eksisterende Pbind som det første argument.
 );
 
 ~melodi.play; ~overstemme.play;
-)
 ```
 
 ![type:audio](../media/audio/03-pbindf-overstemme.ogg)

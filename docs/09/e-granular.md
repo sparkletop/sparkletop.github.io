@@ -47,7 +47,6 @@ Justér nedenstående kodeblok, således at:
 Hvordan påvirker disse parametre og modulationer lyden? Hvilke æstetiske muligheder kan du se i denne form for sample-manipulation?
 
 ```sc title="Modulation af GrainBuf-parametre"
-(
 {
     GrainBuf.ar(
         numChannels: 2,
@@ -59,5 +58,4 @@ Hvordan påvirker disse parametre og modulationer lyden? Hvilke æstetiske mulig
         pan: 0
     )
 }.play;
-)
 ```

@@ -22,14 +22,12 @@ SynthDef-skrivning er måske et lidt tørt, teknisk emne. Men med lidt øvelse e
 1. Test din SynthDef med nedenstående Pbind.
 
 ```sc title="Test af \hello-SynthDef"
-(
 Pbind(
     \instrument, \hello,
     \degree, Pwhite(0, 7),
     \octave, Pwhite(3, 6),
     \dur, 0.25,
 ).play;
-)
 ```
 
 ## En SynthDef med firkantede bølgeformer
@@ -43,7 +41,6 @@ Pbind(
 1. Test din SynthDef med nedenstående Pbind. Den bør give et resultat, der minder om lydeksemplet herunder.
 
 ```sc title="Test af \firkant-SynthDef"
-(
 TempoClock.tempo = 130 / 60;
 Pbind(
     \instrument, \firkant,
@@ -58,7 +55,6 @@ Pbind(
     \strum, Pexprand(0.0001, 0.01),
     \width, Pseries(0.2, 0.005, 100)
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/05-komposition-firkant.ogg)
@@ -70,8 +66,7 @@ Pbind(
 
 Justér kun på de markerede linjer i kodeblokkene herunder.
 
-```sc title="SynthDef med glissando" hl_lines="3 6"
-(
+```sc title="SynthDef med glissando" hl_lines="2 5"
 SynthDef(\gliss, {
     arg freq = 440, pan = 0, amp = 0.1, out = 0,
     lfoFreq = 1, lfoDepth = 0.025;
@@ -87,18 +82,15 @@ SynthDef(\gliss, {
 
     Out.ar(out, sig);
 }).add;
-)
 ```
 
 Afsæt for komposition med `Pmono`:
 
-```sc title="Glidende komposition med Pmono" hl_lines="3-5"
-(
+```sc title="Glidende komposition med Pmono" hl_lines="2-4"
 Pmono(\gliss,
     \degree,    ,
     \lfoFreq,    ,
     \lfoDepth,    ,
     \dur, 0.4,
 ).play;
-)
 ```

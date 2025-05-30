@@ -73,20 +73,17 @@ Hvis man ønsker at gøre noget for alle elementer i en liste, men ikke kan find
 For at iterere over en liste angiver vi som et argument til `.do` den funktion, vi ønsker at udføre. Inde i den funktion [opretter vi et argument](a-funktioner.md#input-til-funktioner-argumenter). Herunder vises de tre elementer blot i post window med et lille stykke tekst efter.
 
 ```sc title="Iteration med .do"
-(
 ~akkord = [0, 2, 4];
 
 ~akkord.do({
     arg trin;
     (trin + " er et flot tal.").postln;
 });
-)
 ```
 
 Ønsker vi at bruge elementernes respektive indeks i funktionen, kan vi også gøre det - her indfører vi endnu et argument, som ved hvert funktionskald vil modtage det aktuelle elements indeks.
 
 ```sc title="Iteration med indeks"
-(
 ~akkord = [0, 2, 4];
 
 ~akkord.do({
@@ -94,13 +91,11 @@ For at iterere over en liste angiver vi som et argument til `.do` den funktion, 
     ("I denne iteration kigger vi på indeks " + indeks).postln;
     (trin + " er et flot tal.").postln;
 });
-)
 ```
 
 Sidst men ikke mindst kan vi bruge `.collect` til at transformere arrays. Her kan jeg eksempelvis fremstille en akkordrækkefølge, altså en liste bestående af lister:
 
 ```sc title="Iteration med .collect"
-(
 ~akkord = [0, 2, 4];
 
 // Æblemand-sekvens - trin: I-VI-II-V
@@ -116,14 +111,13 @@ Sidst men ikke mindst kan vi bruge `.collect` til at transformere arrays. Her ka
 
 // Afspil akkorden:
 Pbind(\degree, Pseq(~akkorder)).play;
-)
 ```
 
-Iteration er et særdeles nyttigt redskab, som både benyttes i komposition, som antydet ovenfor, og i klangdannelse. Vi bruger eksempelvis iteration til definere oscillatorbanke, når vi skal arbejde med overtonerækker. Men mere herom [senere](../07/a-oscillatorbanke.md).
+Iteration er et særdeles nyttigt redskab, der både benyttes i komposition, som antydet ovenfor, og i klangdannelse. Vi bruger eksempelvis iteration til at definere oscillatorbanke, når vi skal arbejde med overtonerækker. Men mere herom [senere](../07/a-oscillatorbanke.md).
 
 ## Tricks til skabelse af lister
 
-I stedet for at definere vores lister manuelt kan vi være snedige og oprette dem med en algoritme. Det kan fx være, at vi gerne vil have en lineær talrække, en liste med tilfældige tal, eller en liste med elementer skabt af en funktion, vi selv skriver. Disse måder at generere lister på finder du herunder.
+I stedet for at definere vores lister manuelt kan vi være snedige og oprette dem med en algoritme. Det kan fx være, at vi gerne vil have en lineær talrække, en liste med tilfældige tal, eller en liste med elementer skabt af en funktion, vi selv skriver.
 
 ### Automatiske talrækker
 
@@ -190,14 +184,12 @@ Kan vi ikke finde et indbygget redskab til at skabe vores liste, kan vi altid sk
 Lad os sige, at jeg vil skabe en liste med 10 frekvenser, der svarer til tilfældigt valgte MIDI-tonehøjder inden for to oktaver. Vi kan også vise MIDI-tonehøjderne i post window, mens vi skaber listen.
 
 ```sc title="Hjemmestrikket liste med Array.fill"
-(
 Array.fill(8, {
     var tone = rrand(48, 72);
     tone.postln;
     tone.midicps;
 });
 // -> [ 391.99543598175, 164.81377845643, 184.99721135582, 195.99771799087, 184.99721135582, 311.12698372208, 207.65234878997, 220.0 ]
-)
 ```
 
 Sidst men ikke mindst kan det være nyttigt at bruge elementernes indeks i funktionen. Dertil kan vi oprette et argument, ligesom ovenfor i forbindelse med iteration. Lad os eksempelvis ved hjælp af indekstallene beregne frekvenserne for de første 10 naturlige overtoner for en tone, der klinger ved 220Hz:

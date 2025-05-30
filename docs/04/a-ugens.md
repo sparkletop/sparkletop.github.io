@@ -96,19 +96,17 @@ Dette ligger til grund for den klangdannelsesteknik som kaldes frequency modulat
 Koden begynder nu at blive for kompliceret til at stå på én linje. For at gøre signalflowet mellem de forskellige UGens mere overskueligt og fleksibelt, kan vi derfor dele koden op, så den står på flere forskellige linjer. Dette indebærer, at vi indfører lokale variabler, så vi kan henvise til de forskellige signaler i vores UGen-funktion.
 
 ```sc title="Mere logisk og læsbar kildekode med lokale variabler"
-(
-{ // Samme lyd som ovenfor, men kildekoden er lettere at læse og justere
+// Samme lyd som ovenfor, men kildekoden er lettere at læse og justere
+{
     var modulator = SinOsc.kr(5).range(200, 400);
     var sig = SinOsc.ar(modulator);
     sig * 0.1;
 }.play;
-)
 ```
 
 Vi kan oprette lige så mange lokale variabler, som vi har lyst til, de skal blot erklæres i begyndelsen af funktionen. Her er et eksempel med LFO-modulation, hvor en del forskellige UGens er på spil. Heldigvis kan vi gøre koden overskuelig, når vi bruger lokale variabler. Gæt selv, evt. med hjælp fra nedenstående graf, hvordan signalflowet fungerer i dette eksempel.
 
 ```sc title="Eksempel på signalflow med lokale variabler"
-(
 {
     var source = PinkNoise.ar;
     var env = EnvGen.ar(Env.triangle(5));
@@ -117,7 +115,6 @@ Vi kan oprette lige så mange lokale variabler, som vi har lyst til, de skal blo
     sig = sig * env;
     sig * 0.1;
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/04-signalflow.ogg)

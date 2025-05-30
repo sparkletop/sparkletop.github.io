@@ -22,7 +22,6 @@ Skab et nyt beat ud af et eksisterende beat ved hjælp af SynthDef og loop fra O
 1. Vælg selv yderligere parametre til justering.
 
 ```sc title="Beatslicing med patterns"
-(
 TempoClock.tempo = 115 / 60;
 Pdef(\beat,
     Pbind(
@@ -45,7 +44,6 @@ Pdef(\beat,
         \amp, 0.5,
     )
 ).play;
-)
 ```
 
 ## Synkretisme med to breakbeats

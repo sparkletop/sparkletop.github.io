@@ -2,6 +2,7 @@
 tags:
     - Artikler
 ---
+
 # Brug af variabler
 
 Vi kan opbevare forskellige former for data i computerens hukommelse ved hjælp af variabler. Man kan forestille sig en skuffe, som man sætter en seddel på med en kort beskrivelse af indholdet. Når man så skal finde indholdet frem igen eller putte noget nyt indhold i, finder man blot skuffen med den rette seddel frem. Variabler fungerer lidt på samme måde: Når man opretter en variabel, gemmer man et objekt under et bestemt navn. Når man så senere skal bruge objektet igen, henviser man blot til variablens navn. Og nu vi er ved variabelnavne: De starter altid med et lille begyndelsesbogstav[^1]. Hvis vi prøver at bruge variabelnavnet `~Kaffe`, vil vi derfor få en fejlmeddelelse. Brug i stedet `~kaffe`.

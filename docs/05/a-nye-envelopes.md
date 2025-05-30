@@ -61,7 +61,6 @@ En af de spændende muligheder med envelopes er, at de kan anvendes som LFO'er! 
 `Env.circle` har næsten præcis samme syntaks som `Env.new`, vi skal blot tilføje en enkelt varighed til listen med segmentvarigheder - nemlig den tid det tager at vende tilbage til begyndelsen af envelopen, når vi looper.
 
 ```sc title="Envelope som LFO"
-(
 { // Eksemplet fra ovenfor, tilpasset Env.circle med et ekstra tidsinterval (0.24)
     var env = EnvGen.kr(
         Env.circle(
@@ -71,7 +70,6 @@ En af de spændende muligheder med envelopes er, at de kan anvendes som LFO'er! 
     );
     SinOsc.ar(env) * 0.1;
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/05-envelope-som-lfo.ogg)
@@ -79,7 +77,6 @@ En af de spændende muligheder med envelopes er, at de kan anvendes som LFO'er! 
 Vi kan endda modulere segment-varighederne med en LFO eller en anden envelope ved hjælp af timeScale-argumentet i `EnvGen`. Som eksempel kan vi bruge en simpel `Line` til at skalere varighederne over 10 sekunder fra en faktor 6 til en faktor 0.2:
 
 ```sc title="Modulation af segmentvarigheder"
-(
 {
     var env = EnvGen.kr(
         Env.circle(
@@ -89,7 +86,6 @@ Vi kan endda modulere segment-varighederne med en LFO eller en anden envelope ve
         timeScale: Line.kr(6, 0.2, 10));
     SinOsc.ar(env) * 0.1;
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/05-modulation-segmenter.ogg)

@@ -11,13 +11,11 @@ I denne øvelse arbejdes der med multikanalslyd og additiv syntese. Det er i den
 
 1. Fremstil den samme sinustone i begge lydkanaler ved hjælp af [duplikering](a-oscillatorbanke.md#duplikering).
 
-```sc title="Monofoni i to kanaler" hl_lines="4"
-(
+```sc title="Monofoni i to kanaler" hl_lines="3"
 {
     var sig = SinOsc.ar * 0.1;
     sig    ;
 }.play;
-)
 ```
 
 ## Stereofoni
@@ -29,13 +27,11 @@ Løs følgende opgaver ved hjælp af `pan`-argumentet til `Pan2.ar`:
 1. Fremstil en sinustone midt i stereofeltet.
 1. Fremstil en sinustone, der ved hjælp af modulation bevæger sig mellem højre og venstre side af stereofeltet.
 
-```sc title="Stereofoni med Pan2" hl_lines="4"
-(
+```sc title="Stereofoni med Pan2" hl_lines="3"
 {
     var sig = SinOsc.ar * 0.1;
     Pan2.ar(sig,    );
 }.play;
-)
 ```
 
 ## Klangdannelse med additive elementer
@@ -66,7 +62,6 @@ SynthDef(\additivo, {
 SynthDef'en kan testes med denne enkle komposition:
 
 ```sc title="Komposition til additiv SynthDef"
-(
 TempoClock.tempo = 125/60;
 Pbind(
     \instrument, \additivo,
@@ -77,7 +72,6 @@ Pbind(
     \release, Pexprand(0.5, 1.5),
     \legato, Pgauss(1, 0.2),
 ).play;
-)
 ```
 
 ### Bonusudfordring

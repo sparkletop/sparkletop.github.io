@@ -10,7 +10,6 @@ Jean-Claude Risset var en fransk komponist, der blandt andet arbejdede med addit
 Nedenstående SynthDef er en SuperCollider-implementering af en berømt klokkelyd, som Risset skabte. Værdierne er baseret på Miller Puckettes [-@puckette2007, pp. 107-108] gennemgang af teknikken. Der gøres flittig brug af oscillatorbanke skabt med [multichannel expansion](a-oscillatorbanke.md#multikanalslyd-med-multichannel-expansion).
 
 ```sc title="SynthDef til Rissets klokke"
-(
 SynthDef(\risset,{
     arg freq = 440, atk = 0.01, rel = 3, pan = 0, amp = 0.1, out = 0;
     var ampRatios = [1, 0.67, 1, 1.8, 2.67, 1.67, 1.46, 1.33, 1.33, 1, 1.33];
@@ -35,7 +34,6 @@ SynthDef(\risset,{
 
     Out.ar(out, sig);
 }).add;
-)
 ```
 
 Med patterns kan vi blandt andet variere på envelopesegmenterne og strække de varigheder, som oprindeligt er angivet:

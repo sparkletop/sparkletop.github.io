@@ -18,7 +18,6 @@ Generativ eller algoritmisk komposition indebærer, at man i et vist omfang over
 Vi har tidligere set, [hvordan vi kan generere sekvenser af værdier](../02/a-patterns-intro.md#pseq-en-fleksibel-sequencer). Men `Pseq` er fleksibel og kan lige så vel bruges til sekvenser bestående af patterns. Det betyder, at vi som elementer i vores sekvens kan angive patterns i stedet for værdier. Når `Pseq` når til et pattern, gennemløber den nemlig alle de værdier, som det pågældende pattern genererer, før den går videre. Her er eksempelvis en sekvens med en blanding af faste og tilfældigt genererede skalatrin:
 
 ```sc title="Patterns som undersekvenser"
-(
 Pbind(
     \degree, Pseq([
         // først en fast starttone, c
@@ -32,7 +31,6 @@ Pbind(
     // sekvensen forløber tre gange
     ], 3),
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/03-pattern-sekvens.ogg)
@@ -40,7 +38,6 @@ Pbind(
 For overskuelighedens skyld kan vi opnå præcis det samme som ovenfor med variabler til de enkelte underpatterns. Nedenstående er umiddelbart lettere at læse:
 
 ```sc title="Omskrivning med variabler"
-(
 // To Tilfældige toner
 ~fritValg = Pwhite(0, 7, 2);
 // g og h i tilfældig rækkefølge
@@ -49,7 +46,6 @@ For overskuelighedens skyld kan vi opnå præcis det samme som ovenfor med varia
 Pbind(
     \degree, Pseq([0, ~fritValg, ~dybBlanding, -3], 3),
 ).play;
-)
 ```
 
 ## Sammenflettede sekvenser og patterns
@@ -74,7 +70,6 @@ Pbind(
 Der findes også en variant, som er endnu mere relevant i forhold til sammensætning af patterns, fordi den tillader, at man erstatter listerne i `Place` med patterns. `Ppatlace`, som denne variant hedder, er meget oplagt som ramme for indlejrede patterns og filtreret tilfældighed:
 
 ``` sc title="Sammenflettede patterns med Ppatlace"
-(
 Pbind(
     \degree, Ppatlace([
         Pshuf([2, 3, 4, -1], inf),
@@ -82,7 +77,6 @@ Pbind(
     ], inf).trace,
     \dur, 0.25
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/03-ppatlace.ogg)
@@ -125,7 +119,6 @@ Pseries(0, Pwhite(-1, 1).asStream, 10);
 Her er et andet musikalsk eksempel, hvor vi bruger `Pseries` til at styre hvor mange tilfældige toner fra Pwhite, der bliver flettet ind i sekvensen - med flere og flere for hvert gennemløbg.
 
 ```sc title="Varieret fraselængde med indlejret Pseries"
-(
 Pbind(
     \degree, Pseq([
         -7,
@@ -134,7 +127,6 @@ Pbind(
     ], 8),
     \dur, 0.25,
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/03-pseries-indlejret.ogg)

@@ -11,7 +11,6 @@ Denne øvelse handler om at bruge patterns til generativ komposition.
 Skriv en komposition med `Pbind`, hvor alle parametre genereres tilfældigt, dvs. de faste værdier skal erstattes med patterns. Se evt. [artiklen om patterns og tilfældighed](a-random-patterns.md).
 
 ```sc title="Aleatorik ud over det hele"
-(
 Pbind(
     // Tonehøjde
     \degree, 0,
@@ -23,7 +22,6 @@ Pbind(
 
     \db, -20,
 ).play;
-)
 ```
 
 ## Sekvens og generativitet
@@ -34,17 +32,13 @@ Pbind(
     1. Forsøg at tilstræbe en balance mellem gentagelse og variation. Hertil kan det være en god idé at bruge pattern-methods som `.stutter`, `.repeat` og `.clump`.
 
 ```sc title="Sekvens og generativitet"
-(
 ~sekvens = "Lunken kaffe".ascii % 10;
 ~sekvens.postln;
-)
 
-(
 Pbind(
 
 
 
 
 ).play;
-)
 ```

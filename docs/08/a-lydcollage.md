@@ -22,7 +22,6 @@ Når vi skal skabe en lydcollage, er det nyttigt at indrette vores SynthDef, så
 Dertil kommer egenskaber som argumentet `startPos`, der angiver en position i bufferen (som tal fra 0 til 1), hvor læsningen af et sample skal starte. Samlet set bliver SynthDef'en indrettet således:
 
 ```sc title="SynthDef til sampleafspilning"
-(
 SynthDef(\sampleM, {
     arg amp = 0.1, out = 0, pan = 0,
     transpose = 0, startPos = 0, direction = 1,
@@ -43,7 +42,6 @@ SynthDef(\sampleM, {
     sig = Pan2.ar(sig, pan, amp);
     Out.ar(out, sig);
 }).add;
-)
 ```
 
 ## Collage med patterns

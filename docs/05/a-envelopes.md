@@ -89,13 +89,11 @@ Inden vi går videre, er det vigtigt at skrive sig bag øret, at `EnvGen` ofte n
 Det er ofte nyttigt at skille disse elementer ad på forskellige linjer og bruge lokale variabler:
 
 ```sc title="Envelope som lokal variabel"
-(
 {
     var env = EnvGen.kr(Env.perc);
     var sig = PinkNoise.ar;
     sig * env * 0.1;
 }.play;
-)
 ```
 
 Når vi gemmer envelope-generatoren under en lokal variabel, kan vi efterfølgende bruge envelope-signalet til flere forskellige formål. Fx kan vi styre både tonehøjde og lydstyrke med den samme envelope, således at flere parametre udvikler sig over tid i takt med hinanden. Dette kan give anledning til yderst interessante lyddesign, alt efter hvilke parametre man modulerer med envelopen!
@@ -103,7 +101,6 @@ Når vi gemmer envelope-generatoren under en lokal variabel, kan vi efterfølgen
 Lad os tage et eksempel:
 
 ```sc title="Brug af envelope til modulation af flere parametre"
-(
 {
     // Envelopen oprettes og gemmes under den lokale variabel env
     var env = EnvGen.kr(Env.perc(0.1, 5));
@@ -114,7 +111,6 @@ Lad os tage et eksempel:
     // Det umodificerede envelopesignal anvendes til at styre lydstyrken
     sig * env * 0.1;
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/05-env-perc-pulse.ogg)

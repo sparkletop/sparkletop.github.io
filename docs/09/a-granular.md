@@ -31,7 +31,6 @@ Inden vi går i gang med at udforske denne UGen, skal vi indlæse et sample i en
 Her hører vi 5 grains pr. sekund, placeret i midten af et stereofelt, hver med en varighed på 25ms, læst fra midten af den buffer, hvor vores sample er indlæst:
 
 ```sc title="Brug af GrainBuf"
-(
 {
     GrainBuf.ar(
         // Antallet af output-kanaler
@@ -56,7 +55,6 @@ Her hører vi 5 grains pr. sekund, placeret i midten af et stereofelt, hver med 
         pan: 0
     );
 }.play;
-)
 ```
 
 Der findes yderligere argumenter til `GrainBuf`, men de er af mindre betydning for den grundlæggende anvendelse. Nysgerrige læsere henvises til [den relevante dokumentation](https://doc.sccode.org/Classes/GrainBuf.html).
@@ -82,7 +80,6 @@ Det er oplagt at styre overlap og grainvarighed kompositorisk, dvs. med LFO'er e
 Hvis vi eksempelvis styrer grainvarighed og overlap med en LFO (her simuleret med musens X- og Y-koordinater på skærmen ved hjælp af `MouseX` og `MouseY`), kan vi således beregne triggerfrekvensen automatisk:
 
 ```sc title="Automatisk beregning af triggerfrekvens"
-(
 {
     var grainDur = MouseX.kr(0.01, 0.2, \linear).poll(label: \grainDur);
     var overlap = MouseY.kr(0.5, 20, \exponential).poll(label: \overlap);
@@ -98,7 +95,6 @@ Hvis vi eksempelvis styrer grainvarighed og overlap med en LFO (her simuleret me
         pan: 0
     );
 }.play;
-)
 ```
 
 ![type:audio](eksempel.ogg)

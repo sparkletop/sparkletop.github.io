@@ -117,25 +117,21 @@ Ligesom ved almindelige funktioner er det sidste linje, der udgør outputtet, al
 [^1]: Når vi senere arbejder med [SynthDefs](../05/a-synthdef.md), er det værd at notere sig, at outputtet i stedet skal angives med en særlig UGen.
 
 ```sc title="Lokale variabler i UGen-funktioner"
-(
 {
     var tone = SinOsc.ar(440);
     var lfo = SinOsc.ar(2);
     tone * lfo;
 }.play;
-)
 ```
 
 Bemærk i øvrigt hvad der sker, hvis vi øger frekvensen for LFO'en - så er vi i gang med en klangdannelsesteknik, der kaldes amplitudemodulation (AM).
 
 ```sc title="Simpel AM-syntese"
-(
 {
     var tone = SinOsc.ar(440);
     var lfo = SinOsc.ar(200);
     tone * lfo;
 }.play;
-)
 ```
 
 Vi vender grundigt tilbage til UGen-funktioner [senere i bogen](../04/a-ugens.md).

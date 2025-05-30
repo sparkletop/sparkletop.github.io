@@ -18,7 +18,6 @@ Disse bølgeformer udnytter den såkaldt naturlige [overtonerække](https://www.
 Den savtakkede bølgeform indeholder alle overtoner i overtonerækken. Her blot de første 30 overtoner.
 
 ```sc title="Fremstilling af en savtakket bølgeform ved addition af sinusbølger"
-(
 {
     var sig = 30.collect({
         arg num;
@@ -27,7 +26,6 @@ Den savtakkede bølgeform indeholder alle overtoner i overtonerækken. Her blot 
     });
     sig.sum * 0.05;
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/07-additiv-syntese-savtakket.ogg)
@@ -39,7 +37,6 @@ Den savtakkede bølgeform indeholder alle overtoner i overtonerækken. Her blot 
 Den firkantede bølgeform kan skabes med overtonerne med ulige numre, dvs. nr. 1 (grundtonen), nr. 3, nr. 5, nr. 7 osv. Overtonerne falder i amplitude, jo højere vi kommer op. Her blot de første 30 overtoner.
 
 ```sc title="Fremstilling af en firkantet bølgeform ved addition af sinusbølger"
-(
 {
     var sig = 30.collect({
         arg num;
@@ -48,7 +45,6 @@ Den firkantede bølgeform kan skabes med overtonerne med ulige numre, dvs. nr. 1
     });
     sig.sum * 0.05;
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/07-additiv-syntese-firkantet.ogg)
@@ -60,7 +56,6 @@ Den firkantede bølgeform kan skabes med overtonerne med ulige numre, dvs. nr. 1
 Den trekantede bølgeform kan ligesom den firkantede skabes med overtonerne med ulige numre, dvs. nr. 1 grundtonen, nr. 3, nr. 5, nr. 7 osv. Overtonerne falder i amplitude, jo højere vi kommer op, men med en lidt anden formel end ved den firkantede. Her blot de første 30 overtoner.
 
 ```sc title="Fremstilling af en trekantet bølgeform ved addition af sinusbølger"
-(
 {
     var sig = 30.collect({
         arg num;
@@ -69,7 +64,6 @@ Den trekantede bølgeform kan ligesom den firkantede skabes med overtonerne med 
     });
     sig.sum * 0.1;
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/07-additiv-syntese-trekantet.ogg)
@@ -85,7 +79,6 @@ Man behøver naturligvis ikke begrænse sig til standardbølgeformer eller for d
 En ikke-standard bølgeform, som består af hver tredje overtone:
 
 ```sc title="Fremstilling af en bølgeform med hver 3. overtone ved addition af sinusbølger"
-(
 {
     var sig = 15.collect({
         arg num;
@@ -94,7 +87,6 @@ En ikke-standard bølgeform, som består af hver tredje overtone:
     });
     sig * 0.1;
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/07-additiv-syntese-nonstandard.ogg)
@@ -108,7 +100,6 @@ Dette eksempel på en klokkelyd er løseligt baseret på et eksempel fra Curtis 
 - To *partialtoner* (dvs. ikke-harmoniske overtoner), som klinger ved henholdsvis 347,5Hz og 9921,8Hz.
 
 ```sc title="Klokkelyd beskrevet af Curtis Roads"
-(
 {
     var freqs = [200, 347.5, 2000, 9921.8];
     var amplitudes = [0.73, 0.18, 0.05, 0.04];
@@ -117,7 +108,6 @@ Dette eksempel på en klokkelyd er løseligt baseret på et eksempel fra Curtis 
     sig = sig.sum;
     sig.dup * env * 0.1;
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/07-additiv-syntese-klokke.ogg)
@@ -129,7 +119,6 @@ Klokkelyde er generelt kendetegnet ved et højt indhold af partialtoner. For at 
 Kør blokken flere gange for at høre variationsmulighederne. Bemærk hvor længe de forskellige partialtoner klinger på grund af forskellige længder af release-segmenter.
 
 ```sc title="Kaotisk klokkelyd"
-(
 {
     var sig = 16.collect({
         var freq = ExpRand(200, 8000);
@@ -142,7 +131,6 @@ Kør blokken flere gange for at høre variationsmulighederne. Bemærk hvor læng
     DetectSilence.ar(sig, doneAction: Done.freeSelf);
     sig.dup * 0.1;
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/07-additiv-syntese-kaotisk-klokke.ogg)

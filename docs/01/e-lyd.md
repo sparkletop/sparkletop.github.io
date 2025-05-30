@@ -15,7 +15,6 @@ Start først lydserveren med `s.boot;`
 1. Prøv at ændre på tallene eller vælge en anden skala, og kør blokken igen for at lytte til resultatet.
 
 ```sc title="Skalaudforskning"
-(
 Pbind(
     // prøv at vælge en anden skala, fx Scale.egyptian
     \scale, Scale.minor,
@@ -27,7 +26,6 @@ Pbind(
     \dur, 0.25,    // <-- denne værdi skal være større end 0
     \legato, 1.2,
 ).play;
-)
 ```
 
 Tip: Kør `Scale.directory;` for at få vist de forskellige indbyggede skalaer. Det er også muligt [at definere sine egne skalaer](https://doc.sccode.org/Classes/Scale.html#*new) eller bruge alternative [stemningssystemer](https://doc.sccode.org/Classes/Tuning.html).

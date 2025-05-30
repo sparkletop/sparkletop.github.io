@@ -30,12 +30,10 @@ Som udgangspunkt for generativ komposition laver vi en instans af klassen `Pbind
 Her er et enkelt eksempel, hvor vi med nøglen `\degree` vælger at knytte den musikalske parameter *skalatrin* sammen med en fast værdi, nemlig værdien 2, som angiver *tredje* skalatrin. Men hov, hvorfor betyder 2 ikke *andet* skalatrin her? Det skyldes, at *første* skalatrin har værdien 0. Dette afspejler en konvention inden for de fleste programmeringssprog, hvor man starter med at tælle ved tallet 0. Ønsker vi *andet* skalatrin, skal vi i stedet angive værdien 1, og så fremdeles.
 
 ``` sc title="Pbind og skalatrin"
-(
 Pbind(
     // Vi vælger 3. skalatrin (i C-dur tonen e)
     \degree, 2,
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/02-pbind-degree.ogg)
@@ -43,11 +41,9 @@ Pbind(
 Men ovenstående bliver hurtigt lidt ensformigt at lytte til. I stedet for faste værdier kan vi bruge et pattern til at generere forskellige værdier. Vi starter med `Pseq`, som vi kan bruge til at generere en sekvens af værdier - stadig skalatrin, fordi vi bruger `\degree`-nøglen.
 
 ``` sc title="Enkel tonesekvens med Pseq"
-(
 Pbind(
     \degree, Pseq([0, 1, 3, 4, 7]),
 ).play;
-)
 // -> 0, 1, 3, 4, 7
 ```
 
@@ -56,11 +52,9 @@ Pbind(
 Alternativt kan vi lade computeren vælge skalatrin for os. Vi kan fx bruge `Pwhite` til at generere 5 tilfældige skalatrin inden for en oktav (trin 0-7).
 
 ``` sc title="Tilfældighed med Pwhite"
-(
 Pbind(
     \degree, Pwhite(0, 7, 5),
 ).play;
-)
 // -> Fx 5, 4, 6, 3, 6
 ```
 
@@ -69,12 +63,10 @@ Pbind(
 Vi kan også kombinere en fast sekvens med tilfældigt valgte værdier ved at knytte `Pwhite` til `\degree` og dermed tonehøjde, mens vi knytter `Pseq` til `\dur` og dermed varighed/rytmik. På den måde får vi en komposition med både faste og tilfældige parametre.
 
 ``` sc title="Kombination af Pwhite og Pseq"
-(
 Pbind(
     \degree, Pwhite(0, 7),
     \dur, Pseq([0.25, 0.5, 0.25], 4),
 ).play;
-)
 ```
 
 Senere i dette kapitel gennemgås de mest almindelige [nøgler](a-pbind.md) og [patterns](c-patterns.md).
@@ -86,33 +78,27 @@ Lad os imidlertid først kigge lidt nærmere på nogle af de generative redskabe
 `Pseq` er et *listebaseret* pattern. Når vi bruger `Pseq` til at skabe en sekvens, noterer vi således som det første [argument](../01/a-funktioner.md#input-til-funktioner-argumenter) en [liste](../01/a-lister.md) med de elementer, som skal indgå i sekvensen. `Pbind` knytter derfor én efter én de angivne elementer i listen sammen med den nøgle, `Pseq` er noteret ud for (herunder nøglen for skalatrin, `\degree`):
 
 ``` sc title="En sekvens med Pseq"
-(
 Pbind(
     \degree, Pseq([7, 4, 2, 0]),
 ).play;
-)
 // -> 7, 4, 2, 0
 ```
 
 Vi kan som det næste argument angive hvor mange gange sekvensen skal afspilles:
 
 ``` sc title="Repetition med Pseq"
-(
 Pbind(
     \degree, Pseq([7, 4, 2, 0], 2),
 ).play;
-)
 // -> 7, 4, 2, 0, 7, 4, 2, 0
 ```
 
 I stedet for et bestemt antal gentagelser kan vi gentage uendeligt med nøgleordet `inf`:
 
 ``` sc title="Uendelig gentagelse med Pseq"
-(
 ~eksempel = Pbind(
     \degree, Pseq([7, 4, 2, 0], inf),
 ).play;
-)
 // -> 7, 4, 2, 0, 7, 4, 2, 0, 7, 4 ...
 ~eksempel.stop;
 ```
@@ -120,12 +106,10 @@ I stedet for et bestemt antal gentagelser kan vi gentage uendeligt med nøgleord
 Vi kan vælge at bruge `Pseq` til at styre flere forskellige parametre. Selvom den nederste `Pseq` herunder gentager sekvensen i det uendelige, slutter vores samlede sekvens af begivenheder, så snart den første Pseq i Pbind'en er fædig.
 
 ``` sc title="Flere Pseqs på én gang"
-(
 Pbind(
     \degree, Pseq([0, 1, 2, 7, 4, 3, 1, 2]),
     \dur, Pseq([0.25, 0.5, 0.25, 1], inf),
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/02-flere-pseqs.ogg)
@@ -133,20 +117,17 @@ Pbind(
 Det kan nogle gange være en god idé at bruge variabler til at fordele vores kode over flere linjer. Eksemplet herunder giver samme resultat som ovenfor:
 
 ``` sc title="Organisér koden med variabler"
-(
 ~skalatrin = [0, 1, 2, 7, 4, 3, 1, 2];
 ~varigheder = [0.25, 0.5, 0.25, 1];
 Pbind(
     \degree, Pseq(~skalatrin),
     \dur, Pseq(~varigheder, inf),
 ).play;
-)
 ```
 
 Elementerne i vores sekvenser kan være andre patterns, fx `Pwhite`, som vi så ovenfor. På den måde kan man blande variation og dynamik ind i sin komposition, men samtidig repetere og fastholde delelementer, så dele af sekvensen er genkendelig.
 
 ``` sc title="Indlejring af Pwhite i Pseq"
-(
 Pbind(
     \degree, Pseq([
         -7, 7,             // først et par faste toner
@@ -155,7 +136,6 @@ Pbind(
     ], 2).trace,         // afspil hele sekvensen to gange (og vis outputtet med .trace)
     \dur, 0.5,
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/02-indlejring-pwhite-pseq.ogg)
@@ -178,11 +158,9 @@ Indlejring af patterns på denne måde er en yderst nyttig kilde til mere intere
 Modsat `Pseq` kører `Pwhite` som udgangspunkt uendeligt, men vi kan begrænse *antallet* af tilfældige tal med et yderligere argument:
 
 ``` sc title="Pwhite med begrænset antal"
-(
 Pbind(
     \degree, Pwhite(0, 4, 3),
 ).play;
-)
 ```
 
 Angiver vi decimaltal i stedet for heltal som øvre og/eller nedre grænse for `Pwhite`s output, får vi også decimaltal som resultat:
@@ -195,7 +173,6 @@ Pbind(\degree, Pwhite(0.0, 7.0, 4).trace).play;
 Ligesom med `Pseq` kan vi bruge `Pwhite` til at styre en række forskellige andre parametre:
 
 ```sc title="Pwhite næsten over det hele"
-(
 Pbind(
     // En fast sekvens af tonehøjder
     \degree, Pseq([0, 2, 4, 5], inf),
@@ -210,7 +187,6 @@ Pbind(
     \pan, Pwhite(-1.0, 1.0, 16),
     // 16 toner
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/02-pwhite-overalt.ogg)
@@ -252,12 +228,10 @@ Pbind(\degree, Pseq([0, 1, 2]) + Pseq([0, 7], inf)).play;
 Afrunding er også muligt med method'en `.round()`. For eksempel kan vi afrunde tilfældigt genererede tal mellem -12 og +12 til nærmeste tal i 3-tabellen og derved få en melodi, der kun springer i intervaller, som er opbygget af små tertser:
 
 ```sc title="Afrunding med .round"
-(
 Pbind(
     \scale, Scale.chromatic,
     \degree, Pwhite(-12, 12).round(3),
 ).play;
-)
 ```
 
 Vi kan også bruge nogle specifikke pattern-methods til at gentage eller sammenklumpe outputtet fra patterns på forskellig vis. Kør nedenstående kode og gæt selv hvad `.repeat`, `.stutter` og `.clump` gør:

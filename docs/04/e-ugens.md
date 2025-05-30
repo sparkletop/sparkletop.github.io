@@ -25,12 +25,10 @@ Afspil følgende lyde med peak-amplitude på 0.1:
 SuperCollider kan plotte lyd-outputtet i en graf. Dette viser eksempelvis outputtet fra en `SinOsc` og en `LFTri`, målt over et tidsrum på 10 millisekunder:
 
 ```sc title="Visualisering af bølgeform"
-(
 {[
     SinOsc.ar(440),
     LFTri.ar(440)
 ]}.plot(0.010);
-)
 ```
 
 Brug `{}.plot`-teknikken ligesom ovenfor til at overveje følgende spørgsmål:
@@ -92,13 +90,11 @@ Modulér frekvensen for en savtakket oscillator med følgende UGens og på følg
 
 Vælg selv en passende frekvens mellem 0Hz og 20Hz til modulatoren.
 
-```sc title="Frekvensmodulation" hl_lines="3"
-(
+```sc title="Frekvensmodulation" hl_lines="2"
 {
     var modulator =   ;
     Saw.ar(modulator) * 0.1;
 }.play;
-)
 ```
 
 ## Bonusopgave: FM, AM, RM

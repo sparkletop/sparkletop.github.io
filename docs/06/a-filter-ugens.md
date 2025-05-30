@@ -35,13 +35,11 @@ Ved de fleste filter-UGens kan vi angive cutoff-frekvensen som argument nr. 2. F
 Cutoff-frekvensen kan [moduleres](../04/a-ugens.md#modulation) af andre UGens, fx en LFO. Her [skalerer](../04/a-skalering.md) vi outputtet fra LFO'en `LFTri` med `.exprange`:
 
 ```sc title="Modulation af cutoff-frekvens"
-(
 {
     var lfo = LFTri.kr(2).exprange(200, 2000);
     var source = PinkNoise.ar;
     LPF.ar(source, lfo);
 }.play;
-)
 ```
 
 ![type:audio](../media/audio/06-lpf-modulation.ogg)
@@ -73,19 +71,16 @@ Ovenfor arbejder vi for enkelhedens skyld med filtreret støj, men i musikalsk s
 Dette er dog ikke særligt fleksibelt, da vi ikke blot kan spille en anden tone (dvs. bruge en anden oscillatorfrekvens) og forvente, at klangen (altså tonens overtonespektrum) er det samme som før, blot tilsvarende højere eller lavere i frekvens. Ønsker vi, at cutoff-frekvens tilpasser sig oscillatorens frekvens automatisk, kan det heldigvis let gøres ved at regne cutoff-frekvensen ud særskilt. Uanset hvad vi angiver under `freq` herunder, vil filterets cutoff-frekvens ligger en oktav højere end oscillatorens tonehøjde.
 
 ```sc title="Automatisk tilpasset cutoff-frekvens"
-(
 {
     var freq = 440;
     var cutoff = freq * 2;
     LPF.ar(Saw.ar(freq), cutoff) * 0.1;
 }.play;
-)
 ```
 
 Ønsker vi at kunne styre afstanden mellem cutoff-frekvens og oscillatorfrekvens med et argument (fx hvis vi ønsker at lave en SynthDef med subtraktiv klangdannelse), kan vi angive dette på forskellige måder - jeg foretrækker typisk at angive filterets cutoff målt i antal oktaver over oscillatorfrekvensen, hvilket kan udregnes let med en faktor `freq * 2.pow(oktav)` (hvor `2.pow(5)` betyder "to i femte"). Det betyder ganske enkelt, at hvis oscillatorens frekvens er 100Hz, og vi ønsker en cutoff-frekvens 3 oktaver derover, ser regnestykket således ud: `100Hz * 2.pow(3) = 100Hz * 8 = 800Hz`.
 
 ```sc title="Automatisk tilpasset cutoff-frekvens"
-(
 SynthDef(\autoCutoff, {
     arg freq = 440, pan = 0,
     amp = 0.1, out = 0, cutoffOktav = 2;
@@ -96,19 +91,16 @@ SynthDef(\autoCutoff, {
     sig = sig * env;
     Out.ar(out, Pan2.ar(sig, pan, amp));
 }).add;
-)
 ```
 
 Bemærk, at overtonespektret for de følgende toner er ens, blot flyttet relativt til tonehøjde:
 
 ```sc title="Demonstration af automatisk udregnet cutoff"
-(
 Pbind(
     \instrument, \autoCutoff,
     \octave, Pseq([3, 4, 5, 6]),
     \dur, 2,
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/06-automatisk-cutoff.ogg)
@@ -116,13 +108,11 @@ Pbind(
 Vi kan også fremstille variable klange ved at indstille cutoffOktav-argument med dets tilhørende nøgle i Pbind:
 
 ```sc title="Klanglig variation med filter-cutoff"
-(
 Pbind(
     \instrument, \autoCutoff,
     \cutoffOktav, Pseq([1, 2, 3, 4, 5]),
     \dur, 2,
 ).play;
-)
 ```
 
 ![type:audio](../media/audio/06-automatisk-cutoff-oktav.ogg)

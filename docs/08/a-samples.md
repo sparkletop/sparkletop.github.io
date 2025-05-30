@@ -18,22 +18,18 @@ For at arbejde med et sample/en lydfil, skal samplet indlæses i en såkaldt `Bu
 Til at starte med kan vi bruge et sample, der følger med SuperCollider (linje 3). Men man kan nemt arbejde med egne samples (se linje 6 herunder) - erstat blot `C:/lydfiler/minlydfil.wav` med stien til din egen lydfil. Stien kan genereres automatisk ved at trække filen ind i SuperCollider med musen, eller ved at copy-paste filen fra en mappe på din computer. Når du slipper en fil med musen eller taster Cmd-/Ctrl-V på tastaturet for at sætte filen ind, vil SuperColliders IDE skrive filens sti, der hvor musemarkøren eller cursoren befinder sig.
 
 ```sc title="Indlæsning af lydfil i Buffer"
-(
 // Et indbygget sample indlæses i buffer
 ~sample = Buffer.read(s, Platform.resourceDir +/+ "sounds/a11wlk01.wav");
 
 // En ekstern lydfil indlæses i buffer
 ~sample = Buffer.read(s, "C:/lydfiler/minlydfil.wav");
-)
 ```
 
 Ønsker vi blot at indlæse én af flere kanaler i en lydfil, kan vi i stedet for `Buffer.read` bruge `Buffer.readChannel` og under argumentet `channels` angive en liste med et tal for hver af de kanaler, vi ønsker at indlæse. Her er 0 typisk den venstre og 1 typisk den højre kanal.
 
 ```sc title="Indlæsning af lydfil i mono-buffer"
-(
 // En ekstern lydfil indlæses i mono-buffer
 ~sample = Buffer.readChannel(s, "C:/lydfiler/minlydfil.wav", channels: [0]);
-)
 ```
 
 Når lydfilen er indlæst i en `Buffer` under variabelnavnet `~sample`, kan vi bruge de forskellige instance methods, som knytter sig til buffere, til at vise noget grundlæggende information om samplet:
@@ -57,7 +53,6 @@ Den mest enkle metode til afspilning af samples er at bruge UGen'en `PlayBuf`. H
 Her kan du se, hvordan man indstiller argumenterne til `PlayBuf` og bruger `BufRateScale` samt `BufFrames`:
 
 ```sc title="PlayBuf-argumenter"
-(
 {
     PlayBuf.ar(
         // antal kanaler
@@ -82,13 +77,11 @@ Her kan du se, hvordan man indstiller argumenterne til `PlayBuf` og bruger `BufR
         doneAction: Done.freeSelf
     )
 }.play
-)
 ```
 
 Vi kan modulere flere af `PlayBuf`s parametre ved hjælp af andre UGens. For eksempel afspilningshastighed:
 
 ```sc title="Modulation af sampleafspilning med LFO"
-(
 {
     PlayBuf.ar(1, ~sample,
         SinOsc.kr(2) * BufRateScale.kr(~sample)
@@ -102,7 +95,6 @@ Vi kan modulere flere af `PlayBuf`s parametre ved hjælp af andre UGens. For eks
         loop: 1
     )
 }.play;
-)
 ```
 
 ![type:audio](eksempel.ogg)
@@ -110,7 +102,6 @@ Vi kan modulere flere af `PlayBuf`s parametre ved hjælp af andre UGens. For eks
 Med et triggersignal, her skabt af UGen'en `Impulse`, kan vi springe hen til den position i bufferen, som er angivet med argumentet `startPos`.
 
 ```sc title="Spring til position i sample"
-(
 // Fast startposition - midt i bufferen
 {
     PlayBuf.ar(1, ~sample,
@@ -128,7 +119,6 @@ Med et triggersignal, her skabt af UGen'en `Impulse`, kan vi springe hen til den
         startPos: BufFrames.kr(~sample) * LFTri.kr(0.05).unipolar,
     )
 }.play
-)
 ```
 
 ![type:audio](eksempel.ogg)
@@ -140,7 +130,6 @@ Med et triggersignal, her skabt af UGen'en `Impulse`, kan vi springe hen til den
 Ofte anvendes UGen'en `Phasor`, som skaber en lineær rampe fra start- til slutværdi (det er generelt sådan samples afspilles i digitale lydsystemer).
 
 ```sc title="Sample-afspilning med BufRd og Phasor"
-(
 {
     BufRd.ar(
         numChannels: 2,
@@ -150,13 +139,11 @@ Ofte anvendes UGen'en `Phasor`, som skaber en lineær rampe fra start- til slutv
         loop: 1
     )
 }.play
-)
 ```
 
 Man kan anvende mange forskellige UGens som alternativ til `Phasor`. Her moduleres afspilningsposition i `BufRd` af henholdsvis en perkussiv envelope og lavfrekvent støj:
 
 ```sc title="Envelope og tilfældighedsgenerator som pickupnål"
-(
 {
     var position = EnvGen.ar(Env.perc(0.1, 2)) * BufFrames.kr(~sample);
     BufRd.ar(1, ~sample, position, 1);
@@ -168,7 +155,6 @@ Man kan anvende mange forskellige UGens som alternativ til `Phasor`. Her moduler
     var position = LFNoise1.ar(6).range(0, BufFrames.kr(~sample));
     BufRd.ar(1, ~sample, position, 1);
 }.play;
-)
 ```
 
 ![type:audio](eksempel.ogg)
