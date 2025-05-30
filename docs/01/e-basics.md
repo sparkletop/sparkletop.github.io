@@ -100,10 +100,10 @@ Husk følgende:
 Du er i gang med at lære et nyt sprog. Nedenstående øvelse giver en god forudsætning for at undersøge og forstå kildekode, du ikke har set før.
 
 1. Identificér følgende i kildekoden herunder:
-    1. Alle klassenavne. *Hint: Det er dem, der [starter med stort begyndelsesbogstav](a-methods#class-methods).
-    1. Alle methods, herunder også [implicit](./a-methods.md#class-methods) `.new`.
+    1. Alle klassenavne. *Hint: Det er dem, der [starter med stort begyndelsesbogstav](a-methods.md#class-methods).
+    1. Alle methods, herunder også [implicit](a-methods.md#class-methods) `.new`.
     1. Alle lister.
-    1. Alle unikke [variabelnavne](./a-variabler.md#brug-af-variabler).
+    1. Alle unikke [variabelnavne](a-variabler.md#brug-af-variabler).
     1. Alle [funktioner](a-funktioner.md).
     1. Alle [argumenter](a-funktioner.md#input-til-funktioner-argumenter).
 1. Undersøg ved hjælp af SuperColliders dokumentation følgende:
