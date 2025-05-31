@@ -50,7 +50,7 @@ Den mest enkle metode til afspilning af samples er at bruge UGen'en `PlayBuf`. H
 - **Sampleraten** i en given lydfil matcher ikke nødvendigvis lydserverens samplerate. Hvis lydserverens samplerate er 44.1 kHz, men lydfilen er produceret ved 48 kHz, vil afspilningen ske for langsomt, og tonehøjde, tempo osv. vil ikke passe. Derfor har vi en særlig UGen, der kan tage højde for sådanne mismatch, nemlig `BufRateScale`.
 - **Antal samples:** Et lydsample eller en lydfil består af et bestemt antal "målinger", der med et lidt uheldigt terminologisk sammenfald også kaldes *samples* på engelsk (deraf betegnelsen "samplerate"). Med `PlayBuf` måler vi samplets varighed ud fra antallet af disse samples, sammenholdt med samplerate, dvs. hvor hurtigt vi skal læse disse samples. Vi kan imidlertid ikke gå ud fra antallet af samples i en Buffer, da en buffer kan indeholde data fra lydfiler med et variabelt antal kanaler (oftest arbejder vi dog med mono- eller stereofiler). For at finde varigheden af en indlæst lydfil, målt i enkeltsamples, kan vi i stedet bruge UGen'en `BufFrames`. Den giver os antallet af såkaldte sample frames, der er fast, uanset hvor mange kanaler, bufferen indeholder.
 
-Her kan du se, hvordan man indstiller argumenterne til `PlayBuf` og bruger `BufRateScale` samt `BufFrames`:
+Her kan du se, hvordan man indstiller argumenterne til `PlayBuf` og bruger `BufRateScale` samt `BufFrames` til at tage højde for det indlæste samples varighed og samplerate:
 
 ```sc title="PlayBuf-argumenter"
 {
@@ -87,8 +87,7 @@ Vi kan modulere flere af `PlayBuf`s parametre ved hjælp af andre UGens. For eks
         SinOsc.kr(2) * BufRateScale.kr(~sample)
     )
 }.play;
-)
-(
+
 {
     PlayBuf.ar(1, ~sample,
         LFNoise1.kr(0.5).range(0.5, 2) * BufRateScale.kr(~sample),
@@ -97,7 +96,7 @@ Vi kan modulere flere af `PlayBuf`s parametre ved hjælp af andre UGens. For eks
 }.play;
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/08-lfo-playbuf.ogg)
 
 Med et triggersignal, her skabt af UGen'en `Impulse`, kan vi springe hen til den position i bufferen, som er angivet med argumentet `startPos`.
 
@@ -109,9 +108,7 @@ Med et triggersignal, her skabt af UGen'en `Impulse`, kan vi springe hen til den
         startPos: 0.5 * BufFrames.kr(~sample),
     )
 }.play;
-)
 
-(
 // Dynamisk startposition, moduleret af en LFO
 {
     PlayBuf.ar(1, ~sample,
@@ -121,7 +118,7 @@ Med et triggersignal, her skabt af UGen'en `Impulse`, kan vi springe hen til den
 }.play
 ```
 
-![type:audio](eksempel.ogg)
+![type:audio](../media/audio/08-spring-til-startposition.ogg)
 
 ## Ekstra fleksibilitet med BufRd
 
@@ -138,7 +135,7 @@ Ofte anvendes UGen'en `Phasor`, som skaber en lineær rampe fra start- til slutv
         phase: Phasor.ar(0, BufRateScale.kr(~sample), 0, BufFrames.kr(~sample)),
         loop: 1
     )
-}.play
+}.play;
 ```
 
 Man kan anvende mange forskellige UGens som alternativ til `Phasor`. Her moduleres afspilningsposition i `BufRd` af henholdsvis en perkussiv envelope og lavfrekvent støj:
@@ -148,9 +145,7 @@ Man kan anvende mange forskellige UGens som alternativ til `Phasor`. Her moduler
     var position = EnvGen.ar(Env.perc(0.1, 2)) * BufFrames.kr(~sample);
     BufRd.ar(1, ~sample, position, 1);
 }.play;
-)
 
-(
 {
     var position = LFNoise1.ar(6).range(0, BufFrames.kr(~sample));
     BufRd.ar(1, ~sample, position, 1);
